@@ -1814,6 +1814,27 @@ const nodeSel = svg.selectAll("circle")
   .style("cursor","pointer")
   .style("opacity", 0);
 
+const STAGE3_TOUCH_HOT_MS = 900;
+let stage3TouchHotEl = null;
+let stage3TouchHotAt = 0;
+
+function isTouchLikeInteraction(evt){
+  if (evt && typeof evt.pointerType === "string") return evt.pointerType !== "mouse";
+  if (evt && evt.sourceCapabilities && evt.sourceCapabilities.firesTouchEvents) return true;
+  return !!(("ontouchstart" in window) || (navigator.maxTouchPoints > 0));
+}
+
+function setStage3TouchHot(el){
+  if (stage3TouchHotEl && stage3TouchHotEl !== el && stage3TouchHotEl.classList) {
+    stage3TouchHotEl.classList.remove("stage3-hot");
+  }
+  stage3TouchHotEl = el;
+  stage3TouchHotAt = Date.now();
+  if (stage3TouchHotEl && stage3TouchHotEl.classList) {
+    stage3TouchHotEl.classList.add("stage3-hot");
+  }
+}
+
 const labelSel = svg.selectAll("text")
       .data(nodes)
       .enter().append("text")
@@ -1833,10 +1854,19 @@ const labelSel = svg.selectAll("text")
         if (e && typeof e.stopPropagation === "function") e.stopPropagation();
         if (!d || d.root) return; // only node labels (not the main body label)
 
-        // Stage 3 should open ONLY when the label is "hot" (enlarged by proximity)
         const el = this;
         const isHot = el && el.classList && el.classList.contains("stage3-hot");
-        if (!isHot) return;
+        const isTouchLike = isTouchLikeInteraction(e);
+
+        if (isTouchLike) {
+          const isFreshTouchHot = (stage3TouchHotEl === el) && ((Date.now() - stage3TouchHotAt) <= STAGE3_TOUCH_HOT_MS);
+          if (!isHot || !isFreshTouchHot) {
+            setStage3TouchHot(el);
+            return;
+          }
+        } else if (!isHot) {
+          return;
+        }
 
         if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
           window.WorkStage3.open({
