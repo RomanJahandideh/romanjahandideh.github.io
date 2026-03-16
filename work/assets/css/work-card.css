@@ -1,0 +1,236 @@
+/* =====================================================
+   WORK – FIREFLY BUBBLES
+   SMALL = flat soft white dots (alive, flickering)
+   BIG   = flat monochrome gray UI (transparent)
+   ===================================================== */
+
+:root{
+  /* =========================
+     BIG HOVER CIRCLE HANDLERS
+     ========================= */
+  --ff-hover-gray: rgba(255, 255, 255, 0.80);  /* 🔧 MAIN BIG CIRCLE COLOR */
+  --ff-ring-color: rgba(255,255,255,0.28);     /* subtle ring */
+  --ff-ring-size: 0px;
+
+  /* =========================
+     TEXT HANDLERS
+     ========================= */
+  --ff-text-size: 8px;                        /* 🔧 label size */
+  --ff-text-weight: 500;                       /* 🔧 label weight */
+  --ff-text-color: rgba(0,0,0,1);
+
+  /* =========================
+     SMALL FIREFLY SIZE HANDLERS
+     ========================= */
+  --ff-small-size-min: 57px;   /* 🔧 MIN size (try 56–78) */
+  --ff-small-size-max: 92px;   /* 🔧 MAX size (try 78–110) */
+
+  /* =========================
+     FLICKER HANDLERS (VISIBLE)
+     ========================= */
+  --ff-flicker-speed: 3.4s;    /* 🔧 slower = calmer, faster = more alive */
+
+  --ff-flicker-min-scale: 0.93;
+  --ff-flicker-max-scale: 1.06;
+
+  --ff-flicker-min-opacity: 0.72;
+  --ff-flicker-max-opacity: 0.98;
+
+  /* brightness shimmer (this is what makes it *actually* flicker) */
+  --ff-flicker-min-brightness: 0.88;
+  --ff-flicker-max-brightness: 1.12;
+
+  /* optional subtle “grain” feel, still clean */
+  --ff-flicker-min-contrast: 0.96;
+  --ff-flicker-max-contrast: 1.06;
+}
+
+/* ------------------------
+   STACK HOLDER
+------------------------ */
+
+#card-stack{
+  position: relative;
+  width: 420px;
+  height: 420px;
+  margin: 0 auto;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+/* ✅ correct selector */
+#main-stack.one-div{
+  position: relative;
+  width: 420px;
+  height: 420px;
+}
+
+/* ------------------------
+   SMALL FIREFLIES (DEFAULT STATE)
+   flat, soft, alive
+------------------------ */
+
+#main-stack .layer{
+  position: absolute !important;
+  left: 50%;
+  top: 50%;
+
+  /* JS overwrites transform for physics; we keep the base translate */
+  transform: translate(-50%,-50%);
+
+  /* ✅ min/max size handler: use max as the base box, flicker shrinks/expands within */
+  width: var(--ff-small-size-max);
+  height: var(--ff-small-size-max);
+  border-radius: 50%;
+
+  background: rgba(250, 250, 250, 0.98);
+  border: none;
+  box-shadow: none;
+  filter: none;
+
+  opacity: 1;
+  cursor: pointer;
+  pointer-events: auto;
+
+  will-change: transform, opacity;
+  transition:
+    background 220ms ease,
+    opacity 260ms ease;
+}
+
+/* base pseudo setup */
+#main-stack .layer::before,
+#main-stack .layer::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* ✅ the visible dot lives on ::after so we don't fight JS transforms */
+#main-stack .layer::after{
+  background: rgba(250, 250, 250, 0.98);
+
+  /* start at max */
+  opacity: var(--ff-flicker-max-opacity);
+
+  /* size pulse uses min/max via scale ratio */
+  transform-origin: center;
+  transform: scale(1);
+
+  /* brightness shimmer (this is the “flicker”) */
+  filter:
+    brightness(var(--ff-flicker-max-brightness))
+    contrast(var(--ff-flicker-max-contrast));
+
+  animation: ff-flicker var(--ff-flicker-speed) ease-in-out infinite;
+}
+
+/* ------------------------
+   LABEL (TEXT)
+------------------------ */
+
+#main-stack .layer .label{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+
+  padding: 12px;
+  text-align: center;
+
+  font-family: "Inter", sans-serif;
+  font-size: var(--ff-text-size);
+  font-weight: var(--ff-text-weight);
+  letter-spacing: 0.25px;
+  line-height: 1.15;
+
+  color: var(--ff-text-color);
+
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+
+  z-index: 2; /* above flicker */
+}
+
+#main-stack .layer:hover .label{
+  opacity: 1;
+}
+
+/* =====================================================
+   BIG / HOVER STATE
+   flat • monochrome • transparent • NO gradient • NO blur
+   ===================================================== */
+
+#main-stack .layer:hover{
+  background: var(--ff-hover-gray);
+  box-shadow:
+    inset 0 0 0 var(--ff-ring-size) var(--ff-ring-color),
+    0 6px 18px rgba(0,0,0,0.35);
+}
+
+/* when big, stop the small flicker overlay for clean UI */
+#main-stack .layer:hover::after{
+  animation: none;
+  opacity: 0;
+  filter: none;
+}
+
+/* ------------------------
+   MOBILE
+------------------------ */
+
+@media (max-width: 640px){
+  #card-stack{ width: 320px; height: 320px; }
+  #main-stack.one-div{ width: 320px; height: 320px; }
+
+  :root{
+    --ff-small-size-min: 54px;
+    --ff-small-size-max: 76px;
+    --ff-text-size: 12px;
+  }
+}
+
+/* =========================================
+   STATE FLAGS (JS uses these)
+   DO NOT STYLE HERE
+   ========================================= */
+
+.layer.ff-hovered{
+  /* intentionally empty */
+}
+
+/* =========================
+   FLICKER KEYFRAMES
+   - Uses min/max SIZE via scale ratio
+   - Uses brightness/contrast shimmer
+   ========================= */
+
+/* scale ratio = min/max, but CSS can't divide variables directly.
+   So we approximate by using the min/max values as the "feel",
+   and you tune min/max scale + sizes together. */
+@keyframes ff-flicker{
+  0%{
+    opacity: var(--ff-flicker-max-opacity);
+    transform: scale(var(--ff-flicker-max-scale));
+    filter:
+      brightness(var(--ff-flicker-max-brightness))
+      contrast(var(--ff-flicker-max-contrast));
+  }
+  50%{
+    opacity: var(--ff-flicker-min-opacity);
+    transform: scale(var(--ff-flicker-min-scale));
+    filter:
+      brightness(var(--ff-flicker-min-brightness))
+      contrast(var(--ff-flicker-min-contrast));
+  }
+  100%{
+    opacity: var(--ff-flicker-max-opacity);
+    transform: scale(var(--ff-flicker-max-scale));
+    filter:
+      brightness(var(--ff-flicker-max-brightness))
+      contrast(var(--ff-flicker-max-contrast));
+  }
+}

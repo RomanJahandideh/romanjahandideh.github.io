@@ -1,0 +1,1299 @@
+/* =========================
+   MAIN.CSS (HOME + WORK)
+   - Restores full HOME styling
+   - Adds WORK spotlight on background only
+   - WORK balls/canvas stay bright (no global dim overlays)
+   ========================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
+
+:root{
+  --font: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* ===== HOME Background system ===== */
+  --bg-image: url("../../images/bg.jpeg");
+  --bg-zoom: 1.0;
+  --bg-pos-x: 50%;
+  --bg-pos-y: 50%;
+  --bg-fit: contain;
+
+  --bg-blackout: 0;
+  --bg-focus-x: 50%;
+  --bg-focus-y: 50%;
+
+  --bg-zoom-min: 1.0;
+  --bg-zoom-max: 3.2;
+  --bg-wheel-factor: 0.0016;
+  --bg-zoom-spring: 0.085;
+  --bg-zoom-damping: 0.84;
+  --bg-blackout-speed: 0.10;
+
+  --bg-shift-x: 0px;
+  --bg-shift-y: 0px;
+
+  --bg-zoom-shift-x: 0px;
+  --bg-zoom-shift-y: 0px;
+  --bg-zoom-shift-max-x: -220px;
+  --bg-zoom-shift-max-y: 0px;
+
+  /* ===== Spotlight ===== */
+  --mask-darkness: 0.6;
+  --reveal-radius: 230px;
+  --reveal-softness: 170px;
+
+  /* ===== HOME Iris ring vignette ===== */
+  --iris-darkness: 0.48;
+  --iris-radius: 120px;
+  --iris-softness: 110px;
+
+  --mx: 50%;
+  --my: 50%;
+
+  /* ===== HOME Film grain ===== */
+  --grain-opacity: 0.055;
+  --grain-scale: 220px;
+  --grain-speed: 7s;
+
+  /* ===== Top nav ===== */
+  --nav-bg: rgba(255,255,255,0.04);
+  --nav-border: rgba(255,255,255,0.10);
+  --nav-text: rgba(255,255,255,0.75);
+  --nav-text-hover: rgba(255,255,255,0.95);
+  --nav-gap: 44px;
+
+  /* ===== Eyes placement ===== */
+  --eyes-x: 50%;
+  --eyes-y: calc(50% - 80px);
+  --eyes-scale: 1.0;
+
+  /* Eye size */
+  --eye-size: 78px;
+  --pupil-size-mul: 1.05;
+
+  /* Glasses ring */
+  --ring-size-mul: 1.62;
+  --ring-line: 1.6px;
+  --ring-alpha: 0.78;
+  --ring-rot: 0deg;
+
+  /* ===== Triangle cutout ===== */
+  --eye-cut-pad: 16px;
+  --eye-cut-debug: 0;
+
+  /* ===== NAME handlers ===== */
+  --name-x: 5px;
+  --name-y: 200px;
+  --name-scale: 1;
+
+  --first-x: 0px;
+  --first-y: 15px;
+  --first-scale: 1;
+
+  --last-x: 0px;
+  --last-y: 0px;
+  --last-scale: 0.6;
+
+  --role-x: 0px;
+  --role-y: 400x;
+  --role-scale: 1.1;
+
+  --first-size: clamp(24px, 3.2vw, 40px);
+  --last-size:  clamp(30px, 4.4vw, 58px);
+  --role-size: 12px;
+
+  --first-letterspace: 0.32em;
+  --last-letterspace:  0.36em;
+  --role-letterspace:  0.28em;
+
+  --name-line-gap: 14px;
+
+  /* ===== HOME Triangle handlers ===== */
+  --tri-size: 1.10;
+
+  --tri-line-width: 20;
+  --tri-color: 255,255,255;
+  --tri-opacity: 0.22;
+  --tri-glow: 1.0;
+
+  /* breathing */
+  --tri-breathe-amp: 0.020;
+  --tri-breathe-speed: 0.26; /* slower */
+  --tri-blink-boost: 0.040;
+  --tri-blink-pulse: 0;
+
+  /* Inner triangle */
+  --inner-tri-size: 0.58;
+  --inner-tri-line-width: 2.4;
+  --inner-tri-opacity: 0.22;
+
+  /* ===== TRIANGLE WEB (Work-like) ===== */
+  --tri-web-line: 1.15px;
+
+  /* base = grayish, hover = bright */
+  --tri-web-rgb: 185,185,185;
+  --tri-web-hover-rgb: 255,255,255;
+
+  /* Gradient: center -> edges */
+  --tri-web-center-alpha: 0.22;
+  --tri-web-edge-alpha: 0.05;
+
+  /* mouse hover glow strength */
+  --tri-web-highlight-boost: 0.60;
+
+  /* hover radius in pixels */
+  --tri-web-hover-radius: 120;
+
+  /* ===== HOME Micro vibration ===== */
+  --vib-x: 0px;
+  --vib-y: 0px;
+  --vib-amp: 10px;
+
+  --vib-text: 0.18;
+  --vib-btn: 0.22;
+  --vib-eyes: 0.14;
+
+  /* eyelid shutter controls (0=open, 1=closed) */
+  --lid-1: 0;
+  --lid-1-top: var(--lid-1);
+  --lid-1-bot: var(--lid-1);
+
+  /* pupil dilation */
+  --pupil-scale: 1;
+}
+
+*{ box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+
+body{
+  font-family: var(--font);
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+/* TOP NAV */
+.top-nav{
+  position: fixed;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: var(--nav-gap);
+  z-index: 60;
+
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--nav-border);
+}
+.top-nav a{
+  color: var(--nav-text);
+  text-decoration: none;
+  letter-spacing: 0.25em;
+  font-size: 12px;
+  text-transform: uppercase;
+  transition: color 0.18s ease;
+}
+.top-nav a:hover{ color: var(--nav-text-hover); }
+
+/* HOME scroll lock */
+body:has(#home-spiderweb-canvas){
+  overflow: hidden;
+  height: 100vh;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+/* WORK scroll lock */
+body:has(#spiderweb-canvas){
+  overflow: hidden;
+  height: 100vh;
+  overscroll-behavior: none;
+  touch-action: none;
+}
+
+/* BACKGROUND STACK */
+body:has(#home-spiderweb-canvas) #bg,
+body:has(#spiderweb-canvas) #bg{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #000;
+}
+
+body:has(#home-spiderweb-canvas) #bg::after,
+body:has(#home-spiderweb-canvas) #bg::before,
+body:has(#spiderweb-canvas) #bg::after,
+body:has(#spiderweb-canvas) #bg::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* HOME image + WORK image */
+body:has(#home-spiderweb-canvas) #bg::after,
+body:has(#spiderweb-canvas) #bg::after{
+  background-image: var(--bg-image);
+  background-repeat: no-repeat;
+  background-position:
+    calc(var(--bg-pos-x) + var(--bg-shift-x) + var(--bg-zoom-shift-x))
+    calc(var(--bg-pos-y) + var(--bg-shift-y) + var(--bg-zoom-shift-y));
+  background-size: var(--bg-fit);
+
+  opacity: calc(1 - var(--bg-blackout));
+  filter: brightness(calc(1 - (var(--bg-blackout) * 0.85)));
+
+  transform: scale(var(--bg-zoom));
+  transform-origin: var(--bg-focus-x) var(--bg-focus-y);
+
+  z-index: 1;
+}
+
+/* HOME outer darkness mask */
+body:has(#home-spiderweb-canvas) #bg::before{
+  background: rgba(0,0,0,var(--mask-darkness));
+  -webkit-mask-image: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) calc(var(--reveal-radius) - var(--reveal-softness)),
+    rgba(0,0,0,1) var(--reveal-radius)
+  );
+  mask-image: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) calc(var(--reveal-radius) - var(--reveal-softness)),
+    rgba(0,0,0,1) var(--reveal-radius)
+  );
+  z-index: 2;
+}
+
+/* WORK outer darkness mask (background spotlight only, no global dim) */
+body:has(#spiderweb-canvas) #bg::before{
+  background: rgba(0,0,0,var(--mask-darkness));
+  -webkit-mask-image: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) calc(var(--reveal-radius) - var(--reveal-softness)),
+    rgba(0,0,0,1) var(--reveal-radius)
+  );
+  mask-image: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) calc(var(--reveal-radius) - var(--reveal-softness)),
+    rgba(0,0,0,1) var(--reveal-radius)
+  );
+  z-index: 2;
+}
+
+/* HOME iris ring vignette (HOME ONLY) */
+body:has(#home-spiderweb-canvas)::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+
+  background: rgba(0,0,0,var(--iris-darkness));
+  -webkit-mask-image: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) calc(var(--iris-radius) - var(--iris-softness)),
+    rgba(0,0,0,1) var(--iris-radius)
+  );
+  mask-image: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(0,0,0,0) 0px,
+    rgba(0,0,0,0) calc(var(--iris-radius) - var(--iris-softness)),
+    rgba(0,0,0,1) var(--iris-radius)
+  );
+}
+
+/* HOME film grain (HOME ONLY) */
+body:has(#home-spiderweb-canvas)::after{
+  content:"";
+  position: fixed;
+  inset: 0;
+  z-index: 9;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: overlay;
+
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='0.75'/%3E%3C/svg%3E");
+  background-size: var(--grain-scale) var(--grain-scale);
+  animation: grainDrift var(--grain-speed) linear infinite;
+}
+
+@keyframes grainDrift{
+  0%   { transform: translate3d(0,0,0); }
+  25%  { transform: translate3d(-12px, 7px,0); }
+  50%  { transform: translate3d(10px, -9px,0); }
+  75%  { transform: translate3d(-6px,-11px,0); }
+  100% { transform: translate3d(0,0,0); }
+}
+
+/* HOME canvas */
+body:has(#home-spiderweb-canvas) #home-spiderweb-canvas{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+  pointer-events: none;
+}
+
+/* WORK canvas (must sit above #bg spotlight overlays) */
+body:has(#spiderweb-canvas) #spiderweb-canvas{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 6;
+}
+
+/* HOME hero */
+body:has(#home-spiderweb-canvas) .hero{
+  position: relative;
+  z-index: 10;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 120px 20px 80px;
+}
+
+/* EYE */
+body:has(#home-spiderweb-canvas) #eyes{
+  position: absolute;
+  top: var(--eyes-y);
+  left: var(--eyes-x);
+
+  transform:
+    translate(-50%, -50%)
+    translate(calc(var(--vib-x) * var(--vib-eyes)), calc(var(--vib-y) * var(--vib-eyes)))
+    scale(var(--eyes-scale));
+
+  pointer-events: auto;
+  z-index: 20;
+
+  filter: drop-shadow(0 10px 18px rgba(0,0,0,0.55));
+  will-change: transform;
+}
+
+/* map lids */
+body:has(#home-spiderweb-canvas) #eyes .eye{
+  --lid: var(--lid-1);
+  --lidTop: var(--lid-1-top);
+  --lidBot: var(--lid-1-bot);
+
+  width: var(--eye-size);
+  height: var(--eye-size);
+  border-radius: 999px;
+  position: relative;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 32% 26%,
+      rgba(255,255,255,0.98) 0%,
+      rgba(250,250,250,0.98) 34%,
+      rgba(232,232,232,0.98) 62%,
+      rgba(205,205,205,0.98) 100%),
+    linear-gradient(to bottom,
+      rgba(255,255,255,1) 0%,
+      rgba(245,245,245,1) 55%,
+      rgba(210,210,210,1) 100%);
+
+  box-shadow:
+    inset 0 -6px 10px rgba(0,0,0,0.18),
+    inset 0  5px 10px rgba(255,255,255,0.55),
+    inset 0  0 0 1px rgba(0,0,0,0.06);
+
+  transform: scaleY(calc(1 - (var(--lid) * 0.08)));
+  transform-origin: center;
+}
+
+body:has(#home-spiderweb-canvas) #eyes .eye .glasses-ring{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--eye-size) * var(--ring-size-mul));
+  height: calc(var(--eye-size) * var(--ring-size-mul));
+  transform: translate(-50%, -50%) rotate(var(--ring-rot));
+  transform-origin: center;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 9;
+
+  border: var(--ring-line) solid rgba(255,255,255,var(--ring-alpha));
+  filter: drop-shadow(0 10px 16px rgba(0,0,0,0.35));
+}
+
+body:has(#home-spiderweb-canvas) #eyes .eye .glasses-ring .ring-marker{
+  position: absolute;
+  left: 50%;
+  top: -6%;
+  width: 6px;
+  height: 6px;
+  transform: translateX(-50%);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.95);
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+}
+
+/* realism layers injected by JS */
+body:has(#home-spiderweb-canvas) #eyes .eye .iris{
+  position: absolute;
+  inset: 10%;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 1;
+
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0) 30%,
+      rgba(170,185,200,0.22) 48%,
+      rgba(150,165,180,0.16) 62%,
+      rgba(90,110,125,0.08) 100%),
+    repeating-radial-gradient(circle at 50% 50%,
+      rgba(40,55,70,0.06) 0px,
+      rgba(40,55,70,0.06) 1px,
+      rgba(255,255,255,0) 4px,
+      rgba(255,255,255,0) 7px);
+
+  opacity: 0.55;
+  filter: blur(0.2px);
+  mix-blend-mode: multiply;
+}
+
+body:has(#home-spiderweb-canvas) #eyes .eye .waterline{
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 10%;
+  height: 18%;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 3;
+
+  background:
+    linear-gradient(to bottom,
+      rgba(255,255,255,0.0) 0%,
+      rgba(255,255,255,0.25) 35%,
+      rgba(140,140,140,0.35) 70%,
+      rgba(90,90,90,0.25) 100%);
+  filter: blur(0.3px);
+  opacity: 0.55;
+}
+
+body:has(#home-spiderweb-canvas) #eyes .eye .specular{
+  position: absolute;
+  width: 22%;
+  height: 22%;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 4;
+
+  left: calc(26% + var(--spec-x, 0px));
+  top:  calc(18% + var(--spec-y, 0px));
+
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0.65) 40%,
+    rgba(255,255,255,0.0) 70%);
+
+  filter: blur(0.2px);
+  opacity: 0.92;
+}
+
+/* pupil triangle */
+body:has(#home-spiderweb-canvas) #eyes .pupil{
+  width: calc(var(--eye-size) * 0.33 * var(--pupil-size-mul));
+  height: calc(var(--eye-size) * 0.33 * var(--pupil-size-mul));
+  background: #000;
+  clip-path: polygon(50% 6%, 6% 94%, 94% 94%);
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(var(--pupil-scale));
+  transform-origin: center;
+  will-change: transform, opacity;
+
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.05),
+    0 0 0 1px rgba(0,0,0,0.35);
+
+  opacity: calc(1 - (var(--lid) * 0.92));
+  transition: opacity 120ms ease;
+  z-index: 2;
+}
+
+/* eyelid shutters */
+body:has(#home-spiderweb-canvas) #eyes .eye::before,
+body:has(#home-spiderweb-canvas) #eyes .eye::after{
+  content:"";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 55%;
+  pointer-events: none;
+  z-index: 5;
+  transition: transform 120ms ease;
+}
+
+body:has(#home-spiderweb-canvas) #eyes .eye::before{
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,1) 0%,
+    rgba(245,245,245,1) 62%,
+    rgba(205,205,205,0.0) 100%
+  );
+  transform: translateY(calc(-100% + (var(--lidTop) * 100%)));
+  box-shadow:
+    inset 0 -1px 0 rgba(0,0,0,0.20),
+    0 8px 12px rgba(0,0,0,0.10);
+}
+
+body:has(#home-spiderweb-canvas) #eyes .eye::after{
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(200,200,200,1) 0%,
+    rgba(235,235,235,1) 60%,
+    rgba(210,210,210,0.0) 100%
+  );
+  transform: translateY(calc(100% - (var(--lidBot) * 100%)));
+  box-shadow:
+    inset 0 1px 0 rgba(0,0,0,0.18),
+    0 -8px 12px rgba(0,0,0,0.08);
+}
+
+/* NAME */
+body:has(#home-spiderweb-canvas) .name{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--name-line-gap);
+
+  transform:
+    translate(var(--name-x), var(--name-y))
+    translate(calc(var(--vib-x) * var(--vib-text)), calc(var(--vib-y) * var(--vib-text)))
+    scale(var(--name-scale));
+  transform-origin: center;
+  will-change: transform;
+}
+
+body:has(#home-spiderweb-canvas) .first-name{
+  display: block;
+  font-size: var(--first-size);
+  letter-spacing: var(--first-letterspace);
+  font-weight: 500;
+  transform: translate(var(--first-x), var(--first-y)) scale(var(--first-scale));
+  transform-origin: center;
+}
+body:has(#home-spiderweb-canvas) .last-name{
+  display: block;
+  font-size: var(--last-size);
+  letter-spacing: var(--last-letterspace);
+  font-weight: 500;
+  transform: translate(var(--last-x), var(--last-y)) scale(var(--last-scale));
+  transform-origin: center;
+}
+
+body:has(#home-spiderweb-canvas) .role{
+  margin-top: 16px;
+  font-size: var(--role-size);
+  letter-spacing: var(--role-letterspace);
+  color: rgba(255,255,255,0.75);
+  text-transform: uppercase;
+
+  transform:
+    translate(var(--role-x), var(--role-y))
+    translate(calc(var(--vib-x) * 0.14), calc(var(--vib-y) * 0.14))
+    scale(var(--role-scale));
+
+  transform-origin: center;
+  will-change: transform;
+}
+
+/* floating statement */
+body:has(#home-spiderweb-canvas) #floating-statement{
+  display: none !important;
+}
+
+#global-site-hints{
+  position: fixed;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  width: min(540px, calc(100vw - 48px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+  pointer-events: none;
+  z-index: 50;
+}
+
+#global-site-hints .global-site-hint{
+  margin: 0;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.58);
+  text-wrap: balance;
+}
+
+#global-site-hints .global-site-hint-primary{
+  font-size: 12px;
+  letter-spacing: 0.28em;
+}
+
+#global-site-hints .global-site-hint-secondary{
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.48);
+}
+
+@media (max-width: 736px){
+  #global-site-hints{
+    bottom: 56px;
+    gap: 5px;
+    width: min(92vw, 420px);
+  }
+
+  #global-site-hints .global-site-hint-primary{
+    font-size: 7.5px;
+    letter-spacing: 0.22em;
+  }
+
+  #global-site-hints .global-site-hint-secondary{
+    font-size: 6.2px;
+    letter-spacing: 0.16em;
+  }
+}
+
+@media (max-width: 736px){
+  .top-nav{ gap: 22px; padding: 10px 12px; }
+  :root{ --eye-size: 70px; }
+}
+
+/* =========================================================
+   TEMPLATE ABOUT/CONTACT PANELS (Dimension-inspired)
+   - Only styles the #about/#contact panels inside your one-page site.
+   - Does NOT touch your Work visuals.
+   ========================================================= */
+
+.panel{
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 16px;
+}
+
+/* show when targeted (#about / #contact) */
+.panel:target{
+  display: flex;
+}
+
+/* NOTE: This block is overridden later, but kept as-is for consistency */
+.panel::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.62);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.panel-inner{
+  position: relative;
+  z-index: 1;
+  width: min(920px, 100%);
+  max-height: min(78vh, 760px);
+  overflow: auto;
+
+  padding: 44px 44px 34px;
+  border-radius: 18px;
+
+  background: rgba(20,22,26,0.72);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.55);
+}
+
+/* Heading style like Dimension */
+.panel-inner .major{
+  display: inline-block;
+  padding-bottom: 10px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid rgba(255,255,255,0.75);
+  letter-spacing: 0.30em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Close button */
+.panel-close{
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.panel-close:hover{ background: rgba(255,255,255,0.12); }
+
+/* =========================================================
+   CONTACT PANEL (fix cut-off + classy layout)
+   Only affects #contact content.
+   ========================================================= */
+
+/* Contact panel needs slightly different behavior than About:
+   allow the INSIDE of the contact card to scroll, not the whole modal. */
+#contact .panel-inner{
+  /* keep your global modal sizing, but give contact a bit more breathing room */
+  padding-bottom: 34px;
+}
+
+#contact .contact-grid{
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 22px;
+  align-items: stretch;
+  min-height: 0;
+}
+
+/* Form styling */
+#contact .contact-form{
+  min-width: 0;
+}
+
+#contact .contact-form .fields{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+#contact .contact-form .field{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#contact .contact-form .field.half{ grid-column: span 1; }
+#contact .contact-form .field:not(.half){ grid-column: 1 / -1; }
+
+#contact .contact-form label{
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+}
+
+#contact .contact-form input,
+#contact .contact-form textarea{
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.92);
+  padding: 12px 14px;
+  outline: none;
+  font-family: var(--font);
+}
+
+#contact .contact-form textarea{
+  resize: none;
+  min-height: 170px;
+}
+
+#contact .contact-form input:focus,
+#contact .contact-form textarea:focus{
+  border-color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.08);
+}
+
+#contact .contact-actions{
+  display: flex;
+  gap: 12px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+#contact .btn{
+  appearance: none;
+  border: 1px solid rgba(255,255,255,0.22);
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.92);
+  border-radius: 999px;
+  padding: 10px 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#contact .btn.primary{
+  background: rgba(255,255,255,0.14);
+  border-color: rgba(255,255,255,0.32);
+}
+
+/* Right side */
+#contact .contact-side{
+  min-width: 0;
+  display: flex;
+}
+
+/* The card itself stays fixed-height inside the modal */
+#contact .contact-card{
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(6, 8, 12, 0.62);
+  box-shadow: 0 14px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+
+  /* KEY FIX: allow internal layout to shrink and scroll */
+  min-height: 0;
+}
+
+#contact .contact-card-title{
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.78);
+}
+
+/* ✅ KEY FIX: make the links list scrollable so items don't get cut off */
+#contact .contact-links{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* this is the actual scroll area */
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+
+  padding-right: 6px; /* space for scrollbar */
+}
+
+/* nicer scrollbar (won't affect other areas) */
+#contact .contact-links::-webkit-scrollbar{ width: 10px; }
+#contact .contact-links::-webkit-scrollbar-track{
+  background: rgba(255,255,255,0.05);
+  border-radius: 999px;
+}
+#contact .contact-links::-webkit-scrollbar-thumb{
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,0);
+  background-clip: padding-box;
+}
+
+#contact .contact-link{
+  display: grid;
+  grid-template-columns: 42px 1fr 22px;
+  align-items: center;
+  gap: 12px;
+
+  text-decoration: none;
+  color: rgba(255,255,255,0.92);
+
+  padding: 10px 12px;
+  border-radius: 14px;
+
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.05);
+}
+
+#contact .contact-link:hover{
+  background: rgba(255,255,255,0.09);
+  border-color: rgba(255,255,255,0.18);
+}
+
+#contact .contact-link .icon{
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+#contact .contact-link svg{
+  width: 22px;
+  height: 22px;
+  fill: rgba(255,255,255,0.92);
+}
+
+#contact .contact-link .text{
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+#contact .contact-link .label{
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#contact .contact-link .meta{
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.65);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#contact .contact-link .chev{
+  opacity: 0.75;
+  justify-self: end;
+}
+
+#contact .contact-note{
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.70);
+
+  /* keep it visible, not crushed */
+  flex: 0 0 auto;
+}
+
+/* Responsive */
+@media (max-width: 980px){
+  #contact .contact-grid{
+    grid-template-columns: 1fr;
+  }
+  #contact .contact-form .fields{
+    grid-template-columns: 1fr;
+  }
+  #contact .contact-form textarea{
+    min-height: 150px;
+  }
+}
+
+/* =========================================================
+   ABOUT / CONTACT PANELS
+   ZERO SCROLL (fixed modal layout)
+   ========================================================= */
+
+.panel{
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px 16px;
+
+  overflow: hidden;
+}
+
+.panel:target{ display: flex; }
+
+/* ✅ CHANGED: remove the dark masking layer entirely */
+.panel::before{
+  content: none;
+}
+
+/* =========================================================
+   MODAL CARD (fixed height, no internal scroll)
+   ========================================================= */
+
+.panel-inner{
+  position: relative;
+  z-index: 1;
+
+  width: min(1180px, 96vw);
+  height: min(80vh, 820px);
+
+  overflow: hidden;
+
+  padding: 34px 34px 26px;
+  border-radius: 18px;
+
+  /* black, high-transparency glass */
+  background: rgba(6, 8, 12, 0.78);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 24px 70px rgba(0,0,0,0.62),
+    inset 0 1px 0 rgba(255,255,255,0.05);
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* About is taller so the timeline stays fully visible */
+#about .panel-inner{
+  height: min(84vh, 860px);
+}
+
+/* Contact is intentionally shorter (tighter, less empty space) */
+#contact .panel-inner{
+  height: min(72vh, 720px);
+}
+
+/* =========================================================
+   TIMELINE AREA (fills remaining space)
+   ========================================================= */
+
+.timeline-wrapper{
+  position: relative;
+
+  width: 100%;
+  flex: 0 0 auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px 0 6px 0;
+
+  overflow: visible;
+
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.timeline-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.05),
+    rgba(255,255,255,0) 45%
+  );
+}
+
+.timeline-wrapper iframe{
+  display:block;
+  border:0;
+
+  width: min(1100px, 100%);
+  height: 650px;
+
+  margin: 0 auto;
+
+  transform: none;
+
+  /* keep your dark theme */
+  filter:
+    grayscale(100%)
+    invert(1)
+    contrast(1.04)
+    brightness(0.72);
+}
+
+/* ✅ Hook for JS overlay to capture wheel without blocking drag (JS will toggle pointer-events) */
+.timeline-wheel-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: transparent;
+  pointer-events: none; /* JS will flip this when needed */
+}
+
+.about-text{
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.85);
+
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+
+/* =========================================================
+   ABOUT PANEL - CLEAN TEMPLATE VERSION
+   Only About section changed
+   ========================================================= */
+
+#about .panel-inner.about-panel-inner.about-panel-clean{
+  width: min(1260px, 95vw);
+  max-width: 1260px;
+  height: auto;
+  max-height: 88vh;
+  padding: 28px 24px 22px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#about .major{
+  margin-bottom: 0.9rem;
+}
+
+#about .about-clean-layout{
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 18px;
+}
+
+#about .about-clean-top{
+  text-align: center;
+  padding-top: 2px;
+}
+
+#about .about-clean-eyebrow{
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 12px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.10);
+}
+
+#about .about-clean-title{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255,255,255,0.08);
+}
+
+#about .about-clean-timeline{
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+#about .about-clean-timeline iframe{
+  display: block;
+  width: 100%;
+  height: 650px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  filter: grayscale(100%) invert(1) contrast(1.28) brightness(0.96);
+  box-shadow: none;
+}
+
+#about .about-clean-intro{
+  width: 100%;
+  padding: 22px 24px 24px;
+  border-radius: 22px;
+  background: rgba(0,0,0,0.28);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.04),
+    0 14px 34px rgba(0,0,0,0.18);
+}
+
+#about .about-clean-intro-label{
+  margin-bottom: 10px;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.10);
+}
+
+#about .about-clean-intro-text{
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.82;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255,255,255,0.06);
+}
+
+@media (max-width: 980px){
+  #about .panel-inner.about-panel-inner.about-panel-clean{
+    width: min(96vw, 96vw);
+    max-height: 90vh;
+    padding: 22px 18px 18px;
+  }
+
+  #about .about-clean-layout{
+    gap: 14px;
+  }
+
+  #about .about-clean-title{
+    font-size: 14px;
+  }
+
+  #about .about-clean-timeline iframe{
+    height: 560px;
+  }
+
+  #about .about-clean-intro{
+    padding: 18px 18px 20px;
+  }
+
+  #about .about-clean-intro-text{
+    font-size: 14px;
+    line-height: 1.72;
+  }
+}
+
+@media (max-width: 736px){
+  #about .panel{
+    padding: 14px 10px;
+  }
+
+  #about .panel-inner.about-panel-inner.about-panel-clean{
+    max-height: 92vh;
+    padding: 18px 14px 14px;
+  }
+
+  #about .about-clean-eyebrow{
+    letter-spacing: 0.24em;
+  }
+
+  #about .about-clean-title{
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  #about .about-clean-timeline iframe{
+    height: 420px;
+  }
+
+  #about .about-clean-intro-text{
+    font-size: 13.5px;
+    line-height: 1.66;
+  }
+}

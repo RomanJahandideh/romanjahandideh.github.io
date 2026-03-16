@@ -1,0 +1,313 @@
+/* =========================
+   SITE BASE (UPDATED v6 - CLEAN + CLASSY)
+   + STORY INTRO (web draws first, then cards appear)
+   + SMOOTH MODE TRANSITION (cards shrink/move slowly on click)
+   + WORK PAGE SPOTLIGHT ON BACKGROUND
+   IMPORTANT: intro does NOT override your card transforms
+   ========================= */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root{
+  --bg: #000;
+  --text: #fff;
+  --muted: rgba(255,255,255,0.7);
+
+  /* =========================
+     HANDLERS (EDIT THESE ONLY)
+     ========================= */
+  --work-scale: 1.2;        /* overall size of the card stack */
+  --work-offset-x: 0px;     /* move whole stack left/right */
+  --work-offset-y: 0px;     /* move whole stack up/down */
+
+  --hint-offset-y: 75px;    /* space between stack and hint when closed */
+  --hint-offset-x: 0px;     /* move hint left/right */
+
+  /* =========================
+     STORY TIMING (INTRO)
+     ========================= */
+  --intro-card-fade: 1200ms;
+  --intro-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --intro-delay: 220ms;
+
+  /* =========================
+     MODE TRANSITION (CLICK)
+     This is what controls “too fast” shrinking/moving
+     ========================= */
+  --mode-duration: 1050ms;
+  --mode-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* =========================
+     WORK SPOTLIGHT HANDLERS
+     ========================= */
+  --mx: 50%;
+  --my: 50%;
+  --work-mask-darkness: 0.68;
+  --work-reveal-radius: 240px;
+  --work-reveal-softness: 170px;
+  --work-spotlight-core: 0.22;
+  --work-spotlight-mid: 0.10;
+  --work-spotlight-falloff: 0.00;
+}
+
+html, body { height: 100%; }
+
+body{
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Main area */
+#main{
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 18px;
+}
+
+#work{
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 40px 18px;
+}
+
+/* Optional HOME content (harmless) */
+.home-inner{
+  text-align: center;
+  max-width: 900px;
+}
+
+.home-title{
+  font-size: clamp(34px, 5vw, 58px);
+  letter-spacing: 0.03em;
+  margin-bottom: 10px;
+}
+
+.home-sub{
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.home-cta .pill{
+  display: inline-block;
+  padding: 12px 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+}
+
+.home-cta .pill:hover{
+  background: rgba(255,255,255,0.12);
+}
+
+/* WORK wrapper */
+.work-wrap{
+  display: grid;
+  place-items: center;
+  gap: 14px;
+}
+
+/* Hint under the cards */
+.work-hint{
+  color: rgba(255,255,255,0.55);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-align: center;
+
+  margin-top: var(--hint-offset-y);
+
+  transform: translateX(var(--hint-offset-x)) translateY(0);
+  transition: transform 0.6s ease, opacity 0.6s ease;
+
+  position: relative;
+  z-index: 2;
+}
+
+.work-hint.jaw-open{
+  transform: translateX(var(--hint-offset-x)) translateY(26px);
+}
+
+/* WORK STACK WRAPPER (keeps original hover animation intact) */
+.work-scale-wrap{
+  transform: translateX(var(--work-offset-x)) translateY(var(--work-offset-y)) scale(var(--work-scale));
+  transform-origin: center center;
+}
+
+/* ensure cards stay above web + graph */
+#card-stack{
+  position: relative;
+  z-index: 2;
+  transition:
+    transform var(--mode-duration) var(--mode-ease),
+    opacity  700ms var(--mode-ease),
+    filter   700ms var(--mode-ease);
+  will-change: transform, opacity, filter;
+}
+
+/* =========================
+   STACK MODES (CLICK STATE)
+   ========================= */
+
+.stack-default{
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  filter: none;
+}
+
+.stack-active{
+  transform: translateY(-250px) scale(var(--stack-active-scale, 0.45));
+  opacity: 0.82;
+  filter: blur(var(--stack-active-blur, 1.8px));
+}
+
+/* =========================
+   STORY INTRO (SAFE VERSION)
+   ========================= */
+
+body.is-intro #card-stack{
+  opacity: 0;
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+body.is-ready #card-stack{
+  opacity: 1;
+  filter: blur(0);
+  pointer-events: auto;
+  transition:
+    opacity var(--intro-card-fade) var(--intro-ease) var(--intro-delay),
+    filter  var(--intro-card-fade) var(--intro-ease) var(--intro-delay),
+    transform var(--mode-duration) var(--mode-ease);
+}
+
+/* Hint fades in slightly AFTER the cards */
+body.is-intro .work-hint{
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.is-ready .work-hint{
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 900ms var(--intro-ease) calc(var(--intro-delay) + 140ms),
+              transform 900ms var(--intro-ease);
+}
+
+/* =========================
+   WORK PAGE BACKGROUND SPOTLIGHT
+   This affects ONLY the background image layer (#bg),
+   not the cards/web/graph, because apparently CSS
+   likes hiding the real issue in plain sight.
+   ========================= */
+
+body.work-page #bg{
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* dark outer mask */
+body.work-page #bg::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at var(--mx) var(--my),
+      rgba(0,0,0,0) 0px,
+      rgba(0,0,0,0) calc(var(--work-reveal-radius) - var(--work-reveal-softness)),
+      rgba(0,0,0,var(--work-mask-darkness)) var(--work-reveal-radius)
+    );
+}
+
+/* bright center glow */
+body.work-page #bg::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at var(--mx) var(--my),
+      rgba(255,255,255,var(--work-spotlight-core)) 0px,
+      rgba(255,255,255,var(--work-spotlight-mid)) calc(var(--work-reveal-radius) * 0.42),
+      rgba(255,255,255,var(--work-spotlight-falloff)) calc(var(--work-reveal-radius) * 0.95)
+    );
+  mix-blend-mode: screen;
+}
+
+/* =========================
+   SPIDER WEB + GRAPH LAYERS
+   ========================= */
+
+#spiderweb-canvas{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#graph-container{
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+#graph-container svg{
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+}
+
+#graph-container line,
+#graph-container text{
+  pointer-events: none;
+}
+
+#graph-container circle{
+  pointer-events: all;
+}
+
+/* Work page should not scroll */
+body.page-work-only{
+  overflow: hidden;
+}
+
+/* =========================
+   REMOVE UNWANTED FOCUS OUTLINES
+   ========================= */
+*:focus,
+*:focus-visible,
+*:active {
+  outline: none !important;
+}
+
+.one-div,
+.one-div * {
+  outline: none !important;
+}
+
+.one-div a:focus,
+.one-div a:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
