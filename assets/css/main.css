@@ -1302,3 +1302,6 @@ body:has(#home-spiderweb-canvas) #floating-statement{
     line-height: 1.66;
   }
 }
+#contact a::after {
+  display: none !important;
+}
