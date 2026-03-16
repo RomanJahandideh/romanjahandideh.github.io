@@ -1,0 +1,239 @@
+/* =========================
+   SUBSECTION SLIDER (UPDATED)
+   Black background + clean cards
+   ========================= */
+
+:root{
+  /* =========================
+     HANDLERS (EDIT THESE)
+     ========================= */
+  --subsection-offset-x: 0px;   /* move whole layout left/right */
+  --subsection-offset-y: 20px;   /* move whole layout up/down */
+  --subsection-scale: 1;        /* scale the whole slider area */
+
+  --cards-scale: 1;             /* scale ONLY the cards/track */
+  --cards-offset-y: 0px;        /* nudge cards up/down inside the layout */
+
+--gap: 1.25rem;
+  --speed: 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --closed: 5rem;
+  --open: 30rem;
+  --accent: rgba(255,255,255,0.85);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:#000;
+  color:#fff;
+
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+
+  /* global layout handlers */
+  transform: translate(var(--subsection-offset-x), var(--subsection-offset-y)) scale(var(--subsection-scale));
+  transform-origin: center center;
+}
+
+a{ color: inherit; }
+
+.head{
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto 18px;
+  padding: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+.head h2{
+  font: 500 1.8rem/1.2 Inter, sans-serif;
+  letter-spacing: 0.02em;
+}
+.controls{
+  display:flex;
+  gap: 0.5rem;
+}
+.nav-btn{
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.06);
+  color: #fff;
+  font-size: 1.6rem;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.nav-btn:hover{ background: rgba(255,255,255,0.14); }
+.nav-btn:disabled{ opacity: 0.3; cursor: default; }
+
+.slider{
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+  overflow: hidden;
+
+  /* scale + nudge for the card row */
+  transform: translateY(var(--cards-offset-y)) scale(var(--cards-scale));
+  transform-origin: center center;
+}
+.track{
+  display:flex;
+  gap: var(--gap);
+  align-items: center;
+  justify-content: center;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 40px;
+}
+.track::-webkit-scrollbar{ display:none; }
+
+.project-card{
+  position: relative;
+  flex: 0 0 var(--closed);
+  height: 22rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex-basis var(--speed), transform var(--speed);
+
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+
+
+/* =========================
+   CARD MEDIA (IMAGE SUPPORT)
+   ========================= */
+/* In your HTML, add:
+   <div class="project-card__media">
+     <img class="project-card__img" src="PATH" alt="">
+   </div>
+*/
+.project-card__media{
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.project-card__img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9) contrast(1.05);
+  opacity: 0.55;
+  transform: scale(1.02);
+}
+
+/* subtle dark overlay so text stays readable */
+.project-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.35));
+  z-index: 1;
+}
+
+/* ensure content sits above image */
+.project-card__content{
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  z-index: 2;
+}
+.project-card[active]{
+  flex-basis: var(--open);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.55);
+  background: rgba(255,255,255,0.10);
+}
+
+/* content */
+.project-card__content{
+  height: 100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 18px 18px 16px;
+}
+
+.project-card__kicker{
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 8px;
+}
+
+.project-card__title{
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.project-card__desc{
+  font-size: 14px;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.75);
+  max-width: 34ch;
+  display: none;
+}
+
+.project-card__btn{
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.10);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  display: none;
+}
+
+.project-card__btn:hover{ background: rgba(255,255,255,0.16); }
+
+.project-card[active] .project-card__desc,
+.project-card[active] .project-card__btn{
+  display: block;
+}
+
+.back-link{
+  position: fixed;
+  left: 18px;
+  top: 18px;
+  text-decoration: none;
+  color: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  padding: 10px 12px;
+  border-radius: 999px;
+  backdrop-filter: blur(10px);
+}
+.back-link:hover{ color: #fff; background: rgba(255,255,255,0.12); }
+
+@media (max-width: 767px){
+  :root{ --closed: 100%; --open: 100%; --gap: 0.8rem; }
+  .head{
+    padding: 70px 16px 22px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .slider{ padding: 0 16px; }
+  .track{
+    flex-direction: column;
+    scroll-snap-type: y mandatory;
+    justify-content: flex-start;
+    padding-bottom: 18px;
+  }
+  .project-card{ height: auto; min-height: 96px; }
+  .project-card[active]{ min-height: 260px; transform: none; }
+}
