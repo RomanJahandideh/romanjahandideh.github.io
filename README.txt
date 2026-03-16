@@ -1,30 +1,59 @@
-Dimension by HTML5 UP
-html5up.net | @ajlkn
-Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+# Roman Jahandideh — Interactive Portfolio
 
+This repository hosts the source code for my personal portfolio website:
 
-This is Dimension, a fun little one-pager with modal-ized (is that a word?) "pages"
-and a cool depth effect (click on a menu item to see what I mean). Simple, fully
-responsive, and kitted out with all the usual pre-styled elements you'd expect.
-Hope you dig it :)
+https://romanjahandideh.com
 
-Demo images* courtesy of Unsplash, a radtastic collection of CC0 (public domain) images
-you can use for pretty much whatever.
+The site is built on top of the **Dimension** template by HTML5 UP and has been customized and extended to support a more experimental interactive interface.
 
-(* = not included)
+The goal of this portfolio is not only to present projects, but to demonstrate an approach to **interactive visual design**, **real-time environments**, and **creative coding**.
 
-AJ
-aj@lkn.io | @ajlkn
+---
 
+## About Me
 
-Credits:
+I am a **Technical Artist and Environment Designer** working at the intersection of:
 
-	Demo Images:
-		Unsplash (unsplash.com)
+• Real-time 3D environments  
+• Interactive web experiences  
+• Visual storytelling  
+• Spatial and environmental design  
 
-	Icons:
-		Font Awesome (fontawesome.io)
+My background combines **architecture, environment design, and interactive media**, and I use this hybrid perspective to build immersive digital systems and interactive environments.
 
-	Other:
-		jQuery (jquery.com)
-		Responsive Tools (github.com/ajlkn/responsive-tools)
+---
+
+## Website Concept
+
+The website is designed as an **interactive entry portal** rather than a traditional static portfolio.
+
+Key ideas behind the interface:
+
+• A **spotlight exploration system** that reveals the scene gradually  
+• A **layered visual depth effect** inspired by spatial composition  
+• A **minimal one-page structure** that keeps the focus on the visual experience  
+• A custom navigation system linking to portfolio sections such as Work, Teaching, and About
+
+Instead of presenting information immediately, the interface invites visitors to **explore the environment visually**.
+
+---
+
+## Technologies Used
+
+The site is built using lightweight front-end technologies to maintain performance while supporting interactive visual effects.
+
+Main technologies include:
+
+• HTML5  
+• CSS3  
+• JavaScript  
+• jQuery  
+• GitHub Pages (hosting)  
+
+Additional visual elements are integrated from my own **3D environment design and rendering workflow**.
+
+---
+
+## Project Structure
+
+Typical structure of the repository:
