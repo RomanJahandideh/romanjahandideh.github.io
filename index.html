@@ -447,9 +447,14 @@
 
   function blockScroll(e){
     var h = (location.hash || "").toLowerCase();
-    if (h === "#about" || h === "#contact"){
-      e.preventDefault();
+    if (h !== "#about" && h !== "#contact") return;
+
+    var target = e.target;
+    if (target && target.closest && target.closest("#contact .panel-inner, #about .panel-inner")) {
+      return;
     }
+
+    e.preventDefault();
   }
 
   window.addEventListener("wheel", blockScroll, { passive: false });
@@ -459,4 +464,3 @@
 
 </body>
 </html>
-<!-- rebuild -->
