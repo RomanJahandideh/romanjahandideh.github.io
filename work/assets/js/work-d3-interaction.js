@@ -1906,19 +1906,19 @@ const nodeSel = svg.selectAll("circle")
     return d.foot ? "none" : null;
   })
   .attr("r", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? 4.5 : 6;
+    if (d.knee) return IS_MOBILE_STAGE ? 2.2 : 6;
     return IS_MOBILE_STAGE ? 0 : NODE_STYLE.childRadius;
   })
   .style("fill", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.35)";
+    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.35)";
     return IS_MOBILE_STAGE ? "rgba(255,255,255,0)" : NODE_STYLE.childFill;
   })
   .style("stroke", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.18)" : "none";
+    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.10)" : "none";
     return IS_MOBILE_STAGE ? "rgba(255,255,255,0)" : "none";
   })
   .style("stroke-width", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? 0.6 : 0;
+    if (d.knee) return IS_MOBILE_STAGE ? 0.4 : 0;
     return IS_MOBILE_STAGE ? 0 : 0;
   })
   .style("filter", d => {
@@ -2233,7 +2233,7 @@ const labelSel = svg.selectAll("text")
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
           if (IS_MOBILE_STAGE) {
-            return d.x + o.ox + ((d.mobileSide === "right") ? -18 : 18);
+            return d.x + o.ox + ((d.mobileSide === "right") ? -30 : 30);
           }
           return d.x + o.ox + 16;
         })
