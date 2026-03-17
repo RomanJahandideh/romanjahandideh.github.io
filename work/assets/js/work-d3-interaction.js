@@ -1898,23 +1898,23 @@ const nodeSel = svg.selectAll("circle")
   .enter().append("circle")
   .attr("r", d => {
     if (d.knee) return IS_MOBILE_STAGE ? 5.5 : 6;
-    return IS_MOBILE_STAGE ? 10.5 : NODE_STYLE.childRadius;
+    return IS_MOBILE_STAGE ? 8.5 : NODE_STYLE.childRadius;
   })
   .style("fill", d => {
     if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.35)";
-    return IS_MOBILE_STAGE ? "rgba(255,255,255,0.18)" : NODE_STYLE.childFill;
+    return IS_MOBILE_STAGE ? "rgba(0,0,0,0.82)" : NODE_STYLE.childFill;
   })
   .style("stroke", d => {
     if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.24)" : "none";
-    return IS_MOBILE_STAGE ? "rgba(255,255,255,0.88)" : "none";
+    return IS_MOBILE_STAGE ? "rgba(255,255,255,0.94)" : "none";
   })
   .style("stroke-width", d => {
     if (d.knee) return IS_MOBILE_STAGE ? 0.8 : 0;
-    return IS_MOBILE_STAGE ? 1.35 : 0;
+    return IS_MOBILE_STAGE ? 1.6 : 0;
   })
   .style("filter", d => {
     if (!IS_MOBILE_STAGE || d.knee) return "none";
-    return "drop-shadow(0 0 12px rgba(255,255,255,0.14))";
+    return "drop-shadow(0 0 6px rgba(255,255,255,0.08))";
   })
   .style("cursor","pointer")
   .style("opacity", 0);
@@ -1951,19 +1951,19 @@ const labelSel = svg.selectAll("text")
       })
       .style("font-size", d => {
         if (d.root) return IS_MOBILE_STAGE ? "18px" : NODE_STYLE.labelRootSize;
-        return IS_MOBILE_STAGE ? "15px" : NODE_STYLE.labelChildSize;
+        return IS_MOBILE_STAGE ? "12.5px" : NODE_STYLE.labelChildSize;
       })
       .style("font-weight", d => {
         if (d.root) return "600";
-        return IS_MOBILE_STAGE ? "500" : "400";
+        return IS_MOBILE_STAGE ? "400" : "400";
       })
       .style("letter-spacing", d => {
         if (!IS_MOBILE_STAGE) return "0em";
-        return d.root ? "0em" : "0.01em";
+        return d.root ? "0em" : "0.005em";
       })
       .style("filter", d => {
         if (!IS_MOBILE_STAGE || d.root || d.knee) return "none";
-        return "drop-shadow(0 0 8px rgba(255,255,255,0.10))";
+        return "drop-shadow(0 0 6px rgba(255,255,255,0.08))";
       })
       .style("opacity", 0)
       .on("click", function(d){
@@ -2173,14 +2173,14 @@ const labelSel = svg.selectAll("text")
           .attr("x", d => {
             const o = vibeOffset(d, t);
             const baseX = d.x + o.ox;
-            return (d.mobileSide === "right") ? Math.max(0, baseX - 170) : Math.max(0, baseX - 18);
+            return (d.mobileSide === "right") ? Math.max(0, baseX - 152) : Math.max(0, baseX - 12);
           })
           .attr("y", d => {
             const o = vibeOffset(d, t);
             return (d.y + o.oy) - 26;
           })
           .attr("width", d => {
-            return (d.mobileSide === "right") ? 188 : 250;
+            return (d.mobileSide === "right") ? 170 : 220;
           })
           .attr("height", 52);
       }
@@ -2224,7 +2224,7 @@ const labelSel = svg.selectAll("text")
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
           if (IS_MOBILE_STAGE) {
-            return d.x + o.ox + ((d.mobileSide === "right") ? -30 : 30);
+            return d.x + o.ox + ((d.mobileSide === "right") ? -22 : 22);
           }
           return d.x + o.ox + 16;
         })
