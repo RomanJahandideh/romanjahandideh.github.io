@@ -1781,7 +1781,8 @@ jitter: 0.35,
 
     let mobileList = null;
     if (IS_MOBILE_STAGE) {
-      const topGap = 96;
+      rootTarget.y = clamp(rootTarget.y + 84, 180, Math.max(180, height * 0.44));
+      const topGap = 112;
       const bottomGap = 110;
       const listStartY = rootTarget.y + topGap;
       const listEndY = Math.max(listStartY, height - bottomGap);
@@ -1983,11 +1984,22 @@ const labelSel = svg.selectAll("text")
   }
 
   if (IS_MOBILE_STAGE) {
+    let mobileHotLabel = null;
+    let mobileHotAt = 0;
+
     labelSel.on("touchstart.stage3hot", function(d){
       if (!d || d.root || d.knee) return;
       const el = this;
-      const isHot = el && el.classList && el.classList.contains("stage3-hot");
-      if (isHot) {
+      const now = Date.now();
+      const sameHot = mobileHotLabel === el && (now - mobileHotAt) < 1600;
+
+      if (sameHot) {
+        if (typeof d3 !== "undefined" && d3.event && typeof d3.event.preventDefault === "function") {
+          d3.event.preventDefault();
+        }
+        if (typeof d3 !== "undefined" && d3.event && typeof d3.event.stopPropagation === "function") {
+          d3.event.stopPropagation();
+        }
         if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
           window.WorkStage3.open({
             title: d.name || "",
@@ -1996,6 +2008,9 @@ const labelSel = svg.selectAll("text")
         }
         return;
       }
+
+      mobileHotLabel = el;
+      mobileHotAt = now;
       setHot(el);
       if (typeof d3 !== "undefined" && d3.event && typeof d3.event.preventDefault === "function") {
         d3.event.preventDefault();
@@ -2005,29 +2020,38 @@ const labelSel = svg.selectAll("text")
       }
     });
 
+    labelSel.on("click.stage3hot", function(d){
+      if (!d || d.root || d.knee) return;
+      const el = this;
+      const now = Date.now();
+      const sameHot = mobileHotLabel === el && (now - mobileHotAt) < 1600;
+
+      if (sameHot) {
+        if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
+          window.WorkStage3.open({
+            title: d.name || "",
+            projectId: d.projectId || ""
+          });
+        }
+        return;
+      }
+
+      mobileHotLabel = el;
+      mobileHotAt = now;
+      setHot(el);
+      const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
+      if (e && typeof e.preventDefault === "function") e.preventDefault();
+      if (e && typeof e.stopPropagation === "function") e.stopPropagation();
+    });
+
     svg.on("touchstart.stage3", function(){
       const e = (typeof d3 !== "undefined") ? d3.event : null;
       if (!e || !e.touches || !e.touches.length) return;
-      const touch = e.touches[0];
-      const rect = svg.node().getBoundingClientRect();
-      const mx = touch.clientX - rect.left;
-      const my = touch.clientY - rect.top;
-
-      let bestEl = null;
-      let bestD2 = Infinity;
-
-      labelSel.each(function(d){
-        if (!d || d.root || d.knee) return;
-        const lx = (d.x || 0) + 16;
-        const ly = (d.y || 0) - 10;
-        const dx = lx - mx;
-        const dy = ly - my;
-        const d2 = dx*dx + dy*dy;
-        if (d2 < bestD2) { bestD2 = d2; bestEl = this; }
-      });
-
-      if (bestEl && bestD2 <= (THRESHOLD_PX * THRESHOLD_PX)) setHot(bestEl);
-      else clearHot();
+      const target = e.target || null;
+      if (target && target.classList && target.classList.contains("node-label-child")) return;
+      clearHot();
+      mobileHotLabel = null;
+      mobileHotAt = 0;
     });
   }
 
