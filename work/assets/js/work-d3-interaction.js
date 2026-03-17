@@ -1916,7 +1916,7 @@ const labelSel = svg.selectAll("text")
       .enter().append("text")
       .attr("class", d => d.root ? "node-label node-label-root" : "node-label node-label-child")
       .text(d => d.name)
-      .style("fill", d => d.root ? "#000" : "#fff")
+      .style("fill", d => (d.root ? (IS_MOBILE_STAGE ? "#fff" : "#000") : "#fff"))
       .style("text-anchor", d => d.root ? "middle" : "start")
       .style("dominant-baseline", d => d.root ? "middle" : "auto")
       // Mobile uses invisible row-sized tap targets instead of text interactions.
@@ -2195,7 +2195,7 @@ const labelSel = svg.selectAll("text")
         })
         .attr("y", d => {
           const o = vibeOffset(d, t);
-          if (d.root) return d.y + o.oy + (IS_MOBILE_STAGE ? 34 : 0);
+          if (d.root) return d.y + o.oy + (IS_MOBILE_STAGE ? -34 : 0);
           if (d.knee) return d.y + o.oy;
           return d.y + o.oy + (IS_MOBILE_STAGE ? 5 : -10);
         })
