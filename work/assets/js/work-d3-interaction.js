@@ -1795,8 +1795,8 @@ jitter: 0.35,
       );
 
       mobileList = {
-        footX: clamp(width * 0.18, 26, Math.max(26, width * 0.24)),
-        kneeX: clamp(width * 0.34, 72, Math.max(72, width * 0.42)),
+        footX: clamp(34, 28, Math.max(28, width * 0.12)),
+        kneeX: clamp(width * 0.50, 140, Math.max(140, width * 0.62)),
         startY: centeredStartY,
         stepY
       };
@@ -2053,7 +2053,7 @@ const labelSel = svg.selectAll("text")
     labelSel.style("pointer-events", d => (d && d.root) ? "none" : "all");
 
     function render() {
-      if (graphState) spiderTick(graphState);
+      if (graphState && !IS_MOBILE_STAGE) spiderTick(graphState);
 
       // Cinematic: root (main body) glow + gentle web response near strands
       if (graphState && ROOT_GLOW.enabled && window.spiderweb && typeof window.spiderweb.getClosestPoint === "function") {
@@ -2098,6 +2098,13 @@ const labelSel = svg.selectAll("text")
           const knee = graphState.nodes[kp.kneeIndex];
           const foot = graphState.nodes[kp.footIndex];
           if (!knee || !foot) continue;
+          if (IS_MOBILE_STAGE) {
+            knee.x = knee.targetX;
+            knee.y = knee.targetY;
+            foot.x = foot.targetX;
+            foot.y = foot.targetY;
+            continue;
+          }
           if (typeof foot._bendSide !== "number") {
             foot._bendSide = (i % 2 === 0) ? 1 : -1;
           }
@@ -2179,13 +2186,17 @@ const labelSel = svg.selectAll("text")
           const o = vibeOffset(d, t);
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
-          return d.x + o.ox + 16;
+          return d.x + o.ox + (IS_MOBILE_STAGE ? 24 : 16);
         })
         .attr("y", d => {
           const o = vibeOffset(d, t);
           if (d.root) return d.y + o.oy;
           if (d.knee) return d.y + o.oy;
-          return d.y + o.oy - 10;
+          return d.y + o.oy + (IS_MOBILE_STAGE ? 5 : -10);
+        })
+        .style("dominant-baseline", d => {
+          if (d.root) return "middle";
+          return IS_MOBILE_STAGE ? "middle" : "auto";
         });
     }
 
