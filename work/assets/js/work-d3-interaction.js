@@ -1870,8 +1870,8 @@ jitter: 0.35,
     const linkSel = svg.selectAll("line")
       .data(links)
       .enter().append("line")
-      .style("stroke", NODE_STYLE.stroke)
-      .style("stroke-width", NODE_STYLE.strokeWidth)
+      .style("stroke", IS_MOBILE_STAGE ? "rgba(255,255,255,0.42)" : NODE_STYLE.stroke)
+      .style("stroke-width", IS_MOBILE_STAGE ? 1.35 : NODE_STYLE.strokeWidth)
       .style("opacity", 0);
 
 // --- split root vs others (so only root becomes a rounded rect)
@@ -1896,8 +1896,26 @@ const rootSel = svg.selectAll("rect.root-node")
 const nodeSel = svg.selectAll("circle")
   .data(otherData)
   .enter().append("circle")
-  .attr("r", d => d.knee ? 6 : NODE_STYLE.childRadius)
-  .style("fill", d => d.knee ? "rgba(255,255,255,0.35)" : NODE_STYLE.childFill)
+  .attr("r", d => {
+    if (d.knee) return IS_MOBILE_STAGE ? 5.5 : 6;
+    return IS_MOBILE_STAGE ? 10.5 : NODE_STYLE.childRadius;
+  })
+  .style("fill", d => {
+    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.35)";
+    return IS_MOBILE_STAGE ? "rgba(255,255,255,0.18)" : NODE_STYLE.childFill;
+  })
+  .style("stroke", d => {
+    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.24)" : "none";
+    return IS_MOBILE_STAGE ? "rgba(255,255,255,0.88)" : "none";
+  })
+  .style("stroke-width", d => {
+    if (d.knee) return IS_MOBILE_STAGE ? 0.8 : 0;
+    return IS_MOBILE_STAGE ? 1.35 : 0;
+  })
+  .style("filter", d => {
+    if (!IS_MOBILE_STAGE || d.knee) return "none";
+    return "drop-shadow(0 0 12px rgba(255,255,255,0.14))";
+  })
   .style("cursor","pointer")
   .style("opacity", 0);
 
@@ -1916,7 +1934,10 @@ const labelSel = svg.selectAll("text")
       .enter().append("text")
       .attr("class", d => d.root ? "node-label node-label-root" : "node-label node-label-child")
       .text(d => d.name)
-      .style("fill", d => (d.root ? (IS_MOBILE_STAGE ? "#fff" : "#000") : "#fff"))
+      .style("fill", d => {
+        if (d.root) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.98)" : "#000";
+        return IS_MOBILE_STAGE ? "rgba(255,255,255,0.96)" : "#fff";
+      })
       .style("text-anchor", d => d.root ? "middle" : "start")
       .style("dominant-baseline", d => d.root ? "middle" : "auto")
       // Mobile uses invisible row-sized tap targets instead of text interactions.
@@ -1928,8 +1949,22 @@ const labelSel = svg.selectAll("text")
         if (IS_MOBILE_STAGE) return "default";
         return d.root ? "default" : "pointer";
       })
-      .style("font-size", d => d.root ? NODE_STYLE.labelRootSize : NODE_STYLE.labelChildSize)
-      .style("font-weight", d => d.root ? "600" : "400")
+      .style("font-size", d => {
+        if (d.root) return IS_MOBILE_STAGE ? "18px" : NODE_STYLE.labelRootSize;
+        return IS_MOBILE_STAGE ? "15px" : NODE_STYLE.labelChildSize;
+      })
+      .style("font-weight", d => {
+        if (d.root) return "600";
+        return IS_MOBILE_STAGE ? "500" : "400";
+      })
+      .style("letter-spacing", d => {
+        if (!IS_MOBILE_STAGE) return "0em";
+        return d.root ? "0em" : "0.01em";
+      })
+      .style("filter", d => {
+        if (!IS_MOBILE_STAGE || d.root || d.knee) return "none";
+        return "drop-shadow(0 0 8px rgba(255,255,255,0.10))";
+      })
       .style("opacity", 0)
       .on("click", function(d){
         const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
@@ -2189,15 +2224,15 @@ const labelSel = svg.selectAll("text")
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
           if (IS_MOBILE_STAGE) {
-            return d.x + o.ox + ((d.mobileSide === "right") ? -24 : 24);
+            return d.x + o.ox + ((d.mobileSide === "right") ? -30 : 30);
           }
           return d.x + o.ox + 16;
         })
         .attr("y", d => {
           const o = vibeOffset(d, t);
-          if (d.root) return d.y + o.oy + (IS_MOBILE_STAGE ? -34 : 0);
+          if (d.root) return d.y + o.oy - (IS_MOBILE_STAGE ? 58 : 0);
           if (d.knee) return d.y + o.oy;
-          return d.y + o.oy + (IS_MOBILE_STAGE ? 5 : -10);
+          return d.y + o.oy + (IS_MOBILE_STAGE ? 1 : -10);
         })
         .style("text-anchor", d => {
           if (d.root) return "middle";
