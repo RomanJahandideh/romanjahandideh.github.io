@@ -1781,7 +1781,7 @@ jitter: 0.35,
 
     let mobileList = null;
     if (IS_MOBILE_STAGE) {
-      rootTarget.y = clamp(rootTarget.y + 84, 180, Math.max(180, height * 0.44));
+      rootTarget.y = clamp(rootTarget.y + 126, 220, Math.max(220, height * 0.50));
       const topGap = 112;
       const bottomGap = 110;
       const listStartY = rootTarget.y + topGap;
@@ -1796,7 +1796,8 @@ jitter: 0.35,
       );
 
       mobileList = {
-        footX: clamp(34, 28, Math.max(28, width * 0.12)),
+        leftFootX: clamp(34, 28, Math.max(28, width * 0.12)),
+        rightFootX: clamp(width - 34, Math.min(width * 0.78, width - 72), width - 28),
         kneeX: clamp(width * 0.50, 140, Math.max(140, width * 0.62)),
         startY: centeredStartY,
         stepY
@@ -1807,7 +1808,8 @@ jitter: 0.35,
       const project = projects[i] || null;
       const pos = IS_MOBILE_STAGE
         ? {
-            x: mobileList.footX,
+            side: (i % 2 === 0) ? "left" : "right",
+            x: (i % 2 === 0) ? mobileList.leftFootX : mobileList.rightFootX,
             y: mobileList.startY + (i * mobileList.stepY),
             kneeX: mobileList.kneeX,
             kneeY: mobileList.startY + (i * mobileList.stepY)
@@ -1831,6 +1833,7 @@ jitter: 0.35,
         projectId: (project && project.id) ? project.id : "",
         foot: true,
         root: false,
+        mobileSide: (IS_MOBILE_STAGE && pos.side) ? pos.side : "left",
         targetX: pos.x,
         targetY: pos.y,
         x: 0, y: 0,
@@ -1914,9 +1917,20 @@ const labelSel = svg.selectAll("text")
       .on("click", function(d){
         const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
         if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-        if (!d || d.root) return; // only node labels (not the main body label)
+        if (e && typeof e.preventDefault === "function") e.preventDefault();
+        if (!d || d.root || d.knee) return; // only project labels
 
-        // Stage 3 should open ONLY when the label is "hot" (enlarged by proximity)
+        if (IS_MOBILE_STAGE) {
+          if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
+            window.WorkStage3.open({
+              title: d.name || "",
+              projectId: d.projectId || ""
+            });
+          }
+          return;
+        }
+
+        // Desktop: Stage 3 opens only when the label is "hot".
         const el = this;
         const isHot = el && el.classList && el.classList.contains("stage3-hot");
         if (!isHot) return;
@@ -1984,74 +1998,20 @@ const labelSel = svg.selectAll("text")
   }
 
   if (IS_MOBILE_STAGE) {
-    let mobileHotLabel = null;
-    let mobileHotAt = 0;
-
     labelSel.on("touchstart.stage3hot", function(d){
       if (!d || d.root || d.knee) return;
-      const el = this;
-      const now = Date.now();
-      const sameHot = mobileHotLabel === el && (now - mobileHotAt) < 1600;
-
-      if (sameHot) {
-        if (typeof d3 !== "undefined" && d3.event && typeof d3.event.preventDefault === "function") {
-          d3.event.preventDefault();
-        }
-        if (typeof d3 !== "undefined" && d3.event && typeof d3.event.stopPropagation === "function") {
-          d3.event.stopPropagation();
-        }
-        if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
-          window.WorkStage3.open({
-            title: d.name || "",
-            projectId: d.projectId || ""
-          });
-        }
-        return;
-      }
-
-      mobileHotLabel = el;
-      mobileHotAt = now;
-      setHot(el);
       if (typeof d3 !== "undefined" && d3.event && typeof d3.event.preventDefault === "function") {
         d3.event.preventDefault();
       }
       if (typeof d3 !== "undefined" && d3.event && typeof d3.event.stopPropagation === "function") {
         d3.event.stopPropagation();
       }
-    });
-
-    labelSel.on("click.stage3hot", function(d){
-      if (!d || d.root || d.knee) return;
-      const el = this;
-      const now = Date.now();
-      const sameHot = mobileHotLabel === el && (now - mobileHotAt) < 1600;
-
-      if (sameHot) {
-        if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
-          window.WorkStage3.open({
-            title: d.name || "",
-            projectId: d.projectId || ""
-          });
-        }
-        return;
+      if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
+        window.WorkStage3.open({
+          title: d.name || "",
+          projectId: d.projectId || ""
+        });
       }
-
-      mobileHotLabel = el;
-      mobileHotAt = now;
-      setHot(el);
-      const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
-      if (e && typeof e.preventDefault === "function") e.preventDefault();
-      if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-    });
-
-    svg.on("touchstart.stage3", function(){
-      const e = (typeof d3 !== "undefined") ? d3.event : null;
-      if (!e || !e.touches || !e.touches.length) return;
-      const target = e.target || null;
-      if (target && target.classList && target.classList.contains("node-label-child")) return;
-      clearHot();
-      mobileHotLabel = null;
-      mobileHotAt = 0;
     });
   }
 
@@ -2210,13 +2170,21 @@ const labelSel = svg.selectAll("text")
           const o = vibeOffset(d, t);
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
-          return d.x + o.ox + (IS_MOBILE_STAGE ? 24 : 16);
+          if (IS_MOBILE_STAGE) {
+            return d.x + o.ox + ((d.mobileSide === "right") ? -24 : 24);
+          }
+          return d.x + o.ox + 16;
         })
         .attr("y", d => {
           const o = vibeOffset(d, t);
           if (d.root) return d.y + o.oy;
           if (d.knee) return d.y + o.oy;
           return d.y + o.oy + (IS_MOBILE_STAGE ? 5 : -10);
+        })
+        .style("text-anchor", d => {
+          if (d.root) return "middle";
+          if (IS_MOBILE_STAGE) return (d.mobileSide === "right") ? "end" : "start";
+          return "start";
         })
         .style("dominant-baseline", d => {
           if (d.root) return "middle";
