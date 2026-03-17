@@ -2,6 +2,9 @@
 
 window.addEventListener("DOMContentLoaded", function () {
 
+  const IS_MOBILE_STAGE = window.matchMedia("(pointer: coarse), (max-width: 900px)").matches;
+
+
   function ensureSharedProjectsData(){
     const store = (window.PROJECTS && typeof window.PROJECTS === "object") ? window.PROJECTS : null;
     if (store && Object.keys(store).length) {
@@ -390,6 +393,13 @@ const stack = document.getElementById("card-stack");
     labelRootSize: "14px",
     labelChildSize: "12px"
   };
+
+
+  if (IS_MOBILE_STAGE) {
+    NODE_STYLE.childRadius = 11;
+    NODE_STYLE.labelChildSize = "14px";
+    NODE_STYLE.labelRootSize = "15px";
+  }
 
   const STACK_REPEL_MARGIN = 80;
   const NODE_MIN_DISTANCE  = 180;
@@ -1149,6 +1159,11 @@ jitter: 0.35,
     amp:    0.9
   };
 
+
+  if (IS_MOBILE_STAGE) {
+    VIBE.enabled = false;
+  }
+
   const SPIDER = {
     enabled: true,
     minDist: 220,
@@ -1174,6 +1189,23 @@ jitter: 0.35,
     minNodeSpacing: 46,         // minimum spacing between nodes (feet + body) to avoid crowding
     separationPasses: 2         // small passes, conservative
   };
+
+
+  if (IS_MOBILE_STAGE) {
+    SPIDER.minDist = 210;
+    SPIDER.maxDist = 300;
+    SPIDER.stepOutMin = 170;
+    SPIDER.stepOutMax = 205;
+    SPIDER.stepInMin = 155;
+    SPIDER.stepInMax = 195;
+    SPIDER.minFootSeparation = 42;
+    SPIDER.stepDurationMs = 180;
+    SPIDER.stepCooldownMs = 240;
+    SPIDER.angleJitter = 0.18;
+    SPIDER.enableAfterEntranceMs = 1600;
+    SPIDER.minNodeSpacing = 8;
+    SPIDER.separationPasses = 1;
+  }
 
   const WEB_SNAP = {
     enabled: true,
@@ -1203,6 +1235,16 @@ jitter: 0.35,
     pluckStrength: 0.10,
     pluckRadius: 140
   };
+
+
+  if (IS_MOBILE_STAGE) {
+    WEB_SNAP.plantedVibeEnabled = false;
+    WEB_SNAP.pluckWhileDragging = false;
+    ROOT_GLOW.pluckEnabled = false;
+    ROOT_GLOW.maxBlurPx = 12;
+    ROOT_GLOW.maxAlpha = 0.52;
+    ROOT_GLOW.rBoost = 1.4;
+  }
 
   let expanded = false;
   let isTransitioning = false;
@@ -1713,7 +1755,19 @@ jitter: 0.35,
     const forbidden = getForbiddenRect();
     const nodes = [];
 
-    const rootTarget = constrainedRootPosition(width, height, forbidden);
+    const projects = getProjectsForCategory(category);
+    const childCount = projects.length || 5;
+
+    let rootTarget;
+    if (IS_MOBILE_STAGE) {
+      rootTarget = {
+        x: clamp(width * 0.5, 120, width - 120),
+        y: clamp(height * 0.24, 120, Math.max(120, height * 0.34))
+      };
+    } else {
+      rootTarget = constrainedRootPosition(width, height, forbidden);
+    }
+
     nodes.push({
       name: category,
       root: true,
@@ -1723,21 +1777,49 @@ jitter: 0.35,
       _vseed: Math.random() * 1000
     });
 
-    const projects = getProjectsForCategory(category);
-    const childCount = projects.length || 5;
     const legPairs = []; // { kneeIndex, footIndex }
+
+    let mobileList = null;
+    if (IS_MOBILE_STAGE) {
+      const topGap = 96;
+      const bottomGap = 110;
+      const listStartY = rootTarget.y + topGap;
+      const listEndY = Math.max(listStartY, height - bottomGap);
+      const rawStep = childCount > 1 ? (listEndY - listStartY) / (childCount - 1) : 0;
+      const stepY = clamp(rawStep || 64, 52, 76);
+      const totalHeight = stepY * Math.max(0, childCount - 1);
+      const centeredStartY = clamp(
+        rootTarget.y + topGap,
+        listStartY,
+        Math.max(listStartY, listEndY - totalHeight)
+      );
+
+      mobileList = {
+        footX: clamp(width * 0.18, 26, Math.max(26, width * 0.24)),
+        kneeX: clamp(width * 0.34, 72, Math.max(72, width * 0.42)),
+        startY: centeredStartY,
+        stepY
+      };
+    }
 
     for (let i = 0; i < childCount; i++) {
       const project = projects[i] || null;
-      const pos = randomSafePosition(width, height, forbidden, nodes, NODE_MIN_DISTANCE, SCREEN_MARGIN + NODE_STYLE.childRadius + 8);
+      const pos = IS_MOBILE_STAGE
+        ? {
+            x: mobileList.footX,
+            y: mobileList.startY + (i * mobileList.stepY),
+            kneeX: mobileList.kneeX,
+            kneeY: mobileList.startY + (i * mobileList.stepY)
+          }
+        : randomSafePosition(width, height, forbidden, nodes, NODE_MIN_DISTANCE, SCREEN_MARGIN + NODE_STYLE.childRadius + 8);
 
       const kneeIndex = nodes.length;
       nodes.push({
         name: "",               // no label for knee
         knee: true,
         root: false,
-        targetX: pos.x,
-        targetY: pos.y,
+        targetX: (IS_MOBILE_STAGE && typeof pos.kneeX === "number") ? pos.kneeX : pos.x,
+        targetY: (IS_MOBILE_STAGE && typeof pos.kneeY === "number") ? pos.kneeY : pos.y,
         x: 0, y: 0,
         _vseed: Math.random() * 1000
       });
@@ -1814,27 +1896,6 @@ const nodeSel = svg.selectAll("circle")
   .style("cursor","pointer")
   .style("opacity", 0);
 
-const STAGE3_TOUCH_HOT_MS = 900;
-let stage3TouchHotEl = null;
-let stage3TouchHotAt = 0;
-
-function isTouchLikeInteraction(evt){
-  if (evt && typeof evt.pointerType === "string") return evt.pointerType !== "mouse";
-  if (evt && evt.sourceCapabilities && evt.sourceCapabilities.firesTouchEvents) return true;
-  return !!(("ontouchstart" in window) || (navigator.maxTouchPoints > 0));
-}
-
-function setStage3TouchHot(el){
-  if (stage3TouchHotEl && stage3TouchHotEl !== el && stage3TouchHotEl.classList) {
-    stage3TouchHotEl.classList.remove("stage3-hot");
-  }
-  stage3TouchHotEl = el;
-  stage3TouchHotAt = Date.now();
-  if (stage3TouchHotEl && stage3TouchHotEl.classList) {
-    stage3TouchHotEl.classList.add("stage3-hot");
-  }
-}
-
 const labelSel = svg.selectAll("text")
       .data(nodes)
       .enter().append("text")
@@ -1854,19 +1915,10 @@ const labelSel = svg.selectAll("text")
         if (e && typeof e.stopPropagation === "function") e.stopPropagation();
         if (!d || d.root) return; // only node labels (not the main body label)
 
+        // Stage 3 should open ONLY when the label is "hot" (enlarged by proximity)
         const el = this;
         const isHot = el && el.classList && el.classList.contains("stage3-hot");
-        const isTouchLike = isTouchLikeInteraction(e);
-
-        if (isTouchLike) {
-          const isFreshTouchHot = (stage3TouchHotEl === el) && ((Date.now() - stage3TouchHotAt) <= STAGE3_TOUCH_HOT_MS);
-          if (!isHot || !isFreshTouchHot) {
-            setStage3TouchHot(el);
-            return;
-          }
-        } else if (!isHot) {
-          return;
-        }
+        if (!isHot) return;
 
         if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
           window.WorkStage3.open({
@@ -1884,7 +1936,7 @@ const labelSel = svg.selectAll("text")
   // - no transforms applied in JS (CSS handles scaling)
   if (!labelSel || labelSel.empty()) return;
 
-  const THRESHOLD_PX = 70;
+  const THRESHOLD_PX = IS_MOBILE_STAGE ? 120 : 70;
   let hotEl = null;
 
   function clearHot(){
@@ -1928,6 +1980,55 @@ const labelSel = svg.selectAll("text")
 
     if (bestEl && bestD2 <= (THRESHOLD_PX * THRESHOLD_PX)) setHot(bestEl);
     else clearHot();
+  }
+
+  if (IS_MOBILE_STAGE) {
+    labelSel.on("touchstart.stage3hot", function(d){
+      if (!d || d.root || d.knee) return;
+      const el = this;
+      const isHot = el && el.classList && el.classList.contains("stage3-hot");
+      if (isHot) {
+        if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
+          window.WorkStage3.open({
+            title: d.name || "",
+            projectId: d.projectId || ""
+          });
+        }
+        return;
+      }
+      setHot(el);
+      if (typeof d3 !== "undefined" && d3.event && typeof d3.event.preventDefault === "function") {
+        d3.event.preventDefault();
+      }
+      if (typeof d3 !== "undefined" && d3.event && typeof d3.event.stopPropagation === "function") {
+        d3.event.stopPropagation();
+      }
+    });
+
+    svg.on("touchstart.stage3", function(){
+      const e = (typeof d3 !== "undefined") ? d3.event : null;
+      if (!e || !e.touches || !e.touches.length) return;
+      const touch = e.touches[0];
+      const rect = svg.node().getBoundingClientRect();
+      const mx = touch.clientX - rect.left;
+      const my = touch.clientY - rect.top;
+
+      let bestEl = null;
+      let bestD2 = Infinity;
+
+      labelSel.each(function(d){
+        if (!d || d.root || d.knee) return;
+        const lx = (d.x || 0) + 16;
+        const ly = (d.y || 0) - 10;
+        const dx = lx - mx;
+        const dy = ly - my;
+        const d2 = dx*dx + dy*dy;
+        if (d2 < bestD2) { bestD2 = d2; bestEl = this; }
+      });
+
+      if (bestEl && bestD2 <= (THRESHOLD_PX * THRESHOLD_PX)) setHot(bestEl);
+      else clearHot();
+    });
   }
 
   svg.on("mousemove.stage3", onMove);
@@ -1978,7 +2079,7 @@ const labelSel = svg.selectAll("text")
         }
       }
 
-      if (graphState) enforceNodeSeparation(graphState);
+      if (graphState && !IS_MOBILE_STAGE) enforceNodeSeparation(graphState);
 
       if (graphState && SPIDER.constraintsEnabled) enforceLegConstraints(graphState);
 
