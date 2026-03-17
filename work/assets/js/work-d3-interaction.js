@@ -1898,23 +1898,23 @@ const nodeSel = svg.selectAll("circle")
   .enter().append("circle")
   .attr("r", d => {
     if (d.knee) return IS_MOBILE_STAGE ? 5.5 : 6;
-    return IS_MOBILE_STAGE ? 8.5 : NODE_STYLE.childRadius;
+    return IS_MOBILE_STAGE ? 0 : NODE_STYLE.childRadius;
   })
   .style("fill", d => {
     if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.35)";
-    return IS_MOBILE_STAGE ? "rgba(0,0,0,0.82)" : NODE_STYLE.childFill;
+    return IS_MOBILE_STAGE ? "rgba(255,255,255,0)" : NODE_STYLE.childFill;
   })
   .style("stroke", d => {
     if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.24)" : "none";
-    return IS_MOBILE_STAGE ? "rgba(255,255,255,0.94)" : "none";
+    return IS_MOBILE_STAGE ? "rgba(255,255,255,0)" : "none";
   })
   .style("stroke-width", d => {
     if (d.knee) return IS_MOBILE_STAGE ? 0.8 : 0;
-    return IS_MOBILE_STAGE ? 1.6 : 0;
+    return IS_MOBILE_STAGE ? 0 : 0;
   })
   .style("filter", d => {
     if (!IS_MOBILE_STAGE || d.knee) return "none";
-    return "drop-shadow(0 0 6px rgba(255,255,255,0.08))";
+    return "none";
   })
   .style("cursor","pointer")
   .style("opacity", 0);
