@@ -1889,6 +1889,7 @@ const rootSel = svg.selectAll("rect.root-node")
   .style("stroke", NODE_STYLE.stroke)
   .style("stroke-width", NODE_STYLE.strokeWidth)
   .style("cursor","pointer")
+  .style("display", IS_MOBILE_STAGE ? "none" : null)
   .style("opacity", 0);
 
 // Others remain circles (knee + foot)
@@ -1900,6 +1901,16 @@ const nodeSel = svg.selectAll("circle")
   .style("cursor","pointer")
   .style("opacity", 0);
 
+const mobileTapData = IS_MOBILE_STAGE ? otherData.filter(d => d && d.foot) : [];
+const mobileTapSel = svg.selectAll("rect.mobile-tap-target")
+  .data(mobileTapData)
+  .enter().append("rect")
+  .attr("class", "mobile-tap-target")
+  .style("fill", "rgba(255,255,255,0)")
+  .style("stroke", "none")
+  .style("pointer-events", IS_MOBILE_STAGE ? "all" : "none")
+  .style("cursor", IS_MOBILE_STAGE ? "pointer" : "default");
+
 const labelSel = svg.selectAll("text")
       .data(nodes)
       .enter().append("text")
@@ -1908,9 +1919,15 @@ const labelSel = svg.selectAll("text")
       .style("fill", d => d.root ? "#000" : "#fff")
       .style("text-anchor", d => d.root ? "middle" : "start")
       .style("dominant-baseline", d => d.root ? "middle" : "auto")
-      // Only label text should be interactive (never the node circle). Root label stays inert.
-      .style("pointer-events", d => d.root ? "none" : "all")
-      .style("cursor", d => d.root ? "default" : "pointer")
+      // Mobile uses invisible row-sized tap targets instead of text interactions.
+      .style("pointer-events", d => {
+        if (IS_MOBILE_STAGE) return "none";
+        return d.root ? "none" : "all";
+      })
+      .style("cursor", d => {
+        if (IS_MOBILE_STAGE) return "default";
+        return d.root ? "default" : "pointer";
+      })
       .style("font-size", d => d.root ? NODE_STYLE.labelRootSize : NODE_STYLE.labelChildSize)
       .style("font-weight", d => d.root ? "600" : "400")
       .style("opacity", 0)
@@ -1921,12 +1938,6 @@ const labelSel = svg.selectAll("text")
         if (!d || d.root || d.knee) return; // only project labels
 
         if (IS_MOBILE_STAGE) {
-          if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
-            window.WorkStage3.open({
-              title: d.name || "",
-              projectId: d.projectId || ""
-            });
-          }
           return;
         }
 
@@ -1997,26 +2008,10 @@ const labelSel = svg.selectAll("text")
     else clearHot();
   }
 
-  if (IS_MOBILE_STAGE) {
-    labelSel.on("touchstart.stage3hot", function(d){
-      if (!d || d.root || d.knee) return;
-      if (typeof d3 !== "undefined" && d3.event && typeof d3.event.preventDefault === "function") {
-        d3.event.preventDefault();
-      }
-      if (typeof d3 !== "undefined" && d3.event && typeof d3.event.stopPropagation === "function") {
-        d3.event.stopPropagation();
-      }
-      if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
-        window.WorkStage3.open({
-          title: d.name || "",
-          projectId: d.projectId || ""
-        });
-      }
-    });
+  if (!IS_MOBILE_STAGE) {
+    svg.on("mousemove.stage3", onMove);
+    svg.on("mouseleave.stage3", clearHot);
   }
-
-  svg.on("mousemove.stage3", onMove);
-  svg.on("mouseleave.stage3", clearHot);
 })();
 
     // --- compute root rect size to fit label (once)
@@ -2031,10 +2026,16 @@ const labelSel = svg.selectAll("text")
       r._boxHg = r._boxH;
     });
 
-    nodeSel.style("pointer-events", d => d.knee ? "none" : "all");
-    rootSel.style("pointer-events", "all");
+    nodeSel.style("pointer-events", d => {
+      if (IS_MOBILE_STAGE) return d.knee ? "none" : "none";
+      return d.knee ? "none" : "all";
+    });
+    rootSel.style("pointer-events", IS_MOBILE_STAGE ? "none" : "all");
     linkSel.style("pointer-events", "none");
-    labelSel.style("pointer-events", d => (d && d.root) ? "none" : "all");
+    labelSel.style("pointer-events", d => {
+      if (IS_MOBILE_STAGE) return "none";
+      return (d && d.root) ? "none" : "all";
+    });
 
     function render() {
       if (graphState && !IS_MOBILE_STAGE) spiderTick(graphState);
@@ -2132,6 +2133,23 @@ const labelSel = svg.selectAll("text")
           return d.y + o.oy;
         });
 
+      if (IS_MOBILE_STAGE) {
+        mobileTapSel
+          .attr("x", d => {
+            const o = vibeOffset(d, t);
+            const baseX = d.x + o.ox;
+            return (d.mobileSide === "right") ? Math.max(0, baseX - 170) : Math.max(0, baseX - 18);
+          })
+          .attr("y", d => {
+            const o = vibeOffset(d, t);
+            return (d.y + o.oy) - 26;
+          })
+          .attr("width", d => {
+            return (d.mobileSide === "right") ? 188 : 250;
+          })
+          .attr("height", 52);
+      }
+
       // position ROOT rect (centered)
       rootSel
         .attr("x", d => {
@@ -2177,7 +2195,7 @@ const labelSel = svg.selectAll("text")
         })
         .attr("y", d => {
           const o = vibeOffset(d, t);
-          if (d.root) return d.y + o.oy;
+          if (d.root) return d.y + o.oy + (IS_MOBILE_STAGE ? 34 : 0);
           if (d.knee) return d.y + o.oy;
           return d.y + o.oy + (IS_MOBILE_STAGE ? 5 : -10);
         })
@@ -2272,6 +2290,34 @@ const labelSel = svg.selectAll("text")
     nodeSel.call(drag);
     rootSel.call(drag);
 
+    if (IS_MOBILE_STAGE) {
+      mobileTapSel
+        .on("click", function(d){
+          const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
+          if (e && typeof e.stopPropagation === "function") e.stopPropagation();
+          if (e && typeof e.preventDefault === "function") e.preventDefault();
+          if (!d || !d.foot) return;
+          if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
+            window.WorkStage3.open({
+              title: d.name || "",
+              projectId: d.projectId || ""
+            });
+          }
+        })
+        .on("touchstart", function(d){
+          const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
+          if (e && typeof e.stopPropagation === "function") e.stopPropagation();
+          if (e && typeof e.preventDefault === "function") e.preventDefault();
+          if (!d || !d.foot) return;
+          if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
+            window.WorkStage3.open({
+              title: d.name || "",
+              projectId: d.projectId || ""
+            });
+          }
+        });
+    }
+
     graphState = {
       svg,
       nodes,
@@ -2281,6 +2327,7 @@ const labelSel = svg.selectAll("text")
       rootSel,
       labelSel,
       linkSel,
+      mobileTapSel,
       render,
       _vibeStop: false,
       _timeouts: []
