@@ -18,6 +18,7 @@
 // ===============================
 
 window.addEventListener("DOMContentLoaded", () => {
+  const IS_MOBILE_WEB = window.matchMedia("(pointer: coarse), (max-width: 900px)").matches;
   const canvas = document.getElementById("spiderweb-canvas");
   if (!canvas) return;
 
@@ -77,6 +78,17 @@ window.addEventListener("DOMContentLoaded", () => {
     // ===== BREATHING (match HOME) =====
     breatheEnabled: true
   };
+
+  if (IS_MOBILE_WEB) {
+    WEB.followLerp = 0.05;
+    WEB.spring = 0.018;
+    WEB.damping = 0.95;
+    WEB.neighborSpring = 0.11;
+    WEB.windRadius = 110;
+    WEB.windStrength = 0.18;
+    WEB.windVelocityFactor = 0.018;
+    WEB.centerTensionBoost = 0.003;
+  }
 
   let W = 0, H = 0, DPR = 1;
   let mouse = { x: 0, y: 0, px: 0, py: 0, vx: 0, vy: 0, active: false };
@@ -275,6 +287,40 @@ window.addEventListener("DOMContentLoaded", () => {
     mouse.active = false;
   });
 
+  if (IS_MOBILE_WEB) {
+    const updateTouch = (clientX, clientY) => {
+      mouse.active = true;
+      mouse.px = mouse.x; mouse.py = mouse.y;
+      mouse.x = clientX; mouse.y = clientY;
+      mouse.vx = (mouse.x - mouse.px) * 0.35;
+      mouse.vy = (mouse.y - mouse.py) * 0.35;
+    };
+
+    window.addEventListener("touchstart", (e) => {
+      if (!e.touches || !e.touches.length) return;
+      const t = e.touches[0];
+      updateTouch(t.clientX, t.clientY);
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      if (!e.touches || !e.touches.length) return;
+      const t = e.touches[0];
+      updateTouch(t.clientX, t.clientY);
+    }, { passive: true });
+
+    window.addEventListener("touchend", () => {
+      mouse.active = false;
+      mouse.vx *= 0.2;
+      mouse.vy *= 0.2;
+    }, { passive: true });
+
+    window.addEventListener("touchcancel", () => {
+      mouse.active = false;
+      mouse.vx = 0;
+      mouse.vy = 0;
+    }, { passive: true });
+  }
+
   function alphaForSegment(ax, ay, bx, by) {
     const cx = center.x, cy = center.y;
     const mx = (ax + bx) / 2, my = (ay + by) / 2;
@@ -387,9 +433,9 @@ window.addEventListener("DOMContentLoaded", () => {
     lastT = now;
 
     // ===== STRONG DEFAULTS (if CSS handlers missing) =====
-    const amp = cssNum("--web-hole-breathe-amp", 0.14);
-    const speed = cssNum("--web-hole-breathe-speed", 0.20);
-    const smooth = clamp(cssNum("--web-hole-breathe-smooth", 0.10), 0.01, 0.40);
+    const amp = cssNum("--web-hole-breathe-amp", IS_MOBILE_WEB ? 0.025 : 0.14);
+    const speed = cssNum("--web-hole-breathe-speed", IS_MOBILE_WEB ? 0.10 : 0.20);
+    const smooth = clamp(cssNum("--web-hole-breathe-smooth", IS_MOBILE_WEB ? 0.05 : 0.10), 0.01, 0.40);
 
     const minScale = cssNum("--web-hole-min-scale", 0.78);
     const maxScale = cssNum("--web-hole-max-scale", 1.42);
@@ -410,8 +456,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const cy = center.y;
 
     // ===== STRONG DEFAULTS for influence (if CSS handlers missing) =====
-    const influenceBand = Math.max(0, cssNum("--web-hole-influence", 620));
-    const influenceStrength = clamp(cssNum("--web-hole-influence-strength", 0.28), 0, 0.60);
+    const influenceBand = Math.max(0, cssNum("--web-hole-influence", IS_MOBILE_WEB ? 220 : 620));
+    const influenceStrength = clamp(cssNum("--web-hole-influence-strength", IS_MOBILE_WEB ? 0.05 : 0.28), 0, 0.60);
 
     // wind
     if (mouse.active) {
