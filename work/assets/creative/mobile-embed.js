@@ -175,7 +175,10 @@
       }
 
       const script = document.createElement('script');
-      script.src = '../js/projects-data.js?v=20260317-1';
+
+      // ✅ FIXED PATH (this was the real issue)
+      script.src = '/work/js/projects-data.js?v=20260317-1';
+
       script.async = false;
       script.setAttribute('data-project-store-loader', 'true');
       script.addEventListener('load', () => resolve(getProjectStore()), { once: true });
