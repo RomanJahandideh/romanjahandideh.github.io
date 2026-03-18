@@ -1319,3 +1319,11 @@ body:has(#home-spiderweb-canvas) #floating-statement{
     touch-action: pan-y;
   }
 }
+
+
+@media (max-width: 736px){
+  #contact .contact-form input,
+  #contact .contact-form textarea{
+    font-size: 16px;
+  }
+}
