@@ -100,9 +100,8 @@ body {
 #graph-container line {
   pointer-events: none;
 }
-
 #graph-container text {
-  pointer-events: none;
+  pointer-events: all;
 }
 
 #graph-container circle {

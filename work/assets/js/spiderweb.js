@@ -23,6 +23,8 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const ctx = canvas.getContext("2d", { alpha: true });
 
+  const IS_MOBILE_WEB = window.matchMedia("(pointer: coarse), (max-width: 900px)").matches;
+
   const WEB = {
     spokes: 18,
     rings: 9,
@@ -77,6 +79,18 @@ window.addEventListener("DOMContentLoaded", () => {
     // ===== BREATHING (match HOME) =====
     breatheEnabled: true
   };
+
+  if (IS_MOBILE_WEB) {
+    WEB.spring = 0.014;
+    WEB.damping = 0.955;
+    WEB.neighborSpring = 0.10;
+    WEB.windRadius = 110;
+    WEB.windStrength = 0.20;
+    WEB.windVelocityFactor = 0.018;
+    WEB.followLerp = 0.035;
+    WEB.breatheEnabled = false;
+    WEB.highlightBoost = Math.min(WEB.highlightBoost, 0.38);
+  }
 
   let W = 0, H = 0, DPR = 1;
   let mouse = { x: 0, y: 0, px: 0, py: 0, vx: 0, vy: 0, active: false };
@@ -264,6 +278,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // INPUT
   // -------------------------------
   window.addEventListener("mousemove", (e) => {
+    if (IS_MOBILE_WEB) return;
     mouse.active = true;
     mouse.px = mouse.x; mouse.py = mouse.y;
     mouse.x = e.clientX; mouse.y = e.clientY;
@@ -274,6 +289,40 @@ window.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("mouseleave", () => {
     mouse.active = false;
   });
+
+  if (IS_MOBILE_WEB) {
+    window.addEventListener("touchstart", (e) => {
+      const touch = e.touches && e.touches[0];
+      if (!touch) return;
+      mouse.active = true;
+      mouse.x = mouse.px = touch.clientX;
+      mouse.y = mouse.py = touch.clientY;
+      mouse.vx = 0;
+      mouse.vy = 0;
+    }, { passive: true });
+
+    window.addEventListener("touchmove", (e) => {
+      const touch = e.touches && e.touches[0];
+      if (!touch) return;
+      mouse.active = true;
+      mouse.px = mouse.x; mouse.py = mouse.y;
+      mouse.x = touch.clientX; mouse.y = touch.clientY;
+      mouse.vx = (mouse.x - mouse.px) * 0.20;
+      mouse.vy = (mouse.y - mouse.py) * 0.20;
+    }, { passive: true });
+
+    window.addEventListener("touchend", () => {
+      mouse.active = false;
+      mouse.vx = 0;
+      mouse.vy = 0;
+    }, { passive: true });
+
+    window.addEventListener("touchcancel", () => {
+      mouse.active = false;
+      mouse.vx = 0;
+      mouse.vy = 0;
+    }, { passive: true });
+  }
 
   function alphaForSegment(ax, ay, bx, by) {
     const cx = center.x, cy = center.y;
@@ -410,8 +459,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const cy = center.y;
 
     // ===== STRONG DEFAULTS for influence (if CSS handlers missing) =====
-    const influenceBand = Math.max(0, cssNum("--web-hole-influence", 620));
-    const influenceStrength = clamp(cssNum("--web-hole-influence-strength", 0.28), 0, 0.60);
+    const influenceBand = IS_MOBILE_WEB ? 0 : Math.max(0, cssNum("--web-hole-influence", 620));
+    const influenceStrength = IS_MOBILE_WEB ? 0 : clamp(cssNum("--web-hole-influence-strength", 0.28), 0, 0.60);
 
     // wind
     if (mouse.active) {

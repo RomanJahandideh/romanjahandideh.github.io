@@ -1061,6 +1061,11 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 /* Contact is intentionally shorter (tighter, less empty space) */
 #contact .panel-inner{
   height: min(72vh, 720px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 
 /* =========================================================
