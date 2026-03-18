@@ -74,12 +74,19 @@
     if (/^[a-zA-Z]:\//.test(candidate)) {
       const lower = candidate.toLowerCase();
       const marker = '/work/assets/projects/';
+      const markerNoSlash = 'work/assets/projects/';
       const idx = lower.indexOf(marker);
       if (idx !== -1) return origin + candidate.slice(idx);
+      const idxNoSlash = lower.indexOf(markerNoSlash);
+      if (idxNoSlash !== -1) return origin + '/' + candidate.slice(idxNoSlash);
     }
 
     if (candidate.indexOf('/work/assets/projects/') !== -1) {
       return origin + candidate.slice(candidate.indexOf('/work/assets/projects/'));
+    }
+
+    if (candidate.indexOf('work/assets/projects/') !== -1) {
+      return origin + '/' + candidate.slice(candidate.indexOf('work/assets/projects/'));
     }
 
     if (candidate.startsWith('/')) return origin + candidate;
