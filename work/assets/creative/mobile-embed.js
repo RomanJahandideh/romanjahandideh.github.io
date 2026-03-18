@@ -181,19 +181,15 @@
       const pagePath = String(window.location.pathname || '').toLowerCase();
 
       if (pagePath.indexOf('/work/') !== -1 || /\/work(?:\/index\.html)?$/.test(pagePath)) {
-        candidates.push('../js/projects-data.js?v=20260317-1');
-        candidates.push('../js/projects-data.js?v=20260307-1');
-        candidates.push('/work/assets/js/projects-data.js?v=20260317-1');
-        candidates.push('/work/assets/js/projects-data.js?v=20260307-1');
-        candidates.push('../assets/js/projects-data.js?v=20260317-1');
-        candidates.push('../assets/js/projects-data.js?v=20260307-1');
+        candidates.push('assets/js/projects-data.js');
+        candidates.push('./assets/js/projects-data.js');
+        candidates.push('../work/assets/js/projects-data.js');
+        candidates.push('/work/assets/js/projects-data.js');
       } else {
-        candidates.push('/work/assets/js/projects-data.js?v=20260317-1');
-        candidates.push('/work/assets/js/projects-data.js?v=20260307-1');
-        candidates.push('work/assets/js/projects-data.js?v=20260317-1');
-        candidates.push('work/assets/js/projects-data.js?v=20260307-1');
-        candidates.push('assets/js/projects-data.js?v=20260317-1');
-        candidates.push('assets/js/projects-data.js?v=20260307-1');
+        candidates.push('/work/assets/js/projects-data.js');
+        candidates.push('work/assets/js/projects-data.js');
+        candidates.push('./work/assets/js/projects-data.js');
+        candidates.push('assets/js/projects-data.js');
       }
 
       let index = 0;
@@ -216,14 +212,29 @@
           return;
         }
 
+        const existingScript = Array.from(document.scripts || []).find((script) => {
+          const scriptSrc = String(script.getAttribute('src') || script.src || '');
+          return scriptSrc.indexOf('projects-data.js') !== -1 && scriptSrc.indexOf(src.replace(/^\.\//, '')) !== -1;
+        });
+
+        if (existingScript) {
+          if ((window.PROJECTS && typeof window.PROJECTS === 'object') && Object.keys(window.PROJECTS).length) {
+            resolve(window.PROJECTS);
+            return;
+          }
+          existingScript.addEventListener('load', () => resolve(getProjectStore()), { once: true });
+          existingScript.addEventListener('error', tryNext, { once: true });
+          return;
+        }
+
         const script = document.createElement('script');
         script.src = src;
         script.async = false;
         script.setAttribute('data-project-store-loader', 'true');
         script.addEventListener('load', () => {
-          const nextLoaded = getProjectStore();
-          if (nextLoaded && Object.keys(nextLoaded).length) {
-            resolve(nextLoaded);
+          const store = getProjectStore();
+          if (store && Object.keys(store).length) {
+            resolve(store);
           } else {
             tryNext();
           }
