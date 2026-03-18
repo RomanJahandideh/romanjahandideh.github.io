@@ -677,38 +677,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 }
 
 @media (max-width: 736px){
-  .top-nav{
-    top: max(14px, env(safe-area-inset-top));
-    left: 12px;
-    right: 12px;
-    transform: none;
-    width: calc(100vw - 24px);
-    max-width: none;
-    justify-content: space-between;
-    align-items: center;
-    gap: 0;
-    padding: 10px 14px;
-    border-radius: 22px;
-    background: rgba(20,20,24,0.72);
-    backdrop-filter: blur(18px) saturate(160%);
-    -webkit-backdrop-filter: blur(18px) saturate(160%);
-    border: 1px solid rgba(255,255,255,0.10);
-    box-shadow:
-      0 10px 30px rgba(0,0,0,0.28),
-      inset 0 1px 0 rgba(255,255,255,0.06);
-  }
-
-  .top-nav a{
-    flex: 1 1 0;
-    min-width: 0;
-    text-align: center;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    white-space: nowrap;
-    color: rgba(255,255,255,0.88);
-  }
-
+  .top-nav{ gap: 22px; padding: 10px 12px; }
   :root{ --eye-size: 70px; }
 }
 
@@ -939,7 +908,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 
 #contact .contact-link{
   display: grid;
-  grid-template-columns: 42px 1fr;
+  grid-template-columns: 42px 1fr 22px;
   align-items: center;
   gap: 12px;
 
@@ -1025,15 +994,6 @@ body:has(#home-spiderweb-canvas) #floating-statement{
     min-height: 150px;
   }
 }
-@media (max-width: 980px){
-  #contact .panel-inner{
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    overscroll-behavior: contain;
-    touch-action: pan-y;
-  }
-}
-
 
 /* =========================================================
    ABOUT / CONTACT PANELS
@@ -1101,8 +1061,11 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 /* Contact is intentionally shorter (tighter, less empty space) */
 #contact .panel-inner{
   height: min(72vh, 720px);
-  overflow-y: hidden;
+  overflow-y: auto;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
 }
 
 /* =========================================================
@@ -1337,5 +1300,22 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   #about .about-clean-intro-text{
     font-size: 13.5px;
     line-height: 1.66;
+  }
+}
+
+@media (max-width: 736px){
+  #contact.panel,
+  #contact.panel:target{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+
+  #contact .panel-inner{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
   }
 }
