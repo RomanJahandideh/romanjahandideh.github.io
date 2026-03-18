@@ -74,8 +74,11 @@
     if (/^[a-zA-Z]:\//.test(candidate)) {
       const lower = candidate.toLowerCase();
       const marker = '/work/assets/projects/';
+      const markerNoSlash = 'work/assets/projects/';
       const idx = lower.indexOf(marker);
       if (idx !== -1) return origin + candidate.slice(idx);
+      const idxNoSlash = lower.indexOf(markerNoSlash);
+      if (idxNoSlash !== -1) return origin + '/' + candidate.slice(idxNoSlash);
     }
 
     if (candidate.indexOf('/work/assets/projects/') !== -1) {
@@ -174,16 +177,62 @@
         return;
       }
 
-      const script = document.createElement('script');
+      const candidates = [];
+      const pagePath = String(window.location.pathname || '').toLowerCase();
 
-      // ✅ FIXED PATH (this was the real issue)
-      script.src = '/work/js/projects-data.js?v=20260317-1';
+      if (pagePath.indexOf('/work/') !== -1 || /\/work(?:\/index\.html)?$/.test(pagePath)) {
+        candidates.push('../js/projects-data.js?v=20260317-1');
+        candidates.push('../js/projects-data.js?v=20260307-1');
+        candidates.push('/work/assets/js/projects-data.js?v=20260317-1');
+        candidates.push('/work/assets/js/projects-data.js?v=20260307-1');
+        candidates.push('../assets/js/projects-data.js?v=20260317-1');
+        candidates.push('../assets/js/projects-data.js?v=20260307-1');
+      } else {
+        candidates.push('/work/assets/js/projects-data.js?v=20260317-1');
+        candidates.push('/work/assets/js/projects-data.js?v=20260307-1');
+        candidates.push('work/assets/js/projects-data.js?v=20260317-1');
+        candidates.push('work/assets/js/projects-data.js?v=20260307-1');
+        candidates.push('assets/js/projects-data.js?v=20260317-1');
+        candidates.push('assets/js/projects-data.js?v=20260307-1');
+      }
 
-      script.async = false;
-      script.setAttribute('data-project-store-loader', 'true');
-      script.addEventListener('load', () => resolve(getProjectStore()), { once: true });
-      script.addEventListener('error', () => resolve(getProjectStore()), { once: true });
-      document.head.appendChild(script);
+      let index = 0;
+
+      const tryNext = () => {
+        const loaded = getProjectStore();
+        if (loaded && Object.keys(loaded).length) {
+          resolve(loaded);
+          return;
+        }
+
+        if (index >= candidates.length) {
+          resolve(getProjectStore());
+          return;
+        }
+
+        const src = candidates[index++];
+        if (!src) {
+          tryNext();
+          return;
+        }
+
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = false;
+        script.setAttribute('data-project-store-loader', 'true');
+        script.addEventListener('load', () => {
+          const nextLoaded = getProjectStore();
+          if (nextLoaded && Object.keys(nextLoaded).length) {
+            resolve(nextLoaded);
+          } else {
+            tryNext();
+          }
+        }, { once: true });
+        script.addEventListener('error', tryNext, { once: true });
+        document.head.appendChild(script);
+      };
+
+      tryNext();
     });
   }
 
