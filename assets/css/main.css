@@ -939,7 +939,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 
 #contact .contact-link{
   display: grid;
-  grid-template-columns: 42px 1fr 22px;
+  grid-template-columns: 42px 1fr;
   align-items: center;
   gap: 12px;
 
@@ -1025,6 +1025,15 @@ body:has(#home-spiderweb-canvas) #floating-statement{
     min-height: 150px;
   }
 }
+@media (max-width: 980px){
+  #contact .panel-inner{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+}
+
 
 /* =========================================================
    ABOUT / CONTACT PANELS
@@ -1092,11 +1101,8 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 /* Contact is intentionally shorter (tighter, less empty space) */
 #contact .panel-inner{
   height: min(72vh, 720px);
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  touch-action: pan-y;
 }
 
 /* =========================================================
