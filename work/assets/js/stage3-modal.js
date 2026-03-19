@@ -19,8 +19,7 @@
 
   // ===== Handlers (single place) =====
   const TUNE = {
-    creativeUrl: "assets/creative/creative-embed.html", // desktop stays untouched
-    creativeMobileUrl: "assets/creative/creative-embed-mobile.html",
+    creativeUrl: "assets/creative/creative-embed.html", // <-- keep your real path
     headerLabel: "Project",
 
     // ✅ No dot
@@ -123,16 +122,6 @@
     });
 
     return window.__sharedProjectsDataPromise;
-  }
-
-
-
-  function isMobileStage3(){
-    try {
-      return window.matchMedia("(max-width: 820px), (hover: none) and (pointer: coarse)").matches;
-    } catch (_e) {
-      return (window.innerWidth || 0) <= 820;
-    }
   }
 
   function lock(fn){
@@ -301,8 +290,7 @@
       if (projectId) qs.set("id", projectId);
       if (projectTitle) qs.set("project", projectTitle);
       qs.set("nonce", String(Date.now()));
-      const targetUrl = isMobileStage3() ? TUNE.creativeMobileUrl : TUNE.creativeUrl;
-      iframe.src = `${targetUrl}?${qs.toString()}`;
+      iframe.src = `${TUNE.creativeUrl}?${qs.toString()}`;
       });
     });
   }
