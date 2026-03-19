@@ -1870,11 +1870,6 @@ jitter: 0.35,
     const linkSel = svg.selectAll("line")
       .data(links)
       .enter().append("line")
-      .style("display", d => {
-        if (!IS_MOBILE_STAGE) return null;
-        const targetNode = nodes[d.targetIndex];
-        return targetNode && targetNode.foot ? "none" : null;
-      })
       .style("stroke", IS_MOBILE_STAGE ? "rgba(255,255,255,0.24)" : NODE_STYLE.stroke)
       .style("stroke-width", IS_MOBILE_STAGE ? 1.0 : NODE_STYLE.strokeWidth)
       .style("opacity", 0);
@@ -1901,24 +1896,20 @@ const rootSel = svg.selectAll("rect.root-node")
 const nodeSel = svg.selectAll("circle")
   .data(otherData)
   .enter().append("circle")
-  .style("display", d => {
-    if (!IS_MOBILE_STAGE) return null;
-    return d.foot ? "none" : null;
-  })
   .attr("r", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? 2.2 : 6;
+    if (d.knee) return IS_MOBILE_STAGE ? 4.5 : 6;
     return IS_MOBILE_STAGE ? 0 : NODE_STYLE.childRadius;
   })
   .style("fill", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.35)";
+    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.14)" : "rgba(255,255,255,0.35)";
     return IS_MOBILE_STAGE ? "rgba(255,255,255,0)" : NODE_STYLE.childFill;
   })
   .style("stroke", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.10)" : "none";
+    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.18)" : "none";
     return IS_MOBILE_STAGE ? "rgba(255,255,255,0)" : "none";
   })
   .style("stroke-width", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? 0.4 : 0;
+    if (d.knee) return IS_MOBILE_STAGE ? 0.6 : 0;
     return IS_MOBILE_STAGE ? 0 : 0;
   })
   .style("filter", d => {
@@ -2233,7 +2224,7 @@ const labelSel = svg.selectAll("text")
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
           if (IS_MOBILE_STAGE) {
-            return d.x + o.ox + ((d.mobileSide === "right") ? -30 : 30);
+            return d.x + o.ox + ((d.mobileSide === "right") ? -18 : 18);
           }
           return d.x + o.ox + 16;
         })
