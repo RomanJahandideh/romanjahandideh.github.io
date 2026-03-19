@@ -437,60 +437,78 @@ body{
   --morphDurHover: 4.2s;
 }
 
+/* =========================
+   Mobile Stage 3 cleanup
+   ========================= */
 @media (max-width: 767px){
+  :root{
+    --stageW: 100vw;
+  }
+
+  body{
+    overflow-x: hidden;
+  }
+
   .topbar{
-    padding: 8px 10px;
-    gap: 8px;
-    height: auto;
-    min-height: 54px;
-    align-items: flex-start;
+    padding: 10px 12px;
+    gap: 10px;
     flex-wrap: wrap;
+  }
+
+  .brand{
+    width: 100%;
+    font-size: 13px;
   }
 
   .controls{
     width: 100%;
     gap: 8px;
-    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .ctl{
-    font-size: 11px;
-    padding: 5px 9px;
+    min-width: 0;
+    flex: 1 1 0;
+    padding: 6px 8px;
   }
 
-  .ctl input[type="range"]{
-    width: 92px;
+  .ctl span{
+    font-size: 11px;
   }
 
   .stageWrap{
-    width: min(var(--stageW), calc(100vw - 16px));
+    width: calc(100vw - 16px);
     padding: 18px 0 16px;
   }
 
   .stage{
-    padding-bottom: 120px;
+    min-height: 1200px;
+    padding-bottom: 96px;
   }
 
   .headline{
-    width: calc(100vw - 24px);
+    width: min(92vw, 520px);
   }
 
   .title{
     font-size: clamp(28px, 8vw, 40px);
-    line-height: 1.02;
+    line-height: 1.04;
   }
 
   .intro{
     margin-top: 14px;
     font-size: 13px;
     line-height: 1.5;
-    max-width: 30ch;
+    max-width: 32ch;
   }
 
-  .shape.rect,
-  .blockItem,
-  #downloadBtn{
+  .textLayer{
+    width: calc(100vw - 20px);
+  }
+
+  .blockItem{
     max-width: calc(100vw - 28px);
+    border-radius: 16px;
   }
 
   .blockContent{
@@ -500,6 +518,15 @@ body{
   }
 
   #downloadBtn{
-    font-size: 15px;
+    font-size: 14px;
+  }
+
+  .footer{
+    padding: 14px 10px 18px;
+  }
+
+  .footerInner{
+    width: calc(100vw - 20px);
+    font-size: 11px;
   }
 }
