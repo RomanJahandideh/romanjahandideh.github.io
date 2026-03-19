@@ -2,9 +2,6 @@
 
 window.addEventListener("DOMContentLoaded", function () {
 
-  const IS_MOBILE_STAGE = window.matchMedia("(pointer: coarse), (max-width: 900px)").matches;
-
-
   function ensureSharedProjectsData(){
     const store = (window.PROJECTS && typeof window.PROJECTS === "object") ? window.PROJECTS : null;
     if (store && Object.keys(store).length) {
@@ -393,13 +390,6 @@ const stack = document.getElementById("card-stack");
     labelRootSize: "14px",
     labelChildSize: "12px"
   };
-
-
-  if (IS_MOBILE_STAGE) {
-    NODE_STYLE.childRadius = 11;
-    NODE_STYLE.labelChildSize = "14px";
-    NODE_STYLE.labelRootSize = "15px";
-  }
 
   const STACK_REPEL_MARGIN = 80;
   const NODE_MIN_DISTANCE  = 180;
@@ -1159,11 +1149,6 @@ jitter: 0.35,
     amp:    0.9
   };
 
-
-  if (IS_MOBILE_STAGE) {
-    VIBE.enabled = false;
-  }
-
   const SPIDER = {
     enabled: true,
     minDist: 220,
@@ -1189,23 +1174,6 @@ jitter: 0.35,
     minNodeSpacing: 46,         // minimum spacing between nodes (feet + body) to avoid crowding
     separationPasses: 2         // small passes, conservative
   };
-
-
-  if (IS_MOBILE_STAGE) {
-    SPIDER.minDist = 210;
-    SPIDER.maxDist = 300;
-    SPIDER.stepOutMin = 170;
-    SPIDER.stepOutMax = 205;
-    SPIDER.stepInMin = 155;
-    SPIDER.stepInMax = 195;
-    SPIDER.minFootSeparation = 42;
-    SPIDER.stepDurationMs = 180;
-    SPIDER.stepCooldownMs = 240;
-    SPIDER.angleJitter = 0.18;
-    SPIDER.enableAfterEntranceMs = 1600;
-    SPIDER.minNodeSpacing = 8;
-    SPIDER.separationPasses = 1;
-  }
 
   const WEB_SNAP = {
     enabled: true,
@@ -1235,16 +1203,6 @@ jitter: 0.35,
     pluckStrength: 0.10,
     pluckRadius: 140
   };
-
-
-  if (IS_MOBILE_STAGE) {
-    WEB_SNAP.plantedVibeEnabled = false;
-    WEB_SNAP.pluckWhileDragging = false;
-    ROOT_GLOW.pluckEnabled = false;
-    ROOT_GLOW.maxBlurPx = 12;
-    ROOT_GLOW.maxAlpha = 0.52;
-    ROOT_GLOW.rBoost = 1.4;
-  }
 
   let expanded = false;
   let isTransitioning = false;
@@ -1278,9 +1236,7 @@ jitter: 0.35,
 
   layers.forEach(layer => {
     layer.addEventListener("click", () => {
-      const labelEl = layer.querySelector(".label");
-      const labelText = labelEl ? String(labelEl.textContent || "").trim() : "";
-      const category = labelText || layer.dataset.category || "Projects";
+      const category = layer.dataset.category || "Projects";
       enterGraphMode(category, layer);
     });
   });
@@ -1713,15 +1669,10 @@ jitter: 0.35,
     const categoryToPrefix = {
       "Animations": "animations-",
       "CG Art": "cgart-",
-      "Graphic Design": "cgart-",
-      "AA": "cgart-",
       "Narrative": "narrative-",
       "Game Design": "gamedesign-",
       "Projects": "projects-",
-      "Architectural Design": "projects-",
-      "Articles": "articles-",
-      "UI/UX Design": "articles-",
-      "UI/UX design": "articles-"
+      "Articles": "articles-"
     };
 
     const prefix = categoryToPrefix[category] || "";
@@ -1755,19 +1706,7 @@ jitter: 0.35,
     const forbidden = getForbiddenRect();
     const nodes = [];
 
-    const projects = getProjectsForCategory(category);
-    const childCount = projects.length || 5;
-
-    let rootTarget;
-    if (IS_MOBILE_STAGE) {
-      rootTarget = {
-        x: clamp(width * 0.5, 120, width - 120),
-        y: clamp(height * 0.24, 120, Math.max(120, height * 0.34))
-      };
-    } else {
-      rootTarget = constrainedRootPosition(width, height, forbidden);
-    }
-
+    const rootTarget = constrainedRootPosition(width, height, forbidden);
     nodes.push({
       name: category,
       root: true,
@@ -1777,52 +1716,21 @@ jitter: 0.35,
       _vseed: Math.random() * 1000
     });
 
+    const projects = getProjectsForCategory(category);
+    const childCount = projects.length || 5;
     const legPairs = []; // { kneeIndex, footIndex }
-
-    let mobileList = null;
-    if (IS_MOBILE_STAGE) {
-      rootTarget.y = clamp(rootTarget.y + 126, 220, Math.max(220, height * 0.50));
-      const topGap = 112;
-      const bottomGap = 110;
-      const listStartY = rootTarget.y + topGap;
-      const listEndY = Math.max(listStartY, height - bottomGap);
-      const rawStep = childCount > 1 ? (listEndY - listStartY) / (childCount - 1) : 0;
-      const stepY = clamp(rawStep || 64, 52, 76);
-      const totalHeight = stepY * Math.max(0, childCount - 1);
-      const centeredStartY = clamp(
-        rootTarget.y + topGap,
-        listStartY,
-        Math.max(listStartY, listEndY - totalHeight)
-      );
-
-      mobileList = {
-        leftFootX: clamp(34, 28, Math.max(28, width * 0.12)),
-        rightFootX: clamp(width - 34, Math.min(width * 0.78, width - 72), width - 28),
-        kneeX: clamp(width * 0.50, 140, Math.max(140, width * 0.62)),
-        startY: centeredStartY,
-        stepY
-      };
-    }
 
     for (let i = 0; i < childCount; i++) {
       const project = projects[i] || null;
-      const pos = IS_MOBILE_STAGE
-        ? {
-            side: (i % 2 === 0) ? "left" : "right",
-            x: (i % 2 === 0) ? mobileList.leftFootX : mobileList.rightFootX,
-            y: mobileList.startY + (i * mobileList.stepY),
-            kneeX: mobileList.kneeX,
-            kneeY: mobileList.startY + (i * mobileList.stepY)
-          }
-        : randomSafePosition(width, height, forbidden, nodes, NODE_MIN_DISTANCE, SCREEN_MARGIN + NODE_STYLE.childRadius + 8);
+      const pos = randomSafePosition(width, height, forbidden, nodes, NODE_MIN_DISTANCE, SCREEN_MARGIN + NODE_STYLE.childRadius + 8);
 
       const kneeIndex = nodes.length;
       nodes.push({
         name: "",               // no label for knee
         knee: true,
         root: false,
-        targetX: (IS_MOBILE_STAGE && typeof pos.kneeX === "number") ? pos.kneeX : pos.x,
-        targetY: (IS_MOBILE_STAGE && typeof pos.kneeY === "number") ? pos.kneeY : pos.y,
+        targetX: pos.x,
+        targetY: pos.y,
         x: 0, y: 0,
         _vseed: Math.random() * 1000
       });
@@ -1833,7 +1741,6 @@ jitter: 0.35,
         projectId: (project && project.id) ? project.id : "",
         foot: true,
         root: false,
-        mobileSide: (IS_MOBILE_STAGE && pos.side) ? pos.side : "left",
         targetX: pos.x,
         targetY: pos.y,
         x: 0, y: 0,
@@ -1870,13 +1777,8 @@ jitter: 0.35,
     const linkSel = svg.selectAll("line")
       .data(links)
       .enter().append("line")
-      .style("display", d => {
-        if (!IS_MOBILE_STAGE) return null;
-        const targetNode = nodes[d.targetIndex];
-        return targetNode && targetNode.foot ? "none" : null;
-      })
-      .style("stroke", IS_MOBILE_STAGE ? "rgba(255,255,255,0.24)" : NODE_STYLE.stroke)
-      .style("stroke-width", IS_MOBILE_STAGE ? 1.0 : NODE_STYLE.strokeWidth)
+      .style("stroke", NODE_STYLE.stroke)
+      .style("stroke-width", NODE_STYLE.strokeWidth)
       .style("opacity", 0);
 
 // --- split root vs others (so only root becomes a rounded rect)
@@ -1894,98 +1796,37 @@ const rootSel = svg.selectAll("rect.root-node")
   .style("stroke", NODE_STYLE.stroke)
   .style("stroke-width", NODE_STYLE.strokeWidth)
   .style("cursor","pointer")
-  .style("display", IS_MOBILE_STAGE ? "none" : null)
   .style("opacity", 0);
 
 // Others remain circles (knee + foot)
 const nodeSel = svg.selectAll("circle")
   .data(otherData)
   .enter().append("circle")
-  .style("display", d => {
-    if (!IS_MOBILE_STAGE) return null;
-    return d.foot ? "none" : null;
-  })
-  .attr("r", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? 2.2 : 6;
-    return IS_MOBILE_STAGE ? 0 : NODE_STYLE.childRadius;
-  })
-  .style("fill", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.35)";
-    return IS_MOBILE_STAGE ? "rgba(255,255,255,0)" : NODE_STYLE.childFill;
-  })
-  .style("stroke", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.10)" : "none";
-    return IS_MOBILE_STAGE ? "rgba(255,255,255,0)" : "none";
-  })
-  .style("stroke-width", d => {
-    if (d.knee) return IS_MOBILE_STAGE ? 0.4 : 0;
-    return IS_MOBILE_STAGE ? 0 : 0;
-  })
-  .style("filter", d => {
-    if (!IS_MOBILE_STAGE || d.knee) return "none";
-    return "none";
-  })
+  .attr("r", d => d.knee ? 6 : NODE_STYLE.childRadius)
+  .style("fill", d => d.knee ? "rgba(255,255,255,0.35)" : NODE_STYLE.childFill)
   .style("cursor","pointer")
   .style("opacity", 0);
-
-const mobileTapData = IS_MOBILE_STAGE ? otherData.filter(d => d && d.foot) : [];
-const mobileTapSel = svg.selectAll("rect.mobile-tap-target")
-  .data(mobileTapData)
-  .enter().append("rect")
-  .attr("class", "mobile-tap-target")
-  .style("fill", "rgba(255,255,255,0)")
-  .style("stroke", "none")
-  .style("pointer-events", IS_MOBILE_STAGE ? "all" : "none")
-  .style("cursor", IS_MOBILE_STAGE ? "pointer" : "default");
 
 const labelSel = svg.selectAll("text")
       .data(nodes)
       .enter().append("text")
       .attr("class", d => d.root ? "node-label node-label-root" : "node-label node-label-child")
       .text(d => d.name)
-      .style("fill", d => {
-        if (d.root) return IS_MOBILE_STAGE ? "rgba(255,255,255,0.98)" : "#000";
-        return IS_MOBILE_STAGE ? "rgba(255,255,255,0.88)" : "#fff";
-      })
+      .style("fill", d => d.root ? "#000" : "#fff")
       .style("text-anchor", d => d.root ? "middle" : "start")
       .style("dominant-baseline", d => d.root ? "middle" : "auto")
-      // Mobile uses invisible row-sized tap targets instead of text interactions.
-      .style("pointer-events", d => {
-        if (IS_MOBILE_STAGE) return "none";
-        return d.root ? "none" : "all";
-      })
-      .style("cursor", d => {
-        if (IS_MOBILE_STAGE) return "default";
-        return d.root ? "default" : "pointer";
-      })
-      .style("font-size", d => {
-        if (d.root) return IS_MOBILE_STAGE ? "18px" : NODE_STYLE.labelRootSize;
-        return IS_MOBILE_STAGE ? "11.5px" : NODE_STYLE.labelChildSize;
-      })
-      .style("font-weight", d => {
-        if (d.root) return "600";
-        return IS_MOBILE_STAGE ? "500" : "400";
-      })
-      .style("letter-spacing", d => {
-        if (!IS_MOBILE_STAGE) return "0em";
-        return d.root ? "0em" : "0.005em";
-      })
-      .style("filter", d => {
-        if (!IS_MOBILE_STAGE || d.root || d.knee) return "none";
-        return "drop-shadow(0 0 6px rgba(255,255,255,0.08))";
-      })
+      // Only label text should be interactive (never the node circle). Root label stays inert.
+      .style("pointer-events", d => d.root ? "none" : "all")
+      .style("cursor", d => d.root ? "default" : "pointer")
+      .style("font-size", d => d.root ? NODE_STYLE.labelRootSize : NODE_STYLE.labelChildSize)
+      .style("font-weight", d => d.root ? "600" : "400")
       .style("opacity", 0)
       .on("click", function(d){
         const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
         if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-        if (e && typeof e.preventDefault === "function") e.preventDefault();
-        if (!d || d.root || d.knee) return; // only project labels
+        if (!d || d.root) return; // only node labels (not the main body label)
 
-        if (IS_MOBILE_STAGE) {
-          return;
-        }
-
-        // Desktop: Stage 3 opens only when the label is "hot".
+        // Stage 3 should open ONLY when the label is "hot" (enlarged by proximity)
         const el = this;
         const isHot = el && el.classList && el.classList.contains("stage3-hot");
         if (!isHot) return;
@@ -2006,7 +1847,7 @@ const labelSel = svg.selectAll("text")
   // - no transforms applied in JS (CSS handles scaling)
   if (!labelSel || labelSel.empty()) return;
 
-  const THRESHOLD_PX = IS_MOBILE_STAGE ? 120 : 70;
+  const THRESHOLD_PX = 70;
   let hotEl = null;
 
   function clearHot(){
@@ -2052,10 +1893,8 @@ const labelSel = svg.selectAll("text")
     else clearHot();
   }
 
-  if (!IS_MOBILE_STAGE) {
-    svg.on("mousemove.stage3", onMove);
-    svg.on("mouseleave.stage3", clearHot);
-  }
+  svg.on("mousemove.stage3", onMove);
+  svg.on("mouseleave.stage3", clearHot);
 })();
 
     // --- compute root rect size to fit label (once)
@@ -2070,19 +1909,13 @@ const labelSel = svg.selectAll("text")
       r._boxHg = r._boxH;
     });
 
-    nodeSel.style("pointer-events", d => {
-      if (IS_MOBILE_STAGE) return d.knee ? "none" : "none";
-      return d.knee ? "none" : "all";
-    });
-    rootSel.style("pointer-events", IS_MOBILE_STAGE ? "none" : "all");
+    nodeSel.style("pointer-events", d => d.knee ? "none" : "all");
+    rootSel.style("pointer-events", "all");
     linkSel.style("pointer-events", "none");
-    labelSel.style("pointer-events", d => {
-      if (IS_MOBILE_STAGE) return "none";
-      return (d && d.root) ? "none" : "all";
-    });
+    labelSel.style("pointer-events", d => (d && d.root) ? "none" : "all");
 
     function render() {
-      if (graphState && !IS_MOBILE_STAGE) spiderTick(graphState);
+      if (graphState) spiderTick(graphState);
 
       // Cinematic: root (main body) glow + gentle web response near strands
       if (graphState && ROOT_GLOW.enabled && window.spiderweb && typeof window.spiderweb.getClosestPoint === "function") {
@@ -2108,7 +1941,7 @@ const labelSel = svg.selectAll("text")
         }
       }
 
-      if (graphState && !IS_MOBILE_STAGE) enforceNodeSeparation(graphState);
+      if (graphState) enforceNodeSeparation(graphState);
 
       if (graphState && SPIDER.constraintsEnabled) enforceLegConstraints(graphState);
 
@@ -2127,13 +1960,6 @@ const labelSel = svg.selectAll("text")
           const knee = graphState.nodes[kp.kneeIndex];
           const foot = graphState.nodes[kp.footIndex];
           if (!knee || !foot) continue;
-          if (IS_MOBILE_STAGE) {
-            knee.x = knee.targetX;
-            knee.y = knee.targetY;
-            foot.x = foot.targetX;
-            foot.y = foot.targetY;
-            continue;
-          }
           if (typeof foot._bendSide !== "number") {
             foot._bendSide = (i % 2 === 0) ? 1 : -1;
           }
@@ -2177,23 +2003,6 @@ const labelSel = svg.selectAll("text")
           return d.y + o.oy;
         });
 
-      if (IS_MOBILE_STAGE) {
-        mobileTapSel
-          .attr("x", d => {
-            const o = vibeOffset(d, t);
-            const baseX = d.x + o.ox;
-            return (d.mobileSide === "right") ? Math.max(0, baseX - 146) : Math.max(0, baseX - 8);
-          })
-          .attr("y", d => {
-            const o = vibeOffset(d, t);
-            return (d.y + o.oy) - 26;
-          })
-          .attr("width", d => {
-            return (d.mobileSide === "right") ? 156 : 196;
-          })
-          .attr("height", 52);
-      }
-
       // position ROOT rect (centered)
       rootSel
         .attr("x", d => {
@@ -2232,25 +2041,13 @@ const labelSel = svg.selectAll("text")
           const o = vibeOffset(d, t);
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
-          if (IS_MOBILE_STAGE) {
-            return d.x + o.ox + ((d.mobileSide === "right") ? -30 : 30);
-          }
           return d.x + o.ox + 16;
         })
         .attr("y", d => {
           const o = vibeOffset(d, t);
-          if (d.root) return d.y + o.oy - (IS_MOBILE_STAGE ? 58 : 0);
+          if (d.root) return d.y + o.oy;
           if (d.knee) return d.y + o.oy;
-          return d.y + o.oy + (IS_MOBILE_STAGE ? 1 : -10);
-        })
-        .style("text-anchor", d => {
-          if (d.root) return "middle";
-          if (IS_MOBILE_STAGE) return (d.mobileSide === "right") ? "end" : "start";
-          return "start";
-        })
-        .style("dominant-baseline", d => {
-          if (d.root) return "middle";
-          return IS_MOBILE_STAGE ? "middle" : "auto";
+          return d.y + o.oy - 10;
         });
     }
 
@@ -2334,34 +2131,6 @@ const labelSel = svg.selectAll("text")
     nodeSel.call(drag);
     rootSel.call(drag);
 
-    if (IS_MOBILE_STAGE) {
-      mobileTapSel
-        .on("click", function(d){
-          const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
-          if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-          if (e && typeof e.preventDefault === "function") e.preventDefault();
-          if (!d || !d.foot) return;
-          if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
-            window.WorkStage3.open({
-              title: d.name || "",
-              projectId: d.projectId || ""
-            });
-          }
-        })
-        .on("touchstart", function(d){
-          const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
-          if (e && typeof e.stopPropagation === "function") e.stopPropagation();
-          if (e && typeof e.preventDefault === "function") e.preventDefault();
-          if (!d || !d.foot) return;
-          if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
-            window.WorkStage3.open({
-              title: d.name || "",
-              projectId: d.projectId || ""
-            });
-          }
-        });
-    }
-
     graphState = {
       svg,
       nodes,
@@ -2371,7 +2140,6 @@ const labelSel = svg.selectAll("text")
       rootSel,
       labelSel,
       linkSel,
-      mobileTapSel,
       render,
       _vibeStop: false,
       _timeouts: []
