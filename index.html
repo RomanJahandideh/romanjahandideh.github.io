@@ -107,17 +107,17 @@
     <div class="contact-grid">
 
       <!-- Left: Form -->
-      <form class="contact-form" action="#" method="post" autocomplete="on">
+      <form id="contact-form" class="contact-form" action="#" method="post" autocomplete="on">
         <div class="fields">
 
           <div class="field half">
             <label for="contact-name">Name</label>
-            <input id="contact-name" name="name" type="text" placeholder="Your name" />
+            <input id="contact-name" name="from_name" type="text" placeholder="Your name" />
           </div>
 
           <div class="field half">
             <label for="contact-email">Email</label>
-            <input id="contact-email" name="email" type="email" placeholder="you@domain.com" />
+            <input id="contact-email" name="reply_email" type="email" placeholder="you@domain.com" />
           </div>
 
           <div class="field">
@@ -151,7 +151,6 @@
                 <span class="label">LinkedIn</span>
                 <span class="meta">Professional profile</span>
               </span>
-              <span class="chev" aria-hidden="true">↗</span>
             </a>
 
             <!-- ResearchGate -->
@@ -165,7 +164,6 @@
                 <span class="label">ResearchGate</span>
                 <span class="meta">Publications & research</span>
               </span>
-              <span class="chev" aria-hidden="true">↗</span>
             </a>
 
             <!-- Behance -->
@@ -179,7 +177,6 @@
                 <span class="label">Behance</span>
                 <span class="meta">Selected work</span>
               </span>
-              <span class="chev" aria-hidden="true">↗</span>
             </a>
 
             <!-- Instagram -->
@@ -193,7 +190,6 @@
                 <span class="label">Instagram</span>
                 <span class="meta">Process & updates</span>
               </span>
-              <span class="chev" aria-hidden="true">↗</span>
             </a>
 
             <!-- GitHub -->
@@ -207,15 +203,10 @@
                 <span class="label">GitHub</span>
                 <span class="meta">Code & prototypes</span>
               </span>
-              <span class="chev" aria-hidden="true">↗</span>
             </a>
 
           </div>
-
-          <div class="contact-note">
-            .
-          </div>
-        </div>
+</div>
       </aside>
 
     </div>
@@ -459,6 +450,39 @@
 
   window.addEventListener("wheel", blockScroll, { passive: false });
   window.addEventListener("touchmove", blockScroll, { passive: false });
+})();
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+(function(){
+  emailjs.init({
+    publicKey: "d7nhsXUjJgF2hEBp3"
+  });
+})();
+</script>
+
+<script>
+(function(){
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm(
+      'service_od2ej9r',
+      'template_lm7g5ls',
+      this
+    ).then(function() {
+      alert('Message sent successfully.');
+      form.reset();
+    }, function(error) {
+      alert('Failed to send message.');
+      console.error(error);
+    });
+  });
 })();
 </script>
 
