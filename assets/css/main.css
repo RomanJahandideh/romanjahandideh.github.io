@@ -677,7 +677,26 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 }
 
 @media (max-width: 736px){
-  .top-nav{ gap: 22px; padding: 10px 12px; }
+  .top-nav{
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100vw - 28px);
+    max-width: 420px;
+    justify-content: center;
+    gap: 14px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(18,20,24,0.52);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,0.10);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .top-nav a{
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
   :root{ --eye-size: 70px; }
 }
 
@@ -1300,5 +1319,30 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   #about .about-clean-intro-text{
     font-size: 13.5px;
     line-height: 1.66;
+  }
+}
+
+@media (max-width: 736px){
+  #contact.panel,
+  #contact.panel:target{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+
+  #contact .panel-inner{
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+  }
+}
+
+
+@media (max-width: 736px){
+  #contact .contact-form input,
+  #contact .contact-form textarea{
+    font-size: 16px;
   }
 }
