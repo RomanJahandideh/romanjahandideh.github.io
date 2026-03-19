@@ -666,11 +666,130 @@
       colH[best.c] = best.bottom;
     }
   }
+     function isMobileStage3() {
+    return window.matchMedia('(max-width: 767px)').matches;
+  }
 
   function computeHomeLayout() {
     const r = refreshStageMetrics(true);
     const stageW = r.width;
     const centerX = stageW / 2;
+    const isMobile = isMobileStage3();
+
+    if (isMobile) {
+      const sidePad = 14;
+      const fieldW = Math.max(260, stageW - sidePad * 2);
+      const fieldLeft = centerX - fieldW / 2;
+      const blockGap = 14;
+      const headlineGap = 24;
+      const shapeGap = 18;
+      const textGap = 18;
+      const circleSize = Math.round(clampValue(stageW * 0.52, 180, 210));
+      const rectW = Math.round(clampValue(fieldW, 260, 340));
+      const rectH = Math.round(clampValue(rectW * 0.62, 150, 210));
+      const blockW = Math.round(fieldW);
+      const PAD = 18;
+
+      headlineItem.w = Math.round(clampValue(stageW - 24, 260, 520));
+      circleItem.w = circleSize;
+      circleItem.h = circleSize;
+      rectAItem.w = rectW;
+      rectAItem.h = rectH;
+      rectBItem.w = rectW;
+      rectBItem.h = rectH;
+      downloadItem.w = Math.round(clampValue(fieldW * 0.72, 220, 280));
+
+      circleItem.homeX = centerX;
+      circleItem.homeY = 112;
+
+      const circleBounds = {
+        left: circleItem.homeX - circleItem.w / 2,
+        right: circleItem.homeX + circleItem.w / 2,
+        top: circleItem.homeY - circleItem.h / 2,
+        bottom: circleItem.homeY + circleItem.h / 2
+      };
+
+      headlineItem.homeX = centerX;
+      headlineItem.homeY = circleBounds.bottom + headlineGap + headlineItem.h / 2;
+
+      const headlineBounds = {
+        left: headlineItem.homeX - headlineItem.w / 2,
+        right: headlineItem.homeX + headlineItem.w / 2,
+        top: headlineItem.homeY - headlineItem.h / 2,
+        bottom: headlineItem.homeY + headlineItem.h / 2
+      };
+
+      textTop = headlineBounds.bottom + shapeGap;
+
+      rectAItem.homeX = centerX;
+      rectAItem.homeY = textTop + rectAItem.h / 2;
+
+      rectBItem.homeX = centerX;
+      rectBItem.homeY = rectAItem.homeY + rectAItem.h / 2 + blockGap + rectBItem.h / 2;
+
+      const reservedRects = [
+        {
+          left: rectAItem.homeX - rectAItem.w / 2,
+          right: rectAItem.homeX + rectAItem.w / 2,
+          top: rectAItem.homeY - rectAItem.h / 2,
+          bottom: rectAItem.homeY + rectAItem.h / 2
+        },
+        {
+          left: rectBItem.homeX - rectBItem.w / 2,
+          right: rectBItem.homeX + rectBItem.w / 2,
+          top: rectBItem.homeY - rectBItem.h / 2,
+          bottom: rectBItem.homeY + rectBItem.h / 2
+        }
+      ];
+
+      const cols = 1;
+      const colW = blockW;
+      const x0 = fieldLeft;
+      const yStart = rectBItem.homeY + rectBItem.h / 2 + textGap;
+
+      for (let i = 0; i < blocks.length; i++) {
+        const b = blocks[i];
+        b.span = 1;
+        b.w = colW;
+
+        if (b.blockType === 'text') {
+          if (b.contentEl) {
+            b.contentEl.style.width = `${Math.max(220, b.w - PAD * 2)}px`;
+            const h = b.contentEl.scrollHeight + PAD * 2;
+            b.h = Math.max(120, Math.round(h));
+          } else {
+            b.h = 160;
+          }
+        } else if (b.blockType === 'image') {
+          const ar = 0.62;
+          b.h = Math.round(clampValue(b.w * ar, 180, 280));
+        } else {
+          b.h = Math.round(clampValue(b.w * 0.38, 120, 220));
+        }
+      }
+
+      const placeOrder = [...blocks].sort((a, b) => b.h - a.h);
+      const colH = new Array(cols).fill(yStart);
+      placePackedMasonry(placeOrder, cols, colW, blockGap, x0, colH, reservedRects);
+
+      const blocksBottom = Math.max(...colH);
+      downloadItem.homeX = centerX;
+      downloadItem.homeY = Math.round(Math.max(
+        blocksBottom + 42,
+        rectBItem.homeY + rectBItem.h / 2 + 56
+      ));
+
+      const maxBottom = Math.max(
+        blocksBottom,
+        rectBItem.homeY + rectBItem.h / 2,
+        downloadItem.homeY + downloadItem.h / 2
+      );
+
+      stage.style.minHeight = `${Math.max(1200, Math.round(maxBottom + 96))}px`;
+      return;
+    }
+
+    headlineItem.w = headlineItem.baseW;
 
     circleItem.homeX = centerX;
     circleItem.homeY = 132;
@@ -822,8 +941,7 @@
 
     wake();
   });
-
-  stage.addEventListener('pointermove', (e) => {
+     stage.addEventListener('pointermove', (e) => {
     if (!active) return;
 
     if (pointerTapCandidate && pointerTapCandidate.pointerId === e.pointerId) {
@@ -974,17 +1092,27 @@
   }
 
   function setScales() {
+    const isMobile = isMobileStage3();
     const c = circleScale ? parseFloat(circleScale.value) : 1;
     const r = rectScale ? parseFloat(rectScale.value) : 1;
 
-    circleItem.w = circleItem.baseW * c;
-    circleItem.h = circleItem.baseH * c;
+    if (isMobile) {
+      circleItem.w = circleItem.baseW;
+      circleItem.h = circleItem.baseH;
+      rectAItem.w = rectAItem.baseW;
+      rectAItem.h = rectAItem.baseH;
+      rectBItem.w = rectBItem.baseW;
+      rectBItem.h = rectBItem.baseH;
+    } else {
+      circleItem.w = circleItem.baseW * c;
+      circleItem.h = circleItem.baseH * c;
 
-    rectAItem.w = rectAItem.baseW * r;
-    rectAItem.h = rectAItem.baseH * r;
+      rectAItem.w = rectAItem.baseW * r;
+      rectAItem.h = rectAItem.baseH * r;
 
-    rectBItem.w = rectBItem.baseW * r;
-    rectBItem.h = rectBItem.baseH * r;
+      rectBItem.w = rectBItem.baseW * r;
+      rectBItem.h = rectBItem.baseH * r;
+    }
 
     computeHomeLayout();
     dirtyLayout = true;
@@ -1074,8 +1202,7 @@
       last = 0;
     }
   }
-
-  function applyProjectContent() {
+     function applyProjectContent() {
     document.title = projectTitle;
 
     const titleNode = elHeadline ? elHeadline.querySelector('.title') : null;
