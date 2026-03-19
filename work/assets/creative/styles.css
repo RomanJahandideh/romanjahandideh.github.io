@@ -436,3 +436,70 @@ body{
   --morphDur: 14s;
   --morphDurHover: 4.2s;
 }
+
+@media (max-width: 767px){
+  .topbar{
+    padding: 8px 10px;
+    gap: 8px;
+    height: auto;
+    min-height: 54px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .controls{
+    width: 100%;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .ctl{
+    font-size: 11px;
+    padding: 5px 9px;
+  }
+
+  .ctl input[type="range"]{
+    width: 92px;
+  }
+
+  .stageWrap{
+    width: min(var(--stageW), calc(100vw - 16px));
+    padding: 18px 0 16px;
+  }
+
+  .stage{
+    padding-bottom: 120px;
+  }
+
+  .headline{
+    width: calc(100vw - 24px);
+  }
+
+  .title{
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.02;
+  }
+
+  .intro{
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    max-width: 30ch;
+  }
+
+  .shape.rect,
+  .blockItem,
+  #downloadBtn{
+    max-width: calc(100vw - 28px);
+  }
+
+  .blockContent{
+    padding: 16px 14px 14px;
+    font-size: 14px;
+    line-height: 1.58;
+  }
+
+  #downloadBtn{
+    font-size: 15px;
+  }
+}
