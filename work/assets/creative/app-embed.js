@@ -368,9 +368,6 @@
   let projectImages = [];
   let projectText = '';
   let projectParagraphs = [];
-  let projectLink = (storedProjectPayload && typeof storedProjectPayload.projectLink === 'string')
-    ? storedProjectPayload.projectLink.trim()
-    : '';
   let imgCircle = DEFAULT_IMAGE;
   let imgRectA = DEFAULT_IMAGE;
   let imgRectB = DEFAULT_IMAGE;
@@ -418,12 +415,6 @@
       : '';
 
     projectParagraphs = splitIntoParagraphs(projectText);
-
-    projectLink = currentProject && typeof currentProject.link === 'string'
-      ? currentProject.link.trim()
-      : ((storedProjectPayload && typeof storedProjectPayload.projectLink === 'string')
-          ? storedProjectPayload.projectLink.trim()
-          : '');
 
     imgCircle = DEFAULT_IMAGE;
     imgRectA = DEFAULT_IMAGE;
@@ -571,13 +562,17 @@
   });
 
   const downloadItem = makeItem(elDownload, "download", {
-    w: 240, h: 64, mass: 1.6, k: 0.065, damp: 0.84
+    w: 160, h: 160, mass: 1.6, k: 0.065, damp: 0.84
   });
 
   elDownload.addEventListener("click", () => {
     if (downloadItem.dragging) return;
-    if (!projectLink) return;
-    window.open(projectLink, '_blank', 'noopener,noreferrer');
+    const a = document.createElement("a");
+    a.href = imgCircle;
+    a.download = `${(projectId || projectTitle || 'project').toString().replace(/[^a-z0-9_-]+/gi, '-').toLowerCase()}-img1`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
   });
 
   const blockPlan = ["T", "T", "T", "T", "T", "T", "T"];
@@ -611,7 +606,6 @@
   let active = null;
   let rafId = 0;
   let last = 0;
-  let pointerTapCandidate = null;
 
   function rectsOverlap(a, b, pad = 0) {
     return !(
@@ -675,6 +669,7 @@
     circleItem.homeX = centerX;
     circleItem.homeY = 132;
 
+    /* protected non-overlap boundary between circle and headline */
     const circleBoundaryGap = 44;
     const circleBounds = {
       left: circleItem.homeX - circleItem.w / 2,
@@ -693,6 +688,7 @@
       bottom: headlineItem.homeY + headlineItem.h / 2
     };
 
+    /* second protected boundary under title block */
     const headlineToContentGap = 28;
     textTop = headlineBounds.bottom + headlineToContentGap;
 
@@ -808,13 +804,6 @@
     it.dragging = true;
     active = it;
 
-    pointerTapCandidate = {
-      item: it,
-      pointerId: e.pointerId,
-      startX: e.clientX,
-      startY: e.clientY
-    };
-
     it.dragOffX = it.x - p.x;
     it.dragOffY = it.y - p.y;
     it.vx = 0;
@@ -825,14 +814,6 @@
 
   stage.addEventListener('pointermove', (e) => {
     if (!active) return;
-
-    if (pointerTapCandidate && pointerTapCandidate.pointerId === e.pointerId) {
-      const dx = e.clientX - pointerTapCandidate.startX;
-      const dy = e.clientY - pointerTapCandidate.startY;
-      if (Math.hypot(dx, dy) > 8) {
-        pointerTapCandidate = null;
-      }
-    }
 
     const it = active;
     const p = pointerToStage(e);
@@ -849,28 +830,13 @@
     wake();
   });
 
-  function endDrag(e) {
+  function endDrag() {
     if (!active) return;
-
-    const releasedItem = active;
-    const tapCandidate = pointerTapCandidate;
 
     active.dragging = false;
     active.vx = 0;
     active.vy = 0;
     active = null;
-    pointerTapCandidate = null;
-
-    if (
-      e &&
-      tapCandidate &&
-      tapCandidate.item === releasedItem &&
-      tapCandidate.pointerId === e.pointerId &&
-      releasedItem === downloadItem &&
-      projectLink
-    ) {
-      window.open(projectLink, '_blank', 'noopener,noreferrer');
-    }
 
     dirtyLayout = true;
     wake();
@@ -1094,11 +1060,7 @@
     attachImageWithFallback(elRectB, imgRectB);
 
     if (elDownload) {
-      elDownload.textContent = 'LINK';
-      elDownload.setAttribute('aria-label', projectLink
-        ? `Open external link for ${projectTitle}`
-        : `No link assigned yet for ${projectTitle}`);
-      elDownload.classList.toggle('is-disabled', !projectLink);
+      elDownload.setAttribute('aria-label', `Download first image from ${projectTitle}`);
     }
 
     paragraphs = buildParagraphs();

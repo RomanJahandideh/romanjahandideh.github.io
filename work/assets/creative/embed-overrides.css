@@ -4,28 +4,43 @@
    ========================================================= */
 
 :root{
-  --box-alpha: 0.85;
+  --box-alpha: 0.85;    /* 0.6–0.9 recommended for dark cards */
   --box-blur: 1px;
   --box-border: 0.12;
-  --debug-outline: 0;
+  --debug-outline: 0;   /* set to 1 to confirm file is loading */
 
+  /* HOVER INVERT (NEW) */
   --card-hover-bg: rgba(255,255,255,0.92);
   --card-hover-text: rgba(0,0,0,0.90);
   --card-hover-border: rgba(0,0,0,0.18);
 
+  /* =========================================================
+     NEW HANDLERS (ONLY ADDED, NOTHING ELSE CHANGED)
+     ========================================================= */
+
+  /* Background tint INSIDE iframe (default = transparent) */
   --iframe-bg: transparent;
 
+  /* Shape tint overlays (default = no tint) */
   --circle-overlay: rgba(0,0,0,0.00);
   --circle-overlay-hover: rgba(0,0,0,0.00);
 
   --rect-overlay: rgba(0,0,0,0.00);
   --rect-overlay-hover: rgba(0,0,0,0.00);
 
-  --ctl-bg: rgba(255,255,255,0.03);
-  --ctl-bg-hover: rgba(255,255,255,0.32);
-  --ctl-border: rgba(255,255,255,0.09);
-  --ctl-text: rgba(255,255,255,0.95);
+  /* =========================================================
+     CONTROLS PILL (ELLIPSE) HANDLERS  ✅ NEW
+     These control the two ellipse/pill shapes behind Circle/Rect
+     ========================================================= */
+  --ctl-bg: rgba(255,255,255,0.03);        /* pill background */
+  --ctl-bg-hover: rgba(255,255,255,0.32);  /* pill hover background */
+  --ctl-border: rgba(255,255,255,0.09);    /* pill border */
+  --ctl-text: rgba(255,255,255,0.95);      /* "Circle" / "Rect" text */
 }
+
+/* =========================================================
+   BASE
+   ========================================================= */
 
 html, body{
   background: var(--iframe-bg) !important;
@@ -33,9 +48,14 @@ html, body{
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
 }
 
+/* DEBUG: red outline if file is loaded */
 body{
   outline: calc(var(--debug-outline) * 4px) solid rgba(255,0,0,0.95) !important;
 }
+
+/* =========================================================
+   TOP BAR
+   ========================================================= */
 
 header.topbar{
   background: rgba(27,31,34,0.85) !important;
@@ -50,9 +70,14 @@ header.topbar .brand{
   letter-spacing: 0.02em !important;
 }
 
+/* hide leading bullet if exists */
 header.topbar .brand::first-letter{
   color: transparent !important;
 }
+
+/* =========================================================
+   SLIDERS
+   ========================================================= */
 
 .controls input[type="range"]{
   -webkit-appearance: none !important;
@@ -99,13 +124,21 @@ header.topbar .brand::first-letter{
   opacity: 1 !important;
 }
 
+/* =========================================================
+   CONTROLS PILL BACKGROUNDS (Circle / Rect ellipses) ✅ NEW
+   These are the two ellipse/pill shapes you mean.
+   ========================================================= */
+
 header.topbar .controls .ctl{
   background-color: var(--ctl-bg) !important;
   border: 1px solid var(--ctl-border) !important;
   border-radius: 999px !important;
+
   color: var(--ctl-text) !important;
+
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
+
   transition:
     background-color 160ms ease,
     border-color 160ms ease;
@@ -119,6 +152,10 @@ header.topbar .controls .ctl > span{
   color: var(--ctl-text) !important;
   opacity: 1 !important;
 }
+
+/* =========================================================
+   HEADLINE
+   ========================================================= */
 
 #headline,
 #headline *{
@@ -135,6 +172,14 @@ p.intro{
   color: rgba(255,255,255,0.9) !important;
 }
 
+/* =========================================================
+   SHAPE HANDLERS (ONLY ADDED)
+   - Circle blob: #shapeCircle
+   - Rects: #rectA and #rectB
+   Uses inset box-shadow overlay so images/filters stay intact.
+   ========================================================= */
+
+/* Circle blob tint */
 #shapeCircle{
   box-shadow: inset 0 0 0 9999px var(--circle-overlay) !important;
 }
@@ -142,6 +187,7 @@ p.intro{
   box-shadow: inset 0 0 0 9999px var(--circle-overlay-hover) !important;
 }
 
+/* Rect tint */
 #rectA, #rectB{
   box-shadow: inset 0 0 0 9999px var(--rect-overlay) !important;
 }
@@ -149,23 +195,33 @@ p.intro{
   box-shadow: inset 0 0 0 9999px var(--rect-overlay-hover) !important;
 }
 
+/* =========================================================
+   TEXT BOXES (REAL CARDS)
+   ========================================================= */
+
+/* Make container layers transparent */
 :where(.textLayer, #textLayer, .text-layer, .text, .content, main){
   background: transparent !important;
 }
 
+/* ✅ REAL TEXT CARDS
+   IMPORTANT: use background-color (NOT background) so images keep background-image */
 .blockItem{
   background-color: rgba(15,15,15,var(--box-alpha)) !important;
   border: 1px solid rgba(255,255,255,var(--box-border)) !important;
   box-shadow: none !important;
+
   backdrop-filter: blur(var(--box-blur)) !important;
   -webkit-backdrop-filter: blur(var(--box-blur)) !important;
 }
 
+/* ✅ IMAGE CARDS: do NOT paint over them, keep the image visible */
 .blockItem.isImage{
   background-color: transparent !important;
   border: none !important;
 }
 
+/* Text inside text cards */
 .blockItem:not(.isImage),
 .blockItem:not(.isImage) *{
   color: rgba(255,255,255,0.9) !important;
@@ -175,10 +231,19 @@ p.intro{
   color: rgba(255,255,255,0.95) !important;
 }
 
+/* Optional: if an "empty" placeholder exists, hide it */
 .blockItem.isEmpty{
   background-color: transparent !important;
   border: none !important;
 }
+
+/* =========================================================
+   HOVER INVERT (NEW)
+   When mouse is on a TEXT card:
+   - card becomes white
+   - text becomes black
+   When mouse leaves: returns to original
+   ========================================================= */
 
 .blockItem:not(.isImage){
   transition:
@@ -192,6 +257,7 @@ p.intro{
   border-color: var(--card-hover-border) !important;
 }
 
+/* flip ALL text inside hovered card */
 .blockItem:not(.isImage):hover,
 .blockItem:not(.isImage):hover *{
   color: var(--card-hover-text) !important;
@@ -201,42 +267,16 @@ p.intro{
   color: rgba(0,0,0,0.92) !important;
 }
 
+/* =========================================================
+   CLEANUP
+   ========================================================= */
+
 footer,
 .footer{
   display: none !important;
 }
 
+/* Hide any images that appear inside TEXT cards */
 .blockItem:not(.isImage) img{
   display: none !important;
-}
-
-/* --- Stage3 LINK button horizontal white style --- */
-#downloadBtn{
-  font-family: 'Montserrat', sans-serif !important;
-  font-size: 12px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase !important;
-  color: #000000 !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  background: #ffffff !important;
-  border: 1px solid rgba(255,255,255,0.96) !important;
-  border-radius: 999px !important;
-  box-shadow: none !important;
-
-  cursor: pointer !important;
-}
-
-#downloadBtn:hover{
-  background: #ffffff !important;
-  color: #000000 !important;
-  border-color: rgba(255,255,255,0.96) !important;
-}
-
-#downloadBtn.is-disabled{
-  opacity: 0.55 !important;
 }

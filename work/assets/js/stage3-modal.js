@@ -259,29 +259,10 @@
 
       if (titleEl) titleEl.textContent = projectTitle;
 
-      let projectLink = "";
-      try {
-        const linkStore = (window.PROJECTS && typeof window.PROJECTS === "object") ? window.PROJECTS : {};
-        if (projectId && linkStore[projectId] && typeof linkStore[projectId].link === "string") {
-          projectLink = String(linkStore[projectId].link || "").trim();
-        } else if (projectTitle) {
-          const ids = Object.keys(linkStore);
-          for (let i = 0; i < ids.length; i++) {
-            const item = linkStore[ids[i]];
-            if (!item || typeof item !== "object") continue;
-            if (String(item.title || "").trim().toLowerCase() === projectTitle.toLowerCase()) {
-              projectLink = String(item.link || "").trim();
-              break;
-            }
-          }
-        }
-      } catch (_e) {}
-
       try {
         sessionStorage.setItem("work-stage3-current-project", JSON.stringify({
           projectId,
-          projectTitle,
-          projectLink
+          projectTitle
         }));
       } catch (_e) {}
 
