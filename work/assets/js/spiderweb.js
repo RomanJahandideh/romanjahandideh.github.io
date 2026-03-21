@@ -49,7 +49,7 @@ window.addEventListener("DOMContentLoaded", () => {
     windVelocityFactor: 0.085, // much more reactive to mouse speed
 
     // hole / cards zone (BASE; can be overridden by --web-hole-base)
-    centerClearRadius: 190,
+    centerClearRadius: (window.innerWidth < 768 ? 130 : 190),
     centerTensionBoost: 0.008,
 
     // follow cards
