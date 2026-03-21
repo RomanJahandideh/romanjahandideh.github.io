@@ -341,7 +341,7 @@ body.mode3-active {
   }
 
   body.page-work-only {
-    --web-hole-base: 132px;
+    --web-hole-base: 104px;
     --web-hole-influence: 460px;
     --web-hole-influence-strength: 0.22;
   }
