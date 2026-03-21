@@ -406,6 +406,10 @@ const stack = document.getElementById("card-stack");
   function dist(a, b){ const dx = a.x - b.x, dy = a.y - b.y; return Math.sqrt(dx*dx + dy*dy); }
   function easeOutQuad(t){ return 1 - (1 - t)*(1 - t); }
 
+  function isMobileStage2(){
+    return !!(window.matchMedia && window.matchMedia("(max-width: 900px), (pointer: coarse)").matches);
+  }
+
   // Measure text width (px) for auto-sizing the root label box
   function measureTextPx(text, fontPx, fontWeight){
     const c = measureTextPx._c || (measureTextPx._c = document.createElement("canvas"));
@@ -1319,13 +1323,21 @@ jitter: 0.35,
   }
 
   function constrainedRootPosition(width, height, forbidden) {
+    const m = SCREEN_MARGIN + NODE_STYLE.rootRadius + 10;
+
+    if (isMobileStage2()) {
+      const mobileX = clamp(width * 0.37, m, width - m);
+      const mobileY = clamp(height * 0.36, m, height - m);
+      if (!inRect(mobileX, mobileY, forbidden)) {
+        return { x: mobileX, y: mobileY };
+      }
+    }
+
     const xMin0 = width * 0.5 - width * 0.12;
     const xMax0 = width * 0.5 + width * 0.12;
 
     const yMin0 = height * 0.44;
     const yMax0 = height * 0.60;
-
-    const m = SCREEN_MARGIN + NODE_STYLE.rootRadius + 10;
 
     const xMin = clamp(xMin0, m, width  - m);
     const xMax = clamp(xMax0, m, width  - m);
@@ -1342,6 +1354,30 @@ jitter: 0.35,
     const fx = clamp(forbidden.right + 120, m, width - m);
     const fy = clamp((forbidden.top + forbidden.bottom) * 0.5, yMin, yMax);
     return { x: fx, y: fy };
+  }
+
+  function getMobileStage2Layout(width, height, rootTarget, childCount) {
+    const radius = Math.max(88, Math.min(128, width * 0.24));
+    const rightX = clamp(rootTarget.x + radius + 22, 120, width - 130);
+    const leftX  = clamp(rootTarget.x - radius + 8, 52, width - 140);
+
+    const ySlots = [
+      clamp(rootTarget.y - 78, 120, height - 160),
+      clamp(rootTarget.y - 28, 120, height - 140),
+      clamp(rootTarget.y + 22, 120, height - 120),
+      clamp(rootTarget.y + 72, 120, height - 100),
+      clamp(rootTarget.y + 122, 120, height - 80)
+    ];
+
+    const plan = [
+      { x: rightX, y: ySlots[0], labelSide: "right" },
+      { x: rightX, y: ySlots[1], labelSide: "right" },
+      { x: leftX,  y: ySlots[2], labelSide: "left"  },
+      { x: rightX, y: ySlots[3], labelSide: "right" },
+      { x: leftX,  y: ySlots[4], labelSide: "left"  }
+    ];
+
+    return plan.slice(0, childCount);
   }
 
   function randomSafePosition(width, height, forbidden, existingTargets, minDist, margin) {
@@ -1580,6 +1616,7 @@ jitter: 0.35,
   function spiderTick(state){
     if (!SPIDER.enabled) return;
     if (!state || !state.spider) return;
+    if (state.isMobileLayout) return;
     if (!expanded) return;
     if (isTransitioning) return;
     if (!state.spider.ready) return;
@@ -1702,11 +1739,13 @@ jitter: 0.35,
 
     const width  = window.innerWidth;
     const height = window.innerHeight;
+    const mobileStage2 = isMobileStage2();
 
     const forbidden = getForbiddenRect();
     const nodes = [];
 
     const rootTarget = constrainedRootPosition(width, height, forbidden);
+    const mobileLayout = mobileStage2 ? getMobileStage2Layout(width, height, rootTarget, 5) : null;
     nodes.push({
       name: category,
       root: true,
@@ -1722,7 +1761,8 @@ jitter: 0.35,
 
     for (let i = 0; i < childCount; i++) {
       const project = projects[i] || null;
-      const pos = randomSafePosition(width, height, forbidden, nodes, NODE_MIN_DISTANCE, SCREEN_MARGIN + NODE_STYLE.childRadius + 8);
+      const mobilePos = mobileLayout && mobileLayout[i] ? mobileLayout[i] : null;
+      const pos = mobilePos || randomSafePosition(width, height, forbidden, nodes, NODE_MIN_DISTANCE, SCREEN_MARGIN + NODE_STYLE.childRadius + 8);
 
       const kneeIndex = nodes.length;
       nodes.push({
@@ -1744,7 +1784,8 @@ jitter: 0.35,
         targetX: pos.x,
         targetY: pos.y,
         x: 0, y: 0,
-        _vseed: Math.random() * 1000
+        _vseed: Math.random() * 1000,
+        _labelSide: mobilePos ? mobilePos.labelSide : "right"
       });
 
       legPairs.push({ kneeIndex, footIndex });
@@ -1813,7 +1854,7 @@ const labelSel = svg.selectAll("text")
       .attr("class", d => d.root ? "node-label node-label-root" : "node-label node-label-child")
       .text(d => d.name)
       .style("fill", d => d.root ? "#000" : "#fff")
-      .style("text-anchor", d => d.root ? "middle" : "start")
+      .style("text-anchor", d => d.root ? "middle" : (d._labelSide === "left" ? "end" : "start"))
       .style("dominant-baseline", d => d.root ? "middle" : "auto")
       // Only label text should be interactive (never the node circle). Root label stays inert.
       .style("pointer-events", d => d.root ? "none" : "all")
@@ -1826,10 +1867,23 @@ const labelSel = svg.selectAll("text")
         if (e && typeof e.stopPropagation === "function") e.stopPropagation();
         if (!d || d.root) return; // only node labels (not the main body label)
 
-        // Stage 3 should open ONLY when the label is "hot" (enlarged by proximity)
         const el = this;
         const isHot = el && el.classList && el.classList.contains("stage3-hot");
-        if (!isHot) return;
+        const canOpen = mobileStage2 || isHot;
+        if (!canOpen) return;
+
+        if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
+          window.WorkStage3.open({
+            title: d.name || "",
+            projectId: d.projectId || ""
+          });
+        }
+      })
+      .on("touchend", function(d){
+        const e = (typeof d3 !== "undefined" && d3.event) ? d3.event : null;
+        if (e && typeof e.preventDefault === "function") e.preventDefault();
+        if (e && typeof e.stopPropagation === "function") e.stopPropagation();
+        if (!mobileStage2 || !d || d.root) return;
 
         if (window.WorkStage3 && typeof window.WorkStage3.open === "function") {
           window.WorkStage3.open({
@@ -1847,7 +1901,7 @@ const labelSel = svg.selectAll("text")
   // - no transforms applied in JS (CSS handles scaling)
   if (!labelSel || labelSel.empty()) return;
 
-  const THRESHOLD_PX = 70;
+  const THRESHOLD_PX = mobileStage2 ? 96 : 70;
   let hotEl = null;
 
   function clearHot(){
@@ -1909,8 +1963,8 @@ const labelSel = svg.selectAll("text")
       r._boxHg = r._boxH;
     });
 
-    nodeSel.style("pointer-events", d => d.knee ? "none" : "all");
-    rootSel.style("pointer-events", "all");
+    nodeSel.style("pointer-events", d => mobileStage2 ? "none" : (d.knee ? "none" : "all"));
+    rootSel.style("pointer-events", mobileStage2 ? "none" : "all");
     linkSel.style("pointer-events", "none");
     labelSel.style("pointer-events", d => (d && d.root) ? "none" : "all");
 
@@ -1941,12 +1995,12 @@ const labelSel = svg.selectAll("text")
         }
       }
 
-      if (graphState) enforceNodeSeparation(graphState);
+      if (graphState && !graphState.isMobileLayout) enforceNodeSeparation(graphState);
 
-      if (graphState && SPIDER.constraintsEnabled) enforceLegConstraints(graphState);
+      if (graphState && SPIDER.constraintsEnabled && !graphState.isMobileLayout) enforceLegConstraints(graphState);
 
       // Prevent impossible leg extension (keeps knees from collapsing into a straight line)
-      if (graphState) {
+      if (graphState && !graphState.isMobileLayout) {
         for (let i = 1; i < graphState.nodes.length; i++){
           const n = graphState.nodes[i];
           if (n && n.foot) clampFootToMaxReach(graphState, n);
@@ -2041,7 +2095,8 @@ const labelSel = svg.selectAll("text")
           const o = vibeOffset(d, t);
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
-          return d.x + o.ox + 16;
+          const labelOffset = d._labelSide === "left" ? -16 : 16;
+          return d.x + o.ox + labelOffset;
         })
         .attr("y", d => {
           const o = vibeOffset(d, t);
@@ -2128,8 +2183,10 @@ const labelSel = svg.selectAll("text")
         }
       });
 
-    nodeSel.call(drag);
-    rootSel.call(drag);
+    if (!mobileStage2) {
+      nodeSel.call(drag);
+      rootSel.call(drag);
+    }
 
     graphState = {
       svg,
@@ -2141,6 +2198,7 @@ const labelSel = svg.selectAll("text")
       labelSel,
       linkSel,
       render,
+      isMobileLayout: mobileStage2,
       _vibeStop: false,
       _timeouts: []
     };
