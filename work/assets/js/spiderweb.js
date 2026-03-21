@@ -49,7 +49,7 @@ window.addEventListener("DOMContentLoaded", () => {
     windVelocityFactor: 0.085, // much more reactive to mouse speed
 
     // hole / cards zone (BASE; can be overridden by --web-hole-base)
-    centerClearRadius: (window.innerWidth < 768 ? 130 : 190),
+    centerClearRadius: 190,
     centerTensionBoost: 0.008,
 
     // follow cards
@@ -114,22 +114,25 @@ window.addEventListener("DOMContentLoaded", () => {
   function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
   function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; }
 
+  function getActiveMobileBubble() {
+    if (window.innerWidth >= 768) return null;
+
+    const layers = Array.from(document.querySelectorAll("#main-stack .layer"));
+    if (!layers.length) return null;
+
+    return layers.find((el) => String(el.style.filter || "").includes("drop-shadow"))
+        || layers.find((el) => el.classList.contains("is-active"))
+        || null;
+  }
+
   function getFollowCenter() {
-    const isMobile = window.innerWidth < 768;
-
-    if (isMobile) {
-      const activeBubble = Array.from(document.querySelectorAll("#main-stack .layer")).find((el) => {
-        const f = String(el.style.filter || "");
-        return f.indexOf("drop-shadow") !== -1;
-      });
-
-      if (activeBubble) {
-        const r = activeBubble.getBoundingClientRect();
-        return {
-          x: r.left + r.width / 2,
-          y: r.top + r.height / 2 + 84
-        };
-      }
+    const activeBubble = getActiveMobileBubble();
+    if (activeBubble) {
+      const r = activeBubble.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2,
+        y: r.top + r.height / 2 + Math.max(18, r.height * 0.18)
+      };
     }
 
     const el = document.querySelector(WEB.followSelector);
@@ -165,7 +168,8 @@ window.addEventListener("DOMContentLoaded", () => {
     center.y = centerTarget.y = c.y;
 
     // Base radius from handler (stronger default if missing)
-    baseClearR = cssNum("--web-hole-base", WEB.centerClearRadius);
+    const cssBaseClearR = cssNum("--web-hole-base", WEB.centerClearRadius);
+    baseClearR = (window.innerWidth < 768) ? Math.min(cssBaseClearR, 84) : cssBaseClearR;
     clearR = baseClearR;
     clearRTarget = baseClearR;
 
