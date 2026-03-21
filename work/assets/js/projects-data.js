@@ -265,7 +265,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "narrative-01": {
       id: "narrative-01",
-      category: "Narrative",
+      category: "Architecture Design",
       title: "The City Under Rain",
       link: "",
       images: [
@@ -291,7 +291,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "narrative-02": {
       id: "narrative-02",
-      category: "Narrative",
+      category: "Architecture Design",
       title: "Threads of the Last Map",
       link: "",
       images: [
@@ -317,7 +317,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "narrative-03": {
       id: "narrative-03",
-      category: "Narrative",
+      category: "Architecture Design",
       title: "Rooms That Remember",
       link: "",
       images: [
@@ -343,7 +343,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "narrative-04": {
       id: "narrative-04",
-      category: "Narrative",
+      category: "Architecture Design",
       title: "A Small Rebellion of Light",
       link: "",
       images: [
@@ -369,7 +369,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "narrative-05": {
       id: "narrative-05",
-      category: "Narrative",
+      category: "Architecture Design",
       title: "The Museum of Lost Voices",
       link: "",
       images: [
@@ -525,7 +525,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "projects-01": {
       id: "projects-01",
-      category: "Architectural Design",
+      category: "Articles",
       title: "Atlas of Small Systems",
       link: "",
       images: [
@@ -551,7 +551,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "projects-02": {
       id: "projects-02",
-      category: "Architectural Design",
+      category: "Articles",
       title: "Archive Bloom",
       link: "",
       images: [
@@ -577,7 +577,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "projects-03": {
       id: "projects-03",
-      category: "Architectural Design",
+      category: "Articles",
       title: "North Window Build",
       link: "",
       images: [
@@ -603,7 +603,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "projects-04": {
       id: "projects-04",
-      category: "Architectural Design",
+      category: "Articles",
       title: "Field Notes Machine",
       link: "",
       images: [
@@ -629,7 +629,7 @@ Suggested future edits for this card: add a short project summary, describe the 
 
     "projects-05": {
       id: "projects-05",
-      category: "Architectural Design",
+      category: "Articles",
       title: "Quiet Orbit Prototype",
       link: "",
       images: [

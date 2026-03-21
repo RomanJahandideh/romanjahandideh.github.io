@@ -1704,11 +1704,11 @@ jitter: 0.35,
     const store = (window.PROJECTS && typeof window.PROJECTS === "object") ? window.PROJECTS : {};
     const categoryToPrefix = {
       "Animations": "animations-",
-      "CG Art": "cgart-",
-      "Narrative": "narrative-",
+      "Graphic Design": "cgart-",
+      "Architecture Design": "narrative-",
       "Game Design": "gamedesign-",
-      "Projects": "projects-",
-      "Articles": "articles-"
+      "Articles": "projects-",
+      "UI/UX Design": "articles-"
     };
 
     const prefix = categoryToPrefix[category] || "";
