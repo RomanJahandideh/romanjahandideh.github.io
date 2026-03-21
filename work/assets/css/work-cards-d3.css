@@ -317,3 +317,32 @@ body.mode3-active {
   transform-box: fill-box;
   transform-origin: 50% 50%;
 }
+
+
+@media (max-width: 900px), (pointer: coarse) {
+  #graph-container {
+    touch-action: manipulation;
+  }
+
+  #graph-container svg {
+    touch-action: manipulation;
+  }
+
+  #graph-container text {
+    pointer-events: all;
+  }
+
+  .node-label.node-label-child {
+    font-size: 11px;
+  }
+
+  .node-label.node-label-child.stage3-hot{
+    transform: scale(1.14);
+  }
+
+  body.page-work-only {
+    --web-hole-base: 132px;
+    --web-hole-influence: 460px;
+    --web-hole-influence-strength: 0.22;
+  }
+}
