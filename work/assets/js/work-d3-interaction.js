@@ -2095,13 +2095,33 @@ const labelSel = svg.selectAll("text")
           if (d.root) return d.x + o.ox;
           if (d.knee) return d.x + o.ox;
           const labelOffset = d._labelSide === "left" ? -16 : 16;
-          return d.x + o.ox + labelOffset;
+          let labelX = d.x + o.ox + labelOffset;
+
+          if (mobileStage2) {
+            const fontPx = parseFloat(NODE_STYLE.labelChildSize) || 14;
+            const textW = measureTextPx(d.name || "", fontPx, 400);
+            const sidePad = 18;
+
+            if (d._labelSide === "left") {
+              labelX = clamp(labelX, textW + sidePad, width - sidePad);
+            } else {
+              labelX = clamp(labelX, sidePad, width - textW - sidePad);
+            }
+          }
+
+          return labelX;
         })
         .attr("y", d => {
           const o = vibeOffset(d, t);
           if (d.root) return d.y + o.oy;
           if (d.knee) return d.y + o.oy;
-          return d.y + o.oy - 10;
+          let labelY = d.y + o.oy - 10;
+
+          if (mobileStage2) {
+            labelY = clamp(labelY, 132, height - 108);
+          }
+
+          return labelY;
         });
     }
 
