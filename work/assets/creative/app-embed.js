@@ -25,7 +25,6 @@
     document.getElementById("s3ImageFallback3")
   ];
 
-  // Legacy support so the data logic still works if older HTML is used.
   const heroImage = document.getElementById("s3HeroImage");
   const heroFallback = document.getElementById("s3HeroFallback");
   const thumbButtons = Array.from(document.querySelectorAll(".s3-thumb"));
@@ -44,19 +43,32 @@
   }
 
   function getStoredProjectPayload() {
+    const sources = [];
+
+    try { sources.push(window.sessionStorage); } catch (_e) {}
     try {
-      const raw = sessionStorage.getItem("work-stage3-current-project");
-      if (!raw) return null;
-      const parsed = JSON.parse(raw);
-      return (parsed && typeof parsed === "object") ? parsed : null;
-    } catch (_e) {
-      return null;
+      if (window.parent && window.parent !== window && window.parent.sessionStorage) {
+        sources.push(window.parent.sessionStorage);
+      }
+    } catch (_e) {}
+
+    for (let i = 0; i < sources.length; i++) {
+      try {
+        const raw = sources[i].getItem("work-stage3-current-project");
+        if (!raw) continue;
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === "object") return parsed;
+      } catch (_e) {}
     }
+
+    return null;
   }
 
   function getProjectStore() {
     try {
-      if (window.PROJECTS && typeof window.PROJECTS === "object") return window.PROJECTS;
+      if (window.PROJECTS && typeof window.PROJECTS === "object" && Object.keys(window.PROJECTS).length) {
+        return window.PROJECTS;
+      }
     } catch (_e) {}
 
     try {
@@ -64,7 +76,8 @@
         window.parent &&
         window.parent !== window &&
         window.parent.PROJECTS &&
-        typeof window.parent.PROJECTS === "object"
+        typeof window.parent.PROJECTS === "object" &&
+        Object.keys(window.parent.PROJECTS).length
       ) {
         return window.parent.PROJECTS;
       }
@@ -81,20 +94,52 @@
         return;
       }
 
-      const already = document.querySelector('script[data-project-store-loader="true"]');
-      if (already) {
-        already.addEventListener("load", () => resolve(getProjectStore()), { once: true });
-        already.addEventListener("error", () => resolve(getProjectStore()), { once: true });
-        return;
-      }
+      const candidates = [
+        "../js/projects-data.js?v=20260321-stage3-datafix",
+        "../js/projects-data - Copy.js?v=20260321-stage3-datafix",
+        "../../assets/js/projects-data.js?v=20260321-stage3-datafix",
+        "../../assets/js/projects-data%20-%20Copy.js?v=20260321-stage3-datafix",
+        "./projects-data.js?v=20260321-stage3-datafix"
+      ];
 
-      const script = document.createElement("script");
-      script.src = "../js/projects-data.js?v=20260321-stage3-redesign";
-      script.async = false;
-      script.setAttribute("data-project-store-loader", "true");
-      script.addEventListener("load", () => resolve(getProjectStore()), { once: true });
-      script.addEventListener("error", () => resolve(getProjectStore()), { once: true });
-      document.head.appendChild(script);
+      let index = 0;
+
+      const finish = () => resolve(getProjectStore());
+
+      const tryNext = () => {
+        const store = getProjectStore();
+        if (store && Object.keys(store).length) {
+          finish();
+          return;
+        }
+
+        if (index >= candidates.length) {
+          finish();
+          return;
+        }
+
+        const src = candidates[index++];
+        const existingScript = Array.from(document.scripts || []).find((script) => {
+          const scriptSrc = String(script.getAttribute("src") || script.src || "");
+          return scriptSrc.indexOf(src.split("?")[0]) !== -1;
+        });
+
+        if (existingScript) {
+          existingScript.addEventListener("load", finish, { once: true });
+          existingScript.addEventListener("error", tryNext, { once: true });
+          return;
+        }
+
+        const script = document.createElement("script");
+        script.src = src;
+        script.async = false;
+        script.setAttribute("data-project-store-loader", "true");
+        script.addEventListener("load", finish, { once: true });
+        script.addEventListener("error", tryNext, { once: true });
+        document.head.appendChild(script);
+      };
+
+      tryNext();
     });
   }
 
@@ -125,18 +170,18 @@
     return raw
       .replace(/\s+/g, " ")
       .split(/(?<=[.!?])\s+(?=[A-Z0-9“"'])/)
+      .map((value) => String(value || "").trim())
+      .filter(Boolean)
       .reduce((chunks, sentence) => {
-        const clean = String(sentence || "").trim();
-        if (!clean) return chunks;
         if (!chunks.length) {
-          chunks.push(clean);
+          chunks.push(sentence);
           return chunks;
         }
         const last = chunks[chunks.length - 1];
-        if ((last + " " + clean).length <= 320) {
-          chunks[chunks.length - 1] = last + " " + clean;
+        if ((last + " " + sentence).length <= 320) {
+          chunks[chunks.length - 1] = last + " " + sentence;
         } else {
-          chunks.push(clean);
+          chunks.push(sentence);
         }
         return chunks;
       }, []);
@@ -249,9 +294,7 @@
           if (fallbackEl) fallbackEl.style.display = "none";
           resolve(true);
         };
-        probe.onerror = () => {
-          tryNext();
-        };
+        probe.onerror = tryNext;
         probe.src = src;
       };
 
@@ -265,19 +308,13 @@
     if (!parts.length) {
       return [
         "Project description will appear here once the selected item has written content.",
-        "The current Stage 3 layout keeps the storytelling flow intact while preserving the existing data connection.",
-        "Use the project link below to continue to the full work when available."
+        "The Stage 3 layout is ready, but the selected project currently has no readable text in the data source.",
+        "Use the project link below when available."
       ];
     }
 
-    if (parts.length === 1) {
-      return [parts[0], parts[0], parts[0]];
-    }
-
-    if (parts.length === 2) {
-      return [parts[0], parts[1], parts[1]];
-    }
-
+    if (parts.length === 1) return [parts[0], parts[0], parts[0]];
+    if (parts.length === 2) return [parts[0], parts[1], parts[1]];
     return parts.slice(0, 3);
   }
 
@@ -290,7 +327,6 @@
     });
 
     if (!descriptionEl) return;
-
     descriptionEl.innerHTML = "";
     storyParagraphs.forEach((paragraph) => {
       const p = document.createElement("p");
@@ -299,12 +335,12 @@
     });
   }
 
-  function setMetadata() {
+  function hideMetadata() {
     if (!metadataEl) return;
     metadataEl.innerHTML = "";
-    metadataEl.style.display = "none";
     metadataEl.setAttribute("hidden", "hidden");
     metadataEl.setAttribute("aria-hidden", "true");
+    metadataEl.style.display = "none";
   }
 
   function setLink(url) {
@@ -358,7 +394,11 @@
   }
 
   function wireStoryImages(images, title) {
-    const normalized = [images[0] || "", images[1] || images[0] || "", images[2] || images[1] || images[0] || ""];
+    const normalized = [
+      images[0] || "",
+      images[1] || images[0] || "",
+      images[2] || images[1] || images[0] || ""
+    ];
 
     storyImageEls.forEach((imgEl, index) => {
       attachImageWithFallback(
@@ -409,7 +449,7 @@
     if (categoryEl) categoryEl.textContent = category;
     setParagraphs(paragraphs);
     setLink(project && project.link);
-    setMetadata();
+    hideMetadata();
     wireStoryImages(images, title);
     wireLegacyGallery(images, title);
   }
