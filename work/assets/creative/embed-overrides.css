@@ -191,6 +191,7 @@ img{
   opacity: 0.42;
 }
 
+.s3-legacy,
 .s3-metadata,
 .s3-description,
 .s3-gallery,
@@ -214,10 +215,7 @@ img{
     border-radius: 26px;
   }
 
-  .s3-story{
-    gap: 22px;
-  }
-
+  .s3-story,
   .s3-storyFlow{
     gap: 22px;
   }
@@ -258,7 +256,7 @@ img{
   }
 
   .s3-page{
-    padding: 12px 12px 18px;
+    padding: 12px;
   }
 
   .s3-card{
@@ -271,29 +269,25 @@ img{
 
   .s3-category{
     font-size: 11px;
-    letter-spacing: 0.13em;
+    letter-spacing: 0.12em;
   }
 
   .s3-title{
-    font-size: clamp(1.7rem, 9vw, 2.35rem);
-  }
-
-  .s3-storySection{
-    gap: 12px;
+    font-size: clamp(1.7rem, 9vw, 2.4rem);
   }
 
   .s3-storyImage{
     aspect-ratio: 1 / 1;
-    min-height: 0;
+    min-height: 190px;
     max-height: none;
   }
 
   .s3-textPanel{
-    padding: 15px 14px 14px;
+    padding: 16px 15px 15px;
   }
 
   .s3-textBlock{
     font-size: 13.5px;
-    line-height: 1.68;
+    line-height: 1.72;
   }
 }
