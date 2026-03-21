@@ -1,30 +1,6 @@
 (() => {
   "use strict";
 
-  const titleEl = document.getElementById("s3Title");
-  const categoryEl = document.getElementById("s3Category");
-  const descriptionEl = document.getElementById("s3Description");
-  const linkButton = document.getElementById("s3LinkButton");
-  const metadataEl = document.getElementById("s3Metadata");
-
-  const storyTextEls = [
-    document.getElementById("s3Text1"),
-    document.getElementById("s3Text2"),
-    document.getElementById("s3Text3")
-  ];
-
-  const storyImageEls = [
-    document.getElementById("s3Image1"),
-    document.getElementById("s3Image2"),
-    document.getElementById("s3Image3")
-  ];
-
-  const storyFallbackEls = [
-    document.getElementById("s3ImageFallback1"),
-    document.getElementById("s3ImageFallback2"),
-    document.getElementById("s3ImageFallback3")
-  ];
-
   const heroImage = document.getElementById("s3HeroImage");
   const heroFallback = document.getElementById("s3HeroFallback");
   const thumbButtons = Array.from(document.querySelectorAll(".s3-thumb"));
@@ -32,6 +8,11 @@
     document.getElementById("s3ThumbImage1"),
     document.getElementById("s3ThumbImage2")
   ];
+  const titleEl = document.getElementById("s3Title");
+  const categoryEl = document.getElementById("s3Category");
+  const descriptionEl = document.getElementById("s3Description");
+  const linkButton = document.getElementById("s3LinkButton");
+  const metadataEl = document.getElementById("s3Metadata");
 
   function getQueryValue(name) {
     try {
@@ -43,32 +24,19 @@
   }
 
   function getStoredProjectPayload() {
-    const sources = [];
-
-    try { sources.push(window.sessionStorage); } catch (_e) {}
     try {
-      if (window.parent && window.parent !== window && window.parent.sessionStorage) {
-        sources.push(window.parent.sessionStorage);
-      }
-    } catch (_e) {}
-
-    for (let i = 0; i < sources.length; i++) {
-      try {
-        const raw = sources[i].getItem("work-stage3-current-project");
-        if (!raw) continue;
-        const parsed = JSON.parse(raw);
-        if (parsed && typeof parsed === "object") return parsed;
-      } catch (_e) {}
+      const raw = sessionStorage.getItem("work-stage3-current-project");
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return (parsed && typeof parsed === "object") ? parsed : null;
+    } catch (_e) {
+      return null;
     }
-
-    return null;
   }
 
   function getProjectStore() {
     try {
-      if (window.PROJECTS && typeof window.PROJECTS === "object" && Object.keys(window.PROJECTS).length) {
-        return window.PROJECTS;
-      }
+      if (window.PROJECTS && typeof window.PROJECTS === "object") return window.PROJECTS;
     } catch (_e) {}
 
     try {
@@ -76,8 +44,7 @@
         window.parent &&
         window.parent !== window &&
         window.parent.PROJECTS &&
-        typeof window.parent.PROJECTS === "object" &&
-        Object.keys(window.parent.PROJECTS).length
+        typeof window.parent.PROJECTS === "object"
       ) {
         return window.parent.PROJECTS;
       }
@@ -94,52 +61,20 @@
         return;
       }
 
-      const candidates = [
-        "../js/projects-data.js?v=20260321-stage3-datafix",
-        "../js/projects-data - Copy.js?v=20260321-stage3-datafix",
-        "../../assets/js/projects-data.js?v=20260321-stage3-datafix",
-        "../../assets/js/projects-data%20-%20Copy.js?v=20260321-stage3-datafix",
-        "./projects-data.js?v=20260321-stage3-datafix"
-      ];
+      const already = document.querySelector('script[data-project-store-loader="true"]');
+      if (already) {
+        already.addEventListener("load", () => resolve(getProjectStore()), { once: true });
+        already.addEventListener("error", () => resolve(getProjectStore()), { once: true });
+        return;
+      }
 
-      let index = 0;
-
-      const finish = () => resolve(getProjectStore());
-
-      const tryNext = () => {
-        const store = getProjectStore();
-        if (store && Object.keys(store).length) {
-          finish();
-          return;
-        }
-
-        if (index >= candidates.length) {
-          finish();
-          return;
-        }
-
-        const src = candidates[index++];
-        const existingScript = Array.from(document.scripts || []).find((script) => {
-          const scriptSrc = String(script.getAttribute("src") || script.src || "");
-          return scriptSrc.indexOf(src.split("?")[0]) !== -1;
-        });
-
-        if (existingScript) {
-          existingScript.addEventListener("load", finish, { once: true });
-          existingScript.addEventListener("error", tryNext, { once: true });
-          return;
-        }
-
-        const script = document.createElement("script");
-        script.src = src;
-        script.async = false;
-        script.setAttribute("data-project-store-loader", "true");
-        script.addEventListener("load", finish, { once: true });
-        script.addEventListener("error", tryNext, { once: true });
-        document.head.appendChild(script);
-      };
-
-      tryNext();
+      const script = document.createElement("script");
+      script.src = "../js/projects-data.js?v=20260320-stage3";
+      script.async = false;
+      script.setAttribute("data-project-store-loader", "true");
+      script.addEventListener("load", () => resolve(getProjectStore()), { once: true });
+      script.addEventListener("error", () => resolve(getProjectStore()), { once: true });
+      document.head.appendChild(script);
     });
   }
 
@@ -159,32 +94,10 @@
   function splitIntoParagraphs(text) {
     const raw = String(text || "").replace(/\r/g, "").trim();
     if (!raw) return [];
-
-    const explicitParagraphs = raw
+    return raw
       .split(/\n\s*\n/g)
       .map((value) => value.replace(/\s+/g, " ").trim())
       .filter(Boolean);
-
-    if (explicitParagraphs.length >= 2) return explicitParagraphs;
-
-    return raw
-      .replace(/\s+/g, " ")
-      .split(/(?<=[.!?])\s+(?=[A-Z0-9“"'])/)
-      .map((value) => String(value || "").trim())
-      .filter(Boolean)
-      .reduce((chunks, sentence) => {
-        if (!chunks.length) {
-          chunks.push(sentence);
-          return chunks;
-        }
-        const last = chunks[chunks.length - 1];
-        if ((last + " " + sentence).length <= 320) {
-          chunks[chunks.length - 1] = last + " " + sentence;
-        } else {
-          chunks.push(sentence);
-        }
-        return chunks;
-      }, []);
   }
 
   function normalizeProjectImagePath(path) {
@@ -294,7 +207,9 @@
           if (fallbackEl) fallbackEl.style.display = "none";
           resolve(true);
         };
-        probe.onerror = tryNext;
+        probe.onerror = () => {
+          tryNext();
+        };
         probe.src = src;
       };
 
@@ -302,50 +217,43 @@
     });
   }
 
-  function buildStoryParagraphs(text) {
-    const parts = splitIntoParagraphs(text).filter(Boolean);
-
-    if (!parts.length) {
-      return [
-        "Project description will appear here once the selected item has written content.",
-        "The Stage 3 layout is ready, but the selected project currently has no readable text in the data source.",
-        "Use the project link below when available."
-      ];
-    }
-
-    if (parts.length === 1) return [parts[0], parts[0], parts[0]];
-    if (parts.length === 2) return [parts[0], parts[1], parts[1]];
-    return parts.slice(0, 3);
-  }
-
   function setParagraphs(paragraphs) {
-    const storyParagraphs = buildStoryParagraphs((paragraphs || []).join("\n\n"));
-
-    storyTextEls.forEach((el, index) => {
-      if (!el) return;
-      el.textContent = storyParagraphs[index] || storyParagraphs[storyParagraphs.length - 1] || "";
-    });
-
-    if (!descriptionEl) return;
     descriptionEl.innerHTML = "";
-    storyParagraphs.forEach((paragraph) => {
+    const items = paragraphs.length ? paragraphs : ["Project description will appear here once the selected item has written content."];
+    items.forEach((paragraph) => {
       const p = document.createElement("p");
       p.textContent = paragraph;
       descriptionEl.appendChild(p);
     });
   }
 
-  function hideMetadata() {
-    if (!metadataEl) return;
+  function setMetadata(project, images) {
     metadataEl.innerHTML = "";
-    metadataEl.setAttribute("hidden", "hidden");
-    metadataEl.setAttribute("aria-hidden", "true");
-    metadataEl.style.display = "none";
+
+    const chips = [];
+    const category = String((project && project.category) || "").trim();
+    const projectId = String((project && project.id) || "").trim();
+
+    if (category) chips.push(category);
+    if (projectId) chips.push(projectId);
+    if (images && images.length) chips.push(images.length + " images");
+
+    if (!chips.length) {
+      metadataEl.style.display = "none";
+      return;
+    }
+
+    metadataEl.style.display = "flex";
+
+    chips.forEach((label) => {
+      const chip = document.createElement("span");
+      chip.className = "s3-chip";
+      chip.textContent = label;
+      metadataEl.appendChild(chip);
+    });
   }
 
   function setLink(url) {
-    if (!linkButton) return;
-
     const href = String(url || "").trim();
     if (!href) {
       linkButton.setAttribute("aria-disabled", "true");
@@ -365,9 +273,7 @@
     });
   }
 
-  function wireLegacyGallery(images, title) {
-    if (!heroImage) return;
-
+  function wireGallery(images, title) {
     const galleryImages = [images[1] || "", images[2] || ""];
     const heroPool = [images[0] || "", images[1] || "", images[2] || ""].filter(Boolean);
 
@@ -391,23 +297,6 @@
 
     setActiveThumb(0);
     showHero(heroPool[0] || galleryImages[0] || "");
-  }
-
-  function wireStoryImages(images, title) {
-    const normalized = [
-      images[0] || "",
-      images[1] || images[0] || "",
-      images[2] || images[1] || images[0] || ""
-    ];
-
-    storyImageEls.forEach((imgEl, index) => {
-      attachImageWithFallback(
-        imgEl,
-        storyFallbackEls[index],
-        normalized[index],
-        title ? title + " image " + (index + 1) : "Project image"
-      );
-    });
   }
 
   async function init() {
@@ -439,19 +328,15 @@
     const title = String((project && project.title) || fallbackTitle || "Project").trim() || "Project";
     const category = String((project && project.category) || "Project").trim() || "Project";
     const descriptionText = (project && (project.description || project.text)) || "";
-    const paragraphs = splitIntoParagraphs(descriptionText).slice(0, 3);
-    const images = (project && Array.isArray(project.images) ? project.images : [])
-      .filter(Boolean)
-      .map((value) => String(value || "").trim())
-      .slice(0, 3);
+    const paragraphs = splitIntoParagraphs(descriptionText).slice(0, 4);
+    const images = (project && Array.isArray(project.images) ? project.images : []).filter(Boolean).map((value) => String(value || "").trim()).slice(0, 3);
 
-    if (titleEl) titleEl.textContent = title;
-    if (categoryEl) categoryEl.textContent = category;
+    titleEl.textContent = title;
+    categoryEl.textContent = category;
     setParagraphs(paragraphs);
     setLink(project && project.link);
-    hideMetadata();
-    wireStoryImages(images, title);
-    wireLegacyGallery(images, title);
+    setMetadata(project, images);
+    wireGallery(images, title);
   }
 
   init();

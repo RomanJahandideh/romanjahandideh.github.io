@@ -1,10 +1,15 @@
-/* Shape-Driven Text Flow v11
-   FINAL PERFORMANCE + STABILITY FIX
-   - Stops idle animation loop when nothing is moving
-   - Caches stage bounds instead of forcing repeated layout reads
-   - Removes idle wobble that caused visual "shock" feeling
-   - Softens collisions and mouse influence decay
-   - Keeps the rest of the system intact
+/* Shape-Driven Text Flow
+   STABLE DRAG-ONLY VERSION
+   - keeps drag
+   - keeps return-to-home
+   - removes collisions between items
+   - removes hover scaling
+   - removes bounce / release kick
+   - removes all extra movement causing vibration
+   - keeps image blocks from being overlapped by text blocks
+   - COMPACT LAYOUT SURGERY ONLY
+   - FIX: circle scaling now pushes title downward with protected boundary
+   - FIX: tighter block packing to reduce dead space
 */
 (() => {
   const stage = document.getElementById('stage');
@@ -44,33 +49,10 @@
     }
   });
 
-  const mouse = {
-    x: 0,
-    y: 0,
-    speed: 0,
-    inside: false,
-    _lx: 0,
-    _ly: 0,
-    _lt: 0
-  };
-
   const TUNE = {
-    SNAP_LINE_Y: true,
-    ROUND_LINE_STEP: true,
-    PARA_GAP_MULT: 1.70,
-
-    MOUSE_PULL: 0.55,
-    WOBBLE: 0.50,
-
-    TEXT_HOVER_SCALE: 1.015,
-
-    COLLISION_PASSES: 6,
-    COLLISION_PAD: 14,
-    COLLISION_BOUNCE: 0.045,
-
-    SPEED_CUTOFF: 0.012,
-    VELOCITY_CUTOFF: 0.03,
-    SCALE_CUTOFF: 0.002
+    TEXT_HOVER_SCALE: 1.0,
+    VELOCITY_CUTOFF: 0.015,
+    POSITION_CUTOFF: 0.08
   };
 
   document.documentElement.style.setProperty('--pHover', String(TUNE.TEXT_HOVER_SCALE));
@@ -112,48 +94,11 @@
     stageMetricsDirty = true;
   }
 
-  function updateMouseFromEvent(e) {
-    const r = refreshStageMetrics();
-    const x = e.clientX - r.left;
-    const y = e.clientY - r.top;
-
-    const inside = x >= 0 && y >= 0 && x <= r.width && y <= r.height;
-    mouse.inside = inside;
-    if (!inside) return;
-
-    mouse.x = x;
-    mouse.y = y;
-
-    const now = (typeof e.timeStamp === 'number' ? e.timeStamp : performance.now());
-    if (mouse._lt) {
-      const dtMs = Math.max(1, now - mouse._lt);
-      const dx = x - mouse._lx;
-      const dy = y - mouse._ly;
-      const inst = Math.hypot(dx, dy) / (dtMs / 16.6667);
-      mouse.speed = mouse.speed * 0.68 + inst * 0.32;
-    }
-
-    mouse._lx = x;
-    mouse._ly = y;
-    mouse._lt = now;
-
-    wake();
-  }
-
-  window.addEventListener('pointermove', updateMouseFromEvent, { passive: true });
-
-  stage.addEventListener('pointerleave', () => {
-    mouse.inside = false;
-    mouse.speed *= 0.2;
-    wake();
-  });
-
-  window.addEventListener('resize', () => {
+  window.addEventListener('scroll', () => {
     invalidateStageMetrics();
-    wake();
   }, { passive: true });
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener('resize', () => {
     invalidateStageMetrics();
     wake();
   }, { passive: true });
@@ -423,6 +368,9 @@
   let projectImages = [];
   let projectText = '';
   let projectParagraphs = [];
+  let projectLink = (storedProjectPayload && typeof storedProjectPayload.projectLink === 'string')
+    ? storedProjectPayload.projectLink.trim()
+    : '';
   let imgCircle = DEFAULT_IMAGE;
   let imgRectA = DEFAULT_IMAGE;
   let imgRectB = DEFAULT_IMAGE;
@@ -471,6 +419,12 @@
 
     projectParagraphs = splitIntoParagraphs(projectText);
 
+    projectLink = currentProject && typeof currentProject.link === 'string'
+      ? currentProject.link.trim()
+      : ((storedProjectPayload && typeof storedProjectPayload.projectLink === 'string')
+          ? storedProjectPayload.projectLink.trim()
+          : '');
+
     imgCircle = DEFAULT_IMAGE;
     imgRectA = DEFAULT_IMAGE;
     imgRectB = DEFAULT_IMAGE;
@@ -478,75 +432,23 @@
 
   refreshProjectState();
 
-  function injectSvgFilters() {
-    if (document.getElementById('fxSvgDefs')) return;
-
-    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    svg.setAttribute('id', 'fxSvgDefs');
-    svg.setAttribute('width', '0');
-    svg.setAttribute('height', '0');
-    svg.style.position = 'absolute';
-    svg.style.left = '-9999px';
-    svg.style.top = '-9999px';
-    svg.innerHTML = `
-      <filter id="filmGrain">
-        <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="4" seed="42" result="noise" />
-        <feColorMatrix in="noise" type="saturate" values="0" result="desaturatedNoise" />
-        <feComponentTransfer in="desaturatedNoise" result="grain">
-          <feFuncA type="discrete" tableValues="0 0 0 1 1" />
-        </feComponentTransfer>
-      </filter>
-
-      <filter id="edge-displacement">
-        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" seed="11" result="turb"/>
-        <feDisplacementMap in="SourceGraphic" in2="turb" scale="12" />
-      </filter>
-
-      <filter id="glow" x="-150%" y="-150%" width="400%" height="400%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blurred" />
-        <feComponentTransfer in="blurred" result="brighterGlow">
-          <feFuncA type="linear" slope="0.75" />
-        </feComponentTransfer>
-        <feMerge>
-          <feMergeNode in="brighterGlow" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    `;
-    document.body.appendChild(svg);
-  }
-
-  function applyShapeFx(el, kind) {
+  function removeDecorativeFx(el) {
     if (!el) return;
-    el.classList.add('fxShape');
-    if (kind === 'circle') el.classList.add('fxCircle');
-    if (kind === 'rect') el.classList.add('fxRect');
+    el.classList.remove('fxShape', 'fxCircle', 'fxRect', 'fxHover');
 
-    const grain = document.createElement('div');
-    grain.className = 'fxGrain';
-    el.appendChild(grain);
-
-    el.addEventListener('pointerenter', () => {
-      el.classList.add('fxHover');
-      wake();
-    });
-
-    el.addEventListener('pointerleave', () => {
-      el.classList.remove('fxHover');
-      wake();
-    });
+    const grains = el.querySelectorAll('.fxGrain');
+    grains.forEach((node) => node.remove());
   }
 
-  injectSvgFilters();
-  applyShapeFx(elCircle, 'circle');
-  applyShapeFx(elRectA, 'rect');
-  applyShapeFx(elRectB, 'rect');
-  applyShapeFx(elDownload, 'circle');
+  removeDecorativeFx(elCircle);
+  removeDecorativeFx(elRectA);
+  removeDecorativeFx(elRectB);
+  removeDecorativeFx(elDownload);
 
   function buildParagraphs() {
     const fallbackParagraphs = [
       `${projectTitle} explores image, motion, and atmosphere through a modular composition that can be rearranged in real time. The content is intentionally generic so you can replace it with your final writing later.`,
-      `This stage reads the selected project id from the portfolio graph and swaps in project-specific images and text. Human beings call this dynamic content. JavaScript calls it Tuesday.`,
+      `This stage reads the selected project id from the portfolio graph and swaps in project-specific images and text. JavaScript calls it Tuesday.`,
       `The layout keeps the same visual system while letting each project show different images, title content, and paragraph blocks. That means your Stage 3 stays consistent instead of becoming a new design every time you blink.`,
       `Use this placeholder text to describe goals, process, tools, materials, outcomes, or anything else you want visitors to read after opening a project.`,
       `You can later replace this filler with your actual writing without changing the architecture, file names, or folder structure.`
@@ -571,39 +473,8 @@
   const blocks = [];
   const textBlocks = [];
   const items = [];
-  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
-  function rectFromItem(it, pad = 0) {
-    const sc = (it.scale || 1);
-    const sw = it.w * sc;
-    const sh = it.h * sc;
-    return {
-      x: it.x - sw / 2 - pad,
-      y: it.y - sh / 2 - pad,
-      w: sw + pad * 2,
-      h: sh + pad * 2,
-    };
-  }
-
-  function aabbOverlap(a, b) {
-    return !(a.x + a.w <= b.x || b.x + b.w <= a.x || a.y + a.h <= b.y || b.y + b.h <= a.y);
-  }
-
-  function separateAABB(a, b) {
-    const axc = a.x + a.w / 2;
-    const ayc = a.y + a.h / 2;
-    const bxc = b.x + b.w / 2;
-    const byc = b.y + b.h / 2;
-
-    const dx = axc - bxc;
-    const px = (a.w / 2 + b.w / 2) - Math.abs(dx);
-
-    const dy = ayc - byc;
-    const py = (a.h / 2 + b.h / 2) - Math.abs(dy);
-
-    if (px < py) return { x: dx < 0 ? -px : px, y: 0 };
-    return { x: 0, y: dy < 0 ? -py : py };
-  }
+  const clampValue = (v, a, b) => Math.max(a, Math.min(b, v));
 
   function makeItem(el, kind, opts) {
     const it = {
@@ -623,15 +494,9 @@
       dragOffX: 0,
       dragOffY: 0,
       mass: opts.mass ?? 1.0,
-      k: opts.k ?? 0.13,
+      k: opts.k ?? 0.08,
       damp: opts.damp ?? 0.82,
-      maxV: opts.maxV ?? 80,
-      scale: 1,
-      scaleV: 0,
-      scaleTarget: 1,
-      hoverScale: (opts.hoverScale ?? 1.06),
-      hovering: false,
-      wobbleSeed: Math.random() * 1000
+      maxV: opts.maxV ?? 60
     };
 
     items.push(it);
@@ -665,9 +530,8 @@
       w,
       h,
       mass: (opts.mass ?? 1.4),
-      k: (opts.k ?? 0.15),
-      damp: (opts.damp ?? 0.80),
-      hoverScale: (opts.hoverScale ?? 1.02)
+      k: (opts.k ?? 0.075),
+      damp: (opts.damp ?? 0.82)
     });
 
     it.isBlock = true;
@@ -677,18 +541,6 @@
       it.contentEl = el._contentEl;
       textBlocks.push(it);
     }
-
-    it.el.addEventListener('pointerenter', () => {
-      it.hovering = true;
-      dirtyLayout = true;
-      wake();
-    });
-
-    it.el.addEventListener('pointerleave', () => {
-      it.hovering = false;
-      dirtyLayout = true;
-      wake();
-    });
 
     blocks.push(it);
     return it;
@@ -703,47 +555,29 @@
   }
 
   const headlineItem = makeItem(elHeadline, "headline", {
-    w: 900, h: 230, mass: 1.9, k: 0.14, damp: 0.84
+    w: 900, h: 230, mass: 1.9, k: 0.08, damp: 0.84
   });
 
   const circleItem = makeItem(elCircle, "circle", {
-    w: 320, h: 320, mass: 1.8, k: 0.13, damp: 0.82
+    w: 320, h: 320, mass: 1.8, k: 0.07, damp: 0.82
   });
 
   const rectAItem = makeItem(elRectA, "rect", {
-    w: 360, h: 220, mass: 1.7, k: 0.13, damp: 0.82
+    w: 360, h: 220, mass: 1.7, k: 0.07, damp: 0.82
   });
 
   const rectBItem = makeItem(elRectB, "rect", {
-    w: 360, h: 220, mass: 1.7, k: 0.13, damp: 0.82
+    w: 360, h: 220, mass: 1.7, k: 0.07, damp: 0.82
   });
 
   const downloadItem = makeItem(elDownload, "download", {
-    w: 160, h: 160, mass: 1.6, k: 0.12, damp: 0.84, hoverScale: 1.05
+    w: 240, h: 64, mass: 1.6, k: 0.065, damp: 0.84
   });
 
   elDownload.addEventListener("click", () => {
     if (downloadItem.dragging) return;
-    const a = document.createElement("a");
-    a.href = imgCircle;
-    a.download = `${(projectId || projectTitle || 'project').toString().replace(/[^a-z0-9_-]+/gi, '-').toLowerCase()}-img1`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-  });
-
-  [circleItem, rectAItem, rectBItem, downloadItem].forEach((it) => {
-    it.el.addEventListener("pointerenter", () => {
-      it.hovering = true;
-      dirtyLayout = true;
-      wake();
-    });
-
-    it.el.addEventListener("pointerleave", () => {
-      it.hovering = false;
-      dirtyLayout = true;
-      wake();
-    });
+    if (!projectLink) return;
+    window.open(projectLink, '_blank', 'noopener,noreferrer');
   });
 
   const blockPlan = ["T", "T", "T", "T", "T", "T", "T"];
@@ -757,16 +591,14 @@
       createBlock(`img${imgIndex}`, 520, 300, {
         type: "image",
         imageUrl: [imgCircle, imgRectA, imgRectB][(imgIndex - 1) % 3] || imgCircle,
-        mass: 1.65,
-        hoverScale: 1.12
+        mass: 1.65
       });
     } else {
       txtIndex++;
       createBlock(`txt${txtIndex}`, 420, 180, {
         type: "text",
         html: "",
-        mass: 1.20,
-        hoverScale: 1.10
+        mass: 1.20
       });
     }
   }
@@ -779,6 +611,61 @@
   let active = null;
   let rafId = 0;
   let last = 0;
+  let pointerTapCandidate = null;
+
+  function rectsOverlap(a, b, pad = 0) {
+    return !(
+      a.right <= b.left - pad ||
+      a.left >= b.right + pad ||
+      a.bottom <= b.top - pad ||
+      a.top >= b.bottom + pad
+    );
+  }
+
+  function placePackedMasonry(blocksToPlace, cols, colW, gap, x0, colH, reservedRects) {
+    for (const b of blocksToPlace) {
+      let best = null;
+
+      for (let c = 0; c < cols; c++) {
+        const x = x0 + c * (colW + gap) + colW / 2;
+        let y = colH[c] + b.h / 2;
+
+        let blockRect = {
+          left: x - b.w / 2,
+          right: x + b.w / 2,
+          top: y - b.h / 2,
+          bottom: y + b.h / 2
+        };
+
+        let moved = true;
+        while (moved) {
+          moved = false;
+          for (const reserved of reservedRects) {
+            if (rectsOverlap(blockRect, reserved, 10)) {
+              y = reserved.bottom + gap + b.h / 2;
+              blockRect = {
+                left: x - b.w / 2,
+                right: x + b.w / 2,
+                top: y - b.h / 2,
+                bottom: y + b.h / 2
+              };
+              moved = true;
+            }
+          }
+        }
+
+        const candidateBottom = y + b.h / 2 + gap;
+
+        if (!best || candidateBottom < best.bottom) {
+          best = { c, x, y, bottom: candidateBottom };
+        }
+      }
+
+      b.homeX = best.x;
+      b.homeY = best.y;
+      colH[best.c] = best.bottom;
+    }
+  }
 
   function computeHomeLayout() {
     const r = refreshStageMetrics(true);
@@ -786,23 +673,54 @@
     const centerX = stageW / 2;
 
     circleItem.homeX = centerX;
-    circleItem.homeY = 150;
+    circleItem.homeY = 132;
+
+    const circleBoundaryGap = 44;
+    const circleBounds = {
+      left: circleItem.homeX - circleItem.w / 2,
+      right: circleItem.homeX + circleItem.w / 2,
+      top: circleItem.homeY - circleItem.h / 2,
+      bottom: circleItem.homeY + circleItem.h / 2
+    };
 
     headlineItem.homeX = centerX;
-    headlineItem.homeY = circleItem.homeY + (circleItem.h / 2) + (headlineItem.h / 2) + 32;
+    headlineItem.homeY = circleBounds.bottom + circleBoundaryGap + headlineItem.h / 2;
 
-    textTop = headlineItem.homeY + (headlineItem.h / 2) + 110;
+    const headlineBounds = {
+      left: headlineItem.homeX - headlineItem.w / 2,
+      right: headlineItem.homeX + headlineItem.w / 2,
+      top: headlineItem.homeY - headlineItem.h / 2,
+      bottom: headlineItem.homeY + headlineItem.h / 2
+    };
+
+    const headlineToContentGap = 28;
+    textTop = headlineBounds.bottom + headlineToContentGap;
 
     const fieldW = Math.min(900, stageW * 0.90);
     const fieldLeft = centerX - fieldW / 2;
 
-    rectAItem.homeX = fieldLeft + Math.min(220, fieldW * 0.32);
-    rectAItem.homeY = textTop + 220;
+    rectAItem.homeX = fieldLeft + Math.min(220, fieldW * 0.30);
+    rectAItem.homeY = textTop + 110;
 
-    rectBItem.homeX = fieldLeft + fieldW - Math.min(220, fieldW * 0.32);
-    rectBItem.homeY = textTop + 980;
+    rectBItem.homeX = fieldLeft + fieldW - Math.min(220, fieldW * 0.30);
+    rectBItem.homeY = textTop + 600;
 
-    const GAP = 22;
+    const reservedRects = [
+      {
+        left: rectAItem.homeX - rectAItem.w / 2,
+        right: rectAItem.homeX + rectAItem.w / 2,
+        top: rectAItem.homeY - rectAItem.h / 2,
+        bottom: rectAItem.homeY + rectAItem.h / 2
+      },
+      {
+        left: rectBItem.homeX - rectBItem.w / 2,
+        right: rectBItem.homeX + rectBItem.w / 2,
+        top: rectBItem.homeY - rectBItem.h / 2,
+        bottom: rectBItem.homeY + rectBItem.h / 2
+      }
+    ];
+
+    const GAP = 14;
     const MIN_COL_W = 320;
     const MAX_COLS = 3;
 
@@ -811,14 +729,13 @@
 
     const colW = Math.floor((fieldW - GAP * (cols - 1)) / cols);
     const x0 = fieldLeft;
-    const yStart = textTop + 360;
+    const yStart = textTop + 132;
     const PAD = 18;
 
     for (let i = 0; i < blocks.length; i++) {
       const b = blocks[i];
-      const wantsWide = (b.blockType === 'image' && cols >= 2 && (i % 5 === 0));
-      b.span = wantsWide ? 2 : 1;
-      b.w = (b.span === 2) ? (colW * 2 + GAP) : colW;
+      b.span = 1;
+      b.w = colW;
 
       if (b.blockType === 'text') {
         if (b.contentEl) {
@@ -830,31 +747,22 @@
         }
       } else if (b.blockType === 'image') {
         const ar = 0.62;
-        b.h = Math.round(clamp(b.w * ar, 240, 380));
+        b.h = Math.round(clampValue(b.w * ar, 240, 380));
       } else {
-        b.h = Math.round(clamp(b.w * 0.38, 120, 220));
+        b.h = Math.round(clampValue(b.w * 0.38, 120, 220));
       }
     }
 
+    const placeOrder = [...blocks].sort((a, b) => b.h - a.h);
     const colH = new Array(cols).fill(yStart);
-
-    function placeSpan1(b) {
-      let bestCol = 0;
-      for (let c = 1; c < cols; c++) {
-        if (colH[c] < colH[bestCol]) bestCol = c;
-      }
-      const x = x0 + bestCol * (colW + GAP) + colW / 2;
-      const y = colH[bestCol] + b.h / 2;
-      b.homeX = x;
-      b.homeY = y;
-      colH[bestCol] = y + b.h / 2 + GAP;
-    }
-
-    for (const b of blocks) placeSpan1(b);
+    placePackedMasonry(placeOrder, cols, colW, GAP, x0, colH, reservedRects);
 
     const blocksBottom = Math.max(...colH);
     downloadItem.homeX = stageW / 2;
-    downloadItem.homeY = Math.round(blocksBottom + 320);
+    downloadItem.homeY = Math.round(Math.max(
+      blocksBottom + 86,
+      rectBItem.homeY + rectBItem.h / 2 + 72
+    ));
 
     const maxBottom = Math.max(
       blocksBottom,
@@ -862,7 +770,7 @@
       downloadItem.homeY + downloadItem.h / 2
     );
 
-    stage.style.minHeight = `${Math.max(1600, Math.round(maxBottom + 700))}px`;
+    stage.style.minHeight = `${Math.max(1180, Math.round(maxBottom + 150))}px`;
   }
 
   function applyHomeInstant() {
@@ -872,8 +780,6 @@
       it.y = it.homeY;
       it.vx = 0;
       it.vy = 0;
-      it.scale = 1;
-      it.scaleV = 0;
     }
     dirtyLayout = true;
     wake();
@@ -902,11 +808,17 @@
     it.dragging = true;
     active = it;
 
+    pointerTapCandidate = {
+      item: it,
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY
+    };
+
     it.dragOffX = it.x - p.x;
     it.dragOffY = it.y - p.y;
-
-    it.vx *= 0.15;
-    it.vy *= 0.15;
+    it.vx = 0;
+    it.vy = 0;
 
     wake();
   });
@@ -914,30 +826,51 @@
   stage.addEventListener('pointermove', (e) => {
     if (!active) return;
 
+    if (pointerTapCandidate && pointerTapCandidate.pointerId === e.pointerId) {
+      const dx = e.clientX - pointerTapCandidate.startX;
+      const dy = e.clientY - pointerTapCandidate.startY;
+      if (Math.hypot(dx, dy) > 8) {
+        pointerTapCandidate = null;
+      }
+    }
+
     const it = active;
     const p = pointerToStage(e);
 
-    const nx = p.x + it.dragOffX;
-    const ny = p.y + it.dragOffY;
+    it.x = p.x + it.dragOffX;
+    it.y = p.y + it.dragOffY;
+    it.vx = 0;
+    it.vy = 0;
 
-    it.vx = (nx - it.x) * 0.45;
-    it.vy = (ny - it.y) * 0.45;
-
-    it.x = nx;
-    it.y = ny;
+    keepInBounds(it);
 
     setTextBlocksFromParagraphs();
     dirtyLayout = true;
     wake();
   });
 
-  function endDrag() {
+  function endDrag(e) {
     if (!active) return;
 
+    const releasedItem = active;
+    const tapCandidate = pointerTapCandidate;
+
     active.dragging = false;
-    active.vx += (active.homeX - active.x) * 0.04;
-    active.vy += (active.homeY - active.y) * 0.04;
+    active.vx = 0;
+    active.vy = 0;
     active = null;
+    pointerTapCandidate = null;
+
+    if (
+      e &&
+      tapCandidate &&
+      tapCandidate.item === releasedItem &&
+      tapCandidate.pointerId === e.pointerId &&
+      releasedItem === downloadItem &&
+      projectLink
+    ) {
+      window.open(projectLink, '_blank', 'noopener,noreferrer');
+    }
 
     dirtyLayout = true;
     wake();
@@ -949,78 +882,32 @@
 
   function keepInBounds(it) {
     const pad = 16;
-    const sc = (it.scale || 1);
-    const sw = it.w * sc;
-    const sh = it.h * sc;
+    const sw = it.w;
+    const sh = it.h;
 
-    it.x = clamp(it.x, sw / 2 + pad, stageRect.width - sw / 2 - pad);
-    it.y = clamp(it.y, sh / 2 + pad, stageRect.height - sh / 2 - pad);
+    it.x = clampValue(it.x, sw / 2 + pad, stageRect.width - sw / 2 - pad);
+    it.y = clampValue(it.y, sh / 2 + pad, stageRect.height - sh / 2 - pad);
   }
 
-  function resolveCollisions() {
-    const passes = TUNE.COLLISION_PASSES;
-    const pad = TUNE.COLLISION_PAD;
+  function settleItem(it) {
+    const dx = it.homeX - it.x;
+    const dy = it.homeY - it.y;
 
-    for (let pass = 0; pass < passes; pass++) {
-      let moved = false;
-
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          const A = items[i];
-          const B = items[j];
-
-          const a = rectFromItem(A, pad);
-          const b = rectFromItem(B, pad);
-          if (!aabbOverlap(a, b)) continue;
-
-          const sep = separateAABB(a, b);
-
-          const invMa = 1 / A.mass;
-          const invMb = 1 / B.mass;
-          const sum = invMa + invMb;
-
-          let ax = (sep.x * (invMa / sum));
-          let ay = (sep.y * (invMa / sum));
-          let bx = -(sep.x * (invMb / sum));
-          let by = -(sep.y * (invMb / sum));
-
-          if (A.dragging && !B.dragging) {
-            ax = 0; ay = 0; bx = -sep.x; by = -sep.y;
-          }
-
-          if (B.dragging && !A.dragging) {
-            bx = 0; by = 0; ax = sep.x; ay = sep.y;
-          }
-
-          A.x += ax; A.y += ay;
-          B.x += bx; B.y += by;
-
-          const bounce = TUNE.COLLISION_BOUNCE;
-          A.vx += ax * bounce; A.vy += ay * bounce;
-          B.vx += bx * bounce; B.vy += by * bounce;
-
-          moved = true;
-        }
-      }
-
-      for (const it of items) keepInBounds(it);
-      if (!moved) break;
+    if (
+      !it.dragging &&
+      Math.abs(dx) < TUNE.POSITION_CUTOFF &&
+      Math.abs(dy) < TUNE.POSITION_CUTOFF &&
+      Math.abs(it.vx) < TUNE.VELOCITY_CUTOFF &&
+      Math.abs(it.vy) < TUNE.VELOCITY_CUTOFF
+    ) {
+      it.x = it.homeX;
+      it.y = it.homeY;
+      it.vx = 0;
+      it.vy = 0;
     }
   }
 
   function stepPhysics(dt) {
-    if (!mouse.inside) {
-      mouse.speed *= 0.82;
-    }
-    if (mouse.speed < TUNE.SPEED_CUTOFF) {
-      mouse.speed = 0;
-    }
-
-    for (const it of items) {
-      if (it === headlineItem) it.scaleTarget = 1;
-      else it.scaleTarget = it.hovering ? (it.hoverScale ?? 1) : 1;
-    }
-
     for (const it of items) {
       if (!it.dragging) {
         const dx = it.homeX - it.x;
@@ -1029,87 +916,31 @@
         it.vx += dx * it.k;
         it.vy += dy * it.k;
 
-        if (mouse.inside && mouse.speed > 0) {
-          const speedNorm = Math.min(1, mouse.speed / 180);
-          const dxm = mouse.x - it.x;
-          const dym = mouse.y - it.y;
-          const dist = Math.hypot(dxm, dym) + 1e-6;
-          const falloff = 1 / (dist + 1600);
-          const accel = (24 + 56 * speedNorm) * falloff * TUNE.MOUSE_PULL;
-          it.vx += dxm * accel * dt;
-          it.vy += dym * accel * dt;
-        }
-
         it.vx *= it.damp;
         it.vy *= it.damp;
 
-        if (Math.abs(dx) < 0.1 && Math.abs(it.vx) < TUNE.VELOCITY_CUTOFF) it.vx = 0;
-        if (Math.abs(dy) < 0.1 && Math.abs(it.vy) < TUNE.VELOCITY_CUTOFF) it.vy = 0;
+        if (Math.abs(dx) < TUNE.POSITION_CUTOFF && Math.abs(it.vx) < TUNE.VELOCITY_CUTOFF) it.vx = 0;
+        if (Math.abs(dy) < TUNE.POSITION_CUTOFF && Math.abs(it.vy) < TUNE.VELOCITY_CUTOFF) it.vy = 0;
 
-        it.vx = clamp(it.vx, -it.maxV, it.maxV);
-        it.vy = clamp(it.vy, -it.maxV, it.maxV);
+        it.vx = clampValue(it.vx, -it.maxV, it.maxV);
+        it.vy = clampValue(it.vy, -it.maxV, it.maxV);
 
         it.x += it.vx * dt;
         it.y += it.vy * dt;
-
-        if (it !== headlineItem) {
-          const frame = dt * 60;
-          const sdx = (it.scaleTarget ?? 1) - (it.scale ?? 1);
-          it.scaleV = (it.scaleV ?? 0) + sdx * 0.18 * frame;
-          it.scaleV *= Math.pow(0.74, frame);
-          it.scale = (it.scale ?? 1) + it.scaleV * frame;
-
-          if (Math.abs((it.scaleTarget ?? 1) - it.scale) < TUNE.SCALE_CUTOFF && Math.abs(it.scaleV) < TUNE.SCALE_CUTOFF) {
-            it.scale = it.scaleTarget ?? 1;
-            it.scaleV = 0;
-          }
-        } else {
-          it.scale = 1;
-          it.scaleV = 0;
-        }
 
         keepInBounds(it);
       } else {
         keepInBounds(it);
       }
-    }
 
-    resolveCollisions();
+      settleItem(it);
+    }
   }
 
   function renderItems() {
-    const now = performance.now() * 0.001;
-
     for (const it of items) {
-      const hoverBoost = !!(it.el && it.el.classList && it.el.classList.contains('fxHover'));
-      const speedNorm = mouse.inside ? Math.min(1, mouse.speed / 90) : 0;
-
-      const isHeadline = (it.kind === 'headline') || (it.el && it.el.id === 'headline');
-      const isDownload = (it.el && it.el.id === 'downloadBtn');
-      const isHeroCircle = (it.el && it.el.id === 'shapeCircle');
-
-      const shapeMul = isHeadline ? 0.10 : (isDownload ? 0.55 : 1.0);
-
-      let wobMul = 0;
-      if (hoverBoost || speedNorm > 0.01) {
-        const baseWob = hoverBoost ? (isHeroCircle ? 0.18 : 0.12) : 0;
-        wobMul = shapeMul * (baseWob + 0.85 * speedNorm) * TUNE.WOBBLE;
-      }
-
-      const phase = (it.wobbleSeed || 0) * 6.28318;
-
-      const wobX = wobMul ? Math.sin(now * 1.5 + phase) * wobMul : 0;
-      const wobY = wobMul ? Math.cos(now * 1.28 + phase * 1.11) * wobMul * 0.8 : 0;
-      const wobR = wobMul ? Math.sin(now * 1.02 + phase * 0.7) * shapeMul * (0.18 + 0.65 * speedNorm) : 0;
-
-      const vel = Math.hypot(it.vx || 0, it.vy || 0);
-      const squash = Math.min(0.06, vel / 2200) * (0.35 + 0.65 * speedNorm) * shapeMul;
-
-      const sx = (it.scale || 1) * (1 + squash);
-      const sy = (it.scale || 1) * (1 - squash * 0.8);
-
       it.el.style.transform =
-        `translate(${it.x - it.w / 2 + wobX}px, ${it.y - it.h / 2 + wobY}px) rotate(${wobR}deg) scale(${sx}, ${sy})`;
+        `translate(${it.x - it.w / 2}px, ${it.y - it.h / 2}px)`;
       it.el.style.width = `${it.w}px`;
       it.el.style.height = `${it.h}px`;
     }
@@ -1122,9 +953,9 @@
       if (b > maxBottom) maxBottom = b;
     }
 
-    stage.style.minHeight = `${Math.max(1600, Math.round(maxBottom + 700))}px`;
+    stage.style.minHeight = `${Math.max(1180, Math.round(maxBottom + 150))}px`;
 
-    if (guidesToggle.checked) {
+    if (guidesToggle && guidesToggle.checked) {
       guides.classList.add('on');
       guides.innerHTML = '';
       for (const it of items) {
@@ -1143,8 +974,8 @@
   }
 
   function setScales() {
-    const c = parseFloat(circleScale.value);
-    const r = parseFloat(rectScale.value);
+    const c = circleScale ? parseFloat(circleScale.value) : 1;
+    const r = rectScale ? parseFloat(rectScale.value) : 1;
 
     circleItem.w = circleItem.baseW * c;
     circleItem.h = circleItem.baseH * c;
@@ -1160,29 +991,35 @@
     wake();
   }
 
-  circleScale.addEventListener('input', setScales);
-  rectScale.addEventListener('input', setScales);
+  if (circleScale) circleScale.addEventListener('input', setScales);
+  if (rectScale) rectScale.addEventListener('input', setScales);
 
-  guidesToggle.addEventListener('change', () => {
-    guides.classList.toggle('on', guidesToggle.checked);
-    dirtyLayout = true;
-    wake();
-  });
+  if (guidesToggle) {
+    guidesToggle.addEventListener('change', () => {
+      guides.classList.toggle('on', guidesToggle.checked);
+      dirtyLayout = true;
+      wake();
+    });
+  }
 
-  resetBtn && resetBtn.addEventListener('click', () => {
-    applyHomeInstant();
-  });
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      applyHomeInstant();
+    });
+  }
 
-  shuffleBtn && shuffleBtn.addEventListener('click', () => {
-    paragraphs = paragraphs
-      .map((p) => ({ p, r: Math.random() }))
-      .sort((a, b) => a.r - b.r)
-      .map((o) => o.p);
+  if (shuffleBtn) {
+    shuffleBtn.addEventListener('click', () => {
+      paragraphs = paragraphs
+        .map((p) => ({ p, r: Math.random() }))
+        .sort((a, b) => a.r - b.r)
+        .map((o) => o.p);
 
-    setTextBlocksFromParagraphs();
-    dirtyLayout = true;
-    wake();
-  });
+      setTextBlocksFromParagraphs();
+      dirtyLayout = true;
+      wake();
+    });
+  }
 
   let resizeTO = null;
   window.addEventListener('resize', () => {
@@ -1196,16 +1033,14 @@
 
   function needsAnimation() {
     if (active) return true;
-    if (mouse.inside && mouse.speed > TUNE.SPEED_CUTOFF) return true;
     if (dirtyLayout) return true;
 
     for (const it of items) {
       if (it.dragging) return true;
       if (Math.abs(it.vx) > TUNE.VELOCITY_CUTOFF) return true;
       if (Math.abs(it.vy) > TUNE.VELOCITY_CUTOFF) return true;
-      if (Math.abs((it.scaleTarget ?? 1) - (it.scale ?? 1)) > TUNE.SCALE_CUTOFF) return true;
-      if (Math.abs(it.scaleV || 0) > TUNE.SCALE_CUTOFF) return true;
-      if (it.el && it.el.classList && it.el.classList.contains('fxHover')) return true;
+      if (Math.abs(it.homeX - it.x) > TUNE.POSITION_CUTOFF) return true;
+      if (Math.abs(it.homeY - it.y) > TUNE.POSITION_CUTOFF) return true;
     }
 
     return false;
@@ -1221,7 +1056,7 @@
     rafId = 0;
 
     if (!last) last = now;
-    const dt = clamp((now - last) / 16.6667, 0.6, 1.5);
+    const dt = clampValue((now - last) / 16.6667, 0.6, 1.5);
     last = now;
 
     refreshStageMetrics(true);
@@ -1259,7 +1094,11 @@
     attachImageWithFallback(elRectB, imgRectB);
 
     if (elDownload) {
-      elDownload.setAttribute('aria-label', `Download first image from ${projectTitle}`);
+      elDownload.textContent = 'LINK';
+      elDownload.setAttribute('aria-label', projectLink
+        ? `Open external link for ${projectTitle}`
+        : `No link assigned yet for ${projectTitle}`);
+      elDownload.classList.toggle('is-disabled', !projectLink);
     }
 
     paragraphs = buildParagraphs();

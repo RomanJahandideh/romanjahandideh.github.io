@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project Preview</title>
+  <link rel="stylesheet" href="./embed-overrides.css?v=20260320-stage3" />
+</head>
+<body>
+  <main class="s3-page" aria-label="Project preview">
+    <section class="s3-card" aria-live="polite">
+      <div class="s3-gallery">
+        <figure class="s3-heroWrap">
+          <img id="s3HeroImage" class="s3-heroImage" alt="" />
+          <div id="s3HeroFallback" class="s3-imageFallback" aria-hidden="true">Image</div>
+        </figure>
+
+        <div class="s3-thumbGrid" aria-label="Project thumbnails">
+          <button class="s3-thumb is-active" type="button" data-index="1">
+            <img id="s3ThumbImage1" alt="" />
+            <span class="s3-thumbFallback" aria-hidden="true">Image</span>
+          </button>
+          <button class="s3-thumb" type="button" data-index="2">
+            <img id="s3ThumbImage2" alt="" />
+            <span class="s3-thumbFallback" aria-hidden="true">Image</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="s3-content">
+        <div class="s3-metaTop">
+          <p id="s3Category" class="s3-category"></p>
+        </div>
+
+        <h1 id="s3Title" class="s3-title">Project</h1>
+
+        <div id="s3Description" class="s3-description"></div>
+
+        <div class="s3-actions">
+          <a id="s3LinkButton" class="s3-linkButton" href="#" target="_blank" rel="noopener noreferrer">Open Project</a>
+        </div>
+
+        <div id="s3Metadata" class="s3-metadata" aria-label="Project metadata"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./app-embed.js?v=20260320-stage3"></script>
+</body>
+</html>

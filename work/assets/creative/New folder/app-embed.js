@@ -1,25 +1,26 @@
-/* Shape-Driven Text Flow v10
-   - Clean "home" composition always returns after interaction.
-   - Page scroll is normal (stage is NOT fixed).
-   - Text reflows around shapes (and headline block acts like a draggable collider).
-   - Collisions prevent overlap between draggable objects.
+/* Shape-Driven Text Flow
+   STABLE DRAG-ONLY VERSION
+   - keeps drag
+   - keeps return-to-home
+   - removes collisions between items
+   - removes hover scaling
+   - removes bounce / release kick
+   - removes all extra movement causing vibration
+   - keeps image blocks from being overlapped by text blocks
+   - COMPACT LAYOUT SURGERY ONLY
+   - FIX: circle scaling now pushes title downward with protected boundary
+   - FIX: tighter block packing to reduce dead space
 */
 (() => {
   const stage = document.getElementById('stage');
   const textLayer = document.getElementById('textLayer');
 
-  /* =====================================================
-     TEXT HOVER (paragraph-scale)
-     - implemented via event delegation on .flowLine elements
-     - does NOT change layout, only transforms existing nodes
-     ===================================================== */
   let _paraMap = new Map();
   let _hoverPid = null;
 
   function setParagraphHover(pid) {
     if (pid === _hoverPid) return;
 
-    // clear previous
     if (_hoverPid !== null) {
       const prev = _paraMap.get(_hoverPid);
       if (prev) for (const el of prev) el.classList.remove('pHover');
@@ -48,55 +49,13 @@
     }
   });
 
-  /* =====================================================
-     MOUSE "JELLY" INFLUENCE (visual + gentle physics)
-     ===================================================== */
-  const mouse = { x: 0, y: 0, speed: 0, inside: false, _lx: 0, _ly: 0, _lt: 0 };
-
-  /* ==========================
-     TUNING (safe, reversible)
-     ========================== */
   const TUNE = {
-    SNAP_LINE_Y: true,
-    ROUND_LINE_STEP: true,
-    PARA_GAP_MULT: 1.70,
-
-    MOUSE_PULL: 0.65,
-    WOBBLE: 0.65,
-
-    TEXT_HOVER_SCALE: 1.015,
+    TEXT_HOVER_SCALE: 1.0,
+    VELOCITY_CUTOFF: 0.015,
+    POSITION_CUTOFF: 0.08
   };
 
   document.documentElement.style.setProperty('--pHover', String(TUNE.TEXT_HOVER_SCALE));
-
-  let _hoverPara = null;
-  let _paraGroups = new Map();
-
-  function updateMouseFromEvent(e){
-    const r = stage.getBoundingClientRect();
-    const x = e.clientX - r.left;
-    const y = e.clientY - r.top;
-
-    const inside = x >= 0 && y >= 0 && x <= r.width && y <= r.height;
-    mouse.inside = inside;
-    if(!inside) return;
-
-    mouse.x = x;
-    mouse.y = y;
-
-    const now = (typeof e.timeStamp === 'number' ? e.timeStamp : performance.now());
-    if(mouse._lt){
-      const dtMs = Math.max(1, now - mouse._lt);
-      const dx = x - mouse._lx;
-      const dy = y - mouse._ly;
-      const inst = Math.hypot(dx, dy) / (dtMs / 16.666);
-      mouse.speed = mouse.speed * 0.75 + inst * 0.25;
-    }
-    mouse._lx = x; mouse._ly = y; mouse._lt = now;
-  }
-
-  window.addEventListener('pointermove', updateMouseFromEvent, { passive: true });
-  stage.addEventListener('pointerleave', () => { mouse.inside = false; mouse.speed *= 0.5; });
 
   const guides = document.getElementById('guides');
 
@@ -112,158 +71,434 @@
   const elRectB = document.getElementById('rectB');
   const elDownload = document.getElementById('downloadBtn');
 
-  /* =====================================================
-     SHAPE FX
-     ===================================================== */
-  function injectSvgFilters(){
-    if (document.getElementById('fxSvgDefs')) return;
-    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
-    svg.setAttribute('id','fxSvgDefs');
-    svg.setAttribute('width','0');
-    svg.setAttribute('height','0');
-    svg.style.position = 'absolute';
-    svg.style.left = '-9999px';
-    svg.style.top = '-9999px';
-    svg.innerHTML = `
-      <filter id="filmGrain">
-        <feTurbulence type="fractalNoise" baseFrequency="1.2" numOctaves="4" seed="42" result="noise" />
-        <feColorMatrix in="noise" type="saturate" values="0" result="desaturatedNoise" />
-        <feComponentTransfer in="desaturatedNoise" result="grain">
-          <feFuncA type="discrete" tableValues="0 0 0 1 1" />
-        </feComponentTransfer>
-      </filter>
+  const DEFAULT_IMAGE = "";
 
-      <filter id="edge-displacement">
-        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="2" seed="11" result="turb"/>
-        <feDisplacementMap in="SourceGraphic" in2="turb" scale="12" />
-      </filter>
+  let stageRect = { left: 0, top: 0, width: 0, height: 0 };
+  let stageMetricsDirty = true;
 
-      <filter id="glow" x="-150%" y="-150%" width="400%" height="400%">
-        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blurred" />
-        <feComponentTransfer in="blurred" result="brighterGlow">
-          <feFuncA type="linear" slope="0.75" />
-        </feComponentTransfer>
-        <feMerge>
-          <feMergeNode in="brighterGlow" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
-      </filter>
-    `;
-    document.body.appendChild(svg);
+  function refreshStageMetrics(force = false) {
+    if (force || stageMetricsDirty) {
+      const r = stage.getBoundingClientRect();
+      stageRect = {
+        left: r.left,
+        top: r.top,
+        width: r.width,
+        height: r.height
+      };
+      stageMetricsDirty = false;
+    }
+    return stageRect;
   }
 
-  function applyShapeFx(el, kind){
+  function invalidateStageMetrics() {
+    stageMetricsDirty = true;
+  }
+
+  window.addEventListener('scroll', () => {
+    invalidateStageMetrics();
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    invalidateStageMetrics();
+    wake();
+  }, { passive: true });
+
+  function getQueryProjectId() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      return (params.get('id') || '').trim();
+    } catch (_e) {
+      return '';
+    }
+  }
+
+  function getFallbackProjectTitle() {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      return (params.get('project') || 'Project').trim() || 'Project';
+    } catch (_e) {
+      return 'Project';
+    }
+  }
+
+  function getStoredProjectPayload() {
+    try {
+      const raw = sessionStorage.getItem('work-stage3-current-project');
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      return (parsed && typeof parsed === 'object') ? parsed : null;
+    } catch (_e) {
+      return null;
+    }
+  }
+
+  function getProjectStore() {
+    try {
+      if (window.PROJECTS && typeof window.PROJECTS === 'object') return window.PROJECTS;
+    } catch (_e) {}
+
+    try {
+      if (
+        window.parent &&
+        window.parent !== window &&
+        window.parent.PROJECTS &&
+        typeof window.parent.PROJECTS === 'object'
+      ) {
+        return window.parent.PROJECTS;
+      }
+    } catch (_e) {}
+
+    return {};
+  }
+
+  function splitIntoParagraphs(text) {
+    const raw = (text || '').toString().replace(/\r/g, '').trim();
+    if (!raw) return [];
+    return raw
+      .split(/\n\s*\n/g)
+      .map((s) => s.replace(/\s+/g, ' ').trim())
+      .filter(Boolean);
+  }
+
+  function normalizeProjectImagePath(path) {
+    const raw = String(path || '').trim();
+    if (!raw) return '';
+
+    let candidate = raw.replace(/\\/g, '/');
+    if (/^(?:https?:|data:|blob:)/i.test(candidate)) return candidate;
+
+    const origin = String(window.location.origin || '').replace(/\/$/, '');
+
+    if (/^[a-zA-Z]:\//.test(candidate)) {
+      const lower = candidate.toLowerCase();
+      const marker = '/work/assets/projects/';
+      const idx = lower.indexOf(marker);
+      if (idx !== -1) return origin + candidate.slice(idx);
+    }
+
+    if (candidate.indexOf('/work/assets/projects/') !== -1) {
+      return origin + candidate.slice(candidate.indexOf('/work/assets/projects/'));
+    }
+
+    if (candidate.indexOf('work/assets/projects/') !== -1) {
+      return origin + '/' + candidate.slice(candidate.indexOf('work/assets/projects/'));
+    }
+
+    try {
+      return new URL(candidate, window.location.href).href;
+    } catch (_e) {}
+
+    return candidate;
+  }
+
+  function swapImageExtension(path) {
+    const raw = String(path || '').trim();
+    if (!raw) return '';
+    if (/\.jpg$/i.test(raw)) return raw.replace(/\.jpg$/i, '.jpeg');
+    if (/\.jpeg$/i.test(raw)) return raw.replace(/\.jpeg$/i, '.jpg');
+    return '';
+  }
+
+  function buildImageCandidates(path) {
+    const raw = String(path || '').trim();
+    if (!raw) return [];
+
+    const variants = [];
+    const seen = new Set();
+
+    function add(value) {
+      const v = normalizeProjectImagePath(value);
+      if (!v || seen.has(v)) return;
+      seen.add(v);
+      variants.push(v);
+    }
+
+    add(raw);
+
+    const swapped = swapImageExtension(raw);
+    if (swapped) add(swapped);
+
+    const cleaned = raw.replace(/^\.\//, '').replace(/^\.\.\//, '');
+    if (cleaned && cleaned !== raw) add(cleaned);
+
+    const swappedCleaned = swapImageExtension(cleaned);
+    if (swappedCleaned) add(swappedCleaned);
+
+    const fileName = raw.replace(/\\/g, '/').split('/').pop() || '';
+    const folderMatch = raw.replace(/\\/g, '/').match(/projects\/([^\/]+)\/[^\/]+$/i);
+
+    if (folderMatch && folderMatch[1] && fileName) {
+      add('/work/assets/projects/' + folderMatch[1] + '/' + fileName);
+      const swappedName = swapImageExtension(fileName);
+      if (swappedName) add('/work/assets/projects/' + folderMatch[1] + '/' + swappedName);
+    }
+
+    return variants;
+  }
+
+  function resolveProjectImage(path) {
+    const candidates = buildImageCandidates(path);
+    return candidates[0] || '';
+  }
+
+  async function resolveProjectImages() {
+    imgCircle = resolveProjectImage(projectImages[0] || '');
+    imgRectA = resolveProjectImage(projectImages[1] || '');
+    imgRectB = resolveProjectImage(projectImages[2] || '');
+  }
+
+  function ensureShapeImageLayer(el) {
+    if (!el) return null;
+
+    let img = null;
+    for (let i = 0; i < el.children.length; i++) {
+      const child = el.children[i];
+      if (child && child.classList && child.classList.contains('project-shape-img')) {
+        img = child;
+        break;
+      }
+    }
+
+    if (!img) {
+      img = document.createElement('img');
+      img.className = 'project-shape-img';
+      img.alt = '';
+      img.draggable = false;
+      img.setAttribute('aria-hidden', 'true');
+      img.style.position = 'absolute';
+      img.style.inset = '0';
+      img.style.width = '100%';
+      img.style.height = '100%';
+      img.style.objectFit = 'cover';
+      img.style.objectPosition = 'center';
+      img.style.borderRadius = 'inherit';
+      img.style.display = 'block';
+      img.style.pointerEvents = 'none';
+      img.style.userSelect = 'none';
+      img.style.webkitUserDrag = 'none';
+      img.style.zIndex = '0';
+      img.style.opacity = '0';
+      img.style.transition = 'opacity 180ms ease';
+      el.insertBefore(img, el.firstChild || null);
+    }
+
+    el.style.backgroundImage = 'none';
+    el.style.backgroundColor = 'transparent';
+    el.style.overflow = 'hidden';
+
+    return img;
+  }
+
+  function attachImageWithFallback(el, path) {
+    const img = ensureShapeImageLayer(el);
+    if (!img) return;
+
+    const candidates = buildImageCandidates(path);
+    let index = 0;
+
+    const tryNext = () => {
+      if (index >= candidates.length) {
+        img.removeAttribute('src');
+        img.style.opacity = '0';
+        return;
+      }
+      const nextSrc = candidates[index++];
+      img.src = nextSrc;
+    };
+
+    img.onload = () => {
+      img.style.opacity = '1';
+      img.dataset.loadedSrc = img.currentSrc || img.src || '';
+    };
+
+    img.onerror = () => {
+      tryNext();
+    };
+
+    tryNext();
+  }
+
+  function loadLocalProjectStore() {
+    return new Promise((resolve) => {
+      const existing = getProjectStore();
+      if (existing && Object.keys(existing).length) {
+        resolve(existing);
+        return;
+      }
+
+      const already = document.querySelector('script[data-project-store-loader="true"]');
+      if (already) {
+        resolve(getProjectStore());
+        return;
+      }
+
+      const script = document.createElement('script');
+      script.src = '../js/projects-data.js?v=20260307-1';
+      script.async = false;
+      script.setAttribute('data-project-store-loader', 'true');
+      script.addEventListener('load', () => resolve(getProjectStore()), { once: true });
+      script.addEventListener('error', () => resolve(getProjectStore()), { once: true });
+      document.head.appendChild(script);
+    });
+  }
+
+  const projectId = getQueryProjectId();
+  const storedProjectPayload = getStoredProjectPayload();
+  const fallbackProjectTitle = getFallbackProjectTitle();
+
+  let projectStore = {};
+  let currentProject = null;
+  let projectTitle = (storedProjectPayload && storedProjectPayload.projectTitle)
+    ? String(storedProjectPayload.projectTitle).trim() || fallbackProjectTitle
+    : fallbackProjectTitle;
+
+  function findProjectByTitle(store, title) {
+    const wanted = String(title || '').trim().toLowerCase();
+    if (!wanted || !store || typeof store !== 'object') return null;
+
+    const ids = Object.keys(store);
+    for (let i = 0; i < ids.length; i++) {
+      const item = store[ids[i]];
+      if (!item || typeof item !== 'object') continue;
+      if (String(item.title || '').trim().toLowerCase() === wanted) return item;
+    }
+    return null;
+  }
+
+  let projectImages = [];
+  let projectText = '';
+  let projectParagraphs = [];
+  let projectLink = (storedProjectPayload && typeof storedProjectPayload.projectLink === 'string')
+    ? storedProjectPayload.projectLink.trim()
+    : '';
+  let imgCircle = DEFAULT_IMAGE;
+  let imgRectA = DEFAULT_IMAGE;
+  let imgRectB = DEFAULT_IMAGE;
+
+  function refreshProjectState() {
+    projectStore = getProjectStore();
+
+    const idCandidates = [
+      projectId,
+      storedProjectPayload && storedProjectPayload.projectId,
+      storedProjectPayload && storedProjectPayload.id
+    ]
+      .map((value) => String(value || '').trim())
+      .filter(Boolean);
+
+    currentProject = null;
+    for (let i = 0; i < idCandidates.length; i++) {
+      const wantedId = idCandidates[i];
+      if (projectStore && projectStore[wantedId]) {
+        currentProject = projectStore[wantedId];
+        break;
+      }
+    }
+
+    if (!currentProject && fallbackProjectTitle) {
+      currentProject = findProjectByTitle(projectStore, fallbackProjectTitle);
+    }
+
+    if (!currentProject && storedProjectPayload && storedProjectPayload.projectTitle) {
+      currentProject = findProjectByTitle(projectStore, storedProjectPayload.projectTitle);
+    }
+
+    projectTitle = currentProject && currentProject.title
+      ? String(currentProject.title).trim()
+      : ((storedProjectPayload && storedProjectPayload.projectTitle)
+          ? String(storedProjectPayload.projectTitle).trim() || fallbackProjectTitle
+          : fallbackProjectTitle);
+
+    projectImages = currentProject && Array.isArray(currentProject.images)
+      ? currentProject.images.filter(Boolean).map((value) => String(value || '').trim()).filter(Boolean)
+      : [];
+
+    projectText = currentProject
+      ? (currentProject.description || currentProject.text || '')
+      : '';
+
+    projectParagraphs = splitIntoParagraphs(projectText);
+
+    projectLink = currentProject && typeof currentProject.link === 'string'
+      ? currentProject.link.trim()
+      : ((storedProjectPayload && typeof storedProjectPayload.projectLink === 'string')
+          ? storedProjectPayload.projectLink.trim()
+          : '');
+
+    imgCircle = DEFAULT_IMAGE;
+    imgRectA = DEFAULT_IMAGE;
+    imgRectB = DEFAULT_IMAGE;
+  }
+
+  refreshProjectState();
+
+  function removeDecorativeFx(el) {
     if (!el) return;
-    el.classList.add('fxShape');
-    if (kind === 'circle') el.classList.add('fxCircle');
-    if (kind === 'rect') el.classList.add('fxRect');
+    el.classList.remove('fxShape', 'fxCircle', 'fxRect', 'fxHover');
 
-    const grain = document.createElement('div');
-    grain.className = 'fxGrain';
-    el.appendChild(grain);
-
-    el.addEventListener('pointerenter', () => el.classList.add('fxHover'));
-    el.addEventListener('pointerleave', () => el.classList.remove('fxHover'));
+    const grains = el.querySelectorAll('.fxGrain');
+    grains.forEach((node) => node.remove());
   }
 
-  injectSvgFilters();
-  applyShapeFx(elCircle, 'circle');
-  applyShapeFx(elRectA, 'rect');
-  applyShapeFx(elRectB, 'rect');
-  applyShapeFx(elDownload, 'circle');
-
-  // ---- Content (paragraph blocks) ----
-  const baseParagraphs = [
-    "Design is the art of convincing chaos to behave for a few seconds. Here, the shapes are not decorations. They are obstacles with opinions, forcing language to route around them.",
-    "Words slide into gaps like water finding the easiest route, except water usually complains less. The composition is computed as blocks that search for a clean placement, then get disturbed by your hand.",
-    "A page is usually passive. This one refuses. If you move the structure, the content moves too. Convenient, and mildly threatening.",
-    "When you drag objects near the text, the layout should react without collapsing into nonsense. Clean blocks first. Chaos only when you insist.",
-    "Typography negotiates with geometry. Not politely. When you shove the shapes into the reading path, the paragraphs deform, then regain their posture when you let go."
-  ];
+  removeDecorativeFx(elCircle);
+  removeDecorativeFx(elRectA);
+  removeDecorativeFx(elRectB);
+  removeDecorativeFx(elDownload);
 
   function buildParagraphs() {
+    const fallbackParagraphs = [
+      `${projectTitle} explores image, motion, and atmosphere through a modular composition that can be rearranged in real time. The content is intentionally generic so you can replace it with your final writing later.`,
+      `This stage reads the selected project id from the portfolio graph and swaps in project-specific images and text. JavaScript calls it Tuesday.`,
+      `The layout keeps the same visual system while letting each project show different images, title content, and paragraph blocks. That means your Stage 3 stays consistent instead of becoming a new design every time you blink.`,
+      `Use this placeholder text to describe goals, process, tools, materials, outcomes, or anything else you want visitors to read after opening a project.`,
+      `You can later replace this filler with your actual writing without changing the architecture, file names, or folder structure.`
+    ];
+
+    const source = projectParagraphs.length ? projectParagraphs : fallbackParagraphs;
     const out = [];
+
     for (let i = 0; i < 14; i++) {
-      const p = baseParagraphs[i % baseParagraphs.length];
-      out.push(p + (i % 3 === 0 ? " The point is interaction: a layout instrument you can physically disturb, then watch it reform." : ""));
+      const p = source[i % source.length];
+      out.push(
+        p + (i % 3 === 0
+          ? " This is placeholder copy generated for the portfolio data system and can be edited project by project later."
+          : "")
+      );
     }
+
     return out;
   }
 
   let paragraphs = buildParagraphs();
-
-  /* =====================================================
-     CONTENT BLOCKS
-     ===================================================== */
   const blocks = [];
   const textBlocks = [];
-
-  // ---- Utility ----
-  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
-
-  function getStageRect() {
-    return stage.getBoundingClientRect();
-  }
-
-  // Get rect in stage-local coordinates (uses scale so growing pushes others)
-  function rectFromItem(it, pad = 0) {
-    const sc = (it.scale || 1);
-    const sw = it.w * sc;
-    const sh = it.h * sc;
-    return {
-      x: it.x - sw/2 - pad,
-      y: it.y - sh/2 - pad,
-      w: sw + pad*2,
-      h: sh + pad*2,
-    };
-  }
-
-  function aabbOverlap(a, b) {
-    return !(a.x + a.w <= b.x || b.x + b.w <= a.x || a.y + a.h <= b.y || b.y + b.h <= a.y);
-  }
-
-  function separateAABB(a, b) {
-    const axc = a.x + a.w/2, ayc = a.y + a.h/2;
-    const bxc = b.x + b.w/2, byc = b.y + b.h/2;
-
-    const dx = axc - bxc;
-    const px = (a.w/2 + b.w/2) - Math.abs(dx);
-
-    const dy = ayc - byc;
-    const py = (a.h/2 + b.h/2) - Math.abs(dy);
-
-    if (px < py) return { x: dx < 0 ? -px : px, y: 0 };
-    return { x: 0, y: dy < 0 ? -py : py };
-  }
-
-  // ---- Items ----
   const items = [];
+
+  const clampValue = (v, a, b) => Math.max(a, Math.min(b, v));
 
   function makeItem(el, kind, opts) {
     const it = {
-      el, kind,
-      x: 0, y: 0, vx: 0, vy: 0,
-      w: opts.w, h: opts.h,
-      baseW: opts.w, baseH: opts.h,
-      homeX: 0, homeY: 0,
+      el,
+      kind,
+      x: 0,
+      y: 0,
+      vx: 0,
+      vy: 0,
+      w: opts.w,
+      h: opts.h,
+      baseW: opts.w,
+      baseH: opts.h,
+      homeX: 0,
+      homeY: 0,
       dragging: false,
-      dragOffX: 0, dragOffY: 0,
+      dragOffX: 0,
+      dragOffY: 0,
       mass: opts.mass ?? 1.0,
-      k: opts.k ?? 0.13,
-      damp: opts.damp ?? 0.78,
-      maxV: opts.maxV ?? 80,
-
-      scale: 1,
-      scaleV: 0,
-      scaleTarget: 1,
-      hoverScale: (opts.hoverScale ?? 1.06),
-
-      hovering: false, // IMPORTANT: unified hover (blocks + shapes)
-
-      wobbleSeed: Math.random() * 1000,
-      ox: 0,
-      oy: 0
+      k: opts.k ?? 0.08,
+      damp: opts.damp ?? 0.82,
+      maxV: opts.maxV ?? 60
     };
+
     items.push(it);
     return it;
   }
@@ -271,6 +506,7 @@
   function createBlock(id, w, h, opts = {}) {
     const el = document.createElement('div');
     el.className = ['blockItem', 'drag-target', opts.className || ''].filter(Boolean).join(' ');
+
     if (opts.type === 'text') {
       const inner = document.createElement('div');
       inner.className = 'blockContent';
@@ -278,33 +514,33 @@
       el.appendChild(inner);
       el._contentEl = inner;
     }
+
     if (opts.type === 'image') {
       el.classList.add('isImage');
       if (opts.imageUrl) el.style.backgroundImage = `url("${opts.imageUrl}")`;
     }
+
     if (opts.type === 'empty') {
       el.classList.add('isEmpty');
     }
+
     stage.appendChild(el);
 
     const it = makeItem(el, id, {
-      w, h,
+      w,
+      h,
       mass: (opts.mass ?? 1.4),
-      k: (opts.k ?? 0.15),
-      damp: (opts.damp ?? 0.76),
-      hoverScale: (opts.hoverScale ?? 1.02)
+      k: (opts.k ?? 0.075),
+      damp: (opts.damp ?? 0.82)
     });
 
     it.isBlock = true;
     it.blockType = opts.type || 'empty';
+
     if (opts.type === 'text') {
       it.contentEl = el._contentEl;
       textBlocks.push(it);
     }
-
-    // Hover state only (do NOT directly set scaleTarget here)
-    it.el.addEventListener('pointerenter', () => { it.hovering = true; dirtyLayout = true; });
-    it.el.addEventListener('pointerleave', () => { it.hovering = false; dirtyLayout = true; });
 
     blocks.push(it);
     return it;
@@ -318,85 +554,175 @@
     }
   }
 
-  // Slightly oversized collider so paragraphs never collide with the hero text.
-  const headlineItem = makeItem(elHeadline, "headline", { w: 900, h: 230, mass: 1.9, k: 0.16, damp: 0.78 });
-  const circleItem   = makeItem(elCircle,   "circle",   { w: 320, h: 320, mass: 1.8, k: 0.15, damp: 0.76 });
-  const rectAItem    = makeItem(elRectA,    "rect",     { w: 360, h: 220, mass: 1.7, k: 0.15, damp: 0.76 });
-  const rectBItem    = makeItem(elRectB,    "rect",     { w: 360, h: 220, mass: 1.7, k: 0.15, damp: 0.76 });
-  const downloadItem = makeItem(elDownload, "download", { w: 160, h: 160, mass: 1.6, k: 0.14, damp: 0.78, hoverScale: 1.05 });
+  const headlineItem = makeItem(elHeadline, "headline", {
+    w: 900, h: 230, mass: 1.9, k: 0.08, damp: 0.84
+  });
 
-  // Default action: download the main image
-  elDownload.addEventListener("click", (e) => {
+  const circleItem = makeItem(elCircle, "circle", {
+    w: 320, h: 320, mass: 1.8, k: 0.07, damp: 0.82
+  });
+
+  const rectAItem = makeItem(elRectA, "rect", {
+    w: 360, h: 220, mass: 1.7, k: 0.07, damp: 0.82
+  });
+
+  const rectBItem = makeItem(elRectB, "rect", {
+    w: 360, h: 220, mass: 1.7, k: 0.07, damp: 0.82
+  });
+
+  const downloadItem = makeItem(elDownload, "download", {
+    w: 160, h: 160, mass: 1.6, k: 0.065, damp: 0.84
+  });
+
+  elDownload.addEventListener("click", () => {
     if (downloadItem.dragging) return;
-    const a = document.createElement("a");
-    a.href = "../../ruby.png";
-    a.download = "Download";
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
+    if (!projectLink) return;
+    window.open(projectLink, '_blank', 'noopener,noreferrer');
   });
 
-  // Hover state for main shapes (unified behavior)
-  [circleItem, rectAItem, rectBItem, downloadItem].forEach((it) => {
-    it.el.addEventListener("pointerenter", () => { it.hovering = true; dirtyLayout = true; });
-    it.el.addEventListener("pointerleave", () => { it.hovering = false; dirtyLayout = true; });
-  });
-
-  // ---- Create content blocks ----
-  const TEXT_BLOCK_COUNT = 7;
-  const IMAGE_BLOCK_COUNT = 1;
-  const EMPTY_BLOCK_COUNT = 0;
-
-  const blockPlan = ["T","I","T","T","I","T","T","I","T","T"];
-
+  const blockPlan = ["T", "T", "T", "T", "T", "T", "T"];
   let imgIndex = 0;
   let txtIndex = 0;
 
   for (let i = 0; i < blockPlan.length; i++) {
     const kind = blockPlan[i];
-    if (kind === "I" && imgIndex < IMAGE_BLOCK_COUNT) {
+    if (kind === "I") {
       imgIndex++;
-      /* CHANGED: hoverScale 1.3 -> 1.1 */
-      createBlock(`img${imgIndex}`, 520, 300, { type: "image", imageUrl: "../../ruby.png", mass: 1.65, hoverScale: 1.15 });
+      createBlock(`img${imgIndex}`, 520, 300, {
+        type: "image",
+        imageUrl: [imgCircle, imgRectA, imgRectB][(imgIndex - 1) % 3] || imgCircle,
+        mass: 1.65
+      });
     } else {
       txtIndex++;
-      /* CHANGED: hoverScale 1.3 -> 1.1 */
-      createBlock(`txt${txtIndex}`, 420, 180, { type: "text", html: "", mass: 1.20, hoverScale: 1.15 });
+      createBlock(`txt${txtIndex}`, 420, 180, {
+        type: "text",
+        html: "",
+        mass: 1.20
+      });
     }
   }
 
   setTextBlocksFromParagraphs();
-
-  requestAnimationFrame(() => { dirtyLayout = true; });
-
   textLayer.style.display = "none";
 
-  // Dynamic text field top
   let textTop = 520;
+  let dirtyLayout = true;
+  let active = null;
+  let rafId = 0;
+  let last = 0;
+  let pointerTapCandidate = null;
+
+  function rectsOverlap(a, b, pad = 0) {
+    return !(
+      a.right <= b.left - pad ||
+      a.left >= b.right + pad ||
+      a.bottom <= b.top - pad ||
+      a.top >= b.bottom + pad
+    );
+  }
+
+  function placePackedMasonry(blocksToPlace, cols, colW, gap, x0, colH, reservedRects) {
+    for (const b of blocksToPlace) {
+      let best = null;
+
+      for (let c = 0; c < cols; c++) {
+        const x = x0 + c * (colW + gap) + colW / 2;
+        let y = colH[c] + b.h / 2;
+
+        let blockRect = {
+          left: x - b.w / 2,
+          right: x + b.w / 2,
+          top: y - b.h / 2,
+          bottom: y + b.h / 2
+        };
+
+        let moved = true;
+        while (moved) {
+          moved = false;
+          for (const reserved of reservedRects) {
+            if (rectsOverlap(blockRect, reserved, 10)) {
+              y = reserved.bottom + gap + b.h / 2;
+              blockRect = {
+                left: x - b.w / 2,
+                right: x + b.w / 2,
+                top: y - b.h / 2,
+                bottom: y + b.h / 2
+              };
+              moved = true;
+            }
+          }
+        }
+
+        const candidateBottom = y + b.h / 2 + gap;
+
+        if (!best || candidateBottom < best.bottom) {
+          best = { c, x, y, bottom: candidateBottom };
+        }
+      }
+
+      b.homeX = best.x;
+      b.homeY = best.y;
+      colH[best.c] = best.bottom;
+    }
+  }
 
   function computeHomeLayout() {
-    const r = getStageRect();
+    const r = refreshStageMetrics(true);
     const stageW = r.width;
     const centerX = stageW / 2;
 
     circleItem.homeX = centerX;
-    circleItem.homeY = 150;
+    circleItem.homeY = 132;
+
+    /* protected non-overlap boundary between circle and headline */
+    const circleBoundaryGap = 44;
+    const circleBounds = {
+      left: circleItem.homeX - circleItem.w / 2,
+      right: circleItem.homeX + circleItem.w / 2,
+      top: circleItem.homeY - circleItem.h / 2,
+      bottom: circleItem.homeY + circleItem.h / 2
+    };
 
     headlineItem.homeX = centerX;
-    headlineItem.homeY = circleItem.homeY + (circleItem.h/2) + (headlineItem.h/2) + 32;
+    headlineItem.homeY = circleBounds.bottom + circleBoundaryGap + headlineItem.h / 2;
 
-    textTop = headlineItem.homeY + (headlineItem.h/2) + 110;
+    const headlineBounds = {
+      left: headlineItem.homeX - headlineItem.w / 2,
+      right: headlineItem.homeX + headlineItem.w / 2,
+      top: headlineItem.homeY - headlineItem.h / 2,
+      bottom: headlineItem.homeY + headlineItem.h / 2
+    };
+
+    /* second protected boundary under title block */
+    const headlineToContentGap = 28;
+    textTop = headlineBounds.bottom + headlineToContentGap;
 
     const fieldW = Math.min(900, stageW * 0.90);
     const fieldLeft = centerX - fieldW / 2;
 
-    rectAItem.homeX = fieldLeft + Math.min(220, fieldW * 0.32);
-    rectAItem.homeY = textTop + 220;
+    rectAItem.homeX = fieldLeft + Math.min(220, fieldW * 0.30);
+    rectAItem.homeY = textTop + 110;
 
-    rectBItem.homeX = fieldLeft + fieldW - Math.min(220, fieldW * 0.32);
-    rectBItem.homeY = textTop + 980;
+    rectBItem.homeX = fieldLeft + fieldW - Math.min(220, fieldW * 0.30);
+    rectBItem.homeY = textTop + 600;
 
-    const GAP = 22;
+    const reservedRects = [
+      {
+        left: rectAItem.homeX - rectAItem.w / 2,
+        right: rectAItem.homeX + rectAItem.w / 2,
+        top: rectAItem.homeY - rectAItem.h / 2,
+        bottom: rectAItem.homeY + rectAItem.h / 2
+      },
+      {
+        left: rectBItem.homeX - rectBItem.w / 2,
+        right: rectBItem.homeX + rectBItem.w / 2,
+        top: rectBItem.homeY - rectBItem.h / 2,
+        bottom: rectBItem.homeY + rectBItem.h / 2
+      }
+    ];
+
+    const GAP = 14;
     const MIN_COL_W = 320;
     const MAX_COLS = 3;
 
@@ -405,16 +731,13 @@
 
     const colW = Math.floor((fieldW - GAP * (cols - 1)) / cols);
     const x0 = fieldLeft;
-    const yStart = textTop + 360;
-
+    const yStart = textTop + 132;
     const PAD = 18;
+
     for (let i = 0; i < blocks.length; i++) {
       const b = blocks[i];
-
-      const wantsWide = (b.blockType === 'image' && cols >= 2 && (i % 5 === 0));
-      b.span = wantsWide ? 2 : 1;
-
-      b.w = (b.span === 2) ? (colW * 2 + GAP) : colW;
+      b.span = 1;
+      b.w = colW;
 
       if (b.blockType === 'text') {
         if (b.contentEl) {
@@ -426,57 +749,30 @@
         }
       } else if (b.blockType === 'image') {
         const ar = 0.62;
-        b.h = Math.round(clamp(b.w * ar, 240, 380));
+        b.h = Math.round(clampValue(b.w * ar, 240, 380));
       } else {
-        b.h = Math.round(clamp(b.w * 0.38, 120, 220));
+        b.h = Math.round(clampValue(b.w * 0.38, 120, 220));
       }
     }
 
+    const placeOrder = [...blocks].sort((a, b) => b.h - a.h);
     const colH = new Array(cols).fill(yStart);
-
-    function placeSpan1(b){
-      let bestCol = 0;
-      for (let c = 1; c < cols; c++) if (colH[c] < colH[bestCol]) bestCol = c;
-      const x = x0 + bestCol * (colW + GAP) + colW / 2;
-      const y = colH[bestCol] + b.h / 2;
-      b.homeX = x;
-      b.homeY = y;
-      colH[bestCol] = y + b.h / 2 + GAP;
-    }
-
-    function placeSpan2(b){
-      let best = 0;
-      let bestH = Infinity;
-      for (let c = 0; c < cols - 1; c++){
-        const h = Math.max(colH[c], colH[c+1]);
-        if (h < bestH){ bestH = h; best = c; }
-      }
-      const spanW = colW * 2 + GAP;
-      const x = x0 + best * (colW + GAP) + spanW / 2;
-      const y = bestH + b.h / 2;
-      b.homeX = x;
-      b.homeY = y;
-      const newH = y + b.h / 2 + GAP;
-      colH[best] = newH;
-      colH[best+1] = newH;
-    }
-
-    for (const b of blocks) {
-      if (b.span === 2 && cols >= 2) placeSpan2(b);
-      else placeSpan1(b);
-    }
+    placePackedMasonry(placeOrder, cols, colW, GAP, x0, colH, reservedRects);
 
     const blocksBottom = Math.max(...colH);
-
     downloadItem.homeX = stageW / 2;
-    downloadItem.homeY = Math.round(blocksBottom + 320);
+    downloadItem.homeY = Math.round(Math.max(
+      blocksBottom + 86,
+      rectBItem.homeY + rectBItem.h / 2 + 72
+    ));
 
     const maxBottom = Math.max(
       blocksBottom,
-      rectBItem.homeY + rectBItem.h/2,
-      downloadItem.homeY + downloadItem.h/2
+      rectBItem.homeY + rectBItem.h / 2,
+      downloadItem.homeY + downloadItem.h / 2
     );
-    stage.style.minHeight = `${Math.max(1600, Math.round(maxBottom + 700))}px`;
+
+    stage.style.minHeight = `${Math.max(1180, Math.round(maxBottom + 150))}px`;
   }
 
   function applyHomeInstant() {
@@ -484,24 +780,21 @@
     for (const it of items) {
       it.x = it.homeX;
       it.y = it.homeY;
-      it.vx = 0; it.vy = 0;
-      it.scale = 1;
-      it.scaleV = 0;
+      it.vx = 0;
+      it.vy = 0;
     }
     dirtyLayout = true;
+    wake();
   }
-
-  // ---- Drag handling ----
-  let active = null;
 
   function pickItemFromEvent(e) {
     const target = e.target.closest('.drag-target');
     if (!target) return null;
-    return items.find(it => it.el === target) || null;
+    return items.find((it) => it.el === target) || null;
   }
 
   function pointerToStage(e) {
-    const s = getStageRect();
+    const s = refreshStageMetrics();
     return { x: e.clientX - s.left, y: e.clientY - s.top };
   }
 
@@ -510,229 +803,168 @@
     if (!it) return;
 
     e.preventDefault();
+    refreshStageMetrics(true);
     stage.setPointerCapture(e.pointerId);
 
     const p = pointerToStage(e);
     it.dragging = true;
     active = it;
 
+    pointerTapCandidate = {
+      item: it,
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY
+    };
+
     it.dragOffX = it.x - p.x;
     it.dragOffY = it.y - p.y;
+    it.vx = 0;
+    it.vy = 0;
 
-    it.vx *= 0.2;
-    it.vy *= 0.2;
+    wake();
   });
 
   stage.addEventListener('pointermove', (e) => {
     if (!active) return;
+
+    if (pointerTapCandidate && pointerTapCandidate.pointerId === e.pointerId) {
+      const dx = e.clientX - pointerTapCandidate.startX;
+      const dy = e.clientY - pointerTapCandidate.startY;
+      if (Math.hypot(dx, dy) > 8) {
+        pointerTapCandidate = null;
+      }
+    }
+
     const it = active;
     const p = pointerToStage(e);
 
-    const nx = p.x + it.dragOffX;
-    const ny = p.y + it.dragOffY;
+    it.x = p.x + it.dragOffX;
+    it.y = p.y + it.dragOffY;
+    it.vx = 0;
+    it.vy = 0;
 
-    it.vx = (nx - it.x) * 0.55;
-    it.vy = (ny - it.y) * 0.55;
-
-    it.x = nx;
-    it.y = ny;
+    keepInBounds(it);
 
     setTextBlocksFromParagraphs();
     dirtyLayout = true;
+    wake();
   });
 
-  function endDrag() {
+  function endDrag(e) {
     if (!active) return;
+
+    const releasedItem = active;
+    const tapCandidate = pointerTapCandidate;
+
     active.dragging = false;
-    active.vx += (active.homeX - active.x) * 0.06;
-    active.vy += (active.homeY - active.y) * 0.06;
+    active.vx = 0;
+    active.vy = 0;
     active = null;
+    pointerTapCandidate = null;
+
+    if (
+      e &&
+      tapCandidate &&
+      tapCandidate.item === releasedItem &&
+      tapCandidate.pointerId === e.pointerId &&
+      releasedItem === downloadItem &&
+      projectLink
+    ) {
+      window.open(projectLink, '_blank', 'noopener,noreferrer');
+    }
+
     dirtyLayout = true;
+    wake();
   }
 
   stage.addEventListener('pointerup', endDrag);
   stage.addEventListener('pointercancel', endDrag);
   stage.addEventListener('pointerleave', endDrag);
 
-  // ---- Bounds + collisions ----
   function keepInBounds(it) {
-    const s = getStageRect();
     const pad = 16;
+    const sw = it.w;
+    const sh = it.h;
 
-    const sc = (it.scale || 1);
-    const sw = it.w * sc;
-    const sh = it.h * sc;
-
-    it.x = clamp(it.x, sw/2 + pad, s.width - sw/2 - pad);
-    it.y = clamp(it.y, sh/2 + pad, s.height - sh/2 - pad);
+    it.x = clampValue(it.x, sw / 2 + pad, stageRect.width - sw / 2 - pad);
+    it.y = clampValue(it.y, sh / 2 + pad, stageRect.height - sh / 2 - pad);
   }
 
-  // HARD collision solver: prevents overlap even while scaling
-  function resolveCollisions() {
-    const passes = 12; // higher = more solid (especially during hover-scale)
-    const pad = 14;
+  function settleItem(it) {
+    const dx = it.homeX - it.x;
+    const dy = it.homeY - it.y;
 
-    for (let pass = 0; pass < passes; pass++) {
-      let moved = false;
-
-      for (let i = 0; i < items.length; i++) {
-        for (let j = i + 1; j < items.length; j++) {
-          const A = items[i], B = items[j];
-
-          const a = rectFromItem(A, pad);
-          const b = rectFromItem(B, pad);
-          if (!aabbOverlap(a, b)) continue;
-
-          const sep = separateAABB(a, b);
-
-          const invMa = 1 / A.mass;
-          const invMb = 1 / B.mass;
-          const sum = invMa + invMb;
-
-          let ax = (sep.x * (invMa / sum));
-          let ay = (sep.y * (invMa / sum));
-          let bx = -(sep.x * (invMb / sum));
-          let by = -(sep.y * (invMb / sum));
-
-          if (A.dragging && !B.dragging) { ax = 0; ay = 0; bx = -sep.x; by = -sep.y; }
-          if (B.dragging && !A.dragging) { bx = 0; by = 0; ax = sep.x; ay = sep.y; }
-
-          A.x += ax; A.y += ay;
-          B.x += bx; B.y += by;
-
-          const bounce = 0.22;
-          A.vx += ax * bounce; A.vy += ay * bounce;
-          B.vx += bx * bounce; B.vy += by * bounce;
-
-          moved = true;
-          dirtyLayout = true;
-        }
-      }
-
-      for (const it of items) keepInBounds(it);
-
-      if (!moved) break;
+    if (
+      !it.dragging &&
+      Math.abs(dx) < TUNE.POSITION_CUTOFF &&
+      Math.abs(dy) < TUNE.POSITION_CUTOFF &&
+      Math.abs(it.vx) < TUNE.VELOCITY_CUTOFF &&
+      Math.abs(it.vy) < TUNE.VELOCITY_CUTOFF
+    ) {
+      it.x = it.homeX;
+      it.y = it.homeY;
+      it.vx = 0;
+      it.vy = 0;
     }
   }
 
   function stepPhysics(dt) {
-    // 0) hover targets (ON again)
-    for (const it of items) {
-      if (it === headlineItem) it.scaleTarget = 1;
-      else it.scaleTarget = it.hovering ? (it.hoverScale ?? 1) : 1;
-    }
-
-    // 1) integrate motion + scale
     for (const it of items) {
       if (!it.dragging) {
-        const dx = (it.homeX - it.x);
-        const dy = (it.homeY - it.y);
+        const dx = it.homeX - it.x;
+        const dy = it.homeY - it.y;
 
         it.vx += dx * it.k;
         it.vy += dy * it.k;
 
-        if (mouse.inside) {
-          const speedNorm = Math.min(1, mouse.speed / 180);
-          const dxm = mouse.x - it.x;
-          const dym = mouse.y - it.y;
-          const dist = Math.hypot(dxm, dym) + 1e-6;
-          const falloff = 1 / (dist + 1400);
-          const accel = (40 + 90 * speedNorm) * falloff * TUNE.MOUSE_PULL;
-          it.vx += dxm * accel * dt;
-          it.vy += dym * accel * dt;
-        }
-
         it.vx *= it.damp;
         it.vy *= it.damp;
 
-        if (Math.abs(dx) < 0.1 && Math.abs(it.vx) < 0.05) it.vx = 0;
-        if (Math.abs(dy) < 0.1 && Math.abs(it.vy) < 0.05) it.vy = 0;
+        if (Math.abs(dx) < TUNE.POSITION_CUTOFF && Math.abs(it.vx) < TUNE.VELOCITY_CUTOFF) it.vx = 0;
+        if (Math.abs(dy) < TUNE.POSITION_CUTOFF && Math.abs(it.vy) < TUNE.VELOCITY_CUTOFF) it.vy = 0;
 
-        it.vx = clamp(it.vx, -it.maxV, it.maxV);
-        it.vy = clamp(it.vy, -it.maxV, it.maxV);
+        it.vx = clampValue(it.vx, -it.maxV, it.maxV);
+        it.vy = clampValue(it.vy, -it.maxV, it.maxV);
 
         it.x += it.vx * dt;
         it.y += it.vy * dt;
-
-        // Hover scale spring (kept, not disabled)
-        if (it !== headlineItem) {
-          const frame = dt * 60;
-          const sdx = (it.scaleTarget ?? 1) - (it.scale ?? 1);
-          it.scaleV = (it.scaleV ?? 0) + sdx * 0.22 * frame;
-          it.scaleV *= Math.pow(0.72, frame);
-          it.scale = (it.scale ?? 1) + it.scaleV * frame;
-        } else {
-          it.scale = 1;
-        }
-
-        it.ox = it.x;
-        it.oy = it.y;
 
         keepInBounds(it);
       } else {
         keepInBounds(it);
       }
-    }
 
-    // 2) solids + walls: do more than once so growth doesn't create overlap near walls
-    for (let k = 0; k < 2; k++) {
-      resolveCollisions();
-      for (const it of items) keepInBounds(it);
+      settleItem(it);
     }
   }
 
-  // ---- Rendering ----
   function renderItems() {
     for (const it of items) {
-      const speedNorm = (mouse.inside ? Math.min(1, mouse.speed / 90) : 0);
-      const t = performance.now() * 0.001;
-      const phase = (it.wobbleSeed || 0) * 6.28318;
-
-      const isHeadline = (it.kind === 'headline') || (it.el && it.el.id === 'headline');
-      const isDownload = (it.el && it.el.id === 'downloadBtn');
-      const isHeroCircle = (it.el && it.el.id === 'shapeCircle');
-
-      const shapeMul = isHeadline ? 0.18 : (isDownload ? 0.70 : 1.0);
-
-      const hoverBoost = it.el && it.el.classList && it.el.classList.contains('fxHover');
-      const baseWob = hoverBoost ? (isHeroCircle ? 0.34 : 0.22) : 0.05;
-
-      const wobMul = shapeMul * (baseWob + 1.25 * speedNorm) * TUNE.WOBBLE;
-
-      const wobX = Math.sin(t * 1.6 + phase) * wobMul;
-      const wobY = Math.cos(t * 1.35 + phase * 1.13) * wobMul * 0.8;
-      const wobR = Math.sin(t * 1.1 + phase * 0.7) * shapeMul * (0.35 + 1.1 * speedNorm);
-
-      const vel = Math.hypot(it.vx || 0, it.vy || 0);
-      const squash = shapeMul * Math.min(0.10, vel / 1800) * (0.45 + 0.75 * speedNorm);
-      const sx = (it.scale || 1) * (1 + squash);
-      const sy = (it.scale || 1) * (1 - squash * 0.85);
-
-      it.el.style.transform = `translate(${it.x - it.w/2 + wobX}px, ${it.y - it.h/2 + wobY}px) rotate(${wobR}deg) scale(${sx}, ${sy})`;
+      it.el.style.transform =
+        `translate(${it.x - it.w / 2}px, ${it.y - it.h / 2}px)`;
       it.el.style.width = `${it.w}px`;
       it.el.style.height = `${it.h}px`;
     }
   }
 
-  // ---- Layout (guides only) ----
-  let dirtyLayout = true;
-
   function layoutText() {
     let maxBottom = 0;
     for (const it of items) {
-      const b = it.homeY + it.h/2;
+      const b = it.homeY + it.h / 2;
       if (b > maxBottom) maxBottom = b;
     }
-    stage.style.minHeight = `${Math.max(1600, Math.round(maxBottom + 700))}px`;
 
-    if (guidesToggle.checked) {
+    stage.style.minHeight = `${Math.max(1180, Math.round(maxBottom + 150))}px`;
+
+    if (guidesToggle && guidesToggle.checked) {
       guides.classList.add('on');
       guides.innerHTML = '';
       for (const it of items) {
         const b = document.createElement('div');
         b.className = 'box';
-        b.style.left = `${Math.round(it.x - it.w/2)}px`;
-        b.style.top = `${Math.round(it.y - it.h/2)}px`;
+        b.style.left = `${Math.round(it.x - it.w / 2)}px`;
+        b.style.top = `${Math.round(it.y - it.h / 2)}px`;
         b.style.width = `${Math.round(it.w)}px`;
         b.style.height = `${Math.round(it.h)}px`;
         guides.appendChild(b);
@@ -743,10 +975,9 @@
     }
   }
 
-  // ---- UI ----
   function setScales() {
-    const c = parseFloat(circleScale.value);
-    const r = parseFloat(rectScale.value);
+    const c = circleScale ? parseFloat(circleScale.value) : 1;
+    const r = rectScale ? parseFloat(rectScale.value) : 1;
 
     circleItem.w = circleItem.baseW * c;
     circleItem.h = circleItem.baseH * c;
@@ -759,45 +990,78 @@
 
     computeHomeLayout();
     dirtyLayout = true;
+    wake();
   }
 
-  circleScale.addEventListener('input', setScales);
-  rectScale.addEventListener('input', setScales);
+  if (circleScale) circleScale.addEventListener('input', setScales);
+  if (rectScale) rectScale.addEventListener('input', setScales);
 
-  guidesToggle.addEventListener('change', () => {
-    guides.classList.toggle('on', guidesToggle.checked);
-    dirtyLayout = true;
-  });
+  if (guidesToggle) {
+    guidesToggle.addEventListener('change', () => {
+      guides.classList.toggle('on', guidesToggle.checked);
+      dirtyLayout = true;
+      wake();
+    });
+  }
 
-  resetBtn && resetBtn.addEventListener('click', () => {
-    applyHomeInstant();
-  });
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      applyHomeInstant();
+    });
+  }
 
-  shuffleBtn && shuffleBtn.addEventListener('click', () => {
-    paragraphs = paragraphs
-      .map(p => ({ p, r: Math.random() }))
-      .sort((a,b) => a.r - b.r)
-      .map(o => o.p);
-    setTextBlocksFromParagraphs();
-    dirtyLayout = true;
-  });
+  if (shuffleBtn) {
+    shuffleBtn.addEventListener('click', () => {
+      paragraphs = paragraphs
+        .map((p) => ({ p, r: Math.random() }))
+        .sort((a, b) => a.r - b.r)
+        .map((o) => o.p);
 
-  // ---- Resize handling ----
+      setTextBlocksFromParagraphs();
+      dirtyLayout = true;
+      wake();
+    });
+  }
+
   let resizeTO = null;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTO);
     resizeTO = setTimeout(() => {
       computeHomeLayout();
       dirtyLayout = true;
-    }, 50);
-  });
+      wake();
+    }, 60);
+  }, { passive: true });
 
-  // ---- Tick loop ----
-  let last = performance.now();
+  function needsAnimation() {
+    if (active) return true;
+    if (dirtyLayout) return true;
+
+    for (const it of items) {
+      if (it.dragging) return true;
+      if (Math.abs(it.vx) > TUNE.VELOCITY_CUTOFF) return true;
+      if (Math.abs(it.vy) > TUNE.VELOCITY_CUTOFF) return true;
+      if (Math.abs(it.homeX - it.x) > TUNE.POSITION_CUTOFF) return true;
+      if (Math.abs(it.homeY - it.y) > TUNE.POSITION_CUTOFF) return true;
+    }
+
+    return false;
+  }
+
+  function wake() {
+    if (!rafId) {
+      rafId = requestAnimationFrame(tick);
+    }
+  }
+
   function tick(now) {
-    const dt = clamp((now - last) / 16.6667, 0.5, 1.75);
+    rafId = 0;
+
+    if (!last) last = now;
+    const dt = clampValue((now - last) / 16.6667, 0.6, 1.5);
     last = now;
 
+    refreshStageMetrics(true);
     stepPhysics(dt);
     renderItems();
 
@@ -806,14 +1070,54 @@
       layoutText();
     }
 
-    requestAnimationFrame(tick);
+    if (needsAnimation()) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      last = 0;
+    }
   }
 
-  // ---- Boot ----
-  function boot() {
+  function applyProjectContent() {
+    document.title = projectTitle;
+
+    const titleNode = elHeadline ? elHeadline.querySelector('.title') : null;
+    const introNode = elHeadline ? elHeadline.querySelector('.intro') : null;
+
+    if (titleNode) titleNode.textContent = projectTitle;
+
+    if (introNode) {
+      introNode.textContent =
+        projectParagraphs[0] ||
+        `This is placeholder content for ${projectTitle}. Replace the text inside assets/js/projects-data.js whenever your final write-up is ready.`;
+    }
+
+    attachImageWithFallback(elCircle, imgCircle);
+    attachImageWithFallback(elRectA, imgRectA);
+    attachImageWithFallback(elRectB, imgRectB);
+
+    if (elDownload) {
+      elDownload.textContent = 'LINK';
+      elDownload.setAttribute('aria-label', projectLink
+        ? `Open external link for ${projectTitle}`
+        : `No link assigned yet for ${projectTitle}`);
+      elDownload.classList.toggle('is-disabled', !projectLink);
+    }
+
+    paragraphs = buildParagraphs();
+    setTextBlocksFromParagraphs();
+    dirtyLayout = true;
+    wake();
+  }
+
+  async function boot() {
+    await loadLocalProjectStore();
+    refreshProjectState();
+    await resolveProjectImages();
+
+    applyProjectContent();
     setScales();
     applyHomeInstant();
-    requestAnimationFrame(tick);
+    wake();
   }
 
   boot();

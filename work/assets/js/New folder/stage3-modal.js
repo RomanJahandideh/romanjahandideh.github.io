@@ -16,8 +16,6 @@
   let openState = false;
 
   let overlay, backdrop, panel, titleEl, closeBtn, iframe;
-  let touchStartY = 0;
-  let touchStartX = 0;
 
   // ===== Handlers (single place) =====
   const TUNE = {
@@ -163,22 +161,6 @@
     backdrop.addEventListener("click", () => close());
     panel.addEventListener("click", (e) => e.stopPropagation());
     closeBtn.addEventListener("click", () => close());
-
-    panel.addEventListener("touchstart", (e) => {
-      const touch = e.changedTouches && e.changedTouches[0];
-      if (!touch) return;
-      touchStartY = touch.clientY;
-      touchStartX = touch.clientX;
-    }, { passive: true });
-
-    panel.addEventListener("touchend", (e) => {
-      if (!openState) return;
-      const touch = e.changedTouches && e.changedTouches[0];
-      if (!touch) return;
-      const dy = touch.clientY - touchStartY;
-      const dx = Math.abs(touch.clientX - touchStartX);
-      if (dy > 120 && dx < 80) close();
-    }, { passive: true });
 
     window.addEventListener("keyup", (e) => {
       if (!openState) return;
