@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Project Preview</title>
-  <link rel="stylesheet" href="./embed-overrides.css?v=20260321-stage3-redesign" />
+  <link rel="stylesheet" href="./embed-overrides.css?v=20260321-stage3-datafix" />
 </head>
 <body>
   <main class="s3-page" aria-label="Project preview">
@@ -50,11 +50,30 @@
         <a id="s3LinkButton" class="s3-linkButton" href="#" target="_blank" rel="noopener noreferrer">Open Project</a>
       </div>
 
-      <div id="s3Metadata" class="s3-metadata" aria-hidden="true"></div>
-      <div id="s3Description" class="s3-description" hidden></div>
+      <!-- Legacy nodes preserved so the existing system architecture does not get annoyed and revolt -->
+      <div class="s3-legacy" aria-hidden="true">
+        <figure class="s3-heroWrap">
+          <img id="s3HeroImage" class="s3-heroImage" alt="" />
+          <div id="s3HeroFallback" class="s3-imageFallback">Image</div>
+        </figure>
+
+        <div class="s3-thumbGrid">
+          <button class="s3-thumb is-active" type="button" data-index="1">
+            <img id="s3ThumbImage1" alt="" />
+            <span class="s3-thumbFallback">Image</span>
+          </button>
+          <button class="s3-thumb" type="button" data-index="2">
+            <img id="s3ThumbImage2" alt="" />
+            <span class="s3-thumbFallback">Image</span>
+          </button>
+        </div>
+
+        <div id="s3Description" class="s3-description"></div>
+        <div id="s3Metadata" class="s3-metadata"></div>
+      </div>
     </section>
   </main>
 
-  <script src="./app-embed.js?v=20260321-stage3-redesign"></script>
+  <script src="./app-embed.js?v=20260321-stage3-datafix"></script>
 </body>
 </html>
