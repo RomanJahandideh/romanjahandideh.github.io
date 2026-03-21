@@ -1357,24 +1357,23 @@ jitter: 0.35,
   }
 
   function getMobileStage2Layout(width, height, rootTarget, childCount) {
-    const radius = Math.max(88, Math.min(128, width * 0.24));
-    const rightX = clamp(rootTarget.x + radius + 22, 120, width - 130);
-    const leftX  = clamp(rootTarget.x - radius + 8, 52, width - 140);
+    const topY    = clamp(rootTarget.y - 126, 124, height - 260);
+    const upperY  = clamp(rootTarget.y - 44, 148, height - 220);
+    const midY    = clamp(rootTarget.y + 10, 170, height - 180);
+    const lowerY  = clamp(rootTarget.y + 92, 220, height - 120);
 
-    const ySlots = [
-      clamp(rootTarget.y - 78, 120, height - 160),
-      clamp(rootTarget.y - 28, 120, height - 140),
-      clamp(rootTarget.y + 22, 120, height - 120),
-      clamp(rootTarget.y + 72, 120, height - 100),
-      clamp(rootTarget.y + 122, 120, height - 80)
-    ];
+    const leftFarX   = clamp(rootTarget.x - 152, 74, width - 180);
+    const leftNearX  = clamp(rootTarget.x - 112, 88, width - 168);
+    const rightNearX = clamp(rootTarget.x + 102, 150, width - 122);
+    const rightFarX  = clamp(rootTarget.x + 142, 172, width - 96);
+    const bottomX    = clamp(rootTarget.x - 2, 120, width - 120);
 
     const plan = [
-      { x: rightX, y: ySlots[0], labelSide: "right" },
-      { x: rightX, y: ySlots[1], labelSide: "right" },
-      { x: leftX,  y: ySlots[2], labelSide: "left"  },
-      { x: rightX, y: ySlots[3], labelSide: "right" },
-      { x: leftX,  y: ySlots[4], labelSide: "left"  }
+      { x: bottomX,    y: topY,   labelSide: "right" },
+      { x: rightNearX, y: upperY, labelSide: "right" },
+      { x: leftNearX,  y: midY,   labelSide: "left"  },
+      { x: rightFarX,  y: midY,   labelSide: "right" },
+      { x: leftFarX,   y: lowerY, labelSide: "left"  }
     ];
 
     return plan.slice(0, childCount);
@@ -1964,7 +1963,7 @@ const labelSel = svg.selectAll("text")
     });
 
     nodeSel.style("pointer-events", d => mobileStage2 ? "none" : (d.knee ? "none" : "all"));
-    rootSel.style("pointer-events", mobileStage2 ? "none" : "all");
+    rootSel.style("pointer-events", "all");
     linkSel.style("pointer-events", "none");
     labelSel.style("pointer-events", d => (d && d.root) ? "none" : "all");
 
@@ -2185,6 +2184,8 @@ const labelSel = svg.selectAll("text")
 
     if (!mobileStage2) {
       nodeSel.call(drag);
+      rootSel.call(drag);
+    } else {
       rootSel.call(drag);
     }
 
