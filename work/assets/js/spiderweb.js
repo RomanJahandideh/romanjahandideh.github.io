@@ -114,7 +114,27 @@ window.addEventListener("DOMContentLoaded", () => {
   function easeOutCubic(t){ return 1 - Math.pow(1 - t, 3); }
   function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; }
 
+  function getActiveMobileBubble() {
+    if (window.innerWidth >= 768) return null;
+
+    const layers = Array.from(document.querySelectorAll("#main-stack .layer"));
+    if (!layers.length) return null;
+
+    return layers.find((el) => String(el.style.filter || "").includes("drop-shadow"))
+        || layers.find((el) => el.classList.contains("is-active"))
+        || null;
+  }
+
   function getFollowCenter() {
+    const activeBubble = getActiveMobileBubble();
+    if (activeBubble) {
+      const r = activeBubble.getBoundingClientRect();
+      return {
+        x: r.left + r.width / 2,
+        y: r.top + r.height / 2 + Math.max(18, r.height * 0.18)
+      };
+    }
+
     const el = document.querySelector(WEB.followSelector);
     if (el) {
       const r = el.getBoundingClientRect();
@@ -148,7 +168,8 @@ window.addEventListener("DOMContentLoaded", () => {
     center.y = centerTarget.y = c.y;
 
     // Base radius from handler (stronger default if missing)
-    baseClearR = cssNum("--web-hole-base", WEB.centerClearRadius);
+    const cssBaseClearR = cssNum("--web-hole-base", WEB.centerClearRadius);
+    baseClearR = (window.innerWidth < 768) ? Math.min(cssBaseClearR, 84) : cssBaseClearR;
     clearR = baseClearR;
     clearRTarget = baseClearR;
 

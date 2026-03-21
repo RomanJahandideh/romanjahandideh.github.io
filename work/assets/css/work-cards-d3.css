@@ -341,7 +341,11 @@ body.mode3-active {
   }
 
   body.page-work-only {
+<<<<<<< HEAD
     --web-hole-base: 132px;
+=======
+    --web-hole-base: 104px;
+>>>>>>> 367514678f34955845befa5c0fbe578eb01b51b1
     --web-hole-influence: 460px;
     --web-hole-influence-strength: 0.22;
   }
