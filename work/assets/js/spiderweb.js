@@ -115,6 +115,23 @@ window.addEventListener("DOMContentLoaded", () => {
   function easeInOutQuad(t){ return t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t + 2, 2)/2; }
 
   function getFollowCenter() {
+    const isMobile = window.innerWidth < 768;
+
+    if (isMobile) {
+      const activeBubble = Array.from(document.querySelectorAll("#main-stack .layer")).find((el) => {
+        const f = String(el.style.filter || "");
+        return f.indexOf("drop-shadow") !== -1;
+      });
+
+      if (activeBubble) {
+        const r = activeBubble.getBoundingClientRect();
+        return {
+          x: r.left + r.width / 2,
+          y: r.top + r.height / 2 + 84
+        };
+      }
+    }
+
     const el = document.querySelector(WEB.followSelector);
     if (el) {
       const r = el.getBoundingClientRect();
