@@ -1074,8 +1074,12 @@ const stack = document.getElementById("card-stack");
         a.vy += (FIREFLIES.gravity + (pointerTiltNY * FIREFLIES.tiltStrength * influence)) / a.mass;
 
         if (deviceTiltInfluence > 0) {
-          a.vx += (deviceTiltNX * FIREFLIES.deviceTiltStrength * deviceTiltInfluence) / a.mass;
-          a.vy += (deviceTiltNY * FIREFLIES.deviceTiltStrength * deviceTiltInfluence) / a.mass;
+          const tiltForceX = (deviceTiltNX * FIREFLIES.deviceTiltStrength * deviceTiltInfluence) / a.mass;
+          const tiltForceY = (deviceTiltNY * FIREFLIES.deviceTiltStrength * deviceTiltInfluence) / a.mass;
+
+          // Add tilt as a gentle steering force so existing tap/pointer impulse remains alive.
+          a.vx += tiltForceX * 0.65;
+          a.vy += tiltForceY * 0.65;
         }
 
         const phase = 0.75 + 0.35 * Math.sin(a.seed + ts * 0.004);
