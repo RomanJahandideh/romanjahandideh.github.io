@@ -648,8 +648,6 @@ const stack = document.getElementById("card-stack");
 
     influenceRadius: 2200,
     tiltStrength: 0.22,
-    deviceTiltInfluence: 1.0,
-    deviceTiltShake: 0.8,
     shakeFromVelocity: 1.60,
     shakeFromAccel: 3.60,
     impulseClamp: 0.60,
@@ -721,103 +719,6 @@ const stack = document.getElementById("card-stack");
     t: performance.now()
   };
 
-  const _deviceTilt = {
-    x: 0,
-    y: 0,
-    targetX: 0,
-    targetY: 0,
-    vx: 0,
-    vy: 0,
-    listening: false,
-    permissionRequested: false
-  };
-
-  function isTiltCapableDevice(){
-    try {
-      return !!(window.DeviceOrientationEvent && window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
-    } catch {
-      return false;
-    }
-  }
-
-  function getScreenAngle(){
-    try {
-      if (window.screen && window.screen.orientation && typeof window.screen.orientation.angle === "number") {
-        return window.screen.orientation.angle;
-      }
-    } catch {}
-    if (typeof window.orientation === "number") return window.orientation;
-    return 0;
-  }
-
-  function mapTiltToViewport(beta, gamma){
-    const angle = getScreenAngle();
-    let x = gamma;
-    let y = beta;
-
-    if (angle === 90) {
-      x = beta;
-      y = -gamma;
-    } else if (angle === -90 || angle === 270) {
-      x = -beta;
-      y = gamma;
-    } else if (Math.abs(angle) === 180) {
-      x = -gamma;
-      y = -beta;
-    }
-
-    return {
-      x: clamp(x / 28, -1, 1),
-      y: clamp(y / 28, -1, 1)
-    };
-  }
-
-  function onDeviceOrientation(event){
-    if (!isTiltCapableDevice()) return;
-    const beta = Number(event && event.beta);
-    const gamma = Number(event && event.gamma);
-    if (!Number.isFinite(beta) || !Number.isFinite(gamma)) return;
-
-    const mapped = mapTiltToViewport(beta, gamma);
-    _deviceTilt.targetX = mapped.x;
-    _deviceTilt.targetY = mapped.y;
-  }
-
-  function startDeviceTiltListening(){
-    if (_deviceTilt.listening || !isTiltCapableDevice()) return;
-    window.addEventListener("deviceorientation", onDeviceOrientation, { passive: true });
-    _deviceTilt.listening = true;
-  }
-
-  async function requestDeviceTiltPermission(){
-    if (!isTiltCapableDevice()) return;
-    if (_deviceTilt.permissionRequested) return;
-    _deviceTilt.permissionRequested = true;
-
-    try {
-      const D = window.DeviceOrientationEvent;
-      if (D && typeof D.requestPermission === "function") {
-        const response = await D.requestPermission();
-        if (response === "granted") startDeviceTiltListening();
-        return;
-      }
-    } catch {}
-
-    startDeviceTiltListening();
-  }
-
-  function armDeviceTiltPermission(){
-    if (!isTiltCapableDevice()) return;
-
-    const unlock = () => {
-      requestDeviceTiltPermission();
-    };
-
-    window.addEventListener("pointerdown", unlock, { passive: true, once: true });
-    window.addEventListener("touchstart", unlock, { passive: true, once: true });
-    window.addEventListener("click", unlock, { passive: true, once: true });
-  }
-
   function _onMouseMove(e){
     const now = performance.now();
     const dt = Math.max(8, now - _mouse.t);
@@ -839,7 +740,6 @@ const stack = document.getElementById("card-stack");
     _mouse.t = now;
   }
   window.addEventListener("mousemove", _onMouseMove, { passive: true });
-  armDeviceTiltPermission();
 
   let fireflies = [];
   let fireflyRAF = null;
@@ -1115,11 +1015,6 @@ const stack = document.getElementById("card-stack");
   function fireflyTick(ts){
     if (!firefliesRunning) return;
 
-    _deviceTilt.x += (_deviceTilt.targetX - _deviceTilt.x) * 0.08;
-    _deviceTilt.y += (_deviceTilt.targetY - _deviceTilt.y) * 0.08;
-    _deviceTilt.vx = (_deviceTilt.targetX - _deviceTilt.x) * 0.45;
-    _deviceTilt.vy = (_deviceTilt.targetY - _deviceTilt.y) * 0.45;
-
     const cage = safeRectCenter(mainStack);
     const rect = mainStack.getBoundingClientRect();
 
@@ -1133,17 +1028,11 @@ const stack = document.getElementById("card-stack");
     const t = 1 - Math.max(0, Math.min(1, dC / FIREFLIES.influenceRadius));
     const influence = t * t;
 
-    const pointerTiltNX = dxC / dC;
-    const pointerTiltNY = dyC / dC;
-
-    const tiltNX = clamp(pointerTiltNX + (_deviceTilt.x * FIREFLIES.deviceTiltInfluence), -1, 1);
-    const tiltNY = clamp(pointerTiltNY + (_deviceTilt.y * FIREFLIES.deviceTiltInfluence), -1, 1);
+    const tiltNX = dxC / dC;
+    const tiltNY = dyC / dC;
 
     let sx = (_mouse.vx * FIREFLIES.shakeFromVelocity + _mouse.ax * FIREFLIES.shakeFromAccel) * influence;
     let sy = (_mouse.vy * FIREFLIES.shakeFromVelocity + _mouse.ay * FIREFLIES.shakeFromAccel) * influence;
-
-    sx += _deviceTilt.vx * FIREFLIES.deviceTiltShake;
-    sy += _deviceTilt.vy * FIREFLIES.deviceTiltShake;
 
     const sMag = Math.hypot(sx, sy) || 0;
     const sMax = FIREFLIES.impulseClamp * (0.35 + 0.65 * influence);
