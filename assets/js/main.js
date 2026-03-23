@@ -16,80 +16,6 @@
 
   const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 
-  const ensureSharedTiltState = () => {
-    if (window.__portfolioTiltState) return window.__portfolioTiltState;
-
-    const tilt = {
-      rawX: 0,
-      rawY: 0,
-      active: false,
-      permission: "unknown",
-      attached: false,
-      lastUpdate: 0
-    };
-
-    const normalize = (value, limit) => clamp((Number(value) || 0) / limit, -1, 1);
-
-    const handleOrientation = (event) => {
-      if (typeof event.gamma !== "number" || typeof event.beta !== "number") return;
-      tilt.rawX = normalize(event.gamma, 28);
-      tilt.rawY = normalize(event.beta, 28);
-      tilt.active = true;
-      tilt.lastUpdate = performance.now();
-    };
-
-    const attachListener = () => {
-      if (tilt.attached || !("DeviceOrientationEvent" in window)) return;
-      window.addEventListener("deviceorientation", handleOrientation, true);
-      tilt.attached = true;
-    };
-
-    const requestAccess = () => {
-      if (!("DeviceOrientationEvent" in window)) return Promise.resolve(false);
-
-      try {
-        if (typeof DeviceOrientationEvent.requestPermission === "function") {
-          return DeviceOrientationEvent.requestPermission()
-            .then((state) => {
-              tilt.permission = state;
-              if (state === "granted") {
-                attachListener();
-                return true;
-              }
-              return false;
-            })
-            .catch(() => false);
-        }
-      } catch {}
-
-      tilt.permission = "granted";
-      attachListener();
-      return Promise.resolve(true);
-    };
-
-    const primeAccess = () => {
-      requestAccess().finally(() => {
-        window.removeEventListener("pointerdown", primeAccess);
-        window.removeEventListener("touchstart", primeAccess);
-        window.removeEventListener("click", primeAccess);
-      });
-    };
-
-    if ("DeviceOrientationEvent" in window) {
-      if (typeof DeviceOrientationEvent.requestPermission === "function") {
-        window.addEventListener("pointerdown", primeAccess, { once: true, passive: true });
-        window.addEventListener("touchstart", primeAccess, { once: true, passive: true });
-        window.addEventListener("click", primeAccess, { once: true, passive: true });
-      } else {
-        attachListener();
-      }
-    }
-
-    window.__portfolioTiltState = tilt;
-    return tilt;
-  };
-
-
   const readCssNumber = (name, fallback) => {
     try {
       const raw = getComputedStyle(root).getPropertyValue(name);
@@ -99,6 +25,165 @@
       return fallback;
     }
   };
+
+
+  const ensureSharedTilt = (() => {
+    let shared = null;
+
+    const clampTilt = (value, limit) => clamp(value / limit, -1, 1);
+
+    const getOrientationAngle = () => {
+      try {
+        if (window.screen && window.screen.orientation && Number.isFinite(window.screen.orientation.angle)) {
+          return window.screen.orientation.angle;
+        }
+      } catch {}
+
+      if (typeof window.orientation === "number") {
+        return window.orientation;
+      }
+
+      return 0;
+    };
+
+    const rotateByScreen = (x, y) => {
+      const angle = ((getOrientationAngle() % 360) + 360) % 360;
+
+      if (angle === 90) return { x: -y, y: x };
+      if (angle === 270) return { x: y, y: -x };
+      if (angle === 180) return { x: -x, y: -y };
+      return { x, y };
+    };
+
+    const bindOrientation = (store) => {
+      if (store._bound) return;
+      store._bound = true;
+
+      const onOrientation = (event) => {
+        if (!event) return;
+        if (!Number.isFinite(event.beta) || !Number.isFinite(event.gamma)) return;
+
+        const rawX = clampTilt(event.gamma, 28);
+        const rawY = clampTilt(event.beta, 28);
+        const rotated = rotateByScreen(rawX, rawY);
+
+        store.targetX = rotated.x;
+        store.targetY = rotated.y;
+        store.supported = true;
+        store.active = true;
+        store.lastUpdate = performance.now();
+      };
+
+      store._orientationHandler = onOrientation;
+      window.addEventListener("deviceorientation", onOrientation, { passive: true });
+    };
+
+    const armGesturePermission = (store) => {
+      if (store._gestureArmed) return;
+      store._gestureArmed = true;
+
+      const requestFromGesture = () => {
+        store.requestPermission();
+      };
+
+      window.addEventListener("touchstart", requestFromGesture, { passive: true, once: true });
+      window.addEventListener("pointerdown", requestFromGesture, { passive: true, once: true });
+      window.addEventListener("click", requestFromGesture, { passive: true, once: true });
+    };
+
+    return () => {
+      if (shared && shared.__ready) return shared;
+      if (window.__portfolioTilt && window.__portfolioTilt.__ready) {
+        shared = window.__portfolioTilt;
+        return shared;
+      }
+
+      shared = window.__portfolioTilt || {
+        x: 0,
+        y: 0,
+        targetX: 0,
+        targetY: 0,
+        active: false,
+        supported: false,
+        lastUpdate: 0,
+        permissionState: "unknown",
+        __ready: true,
+        _bound: false,
+        _requestInFlight: null,
+        _gestureArmed: false,
+        read() {
+          this.x += (this.targetX - this.x) * 0.14;
+          this.y += (this.targetY - this.y) * 0.14;
+
+          const fresh = (performance.now() - this.lastUpdate) < 1600;
+          if (!fresh) {
+            this.targetX *= 0.92;
+            this.targetY *= 0.92;
+            this.active = false;
+          }
+
+          const magnitude = Math.hypot(this.x, this.y);
+          return {
+            x: this.x,
+            y: this.y,
+            active: fresh && magnitude > 0.035,
+            magnitude
+          };
+        },
+        requestPermission() {
+          if (this._requestInFlight) return this._requestInFlight;
+
+          const start = () => {
+            bindOrientation(this);
+            this.permissionState = "granted";
+            return true;
+          };
+
+          try {
+            if (typeof DeviceOrientationEvent !== "undefined"
+              && typeof DeviceOrientationEvent.requestPermission === "function") {
+              this._requestInFlight = DeviceOrientationEvent.requestPermission()
+                .then((state) => {
+                  this.permissionState = state;
+                  if (state === "granted") return start();
+                  return false;
+                })
+                .catch(() => {
+                  this.permissionState = "denied";
+                  return false;
+                })
+                .finally(() => {
+                  this._requestInFlight = null;
+                });
+
+              return this._requestInFlight;
+            }
+
+            const ok = start();
+            this._requestInFlight = Promise.resolve(ok).finally(() => {
+              this._requestInFlight = null;
+            });
+            return this._requestInFlight;
+          } catch {
+            this.permissionState = "denied";
+            this._requestInFlight = Promise.resolve(false).finally(() => {
+              this._requestInFlight = null;
+            });
+            return this._requestInFlight;
+          }
+        }
+      };
+
+      window.__portfolioTilt = shared;
+
+      armGesturePermission(shared);
+      shared.requestPermission();
+
+      return shared;
+    };
+  })();
+
+  const sharedTilt = ensureSharedTilt();
 
   // =========================================================
   // A) PATH FIX SHIM (RESTORE STAGE 3 CONTENT)
@@ -201,8 +286,6 @@
     mouseX: window.innerWidth / 2,
     mouseY: window.innerHeight / 2,
     rafId: 0,
-    tiltX: 0,
-    tiltY: 0,
     overlay: null,
     overlayBackdrop: null,
     overlayPanel: null,
@@ -352,14 +435,7 @@
 
     const nx = clamp((teaching.mouseX - cx) / (rect.width / 2 || 1), -1, 1);
     const ny = clamp((teaching.mouseY - cy) / (rect.height / 2 || 1), -1, 1);
-
-    const sharedTilt = ensureSharedTiltState();
-    const targetTiltX = sharedTilt.active ? sharedTilt.rawX : 0;
-    const targetTiltY = sharedTilt.active ? sharedTilt.rawY : 0;
-
-    teaching.tiltX += (targetTiltX - teaching.tiltX) * 0.085;
-    teaching.tiltY += (targetTiltY - teaching.tiltY) * 0.085;
-
+    const tiltState = sharedTilt.read();
     const t = timeMs * 0.001;
 
     teaching.items.forEach((item, index) => {
@@ -367,8 +443,8 @@
       const orbitY = Math.cos(t * (item.speed * 0.92) + item.phase) * item.floatY;
       const mousePushX = nx * item.mouseX;
       const mousePushY = ny * item.mouseY;
-      const tiltPushX = teaching.tiltX * item.tiltX;
-      const tiltPushY = teaching.tiltY * item.tiltY;
+      const tiltPushX = tiltState.active ? (tiltState.x * item.mouseX * 1.15) : 0;
+      const tiltPushY = tiltState.active ? (tiltState.y * item.mouseY * 1.15) : 0;
       const hoverScale = teaching.hoverKey === item.key ? 1.85 : 1.0;
       const hoverGlow = teaching.hoverKey === item.key ? 1 : 0;
       const x = item.baseX + orbitX + mousePushX + tiltPushX;
@@ -452,8 +528,8 @@
 
     const teachingEls = Array.from(teachingRoot.querySelectorAll(".teaching-layer"));
     const layout = [
-      { key: "iat313", baseX: -112, baseY: -10, phase: 0.2, speed: 1.0, floatX: 14, floatY: 11, mouseX: 20, mouseY: 14, tiltX: 34, tiltY: 28 },
-      { key: "iat343", baseX: 112, baseY: 18, phase: 1.6, speed: 1.15, floatX: 13, floatY: 15, mouseX: 20, mouseY: 16, tiltX: 34, tiltY: 28 }
+      { key: "iat313", baseX: -112, baseY: -10, phase: 0.2, speed: 1.0, floatX: 14, floatY: 11, mouseX: 20, mouseY: 14 },
+      { key: "iat343", baseX: 112, baseY: 18, phase: 1.6, speed: 1.15, floatX: 13, floatY: 15, mouseX: 20, mouseY: 16 }
     ];
 
     teaching.items = teachingEls.map((el, index) => {
