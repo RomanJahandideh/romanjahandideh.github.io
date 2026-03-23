@@ -1050,8 +1050,8 @@ const stack = document.getElementById("card-stack");
       ? ((deviceTiltMagnitude - FIREFLIES.deviceTiltDeadzone) / (1 - FIREFLIES.deviceTiltDeadzone))
       : 0;
 
-    let sx = (_mouse.vx * FIREFLIES.shakeFromVelocity + _mouse.ax * FIREFLIES.shakeFromAccel) * influence;
-    let sy = (_mouse.vy * FIREFLIES.shakeFromVelocity + _mouse.ay * FIREFLIES.shakeFromAccel) * influence;
+    let sx = (_mouse.vx * FIREFLIES.shakeFromVelocity * 1.85 + _mouse.ax * FIREFLIES.shakeFromAccel * 1.85) * influence;
+    let sy = (_mouse.vy * FIREFLIES.shakeFromVelocity * 1.85 + _mouse.ay * FIREFLIES.shakeFromAccel * 1.85) * influence;
 
     const sMag = Math.hypot(sx, sy) || 0;
     const sMax = FIREFLIES.impulseClamp * (0.35 + 0.65 * influence);
@@ -1074,12 +1074,8 @@ const stack = document.getElementById("card-stack");
         a.vy += (FIREFLIES.gravity + (pointerTiltNY * FIREFLIES.tiltStrength * influence)) / a.mass;
 
         if (deviceTiltInfluence > 0) {
-          const tiltForceX = (deviceTiltNX * FIREFLIES.deviceTiltStrength * deviceTiltInfluence) / a.mass;
-          const tiltForceY = (deviceTiltNY * FIREFLIES.deviceTiltStrength * deviceTiltInfluence) / a.mass;
-
-          // Add tilt as a gentle steering force so existing tap/pointer impulse remains alive.
-          a.vx += tiltForceX * 0.65;
-          a.vy += tiltForceY * 0.65;
+          a.vx += (deviceTiltNX * FIREFLIES.deviceTiltStrength * deviceTiltInfluence) / a.mass;
+          a.vy += (deviceTiltNY * FIREFLIES.deviceTiltStrength * deviceTiltInfluence) / a.mass;
         }
 
         const phase = 0.75 + 0.35 * Math.sin(a.seed + ts * 0.004);
