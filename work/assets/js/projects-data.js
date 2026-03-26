@@ -6,21 +6,23 @@
     "animations-01": {
       id: "animations-01",
       category: "Animations",
-      title: "Glass Orchard Loop",
-      link: "https://drive.google.com/file/d/1KGnHBVet8pmC6MfJFtKnczkq9d0n7I96/view?usp=sharing",
+      title: "Ruby’s Oil Problem",
+      link: "https://drive.google.com/file/d/1Olhoy87hzowQUpkbaYdXCAvtr_jQ8SZ6/view?usp=sharing",
       images: [
         "../projects/animations-01/img1.jpg",
         "../projects/animations-01/img2.jpg",
         "../projects/animations-01/img3.jpg"
       ],
-      description: `Glass Orchard Loop is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      description: `Ruby is a small service robot who once played an important role in everyday life. Over time, however, society began replacing older machines with newer models that promised greater efficiency and intelligence. As people quickly embraced the latest technology, robots like Ruby were quietly left behind. The story explores how progress can sometimes overlook the value of what already exists.
 
-This project currently uses the three images stored in ../projects/animations-01/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+The project reflects on how technological change influences the way we define usefulness and value. Although the newer robots appear more advanced, the shift toward them is driven as much by fascination and sentiment as by real improvement. Ruby’s journey unfolds in a world that once depended on machines like him but now treats them as outdated artifacts.
 
-The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
+This animation was developed in Autodesk Maya, where the character, environment, and scene composition were built together to support the narrative. Ruby is fully rigged for animation, allowing him to move naturally and interact with the surrounding environment. The digital assets and environment elements were modeled and assembled to create a setting that reflects the passage of time and the changing relationship between people and machines.
+
+Lighting and rendering were produced using Arnold, helping shape the atmosphere and visual tone of the scene. The project combines character animation with environment design to build a small world around Ruby, where space, lighting, and material details work together to support the emotional direction of the story.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
-      text: `Glass Orchard Loop is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      text: `Ruby’s Oil Problem is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
 This project currently uses the three images stored in ../projects/animations-01/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
