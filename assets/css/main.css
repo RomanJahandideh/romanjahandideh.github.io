@@ -94,7 +94,7 @@
   --last-scale: 0.6;
 
   --role-x: 0px;
-  --role-y: 400x;
+  --role-y: 120px;
   --role-scale: 1.1;
 
   --first-size: clamp(24px, 3.2vw, 40px);
