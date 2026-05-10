@@ -34,21 +34,21 @@ Suggested future edits for this card: add a short project summary, describe the 
     "animations-02": {
       id: "animations-02",
       category: "Animations",
-      title: "Midnight Paper Birds",
-      link: "",
+      title: "Record Player Advertisement",
+      link: "https://drive.google.com/file/d/1WY10wN83dha7bghHFXLCTw0JSziF7QJe/view?usp=sharing",
       images: [
         "../projects/animations-02/img1.jpg",
         "../projects/animations-02/img2.jpg",
         "../projects/animations-02/img3.jpg"
       ],
-      description: `Midnight Paper Birds is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      description: `APOLLO LM-IX Record Player Advertisement is a stylized commercial animation project developed within IAT 343 Animation at Simon Fraser University during Summer 2025. Created as a fictional advertisement for a custom-designed turntable system, the project focuses on cinematic product presentation, rhythm-driven editing, and visually dynamic transitions designed to emulate modern motion branding and animated commercial workflows.
 
-This project currently uses the three images stored in ../projects/animations-02/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+The animation combines multiple environments including outer space, architectural interiors, coffee shop scenes, and stylized domestic spaces to create constantly shifting visual compositions around the product. Particular emphasis was placed on showcasing the turntable’s mechanical details, including the tonearm, sliders, rotating vinyl system, buttons, and material finishes through controlled camera movement, lighting direction, and timing-based animation.
 
-The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
+From a technical perspective, the production explored non-photoreal rendering pipelines in Autodesk Maya and Arnold, with a strong focus on stylized lighting, glow response, shader control, and cinematic composition. Several rendering challenges related to aiToon, indirect lighting, and glow treatment were solved through hybrid material workflows, rim-light balancing, and AOV-based render correction techniques to preserve both graphic clarity and atmospheric depth across highly contrasting scenes.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
-      text: `Midnight Paper Birds is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      text: `APOLLO LM-IX Record Player Advertisement is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
 This project currently uses the three images stored in ../projects/animations-02/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
@@ -60,21 +60,21 @@ Suggested future edits for this card: add a short project summary, describe the 
     "animations-03": {
       id: "animations-03",
       category: "Animations",
-      title: "Static Bloom",
-      link: "",
+      title: "Under Pressure",
+      link: "https://drive.google.com/file/d/1hdu3LHnH_Y5GFJ3TnZqf3E8B7KkrWPcI/view?usp=sharing",
       images: [
         "../projects/animations-03/img1.jpg",
         "../projects/animations-03/img2.jpg",
         "../projects/animations-03/img3.jpg"
       ],
-      description: `Static Bloom is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      description: `Under Pressure is a high-energy music-video-style animation project developed within IAT 343 Animation at Simon Fraser University during Summer 2025. Inspired by contemporary commercial music videos and motion branding aesthetics, the project combines cinematic action choreography, rhythm-based editing, and stylized character animation into a fast-paced narrative centered around two rival thieves competing to steal a diamond inside a museum environment.
 
-This project currently uses the three images stored in ../projects/animations-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+Driven by the structure and momentum of the soundtrack, the animation focuses heavily on timing, visual rhythm, and rapid scene transitions to create a visually aggressive and highly synchronized viewing experience. The production integrates character animation, environmental storytelling, dynamic camera movement, lighting design, and editing techniques commonly found in modern animated advertisements, music videos, and promotional cinematic sequences.
 
-The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
+From a technical perspective, the project explored character rigging, walk and run cycle development, UV mapping workflows, cinematic lighting setups, facial animation, and large-scale scene organization pipelines in Autodesk Maya and Adobe Premiere Pro. Particular attention was placed on syncing motion, camera cuts, and environmental transitions directly to musical beats while maintaining visual clarity across dark neon-lit environments, action-heavy sequences, and fast editorial pacing.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
-      text: `Static Bloom is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      text: `Under Pressure is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
 This project currently uses the three images stored in ../projects/animations-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
@@ -86,21 +86,21 @@ Suggested future edits for this card: add a short project summary, describe the 
     "animations-04": {
       id: "animations-04",
       category: "Animations",
-      title: "Echo Frame Study",
-      link: "",
+      title: "DEADEnd Job",
+      link: "https://drive.google.com/file/d/12UjXyz0qIa0qGeBAHA-Yqa8bEP93UEXS/view?usp=sharing",
       images: [
         "../projects/animations-04/img1.jpg",
         "../projects/animations-04/img2.jpg",
         "../projects/animations-04/img3.jpg"
       ],
-      description: `Echo Frame Study is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      description: `DEADEnd Job is a stylized narrative animation project developed within IAT 343 Animation at Simon Fraser University. Blending surreal visual storytelling with exaggerated workplace scenarios, the film explores themes of burnout, pressure, and personal agency through the perspective of an overworked office employee trapped inside a psychologically distorted corporate environment.
 
-This project currently uses the three images stored in ../projects/animations-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+The project combines cinematic staging, symbolic environmental design, and character-driven animation to create a darkly humorous but visually grounded narrative experience. Through stylized office spaces, exaggerated authority figures, and surreal transitions between reality and imagination, the animation uses visual metaphor and pacing to communicate emotional exhaustion and workplace anxiety in a more cinematic and story-focused format.
 
-The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
+From a technical perspective, the production explored character modelling, rigging, blendshape workflows, environmental texturing, lighting design, scene organization, and post-production editing pipelines in Autodesk Maya and Adobe Premiere Pro. Particular attention was placed on maintaining stylized character performance, visual continuity, and controlled cinematic composition while balancing rendering limitations, animation polish, and large-scale scene management across the production pipeline.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
-      text: `Echo Frame Study is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      text: `DEADEnd Job is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
 This project currently uses the three images stored in ../projects/animations-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
@@ -112,21 +112,21 @@ Suggested future edits for this card: add a short project summary, describe the 
     "animations-05": {
       id: "animations-05",
       category: "Animations",
-      title: "Velvet Corridor Motion",
-      link: "",
+      title: "Pot Bound: The Turnish Relay",
+      link: "https://drive.google.com/file/d/1Ij6MyLEmH3Qycy23aXXWAKYHZOUAPlVO/view?usp=sharing",
       images: [
         "../projects/animations-05/img1.jpg",
         "../projects/animations-05/img2.jpg",
         "../projects/animations-05/img3.jpg"
       ],
-      description: `Velvet Corridor Motion is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      description: `Pot Bound: The Turnish Relay is a stylized character-driven animation project developed within IAT 343 Animation at Simon Fraser University during Spring 2026. Built around a playful rivalry between a turnip and a radish competing to reach a pot of soup first, the project combines comedic timing, exaggerated environmental scale, and soft cinematic storytelling within a fully stylized kitchen environment.
 
-This project currently uses the three images stored in ../projects/animations-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+The animation focuses heavily on expressive character movement, visual humor, and environmental interaction through obstacle-based action sequences, oversized props, and cartoon-inspired pacing. Using a softer pastel-based visual direction, the production emphasizes cohesive art direction, approachable character design, and rhythm-driven scene progression to create a lighthearted but visually polished animated short with strong appeal toward stylized entertainment and commercial animation aesthetics.
 
-The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
+From a technical perspective, the project explored stylized modelling, character rigging, environmental texturing, lighting design, camera choreography, and animation workflows developed in Autodesk Maya and Adobe Premiere Pro. Particular attention was placed on maintaining visual consistency across props, environments, and materials while balancing comedic staging, exaggerated scale relationships, and cinematic readability throughout the animation pipeline.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
-      text: `Velvet Corridor Motion is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
+      text: `Pot Bound: The Turnish Relay is a stylized character-driven animation project developed within IAT 343 Animation at Simon Fraser University during Spring 2026. Built around a playful rivalry between a turnip and a radish competing to reach a pot of soup first, the project combines comedic timing, exaggerated environmental scale, and soft cinematic storytelling within a fully stylized kitchen environment.
 
 This project currently uses the three images stored in ../projects/animations-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
