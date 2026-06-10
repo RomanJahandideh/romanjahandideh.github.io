@@ -215,6 +215,7 @@
       if (document.body.classList.contains("modal-open")) return;
       if (document.querySelector && document.querySelector("#gallery-overlay.is-open")) return;
       if (document.body.classList.contains("teaching-detail-open")) return;
+      if (document.querySelector && document.querySelector("#services-panel.is-open")) return;
       if (_transitioning) return;
 
       var t  = e.changedTouches[0];
