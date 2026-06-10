@@ -176,10 +176,8 @@
 
       window.__portfolioTilt = shared;
 
-      if (!window.matchMedia("(pointer: coarse)").matches) {
-        armGesturePermission(shared);
-        shared.requestPermission();
-      }
+      armGesturePermission(shared);
+      shared.requestPermission();
 
       return shared;
     };
@@ -337,11 +335,7 @@
     const go = document.getElementById("gallery-overlay");
     return go ? go.classList.contains("is-open") : false;
   };
-  const isServicesPanelOpen = () => {
-    const sp = document.getElementById("services-panel");
-    return sp ? sp.classList.contains("is-open") : false;
-  };
-  const isPanelOpen = () => isHashPanelOpen() || isWorkLockedOpen() || isTeachingDetailOpen() || isGalleryOverlayOpen() || isServicesPanelOpen();
+  const isPanelOpen = () => isHashPanelOpen() || isWorkLockedOpen() || isTeachingDetailOpen() || isGalleryOverlayOpen();
 
   const closeTeachingDetail = () => {
     if (!teaching.overlay) return;

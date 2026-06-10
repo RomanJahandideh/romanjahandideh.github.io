@@ -20,7 +20,6 @@
 <link rel="stylesheet" href="work/assets/css/gallery.css" />
 <link rel="stylesheet" href="assets/css/home-clouds.css" />
 <link rel="stylesheet" href="assets/css/transitions.css" />
-<link rel="stylesheet" href="assets/css/services.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 
@@ -86,10 +85,6 @@
   <p class="role">
     Graphic Designer | Scene & Spatial Design
   </p>
-
-  <button id="services-btn" aria-haspopup="dialog" aria-controls="services-panel">
-    Services
-  </button>
 
   <div id="floating-statement">
     USE THE LIGHT TO EXPLORE THE SCENE.
@@ -323,153 +318,6 @@ scene development.
 
 </main>
 
-<!-- ================= SERVICES PANEL ================= -->
-
-<div id="services-panel"
-     role="dialog"
-     aria-modal="true"
-     aria-label="Services offered by Roman Jahandideh"
-     aria-hidden="true">
-
-  <div class="services-panel-inner">
-
-    <div class="services-panel-header">
-      <h2 class="services-panel-title">Services</h2>
-      <button class="services-close-btn" id="services-close-btn" aria-label="Close services panel">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        Close
-      </button>
-    </div>
-
-    <div class="services-grid" id="services-grid">
-
-      <!-- 1 · Advertisement Graphic Design ─────────────── -->
-      <div class="service-card"
-           data-service="0"
-           tabindex="0"
-           role="button"
-           aria-expanded="false"
-           aria-label="Advertisement Graphic Design — click to read more">
-        <div class="service-img-wrap">
-          <img
-            src="ARTWORKS/advertiment%20Graphic%20design/44.jpg"
-            alt="Advertisement graphic design poster — large-scale illustration with restrained typography"
-            class="service-img"
-          />
-          <div class="service-label-wrap" aria-hidden="true">
-            <span class="service-num">01</span>
-            <span class="service-name">Advertisement Graphic Design</span>
-          </div>
-        </div>
-        <div class="service-detail" aria-hidden="true">
-          <div class="service-detail-inner">
-            <p class="service-desc">Brands need a visual identity that stays consistent everywhere it appears, from a single social post to a full campaign. I build complete graphic systems: logo and brand identity, typography, color, layout, iconography, and ready to publish marketing assets that hold together across print and digital.</p>
-            <button class="service-work-btn" data-category="Graphic Design" aria-label="View graphic design work samples">View Work</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2 · Video and Advertisement Video ────────────── -->
-      <div class="service-card"
-           data-service="1"
-           tabindex="0"
-           role="button"
-           aria-expanded="false"
-           aria-label="Video and Advertisement Video — click to read more">
-        <div class="service-img-wrap">
-          <img
-            src="ARTWORKS/ruby.png"
-            alt="Cinematic 3D character render — Ruby in a soft atmospheric garden room, demonstrating video and animation production quality"
-            class="service-img"
-          />
-          <div class="service-label-wrap" aria-hidden="true">
-            <span class="service-num">02</span>
-            <span class="service-name">Video and Advertisement Video</span>
-          </div>
-        </div>
-        <div class="service-detail" aria-hidden="true">
-          <div class="service-detail-inner">
-            <p class="service-desc">Audiences scroll fast, so a brand has only a few seconds to land its message. I create advertisement videos and motion graphics from concept to final cut, blending 3D animation, editing, and visual storytelling into content that holds attention and moves people to act.</p>
-            <button class="service-work-btn" data-category="Animation" aria-label="View animation and video work samples">View Work</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 · Web Design ────────────────────────────────── -->
-      <div class="service-card"
-           data-service="2"
-           tabindex="0"
-           role="button"
-           aria-expanded="false"
-           aria-label="Web Design — click to read more">
-        <div class="service-img-wrap">
-          <img
-            src="https://cdna.artstation.com/p/assets/images/images/099/639/606/large/roman-jahandideh-image-15.jpg"
-            alt="Eight — procedural spider with inverse kinematics, an interactive web experiment built with D3.js"
-            class="service-img"
-          />
-          <div class="service-label-wrap" aria-hidden="true">
-            <span class="service-num">03</span>
-            <span class="service-name">Web Design</span>
-          </div>
-        </div>
-        <div class="service-detail" aria-hidden="true">
-          <div class="service-detail-inner">
-            <p class="service-desc">A brand often meets its audience first through its website. I design clean and on brand web experiences built around clear visual hierarchy and an easy journey, so visitors understand the brand quickly and act with confidence.</p>
-            <button class="service-work-btn" data-category="Web Design" aria-label="View web design work samples">View Work</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 · AI Marketing Automation ──────────────────── -->
-      <div class="service-card"
-           data-service="3"
-           tabindex="0"
-           role="button"
-           aria-expanded="false"
-           aria-label="AI Marketing Automation — click to read more">
-        <div class="service-img-wrap">
-          <img
-            src="ARTWORKS/Gra%5Bhic%20designs/12.png"
-            alt="Learn AI Generated Images workshop poster — Turn Imagination Into Reality, creative tools and limitless possibilities"
-            class="service-img"
-          />
-          <div class="service-label-wrap" aria-hidden="true">
-            <span class="service-num">04</span>
-            <span class="service-name">AI Marketing Automation</span>
-          </div>
-        </div>
-        <div class="service-detail" aria-hidden="true">
-          <div class="service-detail-inner">
-            <p class="service-desc">Marketing teams are pushed to produce more in less time. I bring AI into the creative pipeline, generating and refining visual assets, building prompt driven workflows, and automating repetitive design and content tasks, so campaigns ship faster while staying high in quality.</p>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /services-grid -->
-
-    <!-- Mobile-only description pane (populated by JS on ≤768px) -->
-    <div class="services-mobile-pane" id="services-mobile-pane">
-      <div class="services-mobile-pane-inner">
-        <p id="services-mobile-desc">Tap a service above to learn more.</p>
-        <button class="service-work-btn" id="services-mobile-work-btn" style="display:none" aria-label="View work samples">View Work</button>
-      </div>
-    </div>
-
-  </div><!-- /services-panel-inner -->
-
-</div><!-- /services-panel -->
-
-<!-- Back to Services button — shown after navigating to Work via View Work -->
-<button id="services-back-btn" aria-label="Back to Services panel">
-  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-    <path d="M6.5 1.5L2 5 6.5 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  Services
-</button>
-
 <!-- GSAP 3.15 — animation engine -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
@@ -637,7 +485,6 @@ scene development.
 <script src="work/assets/js/gallery.js"></script>
 <script src="assets/js/home-clouds.js"></script>
 <script src="assets/js/transitions.js"></script>
-<script src="assets/js/services.js"></script>
 
 <script>
 (function(){

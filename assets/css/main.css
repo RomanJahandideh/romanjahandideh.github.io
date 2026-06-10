@@ -63,7 +63,7 @@
 
   /* ===== Eyes placement ===== */
   --eyes-x: 50%;
-  --eyes-y: calc(50% - 195px);
+  --eyes-y: calc(50% - 80px);
   --eyes-scale: 1.0;
 
   /* Eye size */
@@ -698,7 +698,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
     font-size: 10px;
     letter-spacing: 0.18em;
   }
-  :root{ --eye-size: 70px; --eyes-y: calc(50% - 155px); }
+  :root{ --eye-size: 70px; }
 }
 
 /* =========================================================
@@ -1729,11 +1729,6 @@ body[data-mode="teaching"] #bg {
   .panel-inner h2 {
     font-size: 20px;
   }
-}
-
-/* ── Mobile: hide spider web (Fix 6) ────────────────────── */
-@media (max-width: 900px) {
-  #home-spiderweb-canvas { display: none !important; }
 }
 
 /* ── Touch: remove hover-only magnetic effects ───────────── */
