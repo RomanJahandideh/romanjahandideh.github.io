@@ -1265,7 +1265,17 @@ jitter: 0.35,
   layers.forEach(layer => {
     layer.addEventListener("click", () => {
       const category = layer.dataset.category || "Projects";
-      enterGraphMode(category, layer);
+      if (window.PORTFOLIO_GALLERY && typeof window.PORTFOLIO_GALLERY.open === "function") {
+        window.PORTFOLIO_GALLERY.open(category);
+      } else {
+        enterGraphMode(category, layer);
+      }
+    });
+    layer.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        layer.click();
+      }
     });
   });
 

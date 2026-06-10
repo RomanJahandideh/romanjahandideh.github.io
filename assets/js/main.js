@@ -331,7 +331,11 @@
 
   const isTeachingDetailOpen = () => body.classList.contains("teaching-detail-open");
 
-  const isPanelOpen = () => isHashPanelOpen() || isWorkLockedOpen() || isTeachingDetailOpen();
+  const isGalleryOverlayOpen = () => {
+    const go = document.getElementById("gallery-overlay");
+    return go ? go.classList.contains("is-open") : false;
+  };
+  const isPanelOpen = () => isHashPanelOpen() || isWorkLockedOpen() || isTeachingDetailOpen() || isGalleryOverlayOpen();
 
   const closeTeachingDetail = () => {
     if (!teaching.overlay) return;
@@ -708,10 +712,20 @@
     const TRIGGER = 18;
     if (Math.abs(dy) < TRIGGER) return;
 
-    if (dy > 0) stepMode(1);
-    else if (dy < 0) stepMode(-1);
+    /* Route through transition engine if available */
+    const dir   = dy > 0 ? 1 : -1;
+    const cur   = getMode();
+    const idx   = MODE_ORDER.indexOf(cur);
+    const next  = MODE_ORDER[(idx + dir + MODE_ORDER.length) % MODE_ORDER.length];
 
-    lockUntil = now + 650;
+    if (typeof window._triggerModeTransition === "function") {
+      window._triggerModeTransition(next, null, {});
+    } else {
+      stepMode(dir);
+    }
+
+    /* Extend lock to cover full curtain sweep (~1.1s) */
+    lockUntil = now + 1150;
   }, { passive: true, capture: true });
 
   // =========================================================

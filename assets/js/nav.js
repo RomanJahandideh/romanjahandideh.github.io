@@ -90,7 +90,13 @@
         const mode = link.dataset.modeLink;
         if (!window.PortfolioModes || typeof window.PortfolioModes.setMode !== "function") return;
         e.preventDefault();
-        window.PortfolioModes.setMode(mode, { writeHash: mode === "teaching" });
+        const opts = { writeHash: mode === "teaching" };
+        /* Use transition engine when available, fallback to direct switch */
+        if (typeof window._triggerModeTransition === "function") {
+          window._triggerModeTransition(mode, null, opts);
+        } else {
+          window.PortfolioModes.setMode(mode, opts);
+        }
       });
     });
 

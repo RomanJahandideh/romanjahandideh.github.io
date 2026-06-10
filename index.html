@@ -17,12 +17,45 @@
 <link rel="stylesheet" href="work/assets/css/work-card.css" />
 <link rel="stylesheet" href="work/assets/css/work-cards-d3.css" />
 <link rel="stylesheet" href="work/assets/css/stage3-modal.css" />
+<link rel="stylesheet" href="work/assets/css/gallery.css" />
+<link rel="stylesheet" href="assets/css/home-clouds.css" />
+<link rel="stylesheet" href="assets/css/transitions.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 
 <body data-mode="home" class="mode-home">
 
 <div id="bg"></div>
+
+<!-- ── Mode transition curtain ── -->
+<div id="mode-curtain" aria-hidden="true">
+  <div class="curtain-face">
+    <span class="curtain-label"></span>
+  </div>
+</div>
+
+<!-- ── Mode indicator dots ── -->
+<div id="mode-indicator" aria-hidden="true">
+  <div class="mode-dot-wrap" data-mode="home" title="Home" aria-label="Go to Home">
+    <div class="mode-dot"></div>
+    <span class="mode-dot-label">Home</span>
+  </div>
+  <div class="mode-dot-wrap" data-mode="work" title="Work" aria-label="Go to Work">
+    <div class="mode-dot"></div>
+    <span class="mode-dot-label">Work</span>
+  </div>
+  <div class="mode-dot-wrap" data-mode="teaching" title="Teaching" aria-label="Go to Teaching">
+    <div class="mode-dot"></div>
+    <span class="mode-dot-label">Teaching</span>
+  </div>
+</div>
+
+<canvas id="fog-trail-canvas" aria-hidden="true"></canvas>
 <canvas id="home-spiderweb-canvas"></canvas>
+
+<!-- Cloud layer — GSAP animated, repelled by mouse -->
+<div id="cloud-layer" aria-hidden="true"></div>
+
 
 <div id="site-nav"></div>
 
@@ -194,6 +227,19 @@ scene development.
               </span>
             </a>
 
+            <!-- ArtStation -->
+            <a class="contact-link" role="listitem" href="https://romanjahandideh.artstation.com" target="_blank" rel="noopener">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.401-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.129-1.268H8.45L22.549 22c.906-.545 1.451-1.534 1.451-2.252zm-10.444-1.338-3.556-5.797-3.556 5.797h7.112z"/>
+                </svg>
+              </span>
+              <span class="text">
+                <span class="label">ArtStation</span>
+                <span class="meta">Full portfolio</span>
+              </span>
+            </a>
+
             <!-- GitHub -->
             <a class="contact-link" role="listitem" href="https://github.com/RomanJahandideh" target="_blank" rel="noopener">
               <span class="icon" aria-hidden="true">
@@ -233,28 +279,28 @@ scene development.
 
         <div class="one-div" id="main-stack">
 
-          <a class="layer layer1" data-category="Animations">
-            <div class="label">Animations</div>
+          <a class="layer layer1" data-category="Animation" role="button" tabindex="0" aria-label="Browse Animation">
+            <div class="label">Animation</div>
           </a>
 
-          <a class="layer layer2" data-category="Graphic Design">
+          <a class="layer layer2" data-category="Concept Art" role="button" tabindex="0" aria-label="Browse Concept Art">
+            <div class="label">Concept Art</div>
+          </a>
+
+          <a class="layer layer3" data-category="Font Design" role="button" tabindex="0" aria-label="Browse Font Design">
+            <div class="label">Font Design</div>
+          </a>
+
+          <a class="layer layer4" data-category="Graphic Design" role="button" tabindex="0" aria-label="Browse Graphic Design">
             <div class="label">Graphic Design</div>
           </a>
 
-          <a class="layer layer3" data-category="Architecture Design">
-            <div class="label">Architecture Design</div>
+          <a class="layer layer5" data-category="Design Process" role="button" tabindex="0" aria-label="Browse Design Process">
+            <div class="label">Design Process</div>
           </a>
 
-          <a class="layer layer4" data-category="Game Design">
-            <div class="label">Game Design</div>
-          </a>
-
-          <a class="layer layer5" data-category="Articles">
-            <div class="label">Articles</div>
-          </a>
-
-          <a class="layer layer6" data-category="UI/UX Design">
-            <div class="label">UI/UX Design</div>
+          <a class="layer layer6" data-category="Web Design" role="button" tabindex="0" aria-label="Browse Web Design">
+            <div class="label">Web Design</div>
           </a>
 
         </div>
@@ -263,7 +309,7 @@ scene development.
       <div id="graph-container"></div>
 
       <p class="work-hint">
-        Hover a layer to reveal its label. Click to explore.
+        Click any sphere to browse that category.
       </p>
 
     </div>
@@ -272,10 +318,17 @@ scene development.
 
 </main>
 
+<!-- GSAP 3.15 — animation engine -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<!-- GLightbox — fullscreen image lightbox -->
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+
 <script src="assets/js/home-spiderweb.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/nav.js"></script>
 <script src="assets/js/teaching-overlay-redesign.js"></script>
+<script src="assets/js/home-fog-trail.js"></script>
 
 <script src="https://d3js.org/d3.v3.min.js"></script>
 
@@ -428,6 +481,10 @@ scene development.
 
 <script src="work/assets/js/stage3-modal.js"></script>
 <script src="work/assets/js/work-d3-interaction.js"></script>
+<script src="work/assets/js/gallery-data.js"></script>
+<script src="work/assets/js/gallery.js"></script>
+<script src="assets/js/home-clouds.js"></script>
+<script src="assets/js/transitions.js"></script>
 
 <script>
 (function(){

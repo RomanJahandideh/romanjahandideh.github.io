@@ -1,0 +1,798 @@
+/*
+ * GALLERY DATA
+ * ============
+ * One entry per project. Model: { title, caption, description, image [, video] }
+ * Paths are relative to site root (where index.html lives).
+ * Spaces in paths are encoded as %20, [ as %5B.
+ * If `video` is present, the card shows a looping video thumbnail and
+ * the detail panel shows a <video controls> player.
+ */
+
+window.GALLERY_DATA = {
+
+  /* ── ANIMATION ──────────────────────────────────────────────── */
+  "Animation": {
+    artworks: [
+      {
+        title: "Record Player Advertisement",
+        caption: "3D Animation · Maya · Arnold · 2025",
+        description: "APOLLO LM-IX — a stylized commercial animation combining cinematic product presentation, rhythm-driven editing, and dynamic transitions across space, architecture, and domestic environments.",
+        youtube: "BOuyoCzOJN4"
+      },
+      {
+        title: "Capturing Love",
+        caption: "3D Animation · Maya · Premiere · 2025",
+        description: "A character-driven short animation exploring an intimate moment between two figures. Emotionally directed lighting, soft performance, and considered sound design.",
+        youtube: "aZH7YBxdroY"
+      },
+      {
+        title: "DEADEnd Job",
+        caption: "3D Animation · Maya · Premiere · 2025",
+        description: "A stylized narrative animation blending surreal workplace scenarios with darkly humorous storytelling. Explores burnout and personal agency through a psychologically distorted corporate environment.",
+        youtube: "HNwTjoDWUSs"
+      },
+      {
+        title: "Pot Bound: The Turnish Relay",
+        caption: "3D Animation · Maya · Premiere · 2026",
+        description: "A character-driven animation featuring a playful rivalry between a turnip and a radish racing to reach a pot of soup. Soft pastel visual direction, comedic timing, and expressive environmental interaction.",
+        youtube: "zwZWpo5eTeA"
+      },
+      {
+        title: "The Puppet Show",
+        caption: "3D Animation · Maya · Premiere · 2025",
+        description: "A theatrical short animation exploring performance, illusion, and the relationship between performer and audience through a puppet-show visual metaphor.",
+        youtube: "cghHGHhzkQw"
+      },
+      {
+        title: "Under Pressure",
+        caption: "3D Animation · Maya · Arnold · 2025",
+        description: "A high-energy music-video-style animation — two rival thieves compete to steal a diamond. Fast-paced, neon-lit, synchronized to music with cinematic action choreography.",
+        youtube: "HrLExedxVz8"
+      },
+      {
+        title: "Paper Plane",
+        caption: "3D Animation · Maya · Premiere · 2025",
+        description: "A contemplative short following a paper airplane through shifting environments — exploring themes of momentum, gravity, and the quiet resilience of something fragile navigating a complex world.",
+        youtube: "DklnIDo6IGE"
+      },
+      {
+        title: "Rubies Oil Problem",
+        caption: "3D Animation · Maya · Arnold · 2025",
+        description: "A visually striking short exploring the collision between natural beauty and industrial weight — rubies and oil as contrasting symbols of desire, extraction, and environmental consequence.",
+        youtube: "HcWX-vgSrlY"
+      }
+    ]
+  },
+
+  /* ── CONCEPT ART ────────────────────────────────────────────── */
+  "Concept Art": {
+    artworks: [
+      {
+        title: "Ruby — Garden Room",
+        caption: "CG Character · Maya · Arnold · 2025",
+        description: "Ruby, a decommissioned service robot, watches a butterfly drift through a mist-filled room. Soft atmospheric light and intimate scale create a quietly melancholic narrative.",
+        image: "ARTWORKS/ruby.png"
+      },
+      {
+        title: "Ruby — Noir",
+        caption: "CG Character · Maya · Arnold · 2025",
+        description: "Ruby framed in a dark moody portrait — cigarette in hand, low-key lighting, and a graphic chequered background. Character design exploring personality through environment and stillness.",
+        image: "ARTWORKS/27f879131992509.619fd36f4f170.png"
+      },
+      {
+        title: "Ruby — Wasteland",
+        caption: "CG Character · Maya · Arnold · 2025",
+        description: "Full-body character render — Ruby standing in a smoke-filled environment against a chequered floor. Cinematic composition balancing character detail with environmental storytelling.",
+        image: "ARTWORKS/7e11b4132239739.61a5426d35e61.jpg"
+      },
+      {
+        title: "Ruby — Rust",
+        caption: "CG Character · Maya · Arnold · 2025",
+        description: "Ruby perched on a rusted red car in a post-apocalyptic landscape. Warm dust-light and surface aging techniques communicate the passage of time and the robot's displacement.",
+        image: "ARTWORKS/ddc242131939163.619ee8ca528ba.jpg"
+      },
+      {
+        title: "Postcards from Future Iran",
+        caption: "3D Environment · Maya · Arnold · NFT · 2025",
+        description: "A retrofuturistic world where Iranian cultural memory collides with abandoned technology and imagined futures. Environments built in Maya and rendered with Arnold — exploring nostalgia, displacement, and speculative urbanism.",
+        image: "ARTWORKS/17942236030628794.webp"
+      },
+      {
+        title: "Frog's Globe",
+        caption: "CG Art · Cinema 4D · Arnold · NFT",
+        description: "A small frog inhabits a glass globe filled with fantasy vegetation. Macro scale, soft volumetric light, and meticulous detail — a self-contained world enclosed in glass.",
+        image: "ARTWORKS/17942891455749390.webp"
+      },
+      {
+        title: "Dinovic",
+        caption: "CG Art · Cinema 4D · Arnold · NFT",
+        description: "A ceramic-glazed dinosaur character displayed on a wooden plinth. Sculpture-like surface treatment and studio lighting draw attention to form, texture, and character personality.",
+        image: "ARTWORKS/Dinovic.jpeg"
+      },
+      {
+        title: "Frog's Castle",
+        caption: "CG Art · Cinema 4D · Arnold · NFT",
+        description: "A medieval wooden village environment built as a diorama on a wooden plinth. Whimsical world-building where architecture and material craft create a self-contained narrative.",
+        image: "ARTWORKS/Frogs%20castle.jpeg"
+      },
+      {
+        title: "The Old Cook",
+        caption: "CG Art · Cinema 4D · Arnold · NFT",
+        description: "A grotesque yet endearing cook character with a steaming cauldron. Dark humour through character design — exaggerated proportions, expressive pose, and controlled environmental storytelling.",
+        image: "ARTWORKS/The%20old%20cook.jpeg"
+      },
+      {
+        title: "The Old Detective Cat",
+        caption: "CG Art · Cinema 4D · Arnold · NFT",
+        description: "A detective cat observing a miniature world of architectural elements and characters. Scale contrast and cinematic lighting create a playful yet mysterious visual environment.",
+        image: "ARTWORKS/The%20old%20detective%20cat.jpeg"
+      },
+      {
+        title: "The Pirate",
+        caption: "CG Art · Cinema 4D · Arnold · NFT",
+        description: "A pirate ship diorama on a sculpted plinth. Also used as the background image of this portfolio's main page. Produced with Cinema 4D, Arnold, Photoshop, and Lightroom.",
+        image: "ARTWORKS/The%20pirate.jpeg"
+      }
+    ]
+  },
+
+  /* ── FONT DESIGN ────────────────────────────────────────────── */
+  "Font Design": {
+    artworks: [
+      {
+        title: "Flow",
+        caption: "Display Typeface · Illustrator · 2025",
+        description: "Flow — a casual handwritten display typeface with organic, expressive letterforms. Applied across lifestyle merchandise to demonstrate versatility and character.",
+        image: "ARTWORKS/Font%20design/1.png"
+      },
+      {
+        title: "Drift",
+        caption: "Display Typeface · Illustrator · 2025",
+        description: "Drift — a flowing handwritten typeface with natural, expressive strokes and a sense of effortless movement. Designed for lifestyle, fashion, and editorial applications.",
+        image: "ARTWORKS/Font%20design/2.png"
+      },
+      {
+        title: "Sway · Nomad · Vertex · Pulse",
+        caption: "Font Collection · Illustrator · 2025",
+        description: "Four complementary typefaces — handwritten, all-caps serif, geometric sans, and condensed bold — demonstrated across apparel, drinkware, tote bags, and notebooks.",
+        image: "ARTWORKS/Font%20design/3.png"
+      },
+      {
+        title: "Echo · Glitch · Fray · Melt",
+        caption: "Font Collection · Illustrator · 2025",
+        description: "Four expressive typefaces spanning casual handwritten to distressed irregular styles. Each with a distinct visual personality, shown applied to everyday objects.",
+        image: "ARTWORKS/Font%20design/4.png"
+      },
+      {
+        title: "Nocturne · River · Crumble · Aero",
+        caption: "Font Collection · Illustrator · 2025",
+        description: "A four-typeface set covering a range of expressive territories — from elegant refined forms to distressed textures to clean geometric construction.",
+        image: "ARTWORKS/Font%20design/5.png"
+      },
+      {
+        title: "Tide · Breach · North · Whale — Vol. I",
+        caption: "Font Collection · Illustrator · 2025",
+        description: "A nature-themed geometric typeface collection inspired by ocean and coastal environments. Bold, structured letterforms with a raw, elemental character.",
+        image: "ARTWORKS/Font%20design/6.png"
+      },
+      {
+        title: "Tide · Breach · North · Whale — Vol. II",
+        caption: "Font Collection · Illustrator · 2025",
+        description: "Extended presentation of the coastal typeface series — alternative applications and mockups highlighting adaptability across formats and surfaces.",
+        image: "ARTWORKS/Font%20design/7.png"
+      },
+      {
+        title: "Glacier · Loon · Pine · Northstar+",
+        caption: "Font Collection · Illustrator · 2025",
+        description: "Wilderness-inspired typeface collection — clean, modern forms evoking outdoor environments, exploration, and the Canadian landscape. Applied across apparel, drinkware, tote bags, and print.",
+        image: "ARTWORKS/Font%20design/8.png"
+      },
+      {
+        title: "Canada — Typeface Family I",
+        caption: "Typeface Family · Illustrator · 2025",
+        description: "Canada — a bold multilingual type system presented in four variant groups. This sheet features strong condensed and editorial display weights applied to apparel and branded goods.",
+        image: "ARTWORKS/Font%20design/9.png"
+      },
+      {
+        title: "Canada — Typeface Family II",
+        caption: "Typeface Family · Illustrator · 2025",
+        description: "Canada typeface family — second weight group. Clean geometric, script, and condensed variants shown across lifestyle merchandise.",
+        image: "ARTWORKS/Font%20design/10.png"
+      },
+      {
+        title: "Canada — Typeface Family III",
+        caption: "Typeface Family · Illustrator · 2025",
+        description: "Canada typeface family — third variant group featuring additional weights and stylistic alternates. Demonstrating range across fashion and print applications.",
+        image: "ARTWORKS/Font%20design/11.png"
+      },
+      {
+        title: "North Wild · True North · Limitless · Break Rules",
+        caption: "Character Type System · Illustrator · 2025",
+        description: "Four personality-driven typefaces — The Explorer, The Thinker, The Dreamer, The Rebel. Each font embodies a distinct character archetype, shown with full character sets.",
+        image: "ARTWORKS/Font%20design/12.png"
+      },
+      {
+        title: "North Untamed · True North · Limitless · Break Rules — Extended",
+        caption: "Character Type System · Illustrator · 2025",
+        description: "Detailed character presentation of the North type family. Raw, structured, fluid, and disruptive typographic voices — shown in full character sets and landscape photography applications.",
+        image: "ARTWORKS/Font%20design/13.png"
+      },
+      {
+        title: "North Untamed · True North · Limitless · Break Rules — Dark",
+        caption: "Character Type System · Illustrator · 2025",
+        description: "Dark mockup series for the North/True North/Limitless/Break Rules type family — applied to hats, water bottles, tote bags, and skateboards in a high-contrast editorial style.",
+        image: "ARTWORKS/Font%20design/14.png"
+      },
+      {
+        title: "Canada — Lifestyle Series I",
+        caption: "Typeface Family · Illustrator · 2025",
+        description: "Canada typeface family applied to lifestyle and fashion accessories — water bottle, tote bag, baseball cap, and notebook. Demonstrating versatility across product categories.",
+        image: "ARTWORKS/Font%20design/15.png"
+      },
+      {
+        title: "Canada — Lifestyle Series II",
+        caption: "Typeface Family · Illustrator · 2025",
+        description: "Canada typeface in lowercase and mixed-case applications. Clean, contemporary product mockups showing a softer, more approachable side of the typeface family.",
+        image: "ARTWORKS/Font%20design/16.png"
+      },
+      {
+        title: "Canada — Lifestyle Series III",
+        caption: "Typeface Family · Illustrator · 2025",
+        description: "Canada typeface family in another lifestyle context — accessories and fashion items in a neutral tonal palette, emphasising the type's adaptability to minimal brand environments.",
+        image: "ARTWORKS/Font%20design/17.png"
+      },
+      {
+        title: "Canada — Lifestyle Series IV",
+        caption: "Typeface Family · Illustrator · 2025",
+        description: "Canada typeface applied to natural and sculptural objects — a stone fragment, incense holder, bonsai tree, and suspension lamp. A serene, editorial lifestyle presentation.",
+        image: "ARTWORKS/Font%20design/18.png"
+      },
+      {
+        title: "Wrath · Fluxe · Thorn · Onyr",
+        caption: "Font Collection · Illustrator · 2025",
+        description: "Four dark, experimental typefaces for editorial and music branding — distressed brush strokes, liquefied letterforms, sharp serifs, and occult-adjacent geometry. Applied to skateboards, bottles, bags, and phone cases.",
+        image: "ARTWORKS/Font%20design/19.png"
+      }
+    ]
+  },
+
+  /* ── GRAPHIC DESIGN ─────────────────────────────────────────── */
+  "Graphic Design": {
+    artworks: [
+
+      /* — SFU Vancouver series (Gra[hic designs folder) — */
+      {
+        title: "Senior Design Leader",
+        caption: "Self-Promotion · Poster · SFU · 2025",
+        description: "Personal brand positioning poster — establishing the role of a senior design leader through bold typography, urban photography, and authoritative visual language.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/1.png"
+      },
+      {
+        title: "Vancouver Downtown — Stories in the Dark",
+        caption: "Photo Editorial · SFU · 2025",
+        description: "A visual exploration of contrast, culture, and the quiet beauty hidden in plain sight — Vancouver after dark. Photography and graphic design by Roman Jahandideh, produced at Simon Fraser University.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/2.png"
+      },
+      {
+        title: "SFU Design Series — 03",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Part of a personal graphic design series produced at Simon Fraser University — exploring Vancouver as a subject through photography and typographic composition.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/3.png"
+      },
+      {
+        title: "Fragments of Downtown",
+        caption: "Photo Editorial · SFU · 2025",
+        description: "A visual journey through Vancouver after dark — photographs and graphic design by Roman Jahandideh, exploring the city's atmospheric, layered character through light and shadow.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/4.png"
+      },
+      {
+        title: "SFU Design Series — 05",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Part of a personal graphic design series produced at Simon Fraser University — merging editorial photography with typographic narrative about Vancouver and urban life.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/5.png"
+      },
+      {
+        title: "Shaped by Stories",
+        caption: "Photo Editorial · SFU · 2025",
+        description: "A visual narrative of Vancouver's architecture, culture, and everyday life — seeing the city differently. Photography and design by Roman Jahandideh at Simon Fraser University.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/6.png"
+      },
+      {
+        title: "SFU Design Series — 07",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Editorial poster from the SFU Vancouver series — combining documentary photography with structured typographic layout to communicate place and identity.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/7.png"
+      },
+      {
+        title: "Time Stops, Stories Remain",
+        caption: "Photo Editorial · SFU · 2025",
+        description: "GASTOWN — Historic Heart, Timeless Stories. A poster anchored around the iconic steam clock, blending painterly texture with bold typographic contrast.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/8.png"
+      },
+      {
+        title: "SFU Design Series — 09",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Part of the SFU Vancouver design series — exploring the intersection of documentary photography and editorial graphic design in the context of urban storytelling.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/9.png"
+      },
+      {
+        title: "SFU Design Series — 10",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Vancouver-based editorial poster design — photography and graphic layout produced as part of the Simon Fraser University design portfolio series.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/10.png"
+      },
+      {
+        title: "Learn AI Generated Images",
+        caption: "Workshop Poster · SFU · 2025",
+        description: "Workshop and tutorial promotional design — Turn Imagination Into Reality. Creative Tools, Limitless Possibilities. Tutor and graphic designer Roman Jahandideh, Simon Fraser University.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/12.png"
+      },
+      {
+        title: "SFU Design Series — 13",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Editorial poster from the SFU Vancouver design series — typography-led composition combining urban photography with structured information hierarchy.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/13.png"
+      },
+      {
+        title: "SFU Design Series — 14",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Vancouver series poster — merging typographic boldness with photographic texture in an editorial format.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/14.png"
+      },
+      {
+        title: "SFU Design Series — 15",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Part of the Simon Fraser University design portfolio — editorial photography and graphic design exploring Vancouver's visual identity.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/15.png"
+      },
+      {
+        title: "SFU Design Series — 16",
+        caption: "Graphic Design · SFU · 2025",
+        description: "Final poster in the SFU Vancouver series — a typographic and photographic composition reflecting on urban experience and design thinking.",
+        image: "ARTWORKS/Gra%5Bhic%20designs/16.png"
+      },
+
+      /* — Advertisement & Event Posters (advertiment Graphic design folder) — */
+      {
+        title: "Taksim Taşkışla",
+        caption: "Event Identity · Poster · ITU · 2023",
+        description: "Event poster for Taksim Taşkışla — Istanbul Technical University. Bold typographic composition with cultural depth and architectural imagery.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/1.png"
+      },
+      {
+        title: "ITU Event Poster — 02",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Institutional event poster for Istanbul Technical University — combining visual impact with clear communication hierarchy for academic and cultural programming.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/2.png"
+      },
+      {
+        title: "Meeting Day",
+        caption: "Event Identity · Poster · ITU · 2023",
+        description: "Meeting Day — ITU Makine Fakültesi Mekatronik Mühendisliği Kulübü. Surreal collage design merging classical sculpture with architectural photography. Fikirler Paylaşıldıkça Gelişir.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/3.png"
+      },
+      {
+        title: "ITU Event Poster — 04",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Event and workshop promotional poster for Istanbul Technical University — bold, high-contrast graphic design for academic club programming.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/4.png"
+      },
+      {
+        title: "Virtual Landscape Lab",
+        caption: "Workshop Poster · ITU · 2023",
+        description: "Virtual Landscape Lab — ITU Mimarlık Fakültesi, Peyzaj Mimarlığı Bölümü. Dijital araçlarla peyzaj tasarımı ve sunum atölyesi. Surreal collage poster for a digital landscape design workshop.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/5.png"
+      },
+      {
+        title: "ITU Event Poster — 06",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Institutional design for Istanbul Technical University event programming — clear visual hierarchy and bold typographic treatment.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/6.png"
+      },
+      {
+        title: "ITU Event Poster — 07",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Event poster for ITU student club programming — designed for academic and cultural outreach with a bold, contemporary visual language.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/7.png"
+      },
+      {
+        title: "ITU Event Poster — 08",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Academic event promotion poster — Istanbul Technical University. Strong typographic composition for institutional communication.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/8.png"
+      },
+      {
+        title: "ITU Event Poster — 09",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Event design for Istanbul Technical University — balancing visual energy with clear informational structure for student club communication.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/9.png"
+      },
+      {
+        title: "İstanbul Levent",
+        caption: "Editorial Design · Architecture Guide · 2023",
+        description: "İstanbul Levent — NAIBOUR. An architectural guide poster featuring Levent's most notable modern buildings. Bold yellow accent colour, photography, and structured information typography.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/10.png"
+      },
+      {
+        title: "ITU Event Poster — 11",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Promotional event poster for Istanbul Technical University — part of a series of institutional graphic design work for academic clubs and events.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/11.png"
+      },
+      {
+        title: "ITU Event Poster — 12",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Academic event identity design — ITU student club promotional poster with bold typographic and photographic composition.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/12.png"
+      },
+      {
+        title: "ITU Event Poster — 13",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Istanbul Technical University event poster — clear visual communication for academic programming with a contemporary graphic language.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/13.png"
+      },
+      {
+        title: "ITU Event Poster — 14",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Event promotion poster for ITU student programming — balancing institutional identity with engaging visual design.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/14.png"
+      },
+      {
+        title: "ITU Event Poster — 15",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Academic club event poster — Istanbul Technical University. Part of an ongoing series of graphic design work for institutional communication.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/15.png"
+      },
+      {
+        title: "ITU Event Poster — 16",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Event identity design for Istanbul Technical University — typographically driven poster with strong visual hierarchy.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/16.png"
+      },
+      {
+        title: "ITU Event Poster — 17",
+        caption: "Event Design · Poster · ITU · 2023",
+        description: "Final .png format in the ITU poster series — a high-contrast event promotion design for academic and cultural programming.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/17.png"
+      },
+      {
+        title: "Advertisement Design — 18",
+        caption: "Advertising · Poster · 2023",
+        description: "Poster design exploring contrast between geometric restraint and photographic energy — layered composition with strong vertical rhythm.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/18.jpg"
+      },
+      {
+        title: "Advertisement Design — 19",
+        caption: "Advertising · Poster · 2023",
+        description: "Event advertisement built around a central photographic focal point with floating typographic layers — clean spatial hierarchy.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/19.jpg"
+      },
+      {
+        title: "Advertisement Design — 20",
+        caption: "Advertising · Poster · 2023",
+        description: "Minimal promotional layout with a single dominant image, offset headline, and tight grid structure for visual precision.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/20.jpg"
+      },
+      {
+        title: "Advertisement Design — 21",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial poster exploring colour field as both background and compositional device — warm palette, controlled spacing.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/21.jpg"
+      },
+      {
+        title: "Advertisement Design — 22",
+        caption: "Advertising · Poster · 2023",
+        description: "Typography-forward advertisement — oversized display face anchors the layout while photography recedes into the lower register.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/22.jpg"
+      },
+      {
+        title: "Advertisement Design — 23",
+        caption: "Advertising · Poster · 2023",
+        description: "Product and event promotion poster — structured in a diagonal axis to create dynamic tension and visual forward motion.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/23.jpg"
+      },
+      {
+        title: "Advertisement Design — 24",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement design with a split-field composition: image zone and pure typographic zone in deliberate balance.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/24.jpg"
+      },
+      {
+        title: "Advertisement Design — 25",
+        caption: "Advertising · Poster · 2023",
+        description: "Cultural event poster — the human figure becomes a graphic element, silhouetted against a high-contrast background.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/25.jpg"
+      },
+      {
+        title: "Advertisement Design — 26",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial design leveraging negative space as a design tool — restrained layout with maximum visual impact.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/26.jpg"
+      },
+      {
+        title: "Advertisement Design — 27",
+        caption: "Advertising · Poster · 2023",
+        description: "Poster study in layered transparency: overlapping photographic and typographic elements at varied opacities for visual depth.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/27.jpg"
+      },
+      {
+        title: "Advertisement Design — 28",
+        caption: "Advertising · Poster · 2023",
+        description: "Event and product advertisement — circular compositional geometry creates visual containment and a clear focal centre.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/28.jpg"
+      },
+      {
+        title: "Advertisement Design — 29",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement poster with a strict two-colour palette — high-contrast approach delivers clarity at any scale or context.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/29.jpg"
+      },
+      {
+        title: "Advertisement Design — 30",
+        caption: "Advertising · Poster · 2023",
+        description: "Promotional piece built on a three-row grid — title, image, and action zones clearly defined and rhythmically spaced.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/30.jpg"
+      },
+      {
+        title: "Advertisement Design — 31",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial poster exploring texture as a design surface — photographic grain and typographic texture in productive dialogue.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/31.jpg"
+      },
+      {
+        title: "Advertisement Design — 32",
+        caption: "Advertising · Poster · 2023",
+        description: "Event identity poster — bold logotype centred over a full-bleed photograph, with supporting information in a clean footer band.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/32.jpg"
+      },
+      {
+        title: "Advertisement Design — 33",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement design with an asymmetric layout — visual weight distributed off-centre for a dynamic, editorial quality.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/33.jpg"
+      },
+      {
+        title: "Advertisement Design — 34",
+        caption: "Advertising · Poster · 2023",
+        description: "Promotional communication built around a cropped portrait — extreme close-up commands attention, text serves as anchor.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/34.jpg"
+      },
+      {
+        title: "Advertisement Design — 35",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertising poster with a horizontal band composition — distinct zones for image, headline, and detail information.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/35.jpg"
+      },
+      {
+        title: "Advertisement Design — 36",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial and event poster exploring typographic scale as visual hierarchy — one word defines the entire reading experience.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/36.jpg"
+      },
+      {
+        title: "Advertisement Design — 37",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement design using rule lines and structured white space to organise dense information with editorial clarity.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/37.jpg"
+      },
+      {
+        title: "Advertisement Design — 38",
+        caption: "Advertising · Poster · 2023",
+        description: "Event promotion poster — a single bold colour field occupies the composition, type set in reversal for stark contrast.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/38.jpg"
+      },
+      {
+        title: "Advertisement Design — 39",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertising series poster with motion-implied photography — blur effect communicates urgency and kinetic energy.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/39.jpg"
+      },
+      {
+        title: "Advertisement Design — 40",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial poster design combining grid structure with deliberate visual interruption — one element breaks the rule for impact.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/40.jpg"
+      },
+      {
+        title: "Advertisement Design — 41",
+        caption: "Advertising · Poster · 2023",
+        description: "Promotional poster — photography cropped to the edge of the frame, pushing the subject beyond its usual compositional boundary.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/41.jpg"
+      },
+      {
+        title: "Advertisement Design — 42",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement design where colour temperature does the communicative work — warm versus cool zones establish clear visual hierarchy.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/42.jpg"
+      },
+      {
+        title: "Advertisement Design — 43",
+        caption: "Advertising · Poster · 2023",
+        description: "Event poster with a collage sensibility — layered photographic fragments arranged in an intentional, irregular visual grid.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/43.jpg"
+      },
+      {
+        title: "Advertisement Design — 44",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertising design exploring the relationship between large-scale illustration and compact, restrained typographic information.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/44.jpg"
+      },
+      {
+        title: "Advertisement Design — 45",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial poster with full-bleed photography and an ultra-minimal typographic overlay — image-led, text-supported communication.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/45.jpg"
+      },
+      {
+        title: "Advertisement Design — 46",
+        caption: "Advertising · Poster · 2023",
+        description: "Event promotion poster using repeating pattern as background — controlled visual busyness creates premium, textured depth.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/46.jpg"
+      },
+      {
+        title: "Advertisement Design — 47",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement design — headline set in an oversized condensed typeface creates a strong vertical reading axis through the composition.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/47.jpg"
+      },
+      {
+        title: "Advertisement Design — 48",
+        caption: "Advertising · Poster · 2023",
+        description: "Promotional piece exploring monochromatic visual language — a single tonal range unifies image and type into a cohesive whole.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/48.jpg"
+      },
+      {
+        title: "Advertisement Design — 49",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial advertising poster where the product becomes the central compositional axis — an object-as-hero approach.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/49.jpg"
+      },
+      {
+        title: "Advertisement Design — 50",
+        caption: "Advertising · Poster · 2023",
+        description: "Event poster with a strong diagonal composition — photographic subject and text aligned to the same visual vector.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/50.jpg"
+      },
+      {
+        title: "Advertisement Design — 51",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement design built around rhythm — repeated typographic and graphic elements create a visual cadence across the poster.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/51.jpg"
+      },
+      {
+        title: "Advertisement Design — 52",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial poster exploring depth through overlapping planes — foreground type, midground image, and background wash in layers.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/52.jpg"
+      },
+      {
+        title: "Advertisement Design — 53",
+        caption: "Advertising · Poster · 2023",
+        description: "Promotional poster with an editorial, magazine-layout sensibility — grid-conscious design and typographically confident hierarchy.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/53.jpg"
+      },
+      {
+        title: "Advertisement Design — 54",
+        caption: "Advertising · Poster · 2023",
+        description: "Event identity design — logotype and image share equal compositional weight, neither subordinate to the other.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/54.jpg"
+      },
+      {
+        title: "Advertisement Design — 55",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement series poster with a cinematic widescreen crop — letterboxed composition for a dramatic, screen-like visual quality.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/55.jpg"
+      },
+      {
+        title: "Advertisement Design — 56",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial design using a grid overlay as both structural tool and visible design element active within the composition.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/56.jpg"
+      },
+      {
+        title: "Advertisement Design — 57",
+        caption: "Advertising · Poster · 2023",
+        description: "Promotional piece with a geometric abstraction layer over photography — shape and image in productive, unresolved tension.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/57.jpg"
+      },
+      {
+        title: "Advertisement Design — 58",
+        caption: "Advertising · Poster · 2023",
+        description: "Event advertisement poster — expressive display title contrasts with clean sans-serif supporting information in a bold typographic pairing.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/58.jpg"
+      },
+      {
+        title: "Advertisement Design — 59",
+        caption: "Advertising · Poster · 2023",
+        description: "Commercial advertising design exploring the poster format at human scale — body proportion used as a spatial and compositional reference.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/59.jpg"
+      },
+      {
+        title: "Advertisement Design — 60",
+        caption: "Advertising · Poster · 2023",
+        description: "Advertisement series poster — distorted and rotated typographic elements bring kinetic energy to what is otherwise a static format.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/60.jpg"
+      },
+      {
+        title: "Advertisement Design — 61",
+        caption: "Advertising · Poster · 2023",
+        description: "Final poster in the advertisement graphic design series — a resolved synthesis of the series' visual vocabulary into a single confident composition.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/61.jpg"
+      }
+
+    ]
+  },
+
+  /* ── DESIGN PROCESS ─────────────────────────────────────────── */
+  "Design Process": {
+    artworks: [
+      {
+        title: "Ruby — 3D Production Pipeline",
+        caption: "3D Process · Maya · Arnold · 2025",
+        description: "Split-screen view of the Ruby character's Maya production environment alongside the final rendered output. Shows the relationship between viewport geometry and Arnold-rendered result.",
+        image: "ARTWORKS/dbf628133866069.61c86f208111f.jpg"
+      },
+      {
+        title: "Postcards from Future Iran — Concept",
+        caption: "3D Process · Maya · Arnold · 2025",
+        description: "Initial concept development for the Postcards from Future Iran series — establishing the retrofuturistic visual language, narrative direction, and environmental mood.",
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/413/large/roman-jahandideh-image.jpg"
+      },
+      {
+        title: "Postcards from Future Iran — References",
+        caption: "3D Process · Maya · Arnold · 2025",
+        description: "Moodboard and reference gathering stage — identifying architectural precedents, material textures, and lighting references that inform the final environments.",
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/571/large/roman-jahandideh-image-1.jpg"
+      },
+      {
+        title: "Postcards from Future Iran — Blocking",
+        caption: "3D Process · Maya · Arnold · 2025",
+        description: "Environment blocking and spatial layout — establishing proportions, camera positions, and the fundamental geometry of each scene before detailing begins.",
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/659/large/roman-jahandideh-image-2.jpg"
+      },
+      {
+        title: "Postcards from Future Iran — Lighting",
+        caption: "3D Process · Maya · Arnold · 2025",
+        description: "Lighting and atmosphere development — shaping the emotional tone of each environment through controlled light sources, shadow behaviour, and atmospheric depth.",
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/927/large/roman-jahandideh-image-3.jpg"
+      },
+      {
+        title: "Postcards from Future Iran — Materials",
+        caption: "3D Process · Maya · Arnold · 2025",
+        description: "Material and texture pass — applying surface properties, wear, and aging to architectural elements to reinforce the narrative of abandonment and retrofuturism.",
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/431/029/large/roman-jahandideh-image-4.jpg"
+      },
+      {
+        title: "Postcards from Future Iran — Final Renders",
+        caption: "3D Process · Maya · Arnold · 2025",
+        description: "Final production renders with full compositing, colour grading, and post-processing — the complete visual output of the design process series.",
+        image: "https://cdna.artstation.com/p/assets/images/images/099/431/072/large/roman-jahandideh-image-5.jpg"
+      }
+    ]
+  },
+
+  /* ── WEB DESIGN ─────────────────────────────────────────────── */
+  "Web Design": {
+    artworks: [
+      {
+        title: "Eight: Procedural Spider with Inverse Kinematics",
+        caption: "Interactive Web · D3.js · Canvas · 2025",
+        description: "A real-time procedural spider built with D3.js and inverse kinematics. Legs respond autonomously to terrain with a biologically plausible gait — fully interactive in the browser.",
+        image: "https://cdna.artstation.com/p/assets/images/images/099/639/606/large/roman-jahandideh-image-15.jpg"
+      },
+      {
+        title: "Unhatched: Interactive Spider Egg System",
+        caption: "Physics Simulation · Canvas · Gyroscope · 2025",
+        description: "A physics-based spider egg simulation — eggs cluster, collide, and respond to gravity and gyroscope input on mobile. Soft-body dynamics rendered in canvas.",
+        image: "https://cdna.artstation.com/p/assets/images/images/099/639/316/large/roman-jahandideh-image-14.jpg"
+      },
+      {
+        title: "Alive: Interactive Eye System",
+        caption: "Interactive Web · Canvas · Biomimetic · 2025",
+        description: "A living eye interface that tracks cursor position, blinks, dilates, and responds to interaction. Built entirely in vanilla JavaScript and canvas without any external libraries.",
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/639/121/large/roman-jahandideh-image-13.jpg"
+      }
+    ]
+  }
+
+};

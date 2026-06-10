@@ -234,3 +234,39 @@
       contrast(var(--ff-flicker-max-contrast));
   }
 }
+
+/* ── Light background overrides (work mode) ─────────────── */
+body.mode-work #main-stack .layer {
+  background: rgba(255,255,255,0.95);
+  box-shadow:
+    0 5px 22px rgba(28,25,23,0.11),
+    0 2px 8px rgba(28,25,23,0.07);
+  border: 1px solid rgba(28,25,23,0.05);
+}
+
+body.mode-work #main-stack .layer::after {
+  background: rgba(255,255,255,0.95);
+}
+
+body.mode-work #main-stack .layer:hover {
+  background: rgba(240,237,230,0.98);
+  box-shadow:
+    0 8px 28px rgba(224,123,90,0.22),
+    0 3px 10px rgba(28,25,23,0.10);
+  border-color: rgba(224,123,90,0.22);
+}
+
+body.mode-work #main-stack .layer .label {
+  color: #1C1917;
+}
+
+#main-stack .layer:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(224,123,90,0.55), 0 0 0 6px rgba(224,123,90,0.18);
+}
+
+@media (pointer: coarse) {
+  #main-stack .layer .label {
+    opacity: 0.80;
+  }
+}

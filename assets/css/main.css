@@ -55,10 +55,10 @@
   --grain-speed: 7s;
 
   /* ===== Top nav ===== */
-  --nav-bg: rgba(255,255,255,0.04);
-  --nav-border: rgba(255,255,255,0.10);
-  --nav-text: rgba(255,255,255,0.75);
-  --nav-text-hover: rgba(255,255,255,0.95);
+  --nav-bg: rgba(250,248,244,0.88);
+  --nav-border: rgba(28,25,23,0.10);
+  --nav-text: rgba(28,25,23,0.58);
+  --nav-text-hover: rgba(28,25,23,0.95);
   --nav-gap: 44px;
 
   /* ===== Eyes placement ===== */
@@ -82,7 +82,7 @@
 
   /* ===== NAME handlers ===== */
   --name-x: 5px;
-  --name-y: 200px;
+  --name-y: 0px;
   --name-scale: 1;
 
   --first-x: 0px;
@@ -94,12 +94,12 @@
   --last-scale: 0.6;
 
   --role-x: 0px;
-  --role-y: 120px;
+  --role-y: 0px;
   --role-scale: 1.1;
 
   --first-size: clamp(24px, 3.2vw, 40px);
   --last-size:  clamp(30px, 4.4vw, 58px);
-  --role-size: 12px;
+  --role-size: clamp(10px, 0.9vw, 12px);
 
   --first-letterspace: 0.32em;
   --last-letterspace:  0.36em;
@@ -166,8 +166,8 @@ html, body { height: 100%; }
 
 body{
   font-family: var(--font);
-  background: #000;
-  color: #fff;
+  background: #FAF8F4;
+  color: #1C1917;
   overflow-x: hidden;
 }
 
@@ -220,7 +220,7 @@ body:has(#spiderweb-canvas) #bg{
   position: fixed;
   inset: 0;
   z-index: 0;
-  background: #000;
+  background: transparent;
 }
 
 body:has(#home-spiderweb-canvas) #bg::after,
@@ -360,6 +360,7 @@ body:has(#home-spiderweb-canvas) .hero{
   height: 100vh;
   display: grid;
   place-items: center;
+  align-content: center;
   text-align: center;
   padding: 120px 20px 80px;
 }
@@ -426,8 +427,8 @@ body:has(#home-spiderweb-canvas) #eyes .eye .glasses-ring{
   pointer-events: none;
   z-index: 9;
 
-  border: var(--ring-line) solid rgba(255,255,255,var(--ring-alpha));
-  filter: drop-shadow(0 10px 16px rgba(0,0,0,0.35));
+  border: var(--ring-line) solid rgba(28,25,23,calc(var(--ring-alpha) * 0.55));
+  filter: drop-shadow(0 6px 14px rgba(28,25,23,0.22));
 }
 
 body:has(#home-spiderweb-canvas) #eyes .eye .glasses-ring .ring-marker{
@@ -438,8 +439,8 @@ body:has(#home-spiderweb-canvas) #eyes .eye .glasses-ring .ring-marker{
   height: 6px;
   transform: translateX(-50%);
   border-radius: 999px;
-  background: rgba(255,255,255,0.95);
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+  background: rgba(28,25,23,0.55);
+  box-shadow: 0 0 0 1px rgba(250,248,244,0.30);
 }
 
 /* realism layers injected by JS */
@@ -605,10 +606,10 @@ body:has(#home-spiderweb-canvas) .last-name{
 }
 
 body:has(#home-spiderweb-canvas) .role{
-  margin-top: 16px;
+  margin-top: 10px;
   font-size: var(--role-size);
   letter-spacing: var(--role-letterspace);
-  color: rgba(255,255,255,0.75);
+  color: rgba(28,25,23,0.64);
   text-transform: uppercase;
 
   transform:
@@ -687,11 +688,11 @@ body:has(#home-spiderweb-canvas) #floating-statement{
     gap: 14px;
     padding: 8px 14px;
     border-radius: 999px;
-    background: rgba(18,20,24,0.52);
+    background: rgba(250,248,244,0.92);
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
-    border: 1px solid rgba(255,255,255,0.10);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.22), inset 0 1px 0 rgba(255,255,255,0.05);
+    border: 1px solid rgba(28,25,23,0.10);
+    box-shadow: 0 4px 20px rgba(28,25,23,0.08);
   }
   .top-nav a{
     font-size: 10px;
@@ -751,7 +752,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   display: inline-block;
   padding-bottom: 10px;
   margin-bottom: 22px;
-  border-bottom: 1px solid rgba(255,255,255,0.75);
+  border-bottom: 1px solid rgba(28,25,23,0.22);
   letter-spacing: 0.30em;
   text-transform: uppercase;
   font-weight: 600;
@@ -764,9 +765,9 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   right: 18px;
   padding: 8px 14px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(28,25,23,0.14);
+  background: transparent;
+  color: rgba(28,25,23,0.62);
   text-decoration: none;
   font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   font-size: 12px;
@@ -774,8 +775,9 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   line-height: 1;
   letter-spacing: 0.02em;
   text-transform: none;
+  transition: background 0.18s ease, color 0.18s ease;
 }
-.panel-close:hover{ background: rgba(255,255,255,0.12); }
+.panel-close:hover{ background: rgba(28,25,23,0.07); color: rgba(28,25,23,0.90); }
 
 /* =========================================================
    CONTACT PANEL (fix cut-off + classy layout)
@@ -821,16 +823,16 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.88);
+  color: rgba(28,25,23,0.58);
 }
 
 #contact .contact-form input,
 #contact .contact-form textarea{
   width: 100%;
   border-radius: 12px;
-  border: 1px solid rgba(255,255,255,0.22);
-  background: rgba(255,255,255,0.06);
-  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(28,25,23,0.14);
+  background: rgba(28,25,23,0.04);
+  color: rgba(28,25,23,0.88);
   padding: 12px 14px;
   outline: none;
   font-family: var(--font);
@@ -843,8 +845,8 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 
 #contact .contact-form input:focus,
 #contact .contact-form textarea:focus{
-  border-color: rgba(255,255,255,0.55);
-  background: rgba(255,255,255,0.08);
+  border-color: rgba(28,25,23,0.36);
+  background: rgba(28,25,23,0.06);
 }
 
 #contact .contact-actions{
@@ -856,20 +858,21 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 
 #contact .btn{
   appearance: none;
-  border: 1px solid rgba(255,255,255,0.22);
-  background: rgba(255,255,255,0.08);
-  color: rgba(255,255,255,0.92);
+  border: 1px solid rgba(28,25,23,0.18);
+  background: rgba(28,25,23,0.05);
+  color: rgba(28,25,23,0.82);
   border-radius: 999px;
   padding: 10px 16px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-size: 12px;
   cursor: pointer;
+  transition: background 0.18s, border-color 0.18s;
 }
 
 #contact .btn.primary{
-  background: rgba(255,255,255,0.14);
-  border-color: rgba(255,255,255,0.32);
+  background: rgba(28,25,23,0.09);
+  border-color: rgba(28,25,23,0.28);
 }
 
 /* Right side */
@@ -882,9 +885,9 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 #contact .contact-card{
   width: 100%;
   border-radius: 16px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(6, 8, 12, 0.62);
-  box-shadow: 0 14px 40px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.05);
+  border: 1px solid rgba(28,25,23,0.08);
+  background: #FFFFFF;
+  box-shadow: 0 4px 18px rgba(28,25,23,0.07);
   padding: 18px;
   display: flex;
   flex-direction: column;
@@ -898,7 +901,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   font-size: 12px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.78);
+  color: rgba(28,25,23,0.50);
 }
 
 /* ✅ KEY FIX: make the links list scrollable so items don't get cut off */
@@ -918,13 +921,13 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 /* nicer scrollbar (won't affect other areas) */
 #contact .contact-links::-webkit-scrollbar{ width: 10px; }
 #contact .contact-links::-webkit-scrollbar-track{
-  background: rgba(255,255,255,0.05);
+  background: rgba(28,25,23,0.04);
   border-radius: 999px;
 }
 #contact .contact-links::-webkit-scrollbar-thumb{
-  background: rgba(255,255,255,0.18);
+  background: rgba(28,25,23,0.14);
   border-radius: 999px;
-  border: 2px solid rgba(0,0,0,0);
+  border: 2px solid rgba(250,248,244,0);
   background-clip: padding-box;
 }
 
@@ -935,18 +938,19 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   gap: 12px;
 
   text-decoration: none;
-  color: rgba(255,255,255,0.92);
+  color: rgba(28,25,23,0.88);
 
   padding: 10px 12px;
   border-radius: 14px;
 
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(28,25,23,0.09);
+  background: rgba(28,25,23,0.03);
+  transition: background 0.18s, border-color 0.18s;
 }
 
 #contact .contact-link:hover{
-  background: rgba(255,255,255,0.09);
-  border-color: rgba(255,255,255,0.18);
+  background: rgba(28,25,23,0.07);
+  border-color: rgba(28,25,23,0.15);
 }
 
 #contact .contact-link .icon{
@@ -955,14 +959,14 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   border-radius: 12px;
   display: grid;
   place-items: center;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(28,25,23,0.05);
+  border: 1px solid rgba(28,25,23,0.09);
 }
 
 #contact .contact-link svg{
   width: 22px;
   height: 22px;
-  fill: rgba(255,255,255,0.92);
+  fill: rgba(28,25,23,0.70);
 }
 
 #contact .contact-link .text{
@@ -984,7 +988,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 #contact .contact-link .meta{
   font-size: 11px;
   letter-spacing: 0.08em;
-  color: rgba(255,255,255,0.65);
+  color: rgba(28,25,23,0.50);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -998,7 +1002,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 #contact .contact-note{
   font-size: 12px;
   line-height: 1.5;
-  color: rgba(255,255,255,0.70);
+  color: rgba(28,25,23,0.55);
 
   /* keep it visible, not crushed */
   flex: 0 0 auto;
@@ -1026,7 +1030,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   position: fixed;
   inset: 0;
   z-index: 80;
-  display: none;
+  display: flex;
 
   align-items: center;
   justify-content: center;
@@ -1034,9 +1038,19 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   padding: 24px 16px;
 
   overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.52s cubic-bezier(0.22,1,0.36,1),
+              visibility 0.52s cubic-bezier(0.22,1,0.36,1);
 }
 
-.panel:target{ display: flex; }
+.panel:target{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
 
 /* ✅ CHANGED: remove the dark masking layer entirely */
 .panel::before{
@@ -1059,16 +1073,16 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   padding: 34px 34px 26px;
   border-radius: 18px;
 
-  /* black, high-transparency glass */
-  background: rgba(6, 8, 12, 0.78);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* white ivory card */
+  background: #FAF8F4;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 
-  border: 1px solid rgba(255,255,255,0.12);
+  border: 1px solid rgba(28,25,23,0.08);
 
   box-shadow:
-    0 24px 70px rgba(0,0,0,0.62),
-    inset 0 1px 0 rgba(255,255,255,0.05);
+    0 24px 70px rgba(0,0,0,0.22),
+    0 2px 10px rgba(0,0,0,0.10);
 
   display: flex;
   flex-direction: column;
@@ -1157,7 +1171,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   margin: 0;
   font-size: 13px;
   line-height: 1.55;
-  color: rgba(255,255,255,0.85);
+  color: rgba(28,25,23,0.75);
 
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -1202,17 +1216,17 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   line-height: 1;
   letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: #ffffff;
+  color: rgba(28,25,23,0.48);
   margin-bottom: 12px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.10);
+  text-shadow: none;
 }
 
 #about .about-clean-title{
   margin: 0;
   font-size: 15px;
   line-height: 1.55;
-  color: #ffffff;
-  text-shadow: 0 0 12px rgba(255,255,255,0.08);
+  color: rgba(28,25,23,0.82);
+  text-shadow: none;
 }
 
 #about .about-clean-timeline{
@@ -1232,7 +1246,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   border: 0;
   border-radius: 0;
   background: transparent;
-  filter: grayscale(100%) invert(1) contrast(1.28) brightness(0.96);
+  filter: grayscale(100%) contrast(1.08) brightness(0.94);
   box-shadow: none;
 }
 
@@ -1240,13 +1254,11 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   width: 100%;
   padding: 22px 24px 24px;
   border-radius: 22px;
-  background: rgba(0,0,0,0.28);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border: 1px solid rgba(255,255,255,0.08);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.04),
-    0 14px 34px rgba(0,0,0,0.18);
+  background: rgba(28,25,23,0.04);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(28,25,23,0.07);
+  box-shadow: none;
 }
 
 #about .about-clean-intro-label{
@@ -1255,16 +1267,16 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   line-height: 1;
   letter-spacing: 0.34em;
   text-transform: uppercase;
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.10);
+  color: rgba(28,25,23,0.48);
+  text-shadow: none;
 }
 
 #about .about-clean-intro-text{
   margin: 0;
   font-size: 15px;
   line-height: 1.82;
-  color: #ffffff;
-  text-shadow: 0 0 10px rgba(255,255,255,0.06);
+  color: rgba(28,25,23,0.78);
+  text-shadow: none;
 }
 
 @media (max-width: 980px){
@@ -1347,5 +1359,386 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   #contact .contact-form input,
   #contact .contact-form textarea{
     font-size: 16px;
+  }
+}
+
+/* =========================================================
+   OPTION A — LIGHT THEME
+   Tokens: Ivory #FAF8F4 · Terracotta #D96535 · Amethyst #8B7BB5
+   ========================================================= */
+
+:root {
+  --opt-ivory:   #FAF8F4;
+  --opt-surface: #F0EDE6;
+  --opt-text:    #1C1917;
+  --opt-muted:   #7C6F64;
+  --opt-accent:  #D96535;
+  --opt-accent2: #8B7BB5;
+  --opt-border:  rgba(28,25,23,0.08);
+}
+
+/* ── Work mode background ───────────────────────────────── */
+body.mode-work {
+  background: var(--opt-ivory);
+  transition: background 0.55s ease;
+}
+
+body.mode-work #bg {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.55s ease;
+}
+
+body.mode-work #home-spiderweb-canvas {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+/* ── Work mode nav: warm + light ────────────────────────── */
+body.mode-work .top-nav {
+  background: rgba(250,248,244,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-color: rgba(28,25,23,0.10);
+  box-shadow: 0 2px 16px rgba(28,25,23,0.07);
+}
+
+body.mode-work .top-nav a {
+  color: rgba(28,25,23,0.55);
+}
+
+body.mode-work .top-nav a:hover {
+  color: var(--opt-text);
+}
+
+body.mode-work .top-nav a.is-active {
+  color: var(--opt-accent);
+}
+
+/* ── Work mode hints ────────────────────────────────────── */
+body.mode-work #global-site-hints .global-site-hint {
+  color: rgba(28,25,23,0.35);
+}
+
+body.mode-work #global-site-hints .global-site-hint-secondary {
+  color: rgba(28,25,23,0.26);
+}
+
+/* ── Panels: light warm glass ───────────────────────────── */
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(250,248,244,0.70);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.panel-inner {
+  background: rgba(255,255,255,0.96);
+  border: 1px solid rgba(28,25,23,0.09);
+  box-shadow: 0 20px 60px rgba(28,25,23,0.11), 0 4px 16px rgba(28,25,23,0.06);
+  color: var(--opt-text);
+}
+
+.panel-inner .major {
+  color: var(--opt-text);
+  border-bottom-color: rgba(28,25,23,0.18);
+}
+
+.panel-close {
+  border-color: rgba(28,25,23,0.14);
+  background: rgba(28,25,23,0.04);
+  color: var(--opt-text);
+  transition: background 0.18s, transform 0.16s;
+}
+
+.panel-close:hover {
+  background: rgba(28,25,23,0.09);
+  transform: scale(1.04);
+}
+
+/* ── About panel: dark text ─────────────────────────────── */
+#about .about-clean-eyebrow {
+  color: var(--opt-muted);
+  text-shadow: none;
+}
+
+#about .about-clean-title {
+  color: var(--opt-text);
+  text-shadow: none;
+}
+
+#about .about-clean-intro {
+  background: rgba(240,237,230,0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-color: rgba(28,25,23,0.07);
+  box-shadow: 0 2px 12px rgba(28,25,23,0.06);
+}
+
+#about .about-clean-intro-label {
+  color: var(--opt-muted);
+  text-shadow: none;
+}
+
+#about .about-clean-intro-text {
+  color: var(--opt-text);
+  text-shadow: none;
+}
+
+/* Timeline: remove dark inversion for light panel */
+#about .about-clean-timeline iframe {
+  filter: none;
+}
+
+/* ── Contact panel: light theme ─────────────────────────── */
+#contact .contact-form label {
+  color: rgba(28,25,23,0.62);
+}
+
+#contact .contact-form input,
+#contact .contact-form textarea {
+  background: rgba(28,25,23,0.04);
+  border-color: rgba(28,25,23,0.14);
+  color: var(--opt-text);
+}
+
+#contact .contact-form input::placeholder,
+#contact .contact-form textarea::placeholder {
+  color: rgba(28,25,23,0.30);
+}
+
+#contact .contact-form input:focus,
+#contact .contact-form textarea:focus {
+  border-color: var(--opt-accent);
+  background: rgba(224,123,90,0.04);
+}
+
+#contact .btn {
+  border-color: rgba(28,25,23,0.15);
+  background: rgba(28,25,23,0.05);
+  color: var(--opt-text);
+  transition: background 0.18s, border-color 0.18s;
+}
+
+#contact .btn:hover {
+  background: rgba(28,25,23,0.10);
+}
+
+#contact .btn.primary {
+  background: var(--opt-accent);
+  border-color: var(--opt-accent);
+  color: #fff;
+}
+
+#contact .btn.primary:hover {
+  background: #c9664a;
+  border-color: #c9664a;
+}
+
+#contact .contact-card {
+  background: rgba(240,237,230,0.55);
+  border-color: rgba(28,25,23,0.08);
+  box-shadow: 0 4px 18px rgba(28,25,23,0.06);
+}
+
+#contact .contact-card-title {
+  color: rgba(28,25,23,0.48);
+}
+
+#contact .contact-link {
+  background: rgba(255,255,255,0.68);
+  border-color: rgba(28,25,23,0.09);
+  color: var(--opt-text);
+  transition: background 0.18s, border-color 0.18s, transform 0.18s;
+}
+
+#contact .contact-link:hover {
+  background: rgba(255,255,255,0.98);
+  border-color: rgba(28,25,23,0.18);
+  transform: translateX(3px);
+}
+
+#contact .contact-link .icon {
+  background: rgba(28,25,23,0.05);
+  border-color: rgba(28,25,23,0.08);
+}
+
+#contact .contact-link svg {
+  fill: rgba(28,25,23,0.68);
+}
+
+#contact .contact-link .meta {
+  color: rgba(28,25,23,0.44);
+}
+
+#contact .contact-links::-webkit-scrollbar-track {
+  background: rgba(28,25,23,0.04);
+}
+
+#contact .contact-links::-webkit-scrollbar-thumb {
+  background: rgba(28,25,23,0.14);
+}
+
+#contact .contact-note {
+  color: rgba(28,25,23,0.48);
+}
+
+/* ── Global micro-interactions ──────────────────────────── */
+.top-nav a {
+  transition: color 0.18s ease, transform 0.18s ease;
+}
+
+.top-nav a:hover {
+  transform: translateY(-1px);
+}
+
+.panel-close,
+#contact .contact-link,
+#contact .btn,
+.gallery-artstation-link,
+.detail-artstation-link {
+  transition: background 0.18s ease,
+              color 0.18s ease,
+              border-color 0.18s ease,
+              transform 0.18s ease;
+}
+
+/* =========================================================
+   GLOBAL LIGHT HOME — bg, fog, canvas, name
+   ========================================================= */
+
+/* ── Background image: washed-out / airy for light theme ── */
+body:has(#home-spiderweb-canvas) #bg::after {
+  opacity: 0.48;
+  filter: brightness(1.90) saturate(0.36);
+}
+
+/* ── Fog: replaced by #fog-trail-canvas (home-fog-trail.js) ── */
+body:has(#home-spiderweb-canvas) #bg::before {
+  display: none;
+}
+
+/* ── Iris vignette: disabled for light home ─────────────── */
+body:has(#home-spiderweb-canvas)::before {
+  background: transparent;
+  -webkit-mask-image: none;
+  mask-image: none;
+}
+
+/* ── Film grain: multiply works on light bg ─────────────── */
+body:has(#home-spiderweb-canvas)::after {
+  mix-blend-mode: multiply;
+  opacity: 0.06;
+}
+
+/* ── Eye: warm shadow instead of stark black ────────────── */
+body:has(#home-spiderweb-canvas) #eyes {
+  filter: drop-shadow(0 8px 22px rgba(28,25,23,0.16));
+}
+
+/* ── Name: force dark on light bg ───────────────────────── */
+body:has(#home-spiderweb-canvas) .first-name,
+body:has(#home-spiderweb-canvas) .last-name {
+  color: #1C1917;
+  text-shadow: none;
+}
+
+/* ── Spiderweb: high-specificity rules (GSAP inline also applies) */
+body.mode-home #home-spiderweb-canvas,
+body[data-mode="home"] #home-spiderweb-canvas {
+  filter: invert(1) brightness(0.68);
+  opacity: 0.90;
+}
+
+body.mode-work #home-spiderweb-canvas,
+body[data-mode="work"] #home-spiderweb-canvas {
+  filter: invert(1) brightness(0.68);
+  opacity: 0.22;
+  transition: opacity 0.45s ease;
+}
+
+body.mode-teaching #home-spiderweb-canvas,
+body[data-mode="teaching"] #home-spiderweb-canvas {
+  filter: invert(1) brightness(0.68);
+  opacity: 0.22;
+  transition: opacity 0.45s ease;
+}
+
+/* ── Global hint text: dark on light bg ─────────────────── */
+#global-site-hints .global-site-hint {
+  color: rgba(28,25,23,0.40);
+}
+
+#global-site-hints .global-site-hint-secondary {
+  color: rgba(28,25,23,0.28);
+}
+
+/* ── Nav: all modes are now light (clean up redundant rules) */
+.top-nav {
+  box-shadow: 0 2px 18px rgba(28,25,23,0.07);
+}
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Teaching mode: solid light bg, hide home scene ─────── */
+body.mode-teaching,
+body[data-mode="teaching"] {
+  background: #FAF8F4;
+}
+
+body.mode-teaching #bg,
+body[data-mode="teaching"] #bg {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+
+/* teaching spiderweb opacity handled above with work rules */
+
+/* ── Mobile nav: light palette override (was dark glass) ── */
+@media (max-width: 736px) {
+  .top-nav {
+    background: rgba(250,248,244,0.94);
+    border: 1px solid rgba(28,25,23,0.10);
+    box-shadow: 0 6px 22px rgba(28,25,23,0.10);
+  }
+
+  /* hint text already handled globally; just ensure sizes are ok */
+  #global-site-hints .global-site-hint {
+    color: rgba(28,25,23,0.40);
+  }
+}
+
+/* ── About/Contact panels: responsive ───────────────────── */
+@media (max-width: 640px) {
+  .panel-inner {
+    padding: 24px 18px 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .panel-inner h2 {
+    font-size: 20px;
+  }
+}
+
+/* ── Touch: remove hover-only magnetic effects ───────────── */
+@media (pointer: coarse) {
+  .top-nav a:hover {
+    transform: none;
+  }
+
+  .gallery-back-btn:hover,
+  .detail-back-btn:hover {
+    transform: none;
   }
 }

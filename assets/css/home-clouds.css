@@ -1,0 +1,51 @@
+/* ====================================================
+   HOME — CLOUD LAYER + MOUSE ORB
+   GSAP 3.15 powered
+   ==================================================== */
+
+/* ── Cloud container ──────────────────────────────── */
+#cloud-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 4;          /* above bg, below spiderweb canvas (6) */
+  pointer-events: none;
+  overflow: visible;
+  transition: opacity 0.55s ease;
+}
+
+/* Hide in work / teaching modes */
+body[data-mode="work"]     #cloud-layer,
+body[data-mode="teaching"] #cloud-layer {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+/* ── Individual cloud ─────────────────────────────── */
+.cloud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+  /* pointer-events off so mouse events reach spiderweb canvas */
+  pointer-events: none;
+}
+
+.cloud svg {
+  display: block;
+  overflow: visible;
+}
+
+
+/* ── Fog trail canvas ─────────────────────────────── */
+#fog-trail-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  display: none;
+}
+
+body.mode-home #fog-trail-canvas,
+body[data-mode="home"] #fog-trail-canvas {
+  display: block;
+}
