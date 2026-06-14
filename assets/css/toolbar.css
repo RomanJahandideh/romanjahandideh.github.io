@@ -622,10 +622,10 @@ body.mode-work #main-stack .layer:focus-visible,
   width: 100%;
   margin-top: 12px;
   padding: 10px 16px;
-  background: transparent;
+  background: #D96535;
   border: 1px solid #D96535;
   border-radius: 999px;
-  color: #D96535;
+  color: #fff;
   font-size: 12px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -636,7 +636,7 @@ body.mode-work #main-stack .layer:focus-visible,
 }
 
 .contact-cv-btn:hover {
-  background: #D96535;
+  background: #bf4f22;
   color: #fff;
   box-shadow: 0 4px 16px rgba(217,101,53,0.28);
 }
