@@ -16,7 +16,9 @@
   pointer-events: auto;
 }
 
-/* Matches .first-name exactly */
+/* Matches .first-name exactly. margin-bottom simulates the missing
+   second name line (14px gap + last-name height) so skip lands
+   at the same position as the role text on the main page. */
 #site-intro-word {
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: clamp(24px, 3.2vw, 40px);
@@ -25,6 +27,7 @@
   text-transform: uppercase;
   color: #1C1917;
   opacity: 0;
+  margin-bottom: clamp(44px, calc(14px + 4.4vw), 72px);
 }
 
 /* Matches .role text (MOTION · BRAND IDENTITY · SPATIAL DESIGN) */
