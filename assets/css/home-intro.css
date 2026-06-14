@@ -1,6 +1,5 @@
 /* =========================================================
-   WELCOME INTRO
-   White full-screen cover shown on every visit.
+   WELCOME INTRO — mirrors hero layout so elements overlap on dismiss
    ========================================================= */
 
 #site-intro {
@@ -8,40 +7,35 @@
   inset: 0;
   z-index: 99999;
   background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  row-gap: 22px;
+  text-align: center;
+  padding: 120px 20px 80px;
   pointer-events: auto;
 }
 
+/* Matches .first-name exactly */
 #site-intro-word {
   font-family: "Montserrat", system-ui, sans-serif;
-  font-size: clamp(30px, 4.4vw, 58px);
+  font-size: clamp(24px, 3.2vw, 40px);
   font-weight: 500;
-  letter-spacing: 0.36em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: #1C1917;
   opacity: 0;
 }
 
-/* Matches #services-btn exactly — same font, same pill, same position offset */
+/* Matches #services-btn text (font/size/weight/spacing) — no pill, orange text */
 #site-intro-skip {
-  margin-top: 72px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 11px 28px;
-  background: #D96535;
-  border-radius: 999px;
-  color: #fff;
+  margin-top: 50px;
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  box-shadow: 0 4px 20px rgba(217,101,53,0.38);
+  color: #D96535;
   white-space: nowrap;
   cursor: pointer;
 }
