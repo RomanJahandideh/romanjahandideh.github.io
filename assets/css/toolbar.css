@@ -434,12 +434,15 @@
     0 32px 80px rgba(28,25,23,0.16),
     0 4px 16px rgba(28,25,23,0.08);
 
-  /* Use flex so the inner body can be a proper flex child —
-     this is the only layout that reliably scrolls inside a
-     position:fixed element on iOS Safari. */
   display: flex;
   flex-direction: column;
+  /* overflow:clip paints beyond the border-radius without creating a
+     scroll-blocking stacking context — unlike overflow:hidden, it does
+     NOT prevent child overflow-y:scroll from working on iOS Safari.
+     Browsers that don't support clip fall back to hidden (contact-panel.js
+     provides JS manual scroll as a guaranteed fallback for those). */
   overflow: hidden;
+  overflow: clip;
   z-index: 10001;
 
   opacity: 0;

@@ -8,10 +8,44 @@
 
   var _win    = null;
   var _isOpen = false;
+  var _bodyEl = null;
+
+  /* ── Manual scroll for iOS Safari ──────────────────────────────
+     iOS Safari refuses to scroll a child of position:fixed even
+     when the child has overflow-y:scroll.  We intercept the touch
+     events directly on the scrollable body and set scrollTop by
+     hand, which always works regardless of CSS constraints.
+  ──────────────────────────────────────────────────────────────── */
+  var _tsY = 0, _tsScroll = 0, _tsId = -1;
+
+  function _initTouchScroll(el) {
+    el.addEventListener("touchstart", function (e) {
+      var t = e.touches[0];
+      _tsY      = t.clientY;
+      _tsScroll = el.scrollTop;
+      _tsId     = t.identifier;
+    }, { passive: true });
+
+    el.addEventListener("touchmove", function (e) {
+      var t;
+      for (var i = 0; i < e.touches.length; i++) {
+        if (e.touches[i].identifier === _tsId) { t = e.touches[i]; break; }
+      }
+      if (!t) return;
+      var dy = _tsY - t.clientY;
+      el.scrollTop = _tsScroll + dy;
+      /* Stop propagation so the site's tap-to-advance handler
+         never sees touches that are meant for the modal scroll. */
+      e.stopPropagation();
+    }, { passive: true });
+  }
 
   function init() {
-    _win = document.getElementById("contact");
+    _win    = document.getElementById("contact");
+    _bodyEl = _win ? _win.querySelector(".contact-window-body") : null;
     if (!_win) return;
+
+    if (_bodyEl) _initTouchScroll(_bodyEl);
 
     _win.setAttribute("aria-hidden", "true");
     _win.classList.remove("is-open");
