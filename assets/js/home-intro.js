@@ -26,11 +26,14 @@
   }
 
   /* Fade word in, hold, then fade everything out */
+  var _skip = document.getElementById("site-intro-skip");
+
   if (typeof gsap !== "undefined") {
     gsap.to(_word, {
       opacity: 1, duration: 0.7, ease: "power2.out",
       onComplete: function () {
-        /* Hold for 1s, then dismiss */
+        /* Fade in the skip hint, then auto-dismiss after 1s */
+        if (_skip) gsap.to(_skip, { opacity: 1, duration: 0.4, ease: "power1.out" });
         setTimeout(_dismiss, 1000);
       }
     });
