@@ -1,11 +1,12 @@
 /* =========================================================
    HOME SMOKE VIDEO — scroll-scrubbed background per mode
 
-   Home mode      : greenscreen.mp4  — scrubbed by homeScrollSequence
+   Home mode      : greenscreen.mp4   — scrubbed by homeScrollSequence
    Work mode      : greenscreen44.mp4 — scrubbed by discrete scroll steps
    Teaching mode  : greenscreen33.mp4 — scrubbed by discrete scroll steps
 
-   Touch          : ambient loop (only active mode plays)
+   Desktop        : scrubbed frame-by-frame via rAF
+   Touch / mobile : ambient loop; play() retried on first touch gesture
    Reduced motion : paused at frame 0
    ========================================================= */
 (function () {
@@ -17,7 +18,6 @@
   var MODES     = ["home", "work", "teaching"];
   var ALT_STEPS = 4;
 
-  /* Per-mode video state */
   var _vids  = { home: null, work: null, teaching: null };
   var _durs  = { home: 0,    work: 0,    teaching: 0    };
   var _ready = { home: false, work: false, teaching: false };
@@ -57,6 +57,21 @@
     setTimeout(function () { _altCooldown = false; }, 450);
   }
 
+  /* ── Try to play a video, retrying after the canplay event ── */
+  function _tryPlay(vid) {
+    if (!vid) return;
+    var p = vid.play();
+    if (p && typeof p.catch === "function") {
+      p.catch(function () {
+        /* Autoplay blocked — wait for canplay then retry once */
+        vid.addEventListener("canplay", function retry() {
+          vid.removeEventListener("canplay", retry);
+          vid.play().catch(function () {});
+        });
+      });
+    }
+  }
+
   /* ── Init a single video element ── */
   function _initVideo(elemId, modeKey) {
     var vid = document.getElementById(elemId);
@@ -65,6 +80,8 @@
 
     vid.muted       = true;
     vid.playsInline = true;
+    vid.setAttribute("playsinline", "");       /* belt-and-suspenders for iOS */
+    vid.setAttribute("webkit-playsinline", "");
     vid.setAttribute("aria-hidden", "true");
 
     if (IS_REDUCED) {
@@ -76,18 +93,19 @@
     if (IS_TOUCH) {
       vid.loop         = true;
       vid.playbackRate = 0.70;
-      /* Only play the home video on initial load; others start on mode entry */
-      if (modeKey === "home") vid.play().catch(function () {});
+      /* Force the browser to buffer the video (mobile ignores preload="auto") */
+      vid.load();
+      /* Only the current mode's video plays immediately */
+      if (modeKey === _getMode()) _tryPlay(vid);
       return;
     }
 
-    /* Desktop: scrub-driven — load metadata then pause */
+    /* Desktop: metadata-driven scrub */
     function onMeta() {
       _durs[modeKey]  = vid.duration || 0;
       _ready[modeKey] = true;
       vid.pause();
       vid.currentTime = 0;
-      /* Start the rAF loop as soon as the first video is ready */
       if (!_rafId) _rafId = requestAnimationFrame(tick);
     }
 
@@ -103,6 +121,16 @@
     _initVideo("smoke-video",    "home");
     _initVideo("work-video",     "work");
     _initVideo("teaching-video", "teaching");
+
+    if (IS_TOUCH) {
+      /* Retry playing the active video on first user touch
+         (handles iOS Safari strict autoplay policy) */
+      window.addEventListener("touchstart", function onFirstTouch() {
+        var vid = _vids[_getMode()];
+        if (vid && vid.paused) _tryPlay(vid);
+        window.removeEventListener("touchstart", onFirstTouch);
+      }, { passive: true, once: true });
+    }
   }
 
   /* ── rAF scrub loop (desktop only) ── */
@@ -120,7 +148,6 @@
       rawProg = _altProg;
     }
 
-    /* Lerp toward target — smooths discrete step snaps */
     _smooth += (rawProg - _smooth) * 0.07;
 
     if (vid && dur > 0) {
@@ -144,7 +171,6 @@
 
     var newMode = (e.detail.mode || "home").toLowerCase();
 
-    /* Reset all videos to frame 0 */
     MODES.forEach(function (k) {
       var v = _vids[k];
       if (!v) return;
@@ -153,10 +179,10 @@
         v.currentTime = 0;
       }
 
-      /* Touch: play only the newly active video, pause the rest */
       if (IS_TOUCH) {
         if (k === newMode) {
-          v.play().catch(function () {});
+          v.currentTime = 0;
+          _tryPlay(v);
         } else {
           v.pause();
         }
@@ -164,16 +190,18 @@
     });
   }, { passive: true });
 
-  /* ── Public API — called by main.js wheel delegation ── */
+  /* ── Public API ── */
   window.smokeVideoSequence = {
     onWheel: function (dy) {
       if (IS_TOUCH || IS_REDUCED) return;
-      /* dy < 0 = scroll up = forward (+1); dy > 0 = scroll down = backward (-1) */
       _advanceAltStep(dy < 0 ? 1 : -1);
+    },
+    /* Tap version for mobile — same direction convention as onWheel */
+    onTap: function () {
+      _advanceAltStep(1);
     }
   };
 
-  /* ── Boot ── */
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {

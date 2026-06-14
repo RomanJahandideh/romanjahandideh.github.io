@@ -757,6 +757,54 @@
     lockUntil = now + 1150;
   }, { passive: true, capture: true });
 
+  /* ── Mobile tap-to-advance ──────────────────────────────────
+     On touch devices scroll is replaced by tapping the background.
+     A short tap (< 400 ms, < 24 px movement) on a non-interactive
+     area fires the same logic as one wheel notch forward.
+  ─────────────────────────────────────────────────────────── */
+  if (window.matchMedia("(pointer: coarse)").matches && isMergedRoot) {
+    let _tapStartX = 0, _tapStartY = 0, _tapStartT = 0;
+    let _tapLock = false;
+
+    window.addEventListener("touchstart", (e) => {
+      const t = e.touches[0];
+      _tapStartX = t.clientX;
+      _tapStartY = t.clientY;
+      _tapStartT = Date.now();
+    }, { passive: true });
+
+    window.addEventListener("touchend", (e) => {
+      if (!isMergedRoot) return;
+      if (isPanelOpen()) return;
+      if (_tapLock) return;
+
+      const t = e.changedTouches[0];
+      if (Math.abs(t.clientX - _tapStartX) > 24) return;  /* horizontal swipe */
+      if (Math.abs(t.clientY - _tapStartY) > 24) return;  /* vertical swipe   */
+      if (Date.now() - _tapStartT > 400) return;           /* long press       */
+
+      /* Skip when tapping on navigation, modals, or any interactive element */
+      const el = document.elementFromPoint(t.clientX, t.clientY);
+      if (el && el.closest(
+        "a, button, input, textarea, select, [role='button'], " +
+        ".site-modal, #mode-indicator, nav, .nav, " +
+        "#contact, #about-window, #teaching-detail-overlay"
+      )) return;
+
+      const mode = getMode();
+
+      if (mode === "home" && window.homeScrollSequence) {
+        window.homeScrollSequence.onWheel(-1);   /* -1 = scroll-up = forward */
+      } else if ((mode === "work" || mode === "teaching") && window.smokeVideoSequence) {
+        window.smokeVideoSequence.onTap();
+      }
+
+      /* Brief cooldown so a double-tap doesn't skip two steps */
+      _tapLock = true;
+      setTimeout(function () { _tapLock = false; }, 520);
+    }, { passive: true });
+  }
+
   // =========================================================
   // C) ORIGINAL HOME SCRIPT
   // =========================================================
