@@ -27,13 +27,12 @@
   opacity: 0;
 }
 
-/* Matches #services-btn text (font/size/weight/spacing) — no pill, orange text */
+/* Matches .role text (MOTION · BRAND IDENTITY · SPATIAL DESIGN) */
 #site-intro-skip {
-  margin-top: 50px;
   font-family: "Montserrat", system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-size: clamp(10px, 0.9vw, 12px);
+  font-weight: 400;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: #D96535;
   white-space: nowrap;
