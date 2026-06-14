@@ -98,6 +98,10 @@
     _win.setAttribute("aria-hidden", "false");
     _trigger.setAttribute("aria-expanded", "true");
 
+    /* Lift the site-wide touch-action:none so the modal body can
+       scroll on mobile. Inline style wins over any CSS rule. */
+    document.body.style.touchAction = "auto";
+
     /* Focus first focusable inside window */
     setTimeout(function () {
       var first = _win.querySelector("button, a, [tabindex]");
@@ -110,6 +114,9 @@
     _win.classList.remove("is-open", "show-timeline");
     _win.setAttribute("aria-hidden", "true");
     _trigger.setAttribute("aria-expanded", "false");
+
+    /* Restore touch lock so the site scroll system works again */
+    document.body.style.touchAction = "";
   }
 
   /* ── Boot — defer so nav.js has moved #eyes first ── */

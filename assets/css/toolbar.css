@@ -491,7 +491,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  overflow-y: auto;
+  overflow-y: scroll;           /* scroll (not auto) forces iOS to treat as scroll container */
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;

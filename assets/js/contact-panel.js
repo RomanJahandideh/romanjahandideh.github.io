@@ -82,6 +82,10 @@
     _win.classList.add("is-open");
     _win.setAttribute("aria-hidden", "false");
 
+    /* Lift the site-wide touch-action:none so the modal body can
+       scroll on mobile. Inline style wins over any CSS rule. */
+    document.body.style.touchAction = "auto";
+
     /* Update hash so nav.js marks contact active */
     window.location.hash = "#contact";
 
@@ -96,6 +100,9 @@
     _isOpen = false;
     _win.classList.remove("is-open");
     _win.setAttribute("aria-hidden", "true");
+
+    /* Restore touch lock so the site scroll system works again */
+    document.body.style.touchAction = "";
 
     /* Clear hash so nav.js removes active state */
     if (window.location.hash === "#contact") {
