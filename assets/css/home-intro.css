@@ -1,175 +1,30 @@
 /* =========================================================
-   DISNEY-STYLE WELCOME INTRO
-   Black full-screen overlay with star field, green-screen
-   video played on canvas, and cinematic name reveal.
-   Shown once per 48 h. Skip on any interaction.
+   WELCOME INTRO
+   White full-screen cover shown on every visit.
+   Fades out after a brief pause.
    ========================================================= */
 
 #site-intro {
   position: fixed;
   inset: 0;
-  /* Above nav (z 10000) and modals (z 10001) so it covers everything
-     from the very first browser paint — preventing any flash of page content. */
   z-index: 99999;
-  background: #0a0a0a;
-  /* Visible by default — JS removes it after the animation.
-     This is the key fix for the FOUC: the intro covers the page before
-     any JS or async CSS has had a chance to run. */
+  background: #fff;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   pointer-events: auto;
-  overflow: hidden;
 }
 
-/* ── Star field ── */
-#intro-stars {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.intro-star {
-  position: absolute;
-  border-radius: 50%;
-  background: #fff;
-  animation: intro-twinkle var(--dur, 2.2s) ease-in-out infinite;
-  animation-delay: var(--delay, 0s);
-  opacity: 0;
-}
-
-@keyframes intro-twinkle {
-  0%, 100% { opacity: 0;    transform: scale(0.5); }
-  50%       { opacity: 0.9; transform: scale(1);   }
-}
-
-/* Occasional golden stars for warmth */
-.intro-star.gold {
-  background: #D96535;
-  filter: blur(0.4px);
-}
-
-/* ── Video canvas (green screen removed in JS) ── */
-#intro-canvas {
-  position: relative;
-  z-index: 1;
-  display: block;
-  max-width: min(72vw, 680px);
-  max-height: 52vh;
-  width: auto;
-  height: auto;
-  opacity: 0; /* JS fades in once video is ready */
-}
-
-/* ── Name / title ── */
-#site-intro-inner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 24px;
-  user-select: none;
-}
-
-.intro-welcome {
+#site-intro-word {
   font-family: "Montserrat", system-ui, sans-serif;
-  font-size: clamp(10px, 1.8vw, 14px);
-  font-weight: 500;
-  letter-spacing: 0.48em;
-  text-transform: uppercase;
-  color: #D96535;
-  opacity: 0;
-  margin: 0 0 18px;
-  will-change: opacity;
-}
-
-.intro-tagline {
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: clamp(9px, 1.4vw, 12px);
-  font-weight: 400;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.36);
-  opacity: 0;
-  margin: 16px 0 0;
-  will-change: opacity;
-}
-
-.intro-words {
-  display: flex;
-  align-items: baseline;
-  gap: 0.45em;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.intro-word {
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: clamp(26px, 5vw, 58px);
+  font-size: clamp(22px, 4vw, 42px);
   font-weight: 300;
-  letter-spacing: 0.28em;
-  color: #ffffff;
-  opacity: 0;
-  display: inline-block;
-  will-change: opacity, transform;
-  /* Subtle shimmer sweep added by JS-controlled CSS var */
-  background: linear-gradient(
-    90deg,
-    rgba(255,255,255,0)   0%,
-    rgba(255,255,255,0.9) 30%,
-    #D96535               50%,
-    rgba(255,255,255,0.9) 70%,
-    rgba(255,255,255,0)   100%
-  );
-  background-size: 300% 100%;
-  background-position: -200% center;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.intro-word.shimmer-on {
-  animation: intro-shimmer 1.2s ease forwards;
-}
-
-@keyframes intro-shimmer {
-  from { background-position: -200% center; }
-  to   { background-position: 200% center;  }
-}
-
-/* Orange accent rule */
-.intro-rule {
-  width: clamp(40px, 7vw, 88px);
-  height: 2px;
-  background: #D96535;
-  margin-top: 18px;
-  transform: scaleX(0);
-  transform-origin: left center;
-  will-change: transform;
-}
-
-/* Skip hint */
-.intro-skip-hint {
-  position: fixed;
-  bottom: 28px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.28);
+  color: #1C1917;
   opacity: 0;
-  pointer-events: none;
-  will-change: opacity;
-  z-index: 9001;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* Users who prefer no motion: hide immediately via JS; CSS hides as fallback */
   #site-intro { display: none !important; }
 }

@@ -89,20 +89,9 @@
 <!-- Cream veil: softens home state; fades out as you scroll in -->
 <div id="scene-veil" aria-hidden="true"></div>
 
-<!-- Welcome intro — visible by default to prevent FOUC; JS dismisses after animation -->
+<!-- Welcome intro — visible by default to prevent FOUC; JS fades out after 2s -->
 <div id="site-intro">
-  <div id="intro-stars" aria-hidden="true"></div>
-  <canvas id="intro-canvas" aria-hidden="true"></canvas>
-  <div id="site-intro-inner">
-    <p class="intro-welcome">Welcome</p>
-    <div class="intro-words">
-      <span class="intro-word">ROMAN</span>
-      <span class="intro-word">JAHANDIDEH</span>
-    </div>
-    <div class="intro-rule"></div>
-    <p class="intro-tagline">Brand Identity &nbsp;·&nbsp; Motion &nbsp;·&nbsp; Spatial Design</p>
-  </div>
-  <p class="intro-skip-hint">Tap anywhere to skip</p>
+  <span id="site-intro-word">Welcome</span>
 </div>
 
 <!-- Scroll-sequence service step cards (desktop; GSAP drives opacity) -->
