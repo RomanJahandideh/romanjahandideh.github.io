@@ -1,48 +1,44 @@
 /**
- * DISNEY-STYLE WELCOME INTRO
- * Plays greenscreen.mp4 with real-time canvas chroma-key (green removal).
- * Stars twinkle in the background. Name reveals with shimmer + orange accent.
- * Skip on any click / key / scroll / touch.
- * Shown once; returns after 48 hours (localStorage).
+ * WELCOME INTRO
+ * Shown on every visit. Black overlay with star field, green-screen
+ * canvas animation, and name/tagline reveal.
+ * Skip: any click / key / scroll / touch.
+ * Dismissed automatically after MAX_DURATION_MS.
  */
 (function () {
   "use strict";
 
-  var STORAGE_KEY = "rj-intro-ts";
-  var COOLDOWN_MS = 48 * 60 * 60 * 1000; /* 48 hours */
-  var MAX_DURATION_MS = 9000;             /* hard cap — dismiss after 9s */
+  var MAX_DURATION_MS = 6000;
 
-  /* ── Frequency gate ── */
-  /* Add ?intro=1 to the URL to force the intro to show regardless of cooldown */
-  var _forceShow = window.location.search.indexOf("intro=1") !== -1;
-  var stored = localStorage.getItem(STORAGE_KEY);
-  var shouldShow = _forceShow || !stored || (Date.now() - parseInt(stored, 10)) > COOLDOWN_MS;
-  if (!shouldShow) return;
+  var _el = document.getElementById("site-intro");
+  if (!_el) return;
+
+  /* Users who prefer no motion: remove immediately */
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    localStorage.setItem(STORAGE_KEY, Date.now().toString());
+    _remove();
     return;
   }
 
-  var _el      = document.getElementById("site-intro");
-  if (!_el) return;
-
-  localStorage.setItem(STORAGE_KEY, Date.now().toString());
   window.siteIntroPlaying = true;
 
-  /* Reveal overlay */
-  _el.style.display       = "flex";
-  _el.style.pointerEvents = "auto";
-  _el.removeAttribute("aria-hidden");
-
   /* ── State ── */
-  var _dismissed   = false;
-  var _raf         = null;
-  var _video       = null;
-  var _canvas      = null;
-  var _ctx         = null;
-  var _maxTimer    = null;
+  var _dismissed = false;
+  var _raf       = null;
+  var _video     = null;
+  var _canvas    = null;
+  var _ctx       = null;
+  var _maxTimer  = null;
 
-  /* ── Dismiss ── */
+  /* ── Remove the overlay from DOM ── */
+  function _remove() {
+    if (_el && _el.parentNode) {
+      _el.style.display = "none";
+      _el.parentNode.removeChild(_el);
+    }
+    _el = null;
+  }
+
+  /* ── Dismiss: fade out then remove ── */
   function _dismiss(fast) {
     if (_dismissed) return;
     _dismissed = true;
@@ -50,47 +46,42 @@
     _removeListeners();
     clearTimeout(_maxTimer);
     if (_raf) cancelAnimationFrame(_raf);
-    if (_video) { _video.pause(); }
+    if (_video) _video.pause();
 
-    var dur = fast ? 0.30 : 0.65;
+    var target = _el;
+    if (!target) return;
+
+    var dur = fast ? 0.28 : 0.60;
     if (typeof gsap !== "undefined") {
-      gsap.to(_el, { opacity: 0, duration: dur, ease: "power2.in", onComplete: _remove });
+      gsap.to(target, { opacity: 0, duration: dur, ease: "power2.in", onComplete: _remove });
     } else {
       _remove();
     }
   }
 
-  function _remove() {
-    if (_el) {
-      _el.style.display = "none";
-      _el.setAttribute("aria-hidden", "true");
-      if (_el.parentNode) _el.parentNode.removeChild(_el);
-    }
-  }
-
   /* ── Skip listeners ── */
   function _onSkip() { _dismiss(true); }
+
   function _removeListeners() {
     document.removeEventListener("pointerdown", _onSkip);
     document.removeEventListener("keydown",     _onSkip);
     document.removeEventListener("wheel",       _onSkip, { passive: true });
     document.removeEventListener("touchstart",  _onSkip, { passive: true });
   }
+
   document.addEventListener("pointerdown", _onSkip);
   document.addEventListener("keydown",     _onSkip);
   document.addEventListener("wheel",       _onSkip, { passive: true });
   document.addEventListener("touchstart",  _onSkip, { passive: true });
 
-  /* Hard-cap: always dismiss after MAX_DURATION_MS */
   _maxTimer = setTimeout(function () { _exitSequence(); }, MAX_DURATION_MS);
 
   /* ── Star field ── */
   function _createStars() {
     var container = _el.querySelector("#intro-stars");
     if (!container) return;
-    var count = 90;
-    for (var i = 0; i < count; i++) {
-      var s   = document.createElement("div");
+    for (var i = 0; i < 90; i++) {
+      var s = document.createElement("div");
       s.className = "intro-star" + (Math.random() < 0.12 ? " gold" : "");
       s.style.left   = (Math.random() * 100).toFixed(2) + "%";
       s.style.top    = (Math.random() * 100).toFixed(2) + "%";
@@ -111,13 +102,12 @@
   }
 
   function _setCanvasSize(vw, vh) {
-    var maxW   = Math.min(vw, 720);
-    var scale  = maxW / vw;
+    var maxW  = Math.min(vw, 720);
+    var scale = maxW / vw;
     _canvas.width  = Math.round(vw * scale);
     _canvas.height = Math.round(vh * scale);
   }
 
-  /* Remove green pixels using chroma-key: g dominant over r and b */
   function _removeGreen(ctx, w, h) {
     try {
       var img = ctx.getImageData(0, 0, w, h);
@@ -125,15 +115,12 @@
       for (var i = 0; i < d.length; i += 4) {
         var r = d[i], g = d[i + 1], b = d[i + 2];
         if (g > 80 && g > r * 1.30 && g > b * 1.30) {
-          /* Soft edge: strength proportional to how "green" the pixel is */
           var excess = Math.min(1, (g - 80) / 120);
           d[i + 3]   = Math.round(d[i + 3] * (1 - excess));
         }
       }
       ctx.putImageData(img, 0, 0);
-    } catch (e) {
-      /* Tainted canvas or security error — render without key */
-    }
+    } catch (e) { /* tainted canvas — render without key */ }
   }
 
   function _startFrameLoop() {
@@ -151,21 +138,29 @@
   function _runTitleAnim(delay) {
     if (typeof gsap === "undefined") return;
     delay = delay || 0;
-    var words = _el.querySelectorAll(".intro-word");
-    var rule  = _el.querySelector(".intro-rule");
-    var hint  = _el.querySelector(".intro-skip-hint");
 
-    /* Words: scale-in + fade, staggered */
+    var welcome  = _el.querySelector(".intro-welcome");
+    var words    = _el.querySelectorAll(".intro-word");
+    var rule     = _el.querySelector(".intro-rule");
+    var tagline  = _el.querySelector(".intro-tagline");
+    var hint     = _el.querySelector(".intro-skip-hint");
+
+    /* "Welcome" fades in first */
+    if (welcome) {
+      gsap.fromTo(welcome,
+        { opacity: 0, y: 8 },
+        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out", delay: delay }
+      );
+    }
+
+    /* Name words scale-in + fade, staggered */
     gsap.fromTo(words,
       { opacity: 0, y: 18, scale: 1.08 },
       {
         opacity: 1, y: 0, scale: 1,
-        duration: 0.88,
-        ease: "power2.out",
-        stagger: 0.32,
-        delay: delay,
+        duration: 0.88, ease: "power2.out",
+        stagger: 0.28, delay: delay + 0.38,
         onComplete: function () {
-          /* Trigger CSS shimmer sweep on each word */
           for (var i = 0; i < words.length; i++) {
             words[i].classList.add("shimmer-on");
           }
@@ -177,41 +172,39 @@
     if (rule) {
       gsap.fromTo(rule,
         { scaleX: 0 },
-        {
-          scaleX: 1,
-          duration: 0.72,
-          ease: "power2.inOut",
-          transformOrigin: "left center",
-          delay: delay + 0.9
-        }
+        { scaleX: 1, duration: 0.72, ease: "power2.inOut",
+          transformOrigin: "left center", delay: delay + 1.2 }
       );
     }
 
-    /* Skip hint fades in gently */
+    /* Tagline fades in */
+    if (tagline) {
+      gsap.fromTo(tagline,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.55, ease: "power1.out", delay: delay + 1.6 }
+      );
+    }
+
+    /* Skip hint */
     if (hint) {
       gsap.fromTo(hint,
         { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: "power1.out", delay: delay + 1.3 }
+        { opacity: 1, duration: 0.5, ease: "power1.out", delay: delay + 2.0 }
       );
     }
   }
 
-  /* ── Exit sequence: content fades, then overlay fades ── */
+  /* ── Exit sequence ── */
   function _exitSequence() {
     if (_dismissed) return;
     if (typeof gsap !== "undefined") {
-      /* Fade out video canvas and title, then dismiss */
       var targets = [];
       if (_canvas) targets.push(_canvas);
-      var words = _el.querySelectorAll(".intro-word, .intro-rule");
-      for (var i = 0; i < words.length; i++) targets.push(words[i]);
-
+      var els = _el.querySelectorAll(".intro-welcome, .intro-word, .intro-rule, .intro-tagline");
+      for (var i = 0; i < els.length; i++) targets.push(els[i]);
       gsap.to(targets, {
-        opacity: 0,
-        duration: 0.50,
-        ease: "power2.in",
-        stagger: 0.06,
-        onComplete: function () { _dismiss(false); }
+        opacity: 0, duration: 0.45, ease: "power2.in",
+        stagger: 0.05, onComplete: function () { _dismiss(false); }
       });
     } else {
       _dismiss(false);
@@ -221,44 +214,39 @@
   /* ── Video setup ── */
   function _initVideo() {
     _video = document.createElement("video");
-    _video.muted      = true;
+    _video.muted       = true;
     _video.playsInline = true;
-    _video.preload    = "auto";
-    _video.src        = "greenscreen.mp4";
+    _video.preload     = "auto";
+    _video.src         = "greenscreen.mp4";
 
-    /* Size canvas once we know video dimensions */
     _video.addEventListener("loadedmetadata", function () {
       _setCanvasSize(_video.videoWidth, _video.videoHeight);
     });
 
-    /* Fade canvas in and start frame loop when video starts */
     _video.addEventListener("play", function () {
       if (typeof gsap !== "undefined" && _canvas) {
         gsap.to(_canvas, { opacity: 1, duration: 0.6, ease: "power2.out" });
       }
       _startFrameLoop();
-      _runTitleAnim(0.6); /* title appears 0.6s after video starts */
+      _runTitleAnim(0.5);
     });
 
-    /* When video finishes, start exit */
     _video.addEventListener("ended", function () {
       cancelAnimationFrame(_raf);
-      /* Brief pause so the last frame + title are visible together */
-      setTimeout(_exitSequence, 600);
+      setTimeout(_exitSequence, 500);
     });
 
-    /* Autoplay fail fallback */
     _video.addEventListener("error", function () {
-      _runTitleAnim(0.4);
-      setTimeout(_exitSequence, 4500);
+      _runTitleAnim(0.3);
+      setTimeout(_exitSequence, 4000);
     });
 
-    var playPromise = _video.play();
-    if (playPromise && typeof playPromise.then === "function") {
-      playPromise.catch(function () {
-        /* Autoplay blocked — show title without video */
-        _runTitleAnim(0.4);
-        setTimeout(_exitSequence, 4500);
+    var p = _video.play();
+    if (p && typeof p.then === "function") {
+      p.catch(function () {
+        /* Autoplay blocked — show title only */
+        _runTitleAnim(0.3);
+        setTimeout(_exitSequence, 4000);
       });
     }
   }

@@ -8,13 +8,18 @@
 #site-intro {
   position: fixed;
   inset: 0;
-  z-index: 9000;
-  background: #000;
-  display: none;           /* JS sets to flex when showing */
+  /* Above nav (z 10000) and modals (z 10001) so it covers everything
+     from the very first browser paint — preventing any flash of page content. */
+  z-index: 99999;
+  background: #0a0a0a;
+  /* Visible by default — JS removes it after the animation.
+     This is the key fix for the FOUC: the intro covers the page before
+     any JS or async CSS has had a chance to run. */
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  pointer-events: none;    /* JS enables when playing */
+  pointer-events: auto;
   overflow: hidden;
 }
 
@@ -67,6 +72,30 @@
   align-items: center;
   margin-top: 24px;
   user-select: none;
+}
+
+.intro-welcome {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(10px, 1.8vw, 14px);
+  font-weight: 500;
+  letter-spacing: 0.48em;
+  text-transform: uppercase;
+  color: #D96535;
+  opacity: 0;
+  margin: 0 0 18px;
+  will-change: opacity;
+}
+
+.intro-tagline {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(9px, 1.4vw, 12px);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.36);
+  opacity: 0;
+  margin: 16px 0 0;
+  will-change: opacity;
 }
 
 .intro-words {
@@ -141,5 +170,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Users who prefer no motion: hide immediately via JS; CSS hides as fallback */
   #site-intro { display: none !important; }
 }

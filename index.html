@@ -89,21 +89,20 @@
 <!-- Cream veil: softens home state; fades out as you scroll in -->
 <div id="scene-veil" aria-hidden="true"></div>
 
-<!-- Disney-style welcome intro (shown once per 48 h; JS removes after play) -->
-<div id="site-intro" aria-hidden="true">
-  <!-- Star field — JS populates with .intro-star divs -->
+<!-- Welcome intro — visible by default to prevent FOUC; JS dismisses after animation -->
+<div id="site-intro">
   <div id="intro-stars" aria-hidden="true"></div>
-  <!-- Green-screen video is rendered here via canvas chroma-key -->
   <canvas id="intro-canvas" aria-hidden="true"></canvas>
-  <!-- Name reveal -->
   <div id="site-intro-inner">
+    <p class="intro-welcome">Welcome</p>
     <div class="intro-words">
       <span class="intro-word">ROMAN</span>
       <span class="intro-word">JAHANDIDEH</span>
     </div>
     <div class="intro-rule"></div>
+    <p class="intro-tagline">Brand Identity &nbsp;·&nbsp; Motion &nbsp;·&nbsp; Spatial Design</p>
   </div>
-  <p class="intro-skip-hint">Click anywhere to skip</p>
+  <p class="intro-skip-hint">Tap anywhere to skip</p>
 </div>
 
 <!-- Scroll-sequence service step cards (desktop; GSAP drives opacity) -->
