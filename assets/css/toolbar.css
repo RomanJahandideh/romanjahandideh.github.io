@@ -488,13 +488,16 @@
   position: absolute;
   inset: 0;
   padding: 52px 36px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  overflow-y: scroll;           /* scroll (not auto) forces iOS to treat as scroll container */
+  display: block;               /* block = children render at natural height → overflow → scroll */
+  overflow-y: scroll;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
   touch-action: pan-y;
+}
+
+/* Re-add the spacing that the old flex gap provided */
+.contact-window-body > .abt-eyebrow {
+  margin-bottom: 16px;
 }
 
 @media (max-width: 736px) {
