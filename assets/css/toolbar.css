@@ -434,6 +434,11 @@
     0 32px 80px rgba(28,25,23,0.16),
     0 4px 16px rgba(28,25,23,0.08);
 
+  /* Use flex so the inner body can be a proper flex child —
+     this is the only layout that reliably scrolls inside a
+     position:fixed element on iOS Safari. */
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   z-index: 10001;
 
@@ -483,12 +488,18 @@
   color: rgba(28,25,23,0.88);
 }
 
-/* Contact window inner body */
+/* Contact window inner body.
+   iOS Safari refuses to scroll a position:absolute child that sits inside
+   a position:fixed + overflow:hidden parent.  The fix is a flex-child layout:
+   the parent is already display:flex / flex-direction:column (see .site-modal).
+   flex:1 1 0% + min-height:0 is the battle-tested iOS-safe scrollable pattern. */
 .contact-window-body {
-  position: absolute;
-  inset: 0;
+  flex: 1 1 0%;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
   padding: 52px 36px 28px;
-  display: block;               /* block = children render at natural height → overflow → scroll */
+  display: block;
   overflow-y: scroll;
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;

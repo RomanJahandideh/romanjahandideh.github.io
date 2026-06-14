@@ -767,6 +767,7 @@
     let _tapLock = false;
 
     window.addEventListener("touchstart", (e) => {
+      if (isPanelOpen()) return;   /* panel open — don't interfere with modal scroll */
       const t = e.touches[0];
       _tapStartX = t.clientX;
       _tapStartY = t.clientY;
