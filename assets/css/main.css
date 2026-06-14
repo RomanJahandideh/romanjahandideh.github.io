@@ -214,6 +214,14 @@ body:has(#spiderweb-canvas){
   touch-action: none;
 }
 
+/* Lift touch-action block when any modal is open so the inner
+   scroll container can receive pan gestures on mobile. */
+body:has(#contact.is-open),
+body:has(#about-window.is-open),
+body:has(.site-modal.is-open) {
+  touch-action: auto;
+}
+
 /* BACKGROUND STACK */
 body:has(#home-spiderweb-canvas) #bg,
 body:has(#spiderweb-canvas) #bg{
