@@ -517,7 +517,10 @@
 @media (max-width: 736px) {
   .site-modal {
     width: calc(100vw - 20px);
-    height: min(88vh, 640px);
+    /* Push the modal's centre-point down 32 px so it clears the nav bar */
+    top: calc(50% + 32px);
+    /* Reduce height slightly so the modal doesn't clip the bottom edge */
+    height: min(82vh, 600px);
     border-radius: 18px;
   }
 
