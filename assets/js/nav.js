@@ -21,7 +21,7 @@
     <nav class="top-nav top-nav--eye-socket" aria-label="Primary navigation">
       <div class="nav-left">
         <a href="#top"      data-nav="home"     data-mode-link="home">HOME</a>
-        <a href="#work"     data-nav="work"     data-mode-link="work">WORK</a>
+        <a href="#teaching" data-nav="teaching" data-mode-link="teaching">TEACHING</a>
       </div>
 
       <button
@@ -38,8 +38,8 @@
       </button>
 
       <div class="nav-right">
-        <a href="#teaching" data-nav="teaching" data-mode-link="teaching">TEACHING</a>
-        <a href="#contact"  data-nav="contact">CONTACT</a>
+        <a href="#work"    data-nav="work"    data-mode-link="work">WORK</a>
+        <a href="#contact" data-nav="contact">CONTACT</a>
       </div>
     </nav>
   `;
