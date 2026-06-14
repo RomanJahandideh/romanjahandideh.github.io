@@ -14,9 +14,9 @@
 
   /* ── Config ──────────────────────────────────────────────────── */
   var FOG_RGB      = "250,248,244";
-  var FOG_ALPHA    = 0.84;    /* base fog opacity  */
+  var FOG_ALPHA    = 0.90;    /* base fog opacity  */
   var TRAIL_R      = 84;      /* px — dab radius   */
-  var TRAIL_LIFE   = 2400;    /* ms — full fade    */
+  var TRAIL_LIFE   = 1800;    /* ms — full fade    */
   var MAX_PTS      = 240;     /* max stored points */
 
   /* ── State ───────────────────────────────────────────────────── */
@@ -95,9 +95,9 @@
       var r = TRAIL_R * (0.68 + 0.32 * (1 - age));
 
       var g = ctx.createRadialGradient(pt.x, pt.y, 0, pt.x, pt.y, r);
-      g.addColorStop(0,    "rgba(0,0,0," + alpha       + ")");
-      g.addColorStop(0.38, "rgba(0,0,0," + (alpha * 0.60) + ")");
-      g.addColorStop(0.70, "rgba(0,0,0," + (alpha * 0.18) + ")");
+      g.addColorStop(0,    "rgba(0,0,0," + alpha                 + ")");
+      g.addColorStop(0.38, "rgba(0,0,0," + (alpha * 0.85)        + ")");
+      g.addColorStop(0.70, "rgba(0,0,0," + (alpha * 0.55)        + ")");
       g.addColorStop(1,    "rgba(0,0,0,0)");
 
       ctx.beginPath();

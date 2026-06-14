@@ -1,0 +1,614 @@
+/* =========================================================
+   TOOLBAR — Eye Socket + About Window
+   Orange accent: #D96535
+   ========================================================= */
+
+/* ── Make the pill bar a grid so the socket can sit centre ── */
+.top-nav--eye-socket {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0 8px;
+  align-items: center;
+  overflow: visible;
+  padding: 8px 28px;
+  top: 42px; /* pushed down from very top edge */
+}
+
+.top-nav--eye-socket .nav-left {
+  display: flex;
+  gap: var(--nav-gap, 44px);
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  padding-right: 18px;
+}
+
+.top-nav--eye-socket .nav-right {
+  display: flex;
+  gap: var(--nav-gap, 44px);
+  align-items: center;
+  justify-content: flex-end;
+  align-self: stretch;
+  padding-left: 18px;
+}
+
+/* ── Eye socket button ── */
+.nav-eye-socket {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+
+  background: var(--nav-bg, rgba(250,248,244,0.92));
+  border: none;
+  box-shadow:
+    0 3px 14px rgba(28,25,23,0.16),
+    0 1px 4px rgba(28,25,23,0.08);
+
+  display: grid;
+  place-items: center;
+  position: relative;
+
+  margin-top: -22px;
+  margin-bottom: -22px;
+  z-index: 2;
+
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+
+  transition: transform 0.22s cubic-bezier(0.22,1,0.36,1),
+              box-shadow 0.22s ease;
+}
+
+.nav-eye-socket:hover {
+  transform: scale(1.12);
+  box-shadow:
+    0 5px 20px rgba(217,101,53,0.22),
+    0 2px 8px rgba(28,25,23,0.12);
+}
+
+.nav-eye-socket[aria-expanded="true"] {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 0 2px rgba(217,101,53,0.40),
+    0 4px 20px rgba(217,101,53,0.24);
+}
+
+.nav-eye-socket:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px rgba(217,101,53,0.55),
+    0 0 0 4px rgba(217,101,53,0.15),
+    0 4px 18px rgba(28,25,23,0.14);
+}
+
+/* Orange accent dots — hidden per design */
+.socket-dot {
+  display: none;
+}
+
+/* ── #eyes when inside the socket ── */
+.nav-eye-socket #eyes {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+  z-index: auto !important;
+  filter: none !important;
+  will-change: auto !important;
+  --eye-size: 52px;
+  pointer-events: none;
+}
+
+/* Hide glasses ring — socket is the visual frame */
+.nav-eye-socket #eyes .glasses-ring {
+  display: none !important;
+}
+
+/* ── Round pupil inside socket (overrides clip-path triangle) ── */
+.nav-eye-socket #eyes .eye .pupil {
+  clip-path: none !important;
+  border-radius: 50% !important;
+  background: radial-gradient(
+    circle at 38% 34%,
+    rgba(30,30,40,0.95) 0%,
+    rgba(0,0,0,1) 55%,
+    rgba(15,15,25,0.90) 100%
+  ) !important;
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,0.12),
+    0 0 0 1px rgba(0,0,0,0.45) !important;
+}
+
+/* ── Iris — make more visible at socket size ── */
+.nav-eye-socket #eyes .eye .iris {
+  opacity: 0.85 !important;
+  mix-blend-mode: normal !important;
+  background:
+    radial-gradient(circle at 50% 50%,
+      rgba(200,210,225,0.0) 0%,
+      rgba(160,180,200,0.20) 40%,
+      rgba(110,140,168,0.32) 62%,
+      rgba(75,105,135,0.22) 80%,
+      rgba(50,75,100,0.10) 100%) !important;
+}
+
+/* ── Specular highlight ── */
+.nav-eye-socket #eyes .eye .specular {
+  opacity: 0.95 !important;
+}
+
+
+/* ── Mobile ── */
+@media (max-width: 736px) {
+  .top-nav--eye-socket {
+    gap: 0 2px;
+    padding-left: 12px;
+    padding-right: 12px;
+    top: 14px;
+  }
+
+  .top-nav--eye-socket .nav-left,
+  .top-nav--eye-socket .nav-right {
+    gap: 14px;
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .nav-eye-socket {
+    width: 50px;
+    height: 50px;
+    margin-top: -10px;
+    margin-bottom: -10px;
+  }
+
+  .nav-eye-socket #eyes {
+    --eye-size: 34px !important;
+  }
+
+  .socket-dot {
+    width: 4px;
+    height: 4px;
+  }
+}
+
+
+/* =========================================================
+   ABOUT WINDOW
+   ========================================================= */
+
+#about-window {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%) scale(0.96);
+
+  width: min(860px, calc(100vw - 32px));
+  height: min(76vh, 680px);
+
+  background: rgba(250,248,244,0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(28,25,23,0.09);
+  border-radius: 22px;
+  box-shadow:
+    0 32px 80px rgba(28,25,23,0.16),
+    0 4px 16px rgba(28,25,23,0.08);
+
+  overflow: hidden;
+
+  z-index: 10001;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity 0.34s cubic-bezier(0.22,1,0.36,1),
+    transform 0.34s cubic-bezier(0.22,1,0.36,1),
+    visibility 0.34s cubic-bezier(0.22,1,0.36,1);
+
+  will-change: opacity, transform;
+}
+
+#about-window.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* ── Text view and timeline view overlay each other ── */
+.abt-view {
+  position: absolute;
+  inset: 0;
+  padding: 40px 44px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  transition: opacity 0.32s ease;
+  overflow-y: auto;
+}
+
+.abt-text-view {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.abt-timeline-view {
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  padding: 28px 24px 24px;
+  gap: 16px;
+}
+
+#about-window.show-timeline .abt-text-view {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#about-window.show-timeline .abt-timeline-view {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Text view content ── */
+.abt-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: rgba(28,25,23,0.48);
+  margin-bottom: 10px;
+}
+
+.abt-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: rgba(28,25,23,0.88);
+  font-family: "Montserrat", system-ui, sans-serif;
+  max-width: 28ch;
+}
+
+.abt-divider {
+  width: 48px;
+  height: 2px;
+  background: #D96535;
+  border: none;
+  margin: 0;
+}
+
+.abt-body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.82;
+  color: rgba(28,25,23,0.74);
+  font-family: "Montserrat", system-ui, sans-serif;
+  max-width: 58ch;
+}
+
+.abt-timeline-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+
+  padding: 11px 24px;
+  background: #D96535;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  box-shadow: 0 4px 18px rgba(217,101,53,0.36);
+  transition: background 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.abt-timeline-btn:hover {
+  background: #c9664a;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(217,101,53,0.48);
+}
+
+.abt-timeline-btn:focus-visible {
+  outline: 2px solid #D96535;
+  outline-offset: 3px;
+}
+
+/* ── Timeline view content ── */
+.abt-timeline-view-title {
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: rgba(28,25,23,0.45);
+  margin: 0;
+}
+
+.abt-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: transparent;
+  color: rgba(28,25,23,0.60);
+  border: 1px solid rgba(28,25,23,0.14);
+  border-radius: 999px;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.abt-back-btn:hover {
+  background: rgba(28,25,23,0.06);
+  color: rgba(28,25,23,0.88);
+}
+
+.abt-back-btn:focus-visible {
+  outline: 2px solid #D96535;
+  outline-offset: 3px;
+}
+
+.abt-timeline-wrap {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.abt-timeline-wrap iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(100%) contrast(1.06) brightness(0.96);
+}
+
+/* ── Mobile about window ── */
+@media (max-width: 736px) {
+  #about-window {
+    width: calc(100vw - 20px);
+    height: min(88vh, 640px);
+    border-radius: 18px;
+  }
+
+  .abt-view {
+    padding: 28px 22px 22px;
+    gap: 16px;
+  }
+
+  .abt-title {
+    font-size: 15px;
+  }
+
+  .abt-body {
+    font-size: 13px;
+    line-height: 1.70;
+  }
+
+  .abt-timeline-view {
+    padding: 20px 14px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .abt-view {
+    padding: 22px 16px 18px;
+  }
+}
+
+/* =========================================================
+   SITE MODAL — shared frosted glass window shell
+   Applied to: #contact (Contact), #teaching-detail-panel
+   (#about-window keeps its own ID rule — same values, higher specificity)
+   ========================================================= */
+
+.site-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%) scale(0.96);
+
+  width: min(860px, calc(100vw - 32px));
+  height: min(76vh, 680px);
+
+  background: rgba(250,248,244,0.94);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(28,25,23,0.09);
+  border-radius: 22px;
+  box-shadow:
+    0 32px 80px rgba(28,25,23,0.16),
+    0 4px 16px rgba(28,25,23,0.08);
+
+  overflow: hidden;
+  z-index: 10001;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transition:
+    opacity    0.34s cubic-bezier(0.22,1,0.36,1),
+    transform  0.34s cubic-bezier(0.22,1,0.36,1),
+    visibility 0.34s cubic-bezier(0.22,1,0.36,1);
+
+  will-change: opacity, transform;
+}
+
+.site-modal.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Shared close button */
+.site-modal-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  background: transparent;
+  color: rgba(28,25,23,0.55);
+  border: 1px solid rgba(28,25,23,0.12);
+  border-radius: 999px;
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.site-modal-close:hover {
+  background: rgba(28,25,23,0.06);
+  color: rgba(28,25,23,0.88);
+}
+
+/* Contact window inner body */
+.contact-window-body {
+  position: absolute;
+  inset: 0;
+  padding: 52px 36px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 736px) {
+  .site-modal {
+    width: calc(100vw - 20px);
+    height: min(88vh, 640px);
+    border-radius: 18px;
+  }
+
+  .contact-window-body {
+    padding: 52px 20px 22px;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-window-body {
+    padding: 48px 16px 20px;
+  }
+}
+
+/* =========================================================
+   CANONICAL BALL STYLE
+   Work (.layer), Teaching (.teaching-layer), Services (.svc-ball)
+   Loaded last — overrides per-section CSS files.
+   ========================================================= */
+
+/* Base appearance */
+body.mode-work #main-stack .layer,
+#teaching-main-stack .teaching-layer,
+.svc-ball {
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(28,25,23,0.05);
+  box-shadow:
+    0 5px 22px rgba(28,25,23,0.11),
+    0 2px 8px rgba(28,25,23,0.07);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Teaching ::after — full flicker overlay (mode-switch.css had display:none) */
+#teaching-main-stack .teaching-layer::after {
+  display: block;
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: rgba(255,255,255,0.95);
+  opacity: var(--ff-flicker-max-opacity, 0.98);
+  transform-origin: center;
+  transform: scale(1);
+  filter:
+    brightness(var(--ff-flicker-max-brightness, 1.12))
+    contrast(var(--ff-flicker-max-contrast, 1.06));
+
+  animation: ff-flicker var(--ff-flicker-speed, 3.4s) ease-in-out infinite;
+}
+
+/* Hover — cream tint + orange glow */
+body.mode-work #main-stack .layer:hover,
+#teaching-main-stack .teaching-layer:hover,
+#teaching-main-stack .teaching-layer.is-hover,
+.svc-ball:hover {
+  background: rgba(240,237,230,0.98);
+  border-color: rgba(224,123,90,0.22);
+  box-shadow:
+    0 8px 28px rgba(224,123,90,0.22),
+    0 3px 10px rgba(28,25,23,0.10);
+}
+
+/* Hover — stop flicker on all three ball types */
+body.mode-work #main-stack .layer:hover::after,
+#teaching-main-stack .teaching-layer:hover::after,
+#teaching-main-stack .teaching-layer.is-hover::after,
+.svc-ball:hover::after {
+  animation: none;
+  opacity: 0;
+  filter: none;
+}
+
+/* Shared label — Inter instead of Montserrat */
+body.mode-work #main-stack .layer .label,
+#teaching-main-stack .teaching-layer .label,
+.svc-ball .svc-ball-label {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.25px;
+  line-height: 1.15;
+  padding: 12px;
+  text-transform: none;
+}
+
+/* Teaching label — show on hover/focus (mode-switch.css hides by default) */
+#teaching-main-stack .teaching-layer:hover .label,
+#teaching-main-stack .teaching-layer.is-hover .label,
+#teaching-main-stack .teaching-layer:focus-visible .label {
+  opacity: 1;
+}
+
+/* Shared focus ring */
+body.mode-work #main-stack .layer:focus-visible,
+#teaching-main-stack .teaching-layer:focus-visible,
+.svc-ball:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(224,123,90,0.55),
+    0 0 0 6px rgba(224,123,90,0.18);
+}
+
+/* Touch devices — always-visible labels */
+@media (pointer: coarse) {
+  #teaching-main-stack .teaching-layer .label,
+  .svc-ball .svc-ball-label {
+    opacity: 0.80;
+  }
+}

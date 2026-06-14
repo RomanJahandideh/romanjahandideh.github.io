@@ -1,600 +1,252 @@
 /* =========================================================
-   SERVICES — Editorial Cinema card system
-   Orange #D96535  Hover #c9664a  Font Montserrat
+   SERVICES — Firefly Balls Interaction
+   Signature orange: #D96535
    ========================================================= */
 
-/* ── Scroll lock ─────────────────────────────────────────── */
-
-html.services-open,
-body.services-open {
-  overflow: hidden !important;
-  touch-action: none !important;
-  overscroll-behavior: none !important;
-}
-
-/* ── Services trigger button ─────────────────────────────── */
-
+/* ── Services toggle button ── */
 #services-btn {
-  appearance: none;
-  display: inline-block;
-  margin-top: 26px;
-  background: #D96535;
-  border: 1px solid #D96535;
-  color: #fff;
-  border-radius: 999px;
-  padding: 10px 24px;
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.20em;
-  text-transform: uppercase;
-  cursor: pointer;
-  position: relative;
-  z-index: 20;
-  transition: background 0.18s ease,
-              border-color 0.18s ease,
-              transform 0.18s ease,
-              box-shadow 0.18s ease;
-}
-
-#services-btn:hover {
-  background: #c9664a;
-  border-color: #c9664a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(217, 101, 53, 0.34);
-}
-
-#services-btn:focus-visible {
-  outline: 2px solid #D96535;
-  outline-offset: 3px;
-}
-
-/* ── Panel backdrop — Fix 1: z-index 55 (below nav at 60) ── */
-
-#services-panel {
-  position: fixed;
-  inset: 0;
-  z-index: 55;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 20px 16px;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-  transition: opacity 0.52s cubic-bezier(0.22, 1, 0.36, 1),
-              visibility 0.52s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-#services-panel.is-open {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-/* Fix 2: heavy transparency + stronger blur ── */
-#services-panel::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(250, 248, 244, 0.58);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-}
-
-/* ── Panel inner card — Fix 2: glassy, more breathing room ─ */
-
-.services-panel-inner {
-  position: relative;
-  z-index: 1;
-  width: min(1400px, 96vw);
-  max-height: 92vh;
-  overflow-y: auto;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  -webkit-overflow-scrolling: touch;
-  padding: 32px 32px 28px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.84);
-  border: 1px solid rgba(28, 25, 23, 0.06);
-  box-shadow: 0 32px 90px rgba(28, 25, 23, 0.12),
-              0 4px 24px rgba(28, 25, 23, 0.06);
-  transform: translateY(22px);
-  transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-#services-panel.is-open .services-panel-inner {
-  transform: translateY(0);
-}
-
-/* ── Panel header ────────────────────────────────────────── */
-
-.services-panel-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 26px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(28, 25, 23, 0.07);
-}
-
-.services-panel-title {
-  margin: 0;
-  font-family: var(--font);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.40em;
-  text-transform: uppercase;
-  color: rgba(28, 25, 23, 0.40);
-}
-
-.services-close-btn {
-  appearance: none;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(28, 25, 23, 0.14);
-  background: rgba(28, 25, 23, 0.04);
-  color: rgba(28, 25, 23, 0.60);
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  transition: background 0.18s ease,
-              color 0.18s ease,
-              transform 0.16s ease;
-}
-
-.services-close-btn:hover {
-  background: rgba(28, 25, 23, 0.09);
-  color: rgba(28, 25, 23, 0.90);
-  transform: scale(1.04);
-}
-
-.services-close-btn:focus-visible {
-  outline: 2px solid #D96535;
-  outline-offset: 2px;
-}
-
-/* ── Services grid ───────────────────────────────────────── */
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  align-items: start;
-}
-
-/* ── Service card ────────────────────────────────────────── */
-
-.service-card {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  border-radius: 16px;
-  border: 1px solid rgba(28, 25, 23, 0.09);
-  background: rgba(250, 250, 248, 0.92);
-  cursor: pointer;
-  outline: none;
-  will-change: transform, opacity;
-  transition: border-color 0.24s ease,
-              box-shadow 0.24s ease;
-}
-
-.service-card:hover {
-  border-color: rgba(217, 101, 53, 0.26);
-  box-shadow: 0 10px 38px rgba(28, 25, 23, 0.10),
-              0 2px 10px rgba(28, 25, 23, 0.06);
-}
-
-.service-card:focus-visible {
-  outline: 2px solid #D96535;
-  outline-offset: 2px;
-}
-
-.service-card.is-active {
-  border-color: rgba(217, 101, 53, 0.42);
-  box-shadow: 0 14px 48px rgba(28, 25, 23, 0.12),
-              0 2px 12px rgba(28, 25, 23, 0.07);
-}
-
-/* Orange top-bar draws left → right when active */
-.service-card::after {
-  content: "";
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 2.5px;
-  background: linear-gradient(90deg, #D96535 0%, #e8844b 100%);
-  border-radius: 16px 16px 0 0;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.44s cubic-bezier(0.22, 1, 0.36, 1) 0.04s;
-  z-index: 3;
-  pointer-events: none;
-}
-
-.service-card.is-active::after {
-  transform: scaleX(1);
-}
-
-/* ── Image wrapper ───────────────────────────────────────── */
-
-.service-img-wrap {
-  position: relative;
-  overflow: hidden;
-  border-radius: 15px 15px 0 0;
-}
-
-.service-img {
-  display: block;
-  width: 100%;
-  height: 226px;
-  object-fit: cover;
-  pointer-events: none;
-  filter: saturate(0.72) brightness(0.84);
-  transform: scale(1.0);
-  transition: height 0.50s cubic-bezier(0.22, 1, 0.36, 1),
-              filter 0.40s ease,
-              transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-/* Active: shrinks and mutes */
-.service-card.is-active .service-img {
-  height: 108px;
-  filter: saturate(0.88) brightness(0.88);
-  transform: scale(1.0);
-}
-
-/* ── Label ───────────────────────────────────────────────── */
-
-.service-label-wrap {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 60px 14px 14px;
-  background: linear-gradient(to top,
-    rgba(8, 6, 4, 0.88) 0%,
-    rgba(8, 6, 4, 0.44) 46%,
-    rgba(8, 6, 4, 0.0) 100%);
-  pointer-events: none;
-}
-
-.service-num {
-  display: block;
-  font-family: var(--font);
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: #D96535;
-  margin-bottom: 5px;
-}
-
-.service-name {
-  display: block;
-  font-family: var(--font);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.94);
-  line-height: 1.40;
-  position: relative;
-}
-
-.service-name::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 1.5px;
-  background: #D96535;
-  transition: width 0.34s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.service-card:hover .service-name::after,
-.service-card.is-active .service-name::after {
-  width: 100%;
-}
-
-/* ── Detail (description + button) ──────────────────────── */
-
-.service-detail {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.52s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.service-card.is-active .service-detail {
-  max-height: 380px;
-}
-
-.service-detail-inner {
-  padding: 16px 16px 18px;
-  display: flex;
-  flex-direction: column;
-}
-
-.service-detail-inner::before {
-  content: "";
-  display: block;
-  width: 28px;
-  height: 1.5px;
-  background: #D96535;
-  opacity: 0.65;
-  margin-bottom: 12px;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.40s cubic-bezier(0.22, 1, 0.36, 1) 0.10s;
-}
-
-.service-card.is-active .service-detail-inner::before {
-  transform: scaleX(1);
-}
-
-.service-desc {
-  margin: 0;
-  font-family: var(--font);
-  font-size: 12px;
-  line-height: 1.74;
-  color: rgba(28, 25, 23, 0.72);
-}
-
-/* ── Fix 2: hover=active on desktop ─────────────────────── */
-
-@media (hover: hover) {
-  /* Hover shrinks image and opens detail — same as active */
-  .service-card:hover .service-img {
-    height: 108px;
-    filter: saturate(0.88) brightness(0.88);
-    transform: scale(1.0);
-  }
-  .service-card:hover .service-detail {
-    max-height: 380px;
-  }
-  .service-card:hover::after {
-    transform: scaleX(1);
-  }
-  .service-card:hover .service-detail-inner::before {
-    transform: scaleX(1);
-  }
-}
-
-/* ── View Work — sweep-fill on hover ─────────────────────── */
-
-.service-work-btn {
-  appearance: none;
-  position: relative;
-  overflow: hidden;
-  align-self: flex-start;
-  margin-top: 14px;
-  background: transparent;
-  border: 1px solid #D96535;
-  color: #D96535;
-  border-radius: 999px;
-  padding: 8px 18px;
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  cursor: pointer;
-  z-index: 0;
-  transition: color 0.28s ease,
-              transform 0.18s ease;
-}
-
-.service-work-btn::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: #D96535;
-  z-index: -1;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.30s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.service-work-btn:hover::before {
-  transform: scaleX(1);
-}
-
-.service-work-btn:hover {
-  color: #fff;
-  transform: translateY(-1px);
-}
-
-.service-work-btn:focus-visible {
-  outline: 2px solid #D96535;
-  outline-offset: 2px;
-}
-
-/* ── Mobile pane (desktop: hidden) ──────────────────────── */
-
-.services-mobile-pane {
-  display: none;
-}
-
-.services-mobile-pane-inner {
-  display: flex;
-  flex-direction: column;
-}
-
-#services-mobile-desc {
-  margin: 0 0 4px;
-  font-family: var(--font);
-  font-size: 13px;
-  line-height: 1.74;
-  color: rgba(28, 25, 23, 0.72);
-}
-
-/* ── Back to Services button (Fix 3) ────────────────────── */
-
-#services-back-btn {
-  position: fixed;
-  top: 76px;
-  right: 18px;
-  z-index: 90;
-  appearance: none;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 9px 18px;
+  padding: 11px 28px;
   background: #D96535;
   border: none;
   border-radius: 999px;
   color: #fff;
-  font-family: var(--font);
+  font-family: "Montserrat", system-ui, sans-serif;
   font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 4px 18px rgba(217, 101, 53, 0.38);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-10px);
-  transition: opacity 0.28s ease,
-              transform 0.28s ease,
-              background 0.18s ease,
-              box-shadow 0.18s ease;
+  box-shadow: 0 4px 20px rgba(217,101,53,0.38);
+  transition:
+    background 0.20s ease,
+    box-shadow 0.20s ease;
+  position: relative;
+  z-index: 20;
+  will-change: transform;
 }
 
-#services-back-btn.is-visible {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateY(0);
-}
-
-#services-back-btn:hover {
+#services-btn:hover {
   background: #c9664a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(217, 101, 53, 0.44);
+  box-shadow: 0 8px 28px rgba(217,101,53,0.50);
 }
 
-#services-back-btn.is-visible:hover {
-  transform: translateY(-2px);
+#services-btn[aria-expanded="true"] {
+  background: rgba(217,101,53,0.14);
+  color: #D96535;
+  box-shadow: inset 0 0 0 1.5px #D96535;
 }
 
-#services-back-btn:focus-visible {
+#services-btn:focus-visible {
   outline: 2px solid #D96535;
-  outline-offset: 3px;
+  outline-offset: 4px;
 }
 
-/* ── Scrollbar ───────────────────────────────────────────── */
+/* ── Divider — removed ── */
+#svc-divider { display: none !important; }
 
-.services-panel-inner::-webkit-scrollbar { width: 5px; }
-.services-panel-inner::-webkit-scrollbar-track {
-  background: rgba(28, 25, 23, 0.04);
-  border-radius: 999px;
-}
-.services-panel-inner::-webkit-scrollbar-thumb {
-  background: rgba(28, 25, 23, 0.12);
-  border-radius: 999px;
-}
-
-/* ── Responsive: tablet (2 columns) ─────────────────────── */
-
-@media (max-width: 960px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
-  }
-  .service-img { height: 204px; }
-  .service-card.is-active .service-img { height: 108px; }
+/* ── Balls container ── */
+#svc-balls-wrap {
+  display: none;  /* JS sets to flex when open */
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
-/* ── Responsive: mobile (Fix 5 — horizontal scroll strip) ── */
+/* ── Individual service ball — matches Work section .layer ── */
+.svc-ball {
+  position: relative;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  overflow: hidden;
 
-@media (max-width: 768px) {
-  .services-panel-inner {
-    padding: 18px 0 0;
-    border-radius: 20px;
-    max-height: 94vh;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-  }
+  cursor: pointer;
+  padding: 0;
+  font-family: "Montserrat", system-ui, sans-serif;
 
-  .services-panel-header {
-    padding: 0 16px 14px;
-    flex-shrink: 0;
-  }
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    background 220ms ease,
+    box-shadow 220ms ease;
+}
 
-  /* Horizontal scroll strip */
-  .services-grid {
-    display: flex;
-    flex-direction: row;
-    grid-template-columns: unset;
-    overflow-x: auto;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
+/* Flicker overlay — identical to work-card.css ::after */
+.svc-ball::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+
+  background: rgba(255,255,255,0.95);
+  opacity: var(--ff-flicker-max-opacity, 0.98);
+  transform: scale(1);
+  transform-origin: center;
+  filter:
+    brightness(var(--ff-flicker-max-brightness, 1.12))
+    contrast(var(--ff-flicker-max-contrast, 1.06));
+
+  animation: ff-flicker var(--ff-flicker-speed, 3.4s) ease-in-out infinite;
+}
+
+/* Hover: stop flicker — visual handled by canonical rule in toolbar.css */
+.svc-ball:hover {
+  z-index: 10;
+  position: relative;
+}
+
+.svc-ball:hover::after {
+  animation: none;
+  opacity: 0;
+}
+
+/* Active ball (selected service) */
+.svc-ball.is-active {
+  box-shadow: 0 0 0 2px #D96535, 0 6px 20px rgba(217,101,53,0.28);
+  z-index: 10;
+  position: relative;
+}
+
+.svc-ball.is-active::after {
+  animation: none;
+  opacity: 0;
+}
+
+.svc-ball:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(217,101,53,0.55), 0 0 0 6px rgba(217,101,53,0.18);
+}
+
+/* ── Ball label ── */
+.svc-ball-label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+  text-align: center;
+
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  color: rgba(28,25,23,0.88);
+  text-transform: uppercase;
+  word-break: break-word;
+
+  opacity: 0;
+  transition: opacity 180ms ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.svc-ball:hover .svc-ball-label,
+.svc-ball.is-active .svc-ball-label {
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .svc-ball-label { opacity: 0.80; }
+}
+
+/* ── Description panel ── */
+#svc-desc {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(520px, calc(100vw - 40px));
+  z-index: 45;
+  pointer-events: none;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+#svc-desc[aria-hidden="false"] {
+  pointer-events: auto;
+}
+
+#svc-desc-inner {
+  background: rgba(250,248,244,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(28,25,23,0.09);
+  border-radius: 18px;
+  padding: 22px 26px 20px;
+  box-shadow:
+    0 16px 48px rgba(28,25,23,0.12),
+    0 2px 8px rgba(28,25,23,0.06);
+  text-align: center;
+}
+
+#svc-desc-text {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.72;
+  color: rgba(28,25,23,0.78);
+  font-family: "Montserrat", system-ui, sans-serif;
+}
+
+.svc-view-work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: #D96535;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.svc-view-work-link:hover {
+  color: #c9664a;
+  transform: translateX(3px);
+}
+
+/* ── Mobile ── */
+@media (max-width: 736px) {
+  #svc-balls-wrap {
     gap: 10px;
-    padding: 0 16px 14px;
-    scrollbar-width: none;
-    flex-shrink: 0;
-    align-items: stretch;
-  }
-  .services-grid::-webkit-scrollbar { display: none; }
-
-  .service-card {
-    flex: 0 0 175px;
-    min-width: 175px;
-    scroll-snap-align: start;
+    margin-top: 14px;
   }
 
-  .service-img {
-    height: 190px;
+  .svc-ball {
+    width: 74px;
+    height: 74px;
   }
 
-  /* Cards never shrink on mobile — description lives in the pane below */
-  .service-card.is-active .service-img,
-  .service-card:hover .service-img {
-    height: 190px;
-    filter: saturate(0.72) brightness(0.84);
-    transform: scale(1.0);
-  }
-  .service-card.is-active:hover .service-img {
-    filter: saturate(1.0) brightness(1.0);
+  .svc-ball-label {
+    font-size: 7px;
+    padding: 9px;
+    word-break: break-word;
   }
 
-  /* Hide inline detail — content goes to mobile pane */
-  .service-detail { display: none !important; }
+  #svc-desc {
+    bottom: 108px;
+    width: min(480px, calc(100vw - 24px));
+  }
 
-  /* Mobile pane */
-  .services-mobile-pane {
-    display: block;
-    flex: 1;
-    overflow-y: auto;
-    border-top: 1px solid rgba(28, 25, 23, 0.07);
-    padding: 18px 16px 24px;
-    min-height: 130px;
+  #svc-desc-inner {
+    padding: 18px 18px 16px;
+  }
+
+  #svc-desc-text {
+    font-size: 12px;
+    line-height: 1.65;
   }
 }
 
-/* ── Reduced motion ──────────────────────────────────────── */
-
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  #services-panel,
-  .services-panel-inner,
-  .service-img,
-  .service-detail,
-  .service-card::after,
-  .service-name::after,
-  .service-detail-inner::before,
-  .service-work-btn::before,
-  #services-btn,
-  .services-close-btn,
-  #services-back-btn {
-    transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
+  .svc-ball::after {
+    animation: none;
+    opacity: 1;
   }
 }

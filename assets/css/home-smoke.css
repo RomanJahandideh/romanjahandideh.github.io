@@ -1,0 +1,43 @@
+/* =========================================================
+   SMOKE VIDEO — persistent full-screen background
+   Scroll-scrubbed on desktop in every mode.
+   Ambient loop on touch devices.
+   Static frame when prefers-reduced-motion.
+   ========================================================= */
+
+#smoke-video {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 4;
+  pointer-events: none;
+  will-change: opacity;
+  transition: opacity 0.50s ease;
+}
+
+/* ── Kill the old background photo — video is the bg now ─── */
+body:has(#home-spiderweb-canvas) #bg::after {
+  opacity: 0 !important;
+}
+
+/* ── Kill the fog-trail canvas — video replaces it ──────── */
+#fog-trail-canvas {
+  display: none !important;
+}
+
+/* ── Touch devices: ambient loop, softer opacity ─────────── */
+@media (pointer: coarse) {
+  #smoke-video {
+    opacity: 0.70;
+  }
+}
+
+/* ── Reduced motion: barely-visible static first frame ───── */
+@media (prefers-reduced-motion: reduce) {
+  #smoke-video {
+    opacity: 0.25;
+  }
+}

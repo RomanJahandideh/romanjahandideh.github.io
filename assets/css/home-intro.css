@@ -1,0 +1,145 @@
+/* =========================================================
+   DISNEY-STYLE WELCOME INTRO
+   Black full-screen overlay with star field, green-screen
+   video played on canvas, and cinematic name reveal.
+   Shown once per 48 h. Skip on any interaction.
+   ========================================================= */
+
+#site-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: #000;
+  display: none;           /* JS sets to flex when showing */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;    /* JS enables when playing */
+  overflow: hidden;
+}
+
+/* ── Star field ── */
+#intro-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.intro-star {
+  position: absolute;
+  border-radius: 50%;
+  background: #fff;
+  animation: intro-twinkle var(--dur, 2.2s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  opacity: 0;
+}
+
+@keyframes intro-twinkle {
+  0%, 100% { opacity: 0;    transform: scale(0.5); }
+  50%       { opacity: 0.9; transform: scale(1);   }
+}
+
+/* Occasional golden stars for warmth */
+.intro-star.gold {
+  background: #D96535;
+  filter: blur(0.4px);
+}
+
+/* ── Video canvas (green screen removed in JS) ── */
+#intro-canvas {
+  position: relative;
+  z-index: 1;
+  display: block;
+  max-width: min(72vw, 680px);
+  max-height: 52vh;
+  width: auto;
+  height: auto;
+  opacity: 0; /* JS fades in once video is ready */
+}
+
+/* ── Name / title ── */
+#site-intro-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 24px;
+  user-select: none;
+}
+
+.intro-words {
+  display: flex;
+  align-items: baseline;
+  gap: 0.45em;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.intro-word {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(26px, 5vw, 58px);
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  color: #ffffff;
+  opacity: 0;
+  display: inline-block;
+  will-change: opacity, transform;
+  /* Subtle shimmer sweep added by JS-controlled CSS var */
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0)   0%,
+    rgba(255,255,255,0.9) 30%,
+    #D96535               50%,
+    rgba(255,255,255,0.9) 70%,
+    rgba(255,255,255,0)   100%
+  );
+  background-size: 300% 100%;
+  background-position: -200% center;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.intro-word.shimmer-on {
+  animation: intro-shimmer 1.2s ease forwards;
+}
+
+@keyframes intro-shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center;  }
+}
+
+/* Orange accent rule */
+.intro-rule {
+  width: clamp(40px, 7vw, 88px);
+  height: 2px;
+  background: #D96535;
+  margin-top: 18px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  will-change: transform;
+}
+
+/* Skip hint */
+.intro-skip-hint {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+  opacity: 0;
+  pointer-events: none;
+  will-change: opacity;
+  z-index: 9001;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #site-intro { display: none !important; }
+}

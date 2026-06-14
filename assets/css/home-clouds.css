@@ -40,7 +40,7 @@ body[data-mode="teaching"] #cloud-layer {
 #fog-trail-canvas {
   position: fixed;
   inset: 0;
-  z-index: 2;
+  z-index: 6;
   pointer-events: none;
   display: none;
 }

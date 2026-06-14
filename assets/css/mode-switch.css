@@ -55,8 +55,8 @@ body[data-mode="teaching"] #teaching-mode{
   pointer-events: auto;
 }
 
-/* Keep nav + panels above everything */
-#site-nav{ position: relative; z-index: 60; }
+/* Nav must sit above all overlays (gallery z-9500, stage3 z-9999 are body-level) */
+#site-nav{ position: relative; z-index: 10000; }
 .panel{ position: relative; z-index: 80; }
 
 .top-nav a.is-active{
@@ -104,10 +104,11 @@ body[data-mode="teaching"] #teaching-mode{
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 148px;
-  height: 148px;
+  width: 92px;
+  height: 92px;
   border: 1px solid rgba(28,25,23,0.14);
   border-radius: 50%;
+  overflow: hidden;  /* clips label text to the circle boundary */
   background: rgba(250,248,244,0.52);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -126,11 +127,12 @@ body[data-mode="teaching"] #teaching-mode{
 
 #teaching-main-stack .teaching-layer:hover,
 #teaching-main-stack .teaching-layer.is-hover{
-  background: rgba(250,248,244,0.82);
-  border-color: rgba(224,123,90,0.35);
+  background: rgba(250,248,244,0.88);
+  border-color: rgba(217,101,53,0.55);
   box-shadow:
     0 8px 40px rgba(28,25,23,0.12),
-    0 0 0 4px rgba(224,123,90,0.10);
+    0 0 0 2px #D96535,
+    0 6px 20px rgba(217,101,53,0.28);
 }
 
 /* Remove the pseudo-element overlays — no longer needed */
@@ -202,22 +204,32 @@ body[data-mode="teaching"] #teaching-mode{
    TEACHING DETAIL OVERLAY
    ========================================================= */
 
-#teaching-detail-overlay[aria-hidden="true"]{
-  display: none;
-}
-
 #teaching-detail-overlay{
   position: fixed;
   inset: 0;
-  z-index: 95;
+  z-index: 10001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity    0.34s cubic-bezier(0.22,1,0.36,1),
+    visibility 0.34s cubic-bezier(0.22,1,0.36,1);
+}
+
+#teaching-detail-overlay[aria-hidden="false"]{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
 }
 
 #teaching-detail-overlay .teaching-detail-backdrop{
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,0.76);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: transparent;
 }
 
 #teaching-detail-overlay .teaching-detail-panel{
@@ -371,13 +383,22 @@ body.teaching-detail-open{
 @media (max-width: 736px){
   #teaching-stack,
   #teaching-main-stack{
-    width: 320px;
-    height: 320px;
+    width: 300px;
+    height: 300px;
   }
 
+  /* Circles are bigger so the text has room to breathe.
+     Text uses smaller font + tighter spacing so it wraps cleanly. */
   #teaching-main-stack .teaching-layer{
-    width: 84px;
-    height: 84px;
+    width: 74px;
+    height: 74px;
+  }
+
+  #teaching-main-stack .teaching-layer .label{
+    font-size: 8.5px;
+    letter-spacing: 0.04em;
+    padding: 14px;
+    line-height: 1.35;
   }
 
   #teaching-detail-overlay .teaching-detail-panel{

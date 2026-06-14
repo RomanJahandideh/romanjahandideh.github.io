@@ -74,6 +74,18 @@
 
     _transitioning = true;
     document.body.classList.add("is-transitioning");
+
+    /* Close any open overlay before the curtain fires */
+    if (window.PORTFOLIO_GALLERY && typeof window.PORTFOLIO_GALLERY.close === "function") {
+      window.PORTFOLIO_GALLERY.close();
+    }
+    if (window.PortfolioAbout && typeof window.PortfolioAbout.close === "function") {
+      window.PortfolioAbout.close();
+    }
+    if (window.PortfolioContact && typeof window.PortfolioContact.close === "function") {
+      window.PortfolioContact.close();
+    }
+
     gsap.set(curtainEl, { opacity: 0 });
 
     var tl = gsap.timeline({
@@ -159,8 +171,8 @@
             opacity: 1,
             duration: 0.52,
             ease: "expo.out",
-            stagger: 0.10,
-            overwrite: "auto"
+            stagger: 0.10
+            /* no overwrite — home-scroll-sequence rebuilds its timeline on entry */
           }
         );
       }

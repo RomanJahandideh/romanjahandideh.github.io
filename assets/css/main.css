@@ -38,7 +38,7 @@
 
   /* ===== Spotlight ===== */
   --mask-darkness: 0.6;
-  --reveal-radius: 230px;
+  --reveal-radius: 280px;
   --reveal-softness: 170px;
 
   /* ===== HOME Iris ring vignette ===== */
@@ -361,6 +361,7 @@ body:has(#home-spiderweb-canvas) .hero{
   display: grid;
   place-items: center;
   align-content: center;
+  row-gap: 22px;
   text-align: center;
   padding: 120px 20px 80px;
 }
@@ -579,6 +580,7 @@ body:has(#home-spiderweb-canvas) .name{
   flex-direction: column;
   align-items: center;
   gap: var(--name-line-gap);
+  transition: gap 0.45s ease;
 
   transform:
     translate(var(--name-x), var(--name-y))
@@ -595,6 +597,7 @@ body:has(#home-spiderweb-canvas) .first-name{
   font-weight: 500;
   transform: translate(var(--first-x), var(--first-y)) scale(var(--first-scale));
   transform-origin: center;
+  transition: font-size 0.45s ease;
 }
 body:has(#home-spiderweb-canvas) .last-name{
   display: block;
@@ -603,10 +606,11 @@ body:has(#home-spiderweb-canvas) .last-name{
   font-weight: 500;
   transform: translate(var(--last-x), var(--last-y)) scale(var(--last-scale));
   transform-origin: center;
+  transition: font-size 0.45s ease;
 }
 
 body:has(#home-spiderweb-canvas) .role{
-  margin-top: 10px;
+  margin-top: 0;
   font-size: var(--role-size);
   letter-spacing: var(--role-letterspace);
   color: rgba(28,25,23,0.64);
@@ -649,14 +653,32 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 }
 
 #global-site-hints .global-site-hint-primary{
-  font-size: 12px;
-  letter-spacing: 0.28em;
+  font-size: 9px;
+  letter-spacing: 0.24em;
 }
 
 #global-site-hints .global-site-hint-secondary{
-  font-size: 9px;
-  letter-spacing: 0.22em;
+  font-size: 8px;
+  letter-spacing: 0.18em;
   color: rgba(255,255,255,0.48);
+}
+
+/* Touch variant: swap text via CSS — default hides touch, pointer:coarse shows it */
+#global-site-hints .hint-touch {
+  display: none;
+}
+
+@media (pointer: coarse) {
+  #global-site-hints .hint-desktop { display: none; }
+  #global-site-hints .hint-touch   { display: inline; }
+}
+
+/* Services open: keep hints visible as a calm footer below the Services button */
+body.svc-open #global-site-hints,
+body.svc-detail-open #global-site-hints {
+  bottom: 10px;
+  gap: 3px;
+  opacity: 0.6;
 }
 
 @media (max-width: 736px){
@@ -667,13 +689,18 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   }
 
   #global-site-hints .global-site-hint-primary{
-    font-size: 7.5px;
-    letter-spacing: 0.22em;
+    font-size: 6.5px;
+    letter-spacing: 0.20em;
   }
 
   #global-site-hints .global-site-hint-secondary{
-    font-size: 6.2px;
-    letter-spacing: 0.16em;
+    font-size: 5.5px;
+    letter-spacing: 0.14em;
+  }
+
+  body.svc-open #global-site-hints,
+  body.svc-detail-open #global-site-hints {
+    bottom: 8px;
   }
 }
 
@@ -1094,15 +1121,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   height: min(84vh, 860px);
 }
 
-/* Contact is intentionally shorter (tighter, less empty space) */
-#contact .panel-inner{
-  height: min(72vh, 720px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior: contain;
-  touch-action: pan-y;
-}
+/* Contact window uses .site-modal shell (toolbar.css) + .contact-window-body */
 
 /* =========================================================
    TIMELINE AREA (fills remaining space)
@@ -1649,7 +1668,7 @@ body:has(#home-spiderweb-canvas) .last-name {
 body.mode-home #home-spiderweb-canvas,
 body[data-mode="home"] #home-spiderweb-canvas {
   filter: invert(1) brightness(0.68);
-  opacity: 0.90;
+  opacity: 0.22;
 }
 
 body.mode-work #home-spiderweb-canvas,
@@ -1671,8 +1690,15 @@ body[data-mode="teaching"] #home-spiderweb-canvas {
   color: rgba(28,25,23,0.40);
 }
 
+#global-site-hints .global-site-hint-primary {
+  font-size: 9px;
+  letter-spacing: 0.24em;
+}
+
 #global-site-hints .global-site-hint-secondary {
   color: rgba(28,25,23,0.28);
+  font-size: 8px;
+  letter-spacing: 0.18em;
 }
 
 /* ── Nav: all modes are now light (clean up redundant rules) */

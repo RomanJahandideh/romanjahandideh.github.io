@@ -21,12 +21,21 @@
 <link rel="stylesheet" href="assets/css/home-clouds.css" />
 <link rel="stylesheet" href="assets/css/transitions.css" />
 <link rel="stylesheet" href="assets/css/services.css" />
+<link rel="stylesheet" href="assets/css/toolbar.css" />
+<link rel="stylesheet" href="assets/css/home-scroll-sequence.css" />
+<link rel="stylesheet" href="assets/css/home-smoke.css" />
+<link rel="stylesheet" href="assets/css/home-intro.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 
 <body data-mode="home" class="mode-home">
 
 <div id="bg"></div>
+
+<!-- Smoke video: scroll-scrubbed on desktop, ambient loop on mobile -->
+<video id="smoke-video" muted playsinline preload="auto" tabindex="-1">
+  <source src="greenscreen.mp4" type="video/mp4">
+</video>
 
 <!-- ── Mode transition curtain ── -->
 <div id="mode-curtain" aria-hidden="true">
@@ -54,14 +63,54 @@
 <canvas id="fog-trail-canvas" aria-hidden="true"></canvas>
 <canvas id="home-spiderweb-canvas"></canvas>
 
-<!-- Cloud layer — GSAP animated, repelled by mouse -->
-<div id="cloud-layer" aria-hidden="true"></div>
+<!-- Cream veil: softens home state; fades out as you scroll in -->
+<div id="scene-veil" aria-hidden="true"></div>
 
+<!-- Disney-style welcome intro (shown once per 48 h; JS removes after play) -->
+<div id="site-intro" aria-hidden="true">
+  <!-- Star field — JS populates with .intro-star divs -->
+  <div id="intro-stars" aria-hidden="true"></div>
+  <!-- Green-screen video is rendered here via canvas chroma-key -->
+  <canvas id="intro-canvas" aria-hidden="true"></canvas>
+  <!-- Name reveal -->
+  <div id="site-intro-inner">
+    <div class="intro-words">
+      <span class="intro-word">ROMAN</span>
+      <span class="intro-word">JAHANDIDEH</span>
+    </div>
+    <div class="intro-rule"></div>
+  </div>
+  <p class="intro-skip-hint">Click anywhere to skip</p>
+</div>
+
+<!-- Scroll-sequence service step cards (desktop; GSAP drives opacity) -->
+<div id="seq-steps" aria-hidden="true">
+  <div class="seq-step-card" data-step="0">
+    <p class="seq-step-title">Brand Identity &amp; Visual Systems</p>
+    <p class="seq-step-desc">Complete identity systems — logo, typography, colour palette, layout grid — built for consistency across every touchpoint from print collateral to digital campaigns.</p>
+    <a href="#" class="svc-view-work-link seq-step-link">View Work <span aria-hidden="true">&#8594;</span></a>
+  </div>
+  <div class="seq-step-card" data-step="1">
+    <p class="seq-step-title">Motion Graphics &amp; 3D Production</p>
+    <p class="seq-step-desc">Concept-to-final motion work using Cinema 4D, Maya, and After Effects — animated campaigns, 3D visualisations, and visual storytelling built for branded platforms.</p>
+    <a href="#" class="svc-view-work-link seq-step-link">View Work <span aria-hidden="true">&#8594;</span></a>
+  </div>
+  <div class="seq-step-card" data-step="2">
+    <p class="seq-step-title">Print &amp; Campaign Design</p>
+    <p class="seq-step-desc">Production-ready deliverables — large-format print, social media graphics, poster and packaging design — prepped and proofed for campaigns that ship without revision rounds.</p>
+    <a href="#" class="svc-view-work-link seq-step-link">View Work <span aria-hidden="true">&#8594;</span></a>
+  </div>
+  <div class="seq-step-card" data-step="3">
+    <p class="seq-step-title">Spatial &amp; Immersive Design</p>
+    <p class="seq-step-desc">Environmental graphics and spatial visualisation bridging architecture and brand — VR/AR asset production, exhibition graphics, and experiential design informed by published research in depth perception.</p>
+    <a href="#" class="svc-view-work-link seq-step-link">View Work <span aria-hidden="true">&#8594;</span></a>
+  </div>
+</div>
 
 <div id="site-nav"></div>
 
 <div id="global-site-hints" aria-hidden="true">
-  <p class="global-site-hint global-site-hint-primary">USE THE MOUSE TO EXPLORE THE SCENE.</p>
+  <p class="global-site-hint global-site-hint-primary"><span class="hint-desktop">USE THE MOUSE TO EXPLORE THE SCENE.</span><span class="hint-touch">TAP OR SWIPE TO EXPLORE.</span></p>
   <p class="global-site-hint global-site-hint-secondary">© 2026 Roman Jahandideh. All rights reserved.</p>
 </div>
 
@@ -69,7 +118,7 @@
 
 <main id="top" class="hero">
 
-  <div id="eyes">
+  <div id="eyes" style="opacity:0">
     <div class="eye">
       <div class="glasses-ring">
         <span class="ring-marker"></span>
@@ -87,9 +136,24 @@
     Graphic Designer | Scene & Spatial Design
   </p>
 
-  <button id="services-btn" aria-haspopup="dialog" aria-controls="services-panel">
+  <button id="services-btn" aria-expanded="false" aria-label="Services">
     Services
   </button>
+
+  <div id="svc-balls-wrap" aria-hidden="true" role="group" aria-label="Services — click to learn more">
+    <button class="svc-ball" data-idx="0" type="button" aria-label="Brand Identity and Visual Systems">
+      <span class="svc-ball-label">Brand<br>Identity</span>
+    </button>
+    <button class="svc-ball" data-idx="1" type="button" aria-label="Motion Graphics and 3D Production">
+      <span class="svc-ball-label">Motion &amp;<br>3D</span>
+    </button>
+    <button class="svc-ball" data-idx="2" type="button" aria-label="Print and Campaign Design">
+      <span class="svc-ball-label">Print &amp;<br>Campaign</span>
+    </button>
+    <button class="svc-ball" data-idx="3" type="button" aria-label="Spatial and Immersive Design">
+      <span class="svc-ball-label">Spatial &amp;<br>Immersive</span>
+    </button>
+  </div>
 
   <div id="floating-statement">
     USE THE LIGHT TO EXPLORE THE SCENE.
@@ -126,9 +190,7 @@
       <div class="about-clean-intro">
         <div class="about-clean-intro-label">Introduction</div>
         <p class="about-clean-intro-text">
-          Graphic designer with a multidisciplinary background in architecture, interactive arts, and visual storytelling. Experienced in
-translating spatial and conceptual ideas into clear visual compositions through graphic design, digital illustration, and
-scene development.
+          Brand identity and graphic designer with a background in architecture, landscape design, and interactive arts. I build visual systems — identities, motion assets, print campaigns, and spatial graphics — grounded in research-led thinking and a decade of production experience across Istanbul, Vancouver, and digital platforms worldwide.
         </p>
       </div>
     </div>
@@ -139,10 +201,10 @@ scene development.
 
 <!-- ================= CONTACT ================= -->
 
-<section id="contact" class="panel">
-  <div class="panel-inner template-article">
+<div id="contact" class="site-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Contact Roman Jahandideh">
 
-    <h2 class="major">Contact</h2>
+  <div class="contact-window-body">
+    <div class="abt-eyebrow">Contact</div>
 
     <div class="contact-grid">
 
@@ -268,9 +330,8 @@ scene development.
 
     </div>
 
-    <a class="panel-close" href="#top">Close</a>
   </div>
-</section>
+</div>
 
 <!-- ================= WORK ================= -->
 
@@ -323,152 +384,61 @@ scene development.
 
 </main>
 
-<!-- ================= SERVICES PANEL ================= -->
+<!-- ================= SERVICE DESCRIPTION PANEL ================= -->
 
-<div id="services-panel"
-     role="dialog"
-     aria-modal="true"
-     aria-label="Services offered by Roman Jahandideh"
-     aria-hidden="true">
+<div id="svc-desc" aria-hidden="true" aria-live="polite">
+  <div id="svc-desc-inner">
+    <p id="svc-desc-text"></p>
+    <a id="svc-view-work" href="#" class="svc-view-work-link" style="visibility:hidden">
+      View Work &rarr;
+    </a>
+  </div>
+</div>
 
-  <div class="services-panel-inner">
+<!-- ================= ABOUT WINDOW ================= -->
 
-    <div class="services-panel-header">
-      <h2 class="services-panel-title">Services</h2>
-      <button class="services-close-btn" id="services-close-btn" aria-label="Close services panel">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-        </svg>
-        Close
-      </button>
+<div id="about-window" class="site-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="About Roman Jahandideh">
+
+  <!-- Text view (initial) -->
+  <div class="abt-view abt-text-view">
+    <div>
+      <div class="abt-eyebrow">About</div>
+      <p class="abt-title">Brand identity designer with an architect's eye — and published research in how people see.</p>
     </div>
+    <hr class="abt-divider">
+    <p class="abt-body">Designer at the intersection of brand identity, spatial thinking, and visual research with a deep academic background in Graphic Design and interactive arts. Proficient in Adobe Creative Suite, 3D visualization, motion graphics, and visual storytelling, delivering production-ready assets for digital platforms and branded campaigns. Brings rare depth to branding work through systems-level thinking, published research on color effects and depth perception, and instructs design at Simon Fraser University. Based in Vancouver, BC, and eligible to work in Canada.</p>
+    <button class="abt-timeline-btn" id="abt-timeline-btn" type="button">
+      Visual Timeline
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+        <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
 
-    <div class="services-grid" id="services-grid">
-
-      <!-- 1 · Advertisement Graphic Design ─────────────── -->
-      <div class="service-card"
-           data-service="0"
-           tabindex="0"
-           role="button"
-           aria-expanded="false"
-           aria-label="Advertisement Graphic Design — click to read more">
-        <div class="service-img-wrap">
-          <img
-            src="ARTWORKS/advertiment%20Graphic%20design/44.jpg"
-            alt="Advertisement graphic design poster — large-scale illustration with restrained typography"
-            class="service-img"
-          />
-          <div class="service-label-wrap" aria-hidden="true">
-            <span class="service-num">01</span>
-            <span class="service-name">Advertisement Graphic Design</span>
-          </div>
-        </div>
-        <div class="service-detail" aria-hidden="true">
-          <div class="service-detail-inner">
-            <p class="service-desc">Brands need a visual identity that stays consistent everywhere it appears, from a single social post to a full campaign. I build complete graphic systems: logo and brand identity, typography, color, layout, iconography, and ready to publish marketing assets that hold together across print and digital.</p>
-            <button class="service-work-btn" data-category="Graphic Design" aria-label="View graphic design work samples">View Work</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2 · Video and Advertisement Video ────────────── -->
-      <div class="service-card"
-           data-service="1"
-           tabindex="0"
-           role="button"
-           aria-expanded="false"
-           aria-label="Video and Advertisement Video — click to read more">
-        <div class="service-img-wrap">
-          <img
-            src="ARTWORKS/ruby.png"
-            alt="Cinematic 3D character render — Ruby in a soft atmospheric garden room, demonstrating video and animation production quality"
-            class="service-img"
-          />
-          <div class="service-label-wrap" aria-hidden="true">
-            <span class="service-num">02</span>
-            <span class="service-name">Video and Advertisement Video</span>
-          </div>
-        </div>
-        <div class="service-detail" aria-hidden="true">
-          <div class="service-detail-inner">
-            <p class="service-desc">Audiences scroll fast, so a brand has only a few seconds to land its message. I create advertisement videos and motion graphics from concept to final cut, blending 3D animation, editing, and visual storytelling into content that holds attention and moves people to act.</p>
-            <button class="service-work-btn" data-category="Animation" aria-label="View animation and video work samples">View Work</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 · Web Design ────────────────────────────────── -->
-      <div class="service-card"
-           data-service="2"
-           tabindex="0"
-           role="button"
-           aria-expanded="false"
-           aria-label="Web Design — click to read more">
-        <div class="service-img-wrap">
-          <img
-            src="https://cdna.artstation.com/p/assets/images/images/099/639/606/large/roman-jahandideh-image-15.jpg"
-            alt="Eight — procedural spider with inverse kinematics, an interactive web experiment built with D3.js"
-            class="service-img"
-          />
-          <div class="service-label-wrap" aria-hidden="true">
-            <span class="service-num">03</span>
-            <span class="service-name">Web Design</span>
-          </div>
-        </div>
-        <div class="service-detail" aria-hidden="true">
-          <div class="service-detail-inner">
-            <p class="service-desc">A brand often meets its audience first through its website. I design clean and on brand web experiences built around clear visual hierarchy and an easy journey, so visitors understand the brand quickly and act with confidence.</p>
-            <button class="service-work-btn" data-category="Web Design" aria-label="View web design work samples">View Work</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4 · AI Marketing Automation ──────────────────── -->
-      <div class="service-card"
-           data-service="3"
-           tabindex="0"
-           role="button"
-           aria-expanded="false"
-           aria-label="AI Marketing Automation — click to read more">
-        <div class="service-img-wrap">
-          <img
-            src="ARTWORKS/Gra%5Bhic%20designs/12.png"
-            alt="Learn AI Generated Images workshop poster — Turn Imagination Into Reality, creative tools and limitless possibilities"
-            class="service-img"
-          />
-          <div class="service-label-wrap" aria-hidden="true">
-            <span class="service-num">04</span>
-            <span class="service-name">AI Marketing Automation</span>
-          </div>
-        </div>
-        <div class="service-detail" aria-hidden="true">
-          <div class="service-detail-inner">
-            <p class="service-desc">Marketing teams are pushed to produce more in less time. I bring AI into the creative pipeline, generating and refining visual assets, building prompt driven workflows, and automating repetitive design and content tasks, so campaigns ship faster while staying high in quality.</p>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /services-grid -->
-
-    <!-- Mobile-only description pane (populated by JS on ≤768px) -->
-    <div class="services-mobile-pane" id="services-mobile-pane">
-      <div class="services-mobile-pane-inner">
-        <p id="services-mobile-desc">Tap a service above to learn more.</p>
-        <button class="service-work-btn" id="services-mobile-work-btn" style="display:none" aria-label="View work samples">View Work</button>
-      </div>
+  <!-- Timeline view (revealed by button) -->
+  <div class="abt-view abt-timeline-view">
+    <button class="abt-back-btn" id="abt-back-btn" type="button">
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
+        <path d="M6.5 1.5L2 5l4.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Back
+    </button>
+    <p class="abt-timeline-view-title">Career Journey</p>
+    <div class="abt-timeline-wrap">
+      <iframe
+        data-src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vTKxs9hIhSFF0u99AZULMMe5vzgvLHjPTI3DQzaboQD49Y624idx3M316gdFTD2mVCgFU3EwvOUKCvr&font=Default&lang=en&start_at_end=true&timenav_position=bottom&initial_zoom=2&width=100%25&height=650"
+        width="100%"
+        height="100%"
+        frameborder="0"
+        webkitallowfullscreen
+        mozallowfullscreen
+        allowfullscreen
+        title="Career timeline">
+      </iframe>
     </div>
+  </div>
 
-  </div><!-- /services-panel-inner -->
-
-</div><!-- /services-panel -->
-
-<!-- Back to Services button — shown after navigating to Work via View Work -->
-<button id="services-back-btn" aria-label="Back to Services panel">
-  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-    <path d="M6.5 1.5L2 5 6.5 8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  Services
-</button>
+</div>
 
 <!-- GSAP 3.15 — animation engine -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
@@ -635,9 +605,13 @@ scene development.
 <script src="work/assets/js/work-d3-interaction.js"></script>
 <script src="work/assets/js/gallery-data.js"></script>
 <script src="work/assets/js/gallery.js"></script>
-<script src="assets/js/home-clouds.js"></script>
 <script src="assets/js/transitions.js"></script>
+<script src="assets/js/home-scroll-sequence.js"></script>
+<script src="assets/js/home-smoke-video.js"></script>
 <script src="assets/js/services.js"></script>
+<script src="assets/js/toolbar-about.js"></script>
+<script src="assets/js/contact-panel.js"></script>
+<script src="assets/js/home-intro.js"></script>
 
 <script>
 (function(){

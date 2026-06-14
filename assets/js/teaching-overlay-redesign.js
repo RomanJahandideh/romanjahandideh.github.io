@@ -78,9 +78,9 @@
 
   function renderMeta(items) {
     return items.map((item) => `
-      <div class="teach-meta-item">
-        <div class="teach-meta-label">${escapeHtml(item.label)}</div>
-        <div class="teach-meta-value">${escapeHtml(item.value)}</div>
+      <div class="teach-window-meta-item">
+        <div class="teach-window-meta-label">${escapeHtml(item.label)}</div>
+        <div class="teach-window-meta-value">${escapeHtml(item.value)}</div>
       </div>
     `).join("");
   }
@@ -91,51 +91,27 @@
 
   function buildMarkup(course) {
     return `
-      <div class="teach-minimal-root">
-        <div class="teach-minimal-page">
-          <button class="teach-minimal-close" type="button" data-teaching-close="1" aria-label="Close teaching detail">Close</button>
+      <button class="site-modal-close" type="button" data-teaching-close="1" aria-label="Close teaching detail">Close</button>
+      <div class="teach-hero-wrap">
+        <img class="teach-hero-img"
+             data-course-image-name="${escapeHtml(course.imageName)}"
+             alt="${escapeHtml(course.imageAlt)}"
+             style="display:none">
+      </div>
+      <div class="teach-window-body">
+        <div class="abt-eyebrow">Teaching</div>
+        <h2 class="teach-window-title">${escapeHtml(course.title)}</h2>
+        <hr class="abt-divider" aria-hidden="true">
+        <p class="teach-window-lead">${escapeHtml(course.lead)}</p>
 
-          <section class="teach-minimal-section teach-minimal-top">
-            <div class="teach-top-grid">
-              <div class="teach-top-copy">
-                <h1 class="teach-course-title">${escapeHtml(course.title)}</h1>
-                <p class="teach-copy">${escapeHtml(course.lead)}</p>
-              </div>
+        <div class="teach-section">
+          <div class="teach-window-section-label">Course Overview</div>
+          <div class="teach-meta-grid">${renderMeta(course.meta)}</div>
+        </div>
 
-              <div class="teach-meta-wrap">
-                <aside class="teach-meta" aria-label="Course details">
-                  <h2 class="teach-meta-title">Course Overview</h2>
-                  <div class="teach-meta-list">
-                    ${renderMeta(course.meta)}
-                  </div>
-                </aside>
-              </div>
-            </div>
-          </section>
-
-          <section class="teach-minimal-section teach-minimal-mid" aria-label="Course image">
-            <div class="teach-image-stage">
-              <img data-course-image-name="${escapeHtml(course.imageName)}" alt="${escapeHtml(course.imageAlt)}">
-              <div class="teach-image-fade-top"></div>
-              <div class="teach-image-fade-bottom"></div>
-            </div>
-          </section>
-
-          <section class="teach-minimal-section teach-minimal-bottom">
-            <div class="teach-bottom-grid">
-              <section class="teach-card">
-                <h3>${escapeHtml(course.bottomTitle)}</h3>
-                <p>${escapeHtml(course.bottomText)}</p>
-              </section>
-
-              <aside class="teach-card">
-                <h3>${escapeHtml(course.responsibilitiesTitle)}</h3>
-                <ul class="teach-list">
-                  ${renderList(course.responsibilities)}
-                </ul>
-              </aside>
-            </div>
-          </section>
+        <div class="teach-section">
+          <div class="teach-window-section-label">${escapeHtml(course.responsibilitiesTitle)}</div>
+          <ul class="teach-window-list">${renderList(course.responsibilities)}</ul>
         </div>
       </div>
     `;
@@ -166,6 +142,7 @@
     if (!course) return;
 
     panel.classList.add("teaching-template-panel");
+    panel.setAttribute("data-course", courseKey);
     panel.innerHTML = buildMarkup(course);
 
     resolveCourseImages(panel);

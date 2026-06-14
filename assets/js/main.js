@@ -337,10 +337,9 @@
     const go = document.getElementById("gallery-overlay");
     return go ? go.classList.contains("is-open") : false;
   };
-  const isServicesPanelOpen = () => {
-    const sp = document.getElementById("services-panel");
-    return sp ? sp.classList.contains("is-open") : false;
-  };
+  const isServicesPanelOpen = () =>
+    document.body.classList.contains("svc-open") ||
+    document.body.classList.contains("svc-detail-open");
   const isPanelOpen = () => isHashPanelOpen() || isWorkLockedOpen() || isTeachingDetailOpen() || isGalleryOverlayOpen() || isServicesPanelOpen();
 
   const closeTeachingDetail = () => {
@@ -426,6 +425,14 @@
   };
 
   const openTeachingDetail = async (courseKey) => {
+    /* One-window-at-a-time */
+    if (window.PortfolioAbout && typeof window.PortfolioAbout.close === "function") {
+      window.PortfolioAbout.close();
+    }
+    if (window.PortfolioContact && typeof window.PortfolioContact.close === "function") {
+      window.PortfolioContact.close();
+    }
+
     ensureTeachingMode();
     if (!teaching.overlay) return;
     await fillTeachingOverlay(courseKey);
@@ -481,11 +488,11 @@
       <div class="teaching-wrap">
         <div id="teaching-stack" class="teaching-scale-wrap" aria-label="Teaching courses">
           <div id="teaching-main-stack">
-            <button class="teaching-layer" type="button" data-course="iat313" aria-label="IAT 313 Narrative and New Media">
-              <span class="label">IAT 313 Narrative and New Media</span>
+            <button class="teaching-layer" type="button" data-course="iat313" aria-label="Narrative">
+              <span class="label">Narrative</span>
             </button>
-            <button class="teaching-layer" type="button" data-course="iat343" aria-label="IAT 343 Animation">
-              <span class="label">IAT 343 Animation</span>
+            <button class="teaching-layer" type="button" data-course="iat343" aria-label="Animation">
+              <span class="label">Animation</span>
             </button>
           </div>
         </div>
@@ -717,6 +724,22 @@
 
     const TRIGGER = 18;
     if (Math.abs(dy) < TRIGGER) return;
+
+    /* In home mode, delegate to the cinematic scroll sequence.
+       It accumulates progress 0→1 and fires the work transition
+       at the end; all other modes fall through to normal switching. */
+    if (window.homeScrollSequence && getMode() === "home") {
+      window.homeScrollSequence.onWheel(dy);
+      return;
+    }
+
+    /* In work/teaching, delegate to the video step controller.
+       It scrubs the background video in 4 discrete steps and fires
+       the section transition at the boundaries. */
+    if (window.smokeVideoSequence && (getMode() === "work" || getMode() === "teaching")) {
+      window.smokeVideoSequence.onWheel(dy);
+      return;
+    }
 
     /* Route through transition engine if available */
     const dir   = dy > 0 ? 1 : -1;

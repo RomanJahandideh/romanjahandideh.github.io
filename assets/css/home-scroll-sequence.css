@@ -1,0 +1,115 @@
+/* =========================================================
+   HOME SCROLL SEQUENCE
+   Scroll UP = forward (zoom in → Work). Fully reversible.
+   ========================================================= */
+
+/* Cream veil — z-5: above iris vignette, below spiderweb canvas */
+#scene-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  background: #FAF8F4;
+  pointer-events: none;
+  will-change: opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #scene-veil { display: none !important; }
+}
+
+/* ── Service step cards ───────────────────────────────── */
+
+/* Container: fixed, centred on screen — bounded to min aperture (190r → 380px diameter) */
+#seq-steps {
+  position: fixed;
+  top: calc(50% - 60px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(300px, calc(100vw - 48px));
+  z-index: 50;
+  pointer-events: none;
+}
+
+/* All 4 cards stack in the same spot; GSAP drives opacity */
+.seq-step-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+  opacity: 0;               /* hidden until GSAP reveals */
+  will-change: opacity, transform;
+}
+
+/* Service title — bolder, contained within the breathing circle */
+.seq-step-title {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: clamp(20px, 3.0vw, 30px);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #1C1917;
+  margin: 0 0 10px;
+  line-height: 1.15;
+  text-shadow:
+    0 0 40px rgba(250,248,244,0.98),
+    0 0 16px rgba(250,248,244,0.90),
+    0 2px 8px rgba(250,248,244,0.75);
+}
+
+/* Description */
+.seq-step-desc {
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.68;
+  color: rgba(28,25,23,0.82);
+  margin: 0 0 14px;
+  max-width: 260px;
+  text-shadow:
+    0 0 32px rgba(250,248,244,0.96),
+    0 0 12px rgba(250,248,244,0.82),
+    0 1px 5px rgba(250,248,244,0.65);
+}
+
+/* "View Work →" — inherits .svc-view-work-link colour/weight */
+.seq-step-link {
+  pointer-events: inherit;
+  text-shadow: none;
+}
+
+/* ── Hide cards in Work / Teaching — safety net against any navigation
+   path that reaches a non-home section while a card is still visible ── */
+body:not(.mode-home) #seq-steps {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* ── Hide cards while Services balls panel is open or closing ── */
+body.svc-open #seq-steps,
+body.svc-closing #seq-steps {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* pointer-events:none on the container alone does NOT stop descendants that
+   have pointer-events:auto set inline (by _set() in home-scroll-sequence.js).
+   Force all children to none so mid-scroll card text can't intercept events
+   that should reach the service balls beneath them (z-index 20 vs 50). */
+body.svc-open #seq-steps *,
+body.svc-closing #seq-steps * {
+  pointer-events: none !important;
+}
+
+/* ── Responsive ── */
+@media (max-width: 736px) {
+  #seq-steps { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #seq-steps { display: none !important; }
+}
