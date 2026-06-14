@@ -661,6 +661,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   display: inline-block;
   transition: color 0.22s ease, transform 0.22s ease;
   transform-origin: center;
+  pointer-events: auto;
 }
 
 #global-site-hints .global-site-hint-primary{
