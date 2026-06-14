@@ -27,7 +27,7 @@
   text-transform: uppercase;
   color: #1C1917;
   opacity: 0;
-  margin-bottom: clamp(44px, calc(14px + 4.4vw), 72px);
+  margin-bottom: clamp(18px, calc(6px + 2vw), 32px);
 }
 
 /* Matches .role text (MOTION · BRAND IDENTITY · SPATIAL DESIGN) */
