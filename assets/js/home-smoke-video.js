@@ -1,15 +1,12 @@
 /* =========================================================
-   HOME SMOKE VIDEO — persistent scroll-scrubbed background
+   HOME SMOKE VIDEO — scroll-scrubbed background per mode
 
-   Home mode      : currentTime driven by homeScrollSequence.getProgress()
-   Work / Teaching: currentTime driven by a 4-step discrete scroll counter;
-                    step boundaries trigger section transitions
-   Touch          : muted ambient loop at CSS opacity
+   Home mode      : greenscreen.mp4  — scrubbed by homeScrollSequence
+   Work mode      : greenscreen44.mp4 — scrubbed by discrete scroll steps
+   Teaching mode  : greenscreen33.mp4 — scrubbed by discrete scroll steps
+
+   Touch          : ambient loop (only active mode plays)
    Reduced motion : paused at frame 0
-
-   Section loop (all reversible):
-     home ─scroll-fwd─▶ work ─scroll-fwd─▶ teaching ─scroll-fwd─▶ home
-     home ◀─scroll-bck─ work ◀─scroll-bck─ teaching ◀─scroll-bck─ home
    ========================================================= */
 (function () {
   "use strict";
@@ -17,36 +14,36 @@
   var IS_TOUCH   = window.matchMedia("(pointer: coarse)").matches;
   var IS_REDUCED = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* Section order — must match MODE_ORDER in main.js */
   var MODES     = ["home", "work", "teaching"];
-  /* Number of scroll steps that scrub the full video in work/teaching */
   var ALT_STEPS = 4;
 
-  var _vid         = null;
-  var _dur         = 0;
-  var _smooth      = 0;   /* lerped display progress (0-1) */
-  var _altStep     = 0;   /* discrete step counter: 0 … ALT_STEPS */
-  var _altProg     = 0;   /* target progress = _altStep / ALT_STEPS */
-  var _altCooldown = false; /* inter-step debounce (~450 ms) */
-  var _rafId       = null;
-  var _ready       = false;
+  /* Per-mode video state */
+  var _vids  = { home: null, work: null, teaching: null };
+  var _durs  = { home: 0,    work: 0,    teaching: 0    };
+  var _ready = { home: false, work: false, teaching: false };
 
-  /* ── Advance or retreat one step in work/teaching ── */
+  var _smooth      = 0;
+  var _altStep     = 0;
+  var _altProg     = 0;
+  var _altCooldown = false;
+  var _rafId       = null;
+
+  function _getMode() {
+    return (document.body.dataset.mode || "home").toLowerCase();
+  }
+
+  /* ── Advance or retreat one step in work / teaching ── */
   function _advanceAltStep(dir) {
-    /* Respect the curtain transition lock from transitions.js */
     if (document.body.classList.contains("is-transitioning")) return;
     if (_altCooldown) return;
 
     var next = _altStep + dir;
 
-    /* Boundary → trigger section transition */
     if (next < 0 || next > ALT_STEPS) {
-      var cur = (document.body.dataset.mode || "home").toLowerCase();
-      var idx = MODES.indexOf(cur);
+      var cur  = _getMode();
+      var idx  = MODES.indexOf(cur);
       if (idx < 0) idx = 0;
-      /* dir: +1 = forward (scroll up) → next section; -1 = backward → prev */
-      var modeDir  = dir > 0 ? 1 : -1;
-      var nextMode = MODES[(idx + modeDir + MODES.length) % MODES.length];
+      var nextMode = MODES[(idx + (dir > 0 ? 1 : -1) + MODES.length) % MODES.length];
       if (typeof window._triggerModeTransition === "function") {
         window._triggerModeTransition(nextMode, null, {});
       }
@@ -60,50 +57,59 @@
     setTimeout(function () { _altCooldown = false; }, 450);
   }
 
-  /* ── Bootstrap ── */
-  function init() {
-    _vid = document.getElementById("smoke-video");
-    if (!_vid) return;
+  /* ── Init a single video element ── */
+  function _initVideo(elemId, modeKey) {
+    var vid = document.getElementById(elemId);
+    if (!vid) return;
+    _vids[modeKey] = vid;
 
-    _vid.muted       = true;
-    _vid.playsInline = true;
-    _vid.setAttribute("aria-hidden", "true");
+    vid.muted       = true;
+    vid.playsInline = true;
+    vid.setAttribute("aria-hidden", "true");
 
-    /* ── Reduced motion: first frame, no animation ── */
     if (IS_REDUCED) {
-      _vid.pause();
-      _vid.currentTime = 0;
+      vid.pause();
+      vid.currentTime = 0;
       return;
     }
 
-    /* ── Touch / mobile: ambient loop, CSS handles opacity ── */
     if (IS_TOUCH) {
-      _vid.loop        = true;
-      _vid.playbackRate = 0.70;
-      _vid.play().catch(function () {});
+      vid.loop         = true;
+      vid.playbackRate = 0.70;
+      /* Only play the home video on initial load; others start on mode entry */
+      if (modeKey === "home") vid.play().catch(function () {});
       return;
     }
 
-    /* ── Desktop: scroll-scrubbed ── */
+    /* Desktop: scrub-driven — load metadata then pause */
     function onMeta() {
-      if (_ready) return;
-      _ready = true;
-      _dur   = _vid.duration || 0;
-      _vid.pause();
-      _vid.currentTime = 0;
+      _durs[modeKey]  = vid.duration || 0;
+      _ready[modeKey] = true;
+      vid.pause();
+      vid.currentTime = 0;
+      /* Start the rAF loop as soon as the first video is ready */
       if (!_rafId) _rafId = requestAnimationFrame(tick);
     }
 
-    if (_vid.readyState >= 1 && _vid.duration) {
+    if (vid.readyState >= 1 && vid.duration) {
       onMeta();
     } else {
-      _vid.addEventListener("loadedmetadata", onMeta, { once: true });
+      vid.addEventListener("loadedmetadata", onMeta, { once: true });
     }
+  }
+
+  /* ── Bootstrap all three videos ── */
+  function init() {
+    _initVideo("smoke-video",    "home");
+    _initVideo("work-video",     "work");
+    _initVideo("teaching-video", "teaching");
   }
 
   /* ── rAF scrub loop (desktop only) ── */
   function tick() {
-    var mode = (document.body.dataset.mode || "home").toLowerCase();
+    var mode = _getMode();
+    var vid  = _vids[mode];
+    var dur  = _durs[mode] || 0;
     var rawProg;
 
     if (mode === "home") {
@@ -117,41 +123,52 @@
     /* Lerp toward target — smooths discrete step snaps */
     _smooth += (rawProg - _smooth) * 0.07;
 
-    if (_dur > 0) {
-      var t = Math.max(0, Math.min(_dur, _smooth * _dur));
-      if (Math.abs(_vid.currentTime - t) > 0.012) {
-        _vid.currentTime = t;
+    if (vid && dur > 0) {
+      var t = Math.max(0, Math.min(dur, _smooth * dur));
+      if (Math.abs(vid.currentTime - t) > 0.012) {
+        vid.currentTime = t;
       }
     }
 
     _rafId = requestAnimationFrame(tick);
   }
 
-  /* ── Reset step state on every section entry ── */
+  /* ── Reset on every mode change ── */
   window.addEventListener("portfolio:modechange", function (e) {
     if (!e.detail) return;
 
-    /* Unlock cooldown on any mode change so the user is never stuck */
     _altCooldown = false;
+    _altStep     = 0;
+    _altProg     = 0;
+    _smooth      = 0;
 
-    /* Always start each section's video from step 0 / frame 0 */
-    _altStep = 0;
-    _altProg = 0;
-    _smooth  = 0;
-    if (_vid && !IS_TOUCH && !IS_REDUCED && _dur > 0) {
-      _vid.currentTime = 0;
-    }
+    var newMode = (e.detail.mode || "home").toLowerCase();
+
+    /* Reset all videos to frame 0 */
+    MODES.forEach(function (k) {
+      var v = _vids[k];
+      if (!v) return;
+
+      if (!IS_TOUCH && !IS_REDUCED && _durs[k] > 0) {
+        v.currentTime = 0;
+      }
+
+      /* Touch: play only the newly active video, pause the rest */
+      if (IS_TOUCH) {
+        if (k === newMode) {
+          v.play().catch(function () {});
+        } else {
+          v.pause();
+        }
+      }
+    });
   }, { passive: true });
 
   /* ── Public API — called by main.js wheel delegation ── */
   window.smokeVideoSequence = {
-    /*
-     * Called by main.js when mode is work or teaching.
-     * dy < 0 = scroll up  = forward  (+1 step → toward next section)
-     * dy > 0 = scroll down = backward (-1 step → toward prev section)
-     */
     onWheel: function (dy) {
       if (IS_TOUCH || IS_REDUCED) return;
+      /* dy < 0 = scroll up = forward (+1); dy > 0 = scroll down = backward (-1) */
       _advanceAltStep(dy < 0 ? 1 : -1);
     }
   };

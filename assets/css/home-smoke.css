@@ -1,11 +1,14 @@
 /* =========================================================
    SMOKE VIDEO — persistent full-screen background
    Scroll-scrubbed on desktop in every mode.
+   Each mode has its own video; only the active one is visible.
    Ambient loop on touch devices.
    Static frame when prefers-reduced-motion.
    ========================================================= */
 
-#smoke-video {
+#smoke-video,
+#work-video,
+#teaching-video {
   position: fixed;
   inset: 0;
   width: 100%;
@@ -15,8 +18,14 @@
   z-index: 4;
   pointer-events: none;
   will-change: opacity;
+  opacity: 0;
   transition: opacity 0.50s ease;
 }
+
+/* ── Show only the active mode's video ─────────────────── */
+body[data-mode="home"]     #smoke-video    { opacity: 1; }
+body[data-mode="work"]     #work-video     { opacity: 1; }
+body[data-mode="teaching"] #teaching-video { opacity: 1; }
 
 /* ── Kill the old background photo — video is the bg now ─── */
 body:has(#home-spiderweb-canvas) #bg::after {
@@ -30,14 +39,14 @@ body:has(#home-spiderweb-canvas) #bg::after {
 
 /* ── Touch devices: ambient loop, softer opacity ─────────── */
 @media (pointer: coarse) {
-  #smoke-video {
-    opacity: 0.70;
-  }
+  body[data-mode="home"]     #smoke-video    { opacity: 0.70; }
+  body[data-mode="work"]     #work-video     { opacity: 0.70; }
+  body[data-mode="teaching"] #teaching-video { opacity: 0.70; }
 }
 
 /* ── Reduced motion: barely-visible static first frame ───── */
 @media (prefers-reduced-motion: reduce) {
-  #smoke-video {
-    opacity: 0.25;
-  }
+  body[data-mode="home"]     #smoke-video    { opacity: 0.25; }
+  body[data-mode="work"]     #work-video     { opacity: 0.25; }
+  body[data-mode="teaching"] #teaching-video { opacity: 0.25; }
 }
