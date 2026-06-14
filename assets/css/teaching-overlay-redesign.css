@@ -179,9 +179,14 @@
 
 /* ── Mobile ── */
 @media (max-width: 736px) {
+  /* Push panel below the nav bar — matches site-modal mobile offset */
+  #teaching-detail-overlay {
+    padding-top: 64px;
+  }
+
   #teaching-detail-overlay .teaching-detail-panel.teaching-template-panel {
     width: calc(100vw - 20px);
-    height: min(88vh, 640px);
+    height: min(82vh, 600px);
     border-radius: 18px;
   }
 

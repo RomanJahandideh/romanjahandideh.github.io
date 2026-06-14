@@ -491,3 +491,18 @@
 
 /* Scroll lock while gallery is open */
 body.gallery-open { overflow: hidden; }
+
+/* ── Mobile: push panel below the nav bar ── */
+@media (max-width: 736px) {
+  #gallery-overlay {
+    /* padding-top shifts the flex centre 32 px below the viewport centre,
+       matching the site-modal offset on mobile (top: calc(50% + 32px)). */
+    padding-top: 64px;
+  }
+
+  #gallery-panel {
+    width: calc(100vw - 20px);
+    height: min(82vh, 600px);
+    border-radius: 18px;
+  }
+}
