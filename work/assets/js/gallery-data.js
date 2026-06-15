@@ -1022,13 +1022,6 @@ window.GALLERY_DATA = {
         description: "A split-screen dual-world mechanic from the portfolio game. A vertical divide separates two parallel world states — different palettes, lighting, and object visibility — while the player's position maps consistently across both. A spatial interaction concept about holding two design states simultaneously.",
         image: "work/assets/images/web-design/dual-world.svg",
         link: "https://romanjahandideh.com/game/index.html"
-      },
-      {
-        title: "Physiology-Driven Gameplay",
-        caption: "Interaction Design · Unity · Apple Watch · Bioadaptive · 2025",
-        description: "A Unity prototype where heart-rate signals from an Apple Watch control the game environment in real time. Fog density, vegetation stability, and lighting shift as physiological state changes. The body becomes the controller; the world becomes the readout.",
-        image: "work/assets/images/web-design/physiology.svg",
-        link: "https://romanjahandideh.com/"
       }
     ]
   }
