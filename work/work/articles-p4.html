@@ -3,53 +3,151 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Articles · Project 04</title>
+  <title>Spiderweb Canvas Engine — Roman Jahandideh</title>
   <link rel="stylesheet" href="../assets/css/slider.css" />
   <style>
+    body { display: block; background: #060504; }
     .project-page {
-      max-width: 980px;
-      margin: 120px auto 80px;
-      padding: 0 18px;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 100px 24px 100px;
     }
     .hero {
-      height: 360px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      backdrop-filter: blur(10px);
-      display: grid;
-      place-items: center;
+      width: 100%;
+      border-radius: 16px;
       overflow: hidden;
+      background: #040402;
+      border: 1px solid rgba(217,101,53,0.18);
+      margin-bottom: 48px;
     }
-    .hero span {
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 0.2em;
-      font-size: 12px;
+    .hero img { width: 100%; display: block; }
+    .kicker {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: #D96535;
+      margin-bottom: 16px;
     }
     h1 {
-      font-size: 34px;
-      margin: 24px 0 10px;
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      margin: 0 0 24px;
+      color: #f0ece4;
     }
-    p {
-      color: rgba(255,255,255,0.75);
-      line-height: 1.6;
-      margin-bottom: 12px;
+    .summary {
+      font-size: 17px;
+      line-height: 1.7;
+      color: rgba(240,236,228,0.78);
+      max-width: 68ch;
+      margin-bottom: 40px;
+    }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 20px;
+      margin-bottom: 48px;
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.03);
+    }
+    .meta-item .label {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 6px;
+    }
+    .meta-item .value {
+      font-size: 14px;
+      color: rgba(255,255,255,0.82);
+      font-weight: 500;
+    }
+    .body-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: rgba(240,236,228,0.72);
       max-width: 70ch;
+      margin-bottom: 18px;
     }
+    .section-title {
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin: 44px 0 16px;
+    }
+    .visit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 40px;
+      padding: 14px 28px;
+      border: 1px solid rgba(217,101,53,0.5);
+      border-radius: 999px;
+      background: rgba(217,101,53,0.08);
+      color: #D96535;
+      text-decoration: none;
+      font-family: "Montserrat", system-ui, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .visit-btn:hover { background: rgba(217,101,53,0.18); transform: translateY(-2px); }
+    .cta-row { display: flex; flex-wrap: wrap; gap: 0; align-items: center; }
   </style>
 </head>
 <body>
-  <a class="back-link" href="articles.html">← Back</a>
+  <a class="back-link" href="/">← Back</a>
 
   <main class="project-page">
     <div class="hero">
-      <span>IMAGE PLACEHOLDER (replace with your image)</span>
+      <img src="../assets/images/web-design/spiderweb-canvas.svg" alt="Procedural Spiderweb Canvas Engine" />
     </div>
 
-    <h1>Articles · Project 04</h1>
-    <p>Put your project story here. Replace this placeholder text with a short summary: tools used, what you built, and why it matters.</p>
-    <p><strong>Tech:</strong> Unity / Maya / Houdini / After Effects / whatever you used.</p>
-    <p><strong>Role:</strong> Environment Design / Technical Art / Animation / Research, etc.</p>
+    <p class="kicker">Generative Web · Physics Simulation · 2025</p>
+    <h1>Procedural Spiderweb<br>Canvas Engine</h1>
+
+    <p class="summary">
+      The generative background system powering the portfolio. A radial spoke-and-ring web built from physics nodes, with spring tension, damping, wind simulation, and cursor-reactive strand vibration — running live at 60fps, invisible to most visitors yet the constant physical substrate of every interaction on the page.
+    </p>
+
+    <div class="meta-grid">
+      <div class="meta-item"><div class="label">Type</div><div class="value">Generative System</div></div>
+      <div class="meta-item"><div class="label">Technology</div><div class="value">Canvas API · Vanilla JS</div></div>
+      <div class="meta-item"><div class="label">Physics</div><div class="value">Spring · Damping · Wind</div></div>
+      <div class="meta-item"><div class="label">Year</div><div class="value">2025</div></div>
+    </div>
+
+    <p class="section-title">Architecture</p>
+    <p class="body-text">
+      The web is defined by two sets of nodes: spoke endpoints radiating from the center, and ring nodes that sit at the intersections of concentric polygons. Every node is a mass with position and velocity. Each strand is a spring connecting adjacent nodes — with a rest length, a stiffness coefficient, and velocity-proportional damping.
+    </p>
+    <p class="body-text">
+      Wind is implemented as a time-varying force field sampled per-node using a low-frequency sine composite. The direction and magnitude drift over time, producing the subtle, irregular swaying that makes the web feel suspended in air rather than rendered as a static graphic.
+    </p>
+
+    <p class="section-title">Interaction</p>
+    <p class="body-text">
+      When the cursor approaches a strand, it exerts a local displacement force on the nearest node. The perturbation propagates through the spring network as a transverse wave, attenuating as it travels. The decay time is tuned to feel like a real thread — taut enough to bounce quickly, slack enough to ring for a moment before settling.
+    </p>
+    <p class="body-text">
+      The center void is a no-geometry zone — the spider's territory. Its radius breathes on a slow timer and expands slightly when the active UI panel is open, as if the creature is sensing the interface state. The void is enforced by testing every node against the exclusion radius each frame.
+    </p>
+
+    <div class="cta-row">
+      <a class="visit-btn" href="https://romanjahandideh.github.io/" target="_blank" rel="noopener noreferrer">Experience it Live →</a>
+    </div>
   </main>
 </body>
 </html>

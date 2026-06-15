@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#1a1510"/>
+      <stop offset="100%" stop-color="#080604"/>
+    </radialGradient>
+    <radialGradient id="egg1" cx="38%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#f5ede0"/>
+      <stop offset="55%" stop-color="#d4c4a8"/>
+      <stop offset="100%" stop-color="#8a7360"/>
+    </radialGradient>
+    <radialGradient id="egg2" cx="38%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#ede5d8"/>
+      <stop offset="55%" stop-color="#c8b898"/>
+      <stop offset="100%" stop-color="#7a6450"/>
+    </radialGradient>
+    <radialGradient id="egg3" cx="38%" cy="32%" r="60%">
+      <stop offset="0%" stop-color="#e8dfd0"/>
+      <stop offset="55%" stop-color="#c0b090"/>
+      <stop offset="100%" stop-color="#706048"/>
+    </radialGradient>
+    <filter id="blur2">
+      <feGaussianBlur stdDeviation="2"/>
+    </filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <!-- Ambient floor shadow -->
+  <ellipse cx="400" cy="420" rx="220" ry="28" fill="#000000" opacity="0.45" filter="url(#blur2)"/>
+  <!-- Egg cluster - back row -->
+  <ellipse cx="280" cy="320" rx="52" ry="66" fill="url(#egg3)" opacity="0.72"/>
+  <ellipse cx="520" cy="318" rx="48" ry="62" fill="url(#egg2)" opacity="0.68"/>
+  <ellipse cx="400" cy="312" rx="55" ry="70" fill="url(#egg1)" opacity="0.75"/>
+  <!-- Middle row -->
+  <ellipse cx="320" cy="348" rx="56" ry="72" fill="url(#egg2)" opacity="0.82"/>
+  <ellipse cx="480" cy="345" rx="54" ry="68" fill="url(#egg3)" opacity="0.78"/>
+  <!-- Front center eggs (largest, most detail) -->
+  <ellipse cx="400" cy="365" rx="60" ry="76" fill="url(#egg1)" opacity="0.95"/>
+  <!-- Highlight sheen -->
+  <ellipse cx="386" cy="330" rx="14" ry="22" fill="#ffffff" opacity="0.22"/>
+  <ellipse cx="314" cy="320" rx="11" ry="18" fill="#ffffff" opacity="0.18"/>
+  <ellipse cx="466" cy="318" rx="10" ry="16" fill="#ffffff" opacity="0.16"/>
+  <!-- Hairline cracks on center egg (hatching) -->
+  <g stroke="#5a4830" stroke-width="1" stroke-linecap="round" opacity="0.55">
+    <path d="M402 308 Q406 316 400 320"/>
+    <path d="M398 312 Q394 322 399 328"/>
+    <path d="M408 320 Q416 326 412 334"/>
+  </g>
+  <!-- Silk thread anchors -->
+  <g stroke="#d4c4a8" stroke-width="0.6" stroke-opacity="0.3">
+    <path d="M370 296 Q360 260 340 230"/>
+    <path d="M400 290 Q400 250 400 210"/>
+    <path d="M430 296 Q440 260 460 230"/>
+    <path d="M290 330 Q250 320 200 310"/>
+    <path d="M510 328 Q550 318 600 308"/>
+  </g>
+  <!-- Label -->
+  <text x="400" y="478" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="600" letter-spacing="0.22em" fill="#d4c4a8" opacity="0.4">UNHATCHED · PHYSICS SIMULATION · GYROSCOPE</text>
+</svg>

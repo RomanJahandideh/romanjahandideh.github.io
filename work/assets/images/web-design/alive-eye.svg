@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <radialGradient id="irisGrad" cx="50%" cy="44%" r="50%">
+      <stop offset="0%" stop-color="#3d2a1a"/>
+      <stop offset="40%" stop-color="#1e3a28"/>
+      <stop offset="75%" stop-color="#0d2218"/>
+      <stop offset="100%" stop-color="#060e0a"/>
+    </radialGradient>
+    <radialGradient id="pupilGrad" cx="42%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#000000"/>
+    </radialGradient>
+    <radialGradient id="glowBg" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#0d1a10" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#020402" stop-opacity="1"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <clipPath id="eyeClip">
+      <path d="M120 250 Q300 120 400 118 Q500 120 680 250 Q500 380 400 382 Q300 380 120 250 Z"/>
+    </clipPath>
+  </defs>
+  <rect width="800" height="500" fill="url(#glowBg)"/>
+  <!-- Outer glow ring -->
+  <circle cx="400" cy="250" r="175" fill="none" stroke="#1a4a28" stroke-width="1" opacity="0.3" filter="url(#glow)"/>
+  <circle cx="400" cy="250" r="155" fill="none" stroke="#2a6a3a" stroke-width="0.5" opacity="0.2"/>
+  <!-- Sclera (white of eye) -->
+  <path d="M120 250 Q300 118 400 116 Q500 118 680 250 Q500 382 400 384 Q300 382 120 250 Z" fill="#d8d0c4" opacity="0.92"/>
+  <!-- Iris -->
+  <circle cx="400" cy="250" r="130" fill="url(#irisGrad)" clip-path="url(#eyeClip)"/>
+  <!-- Iris radial lines (spokes) -->
+  <g stroke="#4a8a5a" stroke-width="0.7" stroke-opacity="0.55" clip-path="url(#eyeClip)">
+    <line x1="400" y1="120" x2="400" y2="250"/><line x1="465" y1="128" x2="413" y2="250"/>
+    <line x1="522" y1="152" x2="424" y2="250"/><line x1="563" y1="192" x2="430" y2="250"/>
+    <line x1="530" y1="250" x2="400" y2="250"/><line x1="563" y1="308" x2="430" y2="250"/>
+    <line x1="522" y1="348" x2="424" y2="250"/><line x1="465" y1="372" x2="413" y2="250"/>
+    <line x1="400" y1="380" x2="400" y2="250"/><line x1="335" y1="372" x2="387" y2="250"/>
+    <line x1="278" y1="348" x2="376" y2="250"/><line x1="237" y1="308" x2="370" y2="250"/>
+    <line x1="270" y1="250" x2="400" y2="250"/><line x1="237" y1="192" x2="370" y2="250"/>
+    <line x1="278" y1="152" x2="376" y2="250"/><line x1="335" y1="128" x2="387" y2="250"/>
+  </g>
+  <!-- Iris concentric rings -->
+  <g fill="none" stroke-opacity="0.4" clip-path="url(#eyeClip)">
+    <circle cx="400" cy="250" r="105" stroke="#3a7a4a" stroke-width="1"/>
+    <circle cx="400" cy="250" r="80"  stroke="#2a6a3a" stroke-width="1.2"/>
+    <circle cx="400" cy="250" r="55"  stroke="#1a5a2a" stroke-width="1"/>
+  </g>
+  <!-- Pupil -->
+  <circle cx="400" cy="250" r="46" fill="url(#pupilGrad)" clip-path="url(#eyeClip)"/>
+  <!-- Pupil highlight -->
+  <circle cx="382" cy="232" r="10" fill="#ffffff" opacity="0.28"/>
+  <circle cx="418" cy="264" r="5"  fill="#ffffff" opacity="0.12"/>
+  <!-- Eyelid upper -->
+  <path d="M120 250 Q300 118 400 116 Q500 118 680 250" fill="none" stroke="#1a1510" stroke-width="3"/>
+  <!-- Eyelid lower -->
+  <path d="M120 250 Q300 382 400 384 Q500 382 680 250" fill="none" stroke="#1a1510" stroke-width="2"/>
+  <!-- Eyelashes upper (subtle) -->
+  <g stroke="#1a1510" stroke-width="1.5" stroke-linecap="round" opacity="0.7">
+    <line x1="180" y1="228" x2="174" y2="214"/><line x1="220" y1="204" x2="215" y2="190"/>
+    <line x1="265" y1="185" x2="262" y2="171"/><line x1="315" y1="170" x2="314" y2="156"/>
+    <line x1="367" y1="162" x2="366" y2="148"/><line x1="400" y1="160" x2="400" y2="146"/>
+    <line x1="433" y1="162" x2="434" y2="148"/><line x1="485" y1="170" x2="486" y2="156"/>
+    <line x1="535" y1="185" x2="538" y2="171"/><line x1="580" y1="204" x2="585" y2="190"/>
+    <line x1="620" y1="228" x2="626" y2="214"/>
+  </g>
+  <!-- Label -->
+  <text x="400" y="478" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="600" letter-spacing="0.22em" fill="#4a8a5a" opacity="0.5">ALIVE · INTERACTIVE EYE · CANVAS · VANILLA JS</text>
+</svg>

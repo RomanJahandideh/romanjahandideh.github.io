@@ -36,6 +36,7 @@
   var _dTitleOverlay, _dTitleEl;
   var _prevBtn, _nextBtn;
   var _dDescEl;
+  var _dLinkBtn = null;
 
   /* ── Helpers ── */
   function _el(tag, cls) {
@@ -195,6 +196,12 @@
     _dDescEl = _el("p", "gallery-detail-desc");
     dDescStrip.appendChild(_dDescEl);
 
+    _dLinkBtn = _el("a", "gallery-visit-btn");
+    _dLinkBtn.textContent = "Visit Project →";
+    _dLinkBtn.setAttribute("rel", "noopener noreferrer");
+    _dLinkBtn.style.display = "none";
+    dDescStrip.appendChild(_dLinkBtn);
+
     _detailView.appendChild(_dTopbar);
     _detailView.appendChild(_dImgWrap);
     _detailView.appendChild(dDescStrip);
@@ -323,6 +330,15 @@
     /* Update text */
     _dTitleEl.textContent = item.title || "";
     _dDescEl.textContent  = item.description || item.caption || "";
+
+    if (item.link) {
+      _dLinkBtn.href = item.link;
+      var isInternal = item.link.charAt(0) === "/" || item.link.charAt(0) === ".";
+      _dLinkBtn.setAttribute("target", isInternal ? "_self" : "_blank");
+      _dLinkBtn.style.display = "inline-flex";
+    } else {
+      _dLinkBtn.style.display = "none";
+    }
 
     /* Reset media */
     _dImg.style.display    = "none";

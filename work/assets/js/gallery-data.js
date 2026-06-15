@@ -978,53 +978,57 @@ window.GALLERY_DATA = {
         title: "Eight: Procedural Spider with Inverse Kinematics",
         caption: "Interactive Web · D3.js · Canvas · 2025",
         description: "A real-time procedural spider built with D3.js and inverse kinematics. Legs respond autonomously to terrain with a biologically plausible gait — fully interactive in the browser.",
-        image: "https://cdna.artstation.com/p/assets/images/images/099/639/606/large/roman-jahandideh-image-15.jpg"
+        image: "work/assets/images/web-design/spider-ik.svg",
+        link: "/work/work/articles-p1.html"
       },
       {
         title: "Unhatched: Interactive Spider Egg System",
         caption: "Physics Simulation · Canvas · Gyroscope · 2025",
         description: "A physics-based spider egg simulation — eggs cluster, collide, and respond to gravity and gyroscope input on mobile. Soft-body dynamics rendered in canvas.",
-        image: "https://cdna.artstation.com/p/assets/images/images/099/639/316/large/roman-jahandideh-image-14.jpg"
+        image: "work/assets/images/web-design/unhatched.svg",
+        link: "/work/work/articles-p2.html"
       },
       {
         title: "Alive: Interactive Eye System",
         caption: "Interactive Web · Canvas · Biomimetic · 2025",
         description: "A living eye interface that tracks cursor position, blinks, dilates, and responds to interaction. Built entirely in vanilla JavaScript and canvas without any external libraries.",
-        image: "https://cdnb.artstation.com/p/assets/images/images/099/639/121/large/roman-jahandideh-image-13.jpg"
+        image: "work/assets/images/web-design/alive-eye.svg",
+        link: "/work/work/articles-p3.html"
       },
       {
         title: "Living Interface System",
         caption: "Portfolio Website · Canvas · D3.js · Biomimetic · 2025",
         description: "romanjahandideh.com — a personal portfolio built as a living system rather than a static page. Procedural spiderweb canvas, biomimetic interaction model, D3-based work explorer, multi-mode navigation, and scroll-scrubbed video — all working together as one continuous front-end environment.",
-        image: "https://cdna.artstation.com/p/assets/images/images/099/639/606/large/roman-jahandideh-image-15.jpg",
+        image: "work/assets/images/web-design/living-interface.svg",
         link: "https://romanjahandideh.github.io/"
       },
       {
         title: "Procedural Spiderweb Canvas Engine",
         caption: "Generative Web · Physics Simulation · Canvas · 2025",
         description: "The procedural background engine powering the portfolio. Spoke-and-ring geometry with spring tension, damping, wind simulation, and mouse-reactive pluck vibration. Each node behaves as a physics object; the center void breathes and tracks the active interface target in real time.",
-        image: "https://cdna.artstation.com/p/assets/images/images/099/639/316/large/roman-jahandideh-image-14.jpg",
-        link: "https://romanjahandideh.github.io/"
+        image: "work/assets/images/web-design/spiderweb-canvas.svg",
+        link: "/work/work/articles-p4.html"
       },
       {
         title: "An Introduction You Can Walk Through",
         caption: "Browser Game · p5.js · WebGL · Narrative Design · 2025",
         description: "A browser-based game replacing the conventional CV with a twelve-level spatial journey. Each level encodes a biographical chapter — Origins through Now — into environment, palette, and narrative overlay. Navigate through time while reading through space.",
-        image: "https://cdnb.artstation.com/p/assets/images/images/099/639/121/large/roman-jahandideh-image-13.jpg",
+        image: "work/assets/images/web-design/game-intro.svg",
         link: "/game/index.html"
       },
       {
         title: "Dual-World Level Navigation",
         caption: "Interaction Design · p5.js · WebGL · 2025",
         description: "A split-screen dual-world mechanic from the portfolio game. A vertical divide separates two parallel world states — different palettes, lighting, and object visibility — while the player's position maps consistently across both. A spatial interaction concept about holding two design states simultaneously.",
-        image: "https://cdnb.artstation.com/p/assets/images/images/099/639/121/large/roman-jahandideh-image-13.jpg",
+        image: "work/assets/images/web-design/dual-world.svg",
         link: "/game/index.html"
       },
       {
         title: "Physiology-Driven Gameplay",
         caption: "Interaction Design · Unity · Apple Watch · Bioadaptive · 2025",
         description: "A Unity prototype where heart-rate signals from an Apple Watch control the game environment in real time. Fog density, vegetation stability, and lighting shift as physiological state changes. The body becomes the controller; the world becomes the readout.",
-        image: "https://cdna.artstation.com/p/assets/images/images/099/639/606/large/roman-jahandideh-image-15.jpg"
+        image: "work/assets/images/web-design/physiology.svg",
+        link: "/work/work/articles-p5.html"
       }
     ]
   }

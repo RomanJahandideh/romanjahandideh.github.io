@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="leftWorld" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d0818"/>
+      <stop offset="100%" stop-color="#180d28"/>
+    </linearGradient>
+    <linearGradient id="rightWorld" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a1208"/>
+      <stop offset="100%" stop-color="#0e1a10"/>
+    </linearGradient>
+    <filter id="divGlow">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feComposite in="SourceGraphic" in2="b" operator="over"/>
+    </filter>
+  </defs>
+  <!-- Two worlds -->
+  <rect x="0" y="0" width="400" height="500" fill="url(#leftWorld)"/>
+  <rect x="400" y="0" width="400" height="500" fill="url(#rightWorld)"/>
+  <!-- Left world: cool purple/blue palette elements -->
+  <g opacity="0.5">
+    <!-- Architecture blocks left -->
+    <rect x="60" y="180" width="80" height="160" fill="#2a1a4a" stroke="#4a2a8a" stroke-width="0.8"/>
+    <rect x="160" y="220" width="60" height="120" fill="#1a1030" stroke="#3a1a6a" stroke-width="0.8"/>
+    <rect x="240" y="200" width="100" height="140" fill="#241440" stroke="#3a1a6a" stroke-width="0.8"/>
+    <!-- Window lights left (cool blue) -->
+    <rect x="74" y="200" width="12" height="14" fill="#6a4aaa" opacity="0.7"/>
+    <rect x="94" y="200" width="12" height="14" fill="#6a4aaa" opacity="0.5"/>
+    <rect x="74" y="230" width="12" height="14" fill="#4a3a8a" opacity="0.6"/>
+    <rect x="164" y="240" width="10" height="12" fill="#5a3a9a" opacity="0.65"/>
+    <!-- Sky elements left (stars) -->
+    <circle cx="80" cy="80" r="1.5" fill="#a890d0" opacity="0.7"/>
+    <circle cx="150" cy="60" r="1" fill="#a890d0" opacity="0.6"/>
+    <circle cx="200" cy="90" r="1.5" fill="#a890d0" opacity="0.7"/>
+    <circle cx="280" cy="70" r="1" fill="#a890d0" opacity="0.5"/>
+    <circle cx="350" cy="100" r="1.5" fill="#a890d0" opacity="0.6"/>
+    <!-- Moon left -->
+    <circle cx="120" cy="110" r="18" fill="#2a1a4a"/>
+    <circle cx="120" cy="110" r="16" fill="none" stroke="#a890d0" stroke-width="1" opacity="0.5"/>
+    <circle cx="112" cy="104" r="12" fill="#0d0818" opacity="0.8"/>
+    <!-- Ground left -->
+    <rect x="0" y="380" width="400" height="4" fill="#3a2a6a" opacity="0.6"/>
+  </g>
+  <!-- Right world: warm green/amber palette elements -->
+  <g opacity="0.5">
+    <!-- Architecture blocks right -->
+    <rect x="400" y="190" width="90" height="150" fill="#1a2a10" stroke="#2a4a18" stroke-width="0.8"/>
+    <rect x="510" y="210" width="70" height="130" fill="#141e0a" stroke="#2a4018" stroke-width="0.8"/>
+    <rect x="600" y="175" width="110" height="165" fill="#1e2e14" stroke="#384828" stroke-width="0.8"/>
+    <!-- Window lights right (warm amber) -->
+    <rect x="415" y="210" width="14" height="16" fill="#c88820" opacity="0.6"/>
+    <rect x="437" y="210" width="14" height="16" fill="#c88820" opacity="0.45"/>
+    <rect x="415" y="244" width="14" height="16" fill="#a86a10" opacity="0.55"/>
+    <rect x="525" y="228" width="12" height="14" fill="#c89020" opacity="0.6"/>
+    <rect x="614" y="200" width="14" height="16" fill="#c88820" opacity="0.55"/>
+    <!-- Sky elements right (stars, warmer tone) -->
+    <circle cx="440" cy="80" r="1.5" fill="#d4b870" opacity="0.6"/>
+    <circle cx="510" cy="55" r="1" fill="#d4b870" opacity="0.55"/>
+    <circle cx="570" cy="90" r="1.5" fill="#d4b870" opacity="0.6"/>
+    <circle cx="640" cy="65" r="1" fill="#d4b870" opacity="0.5"/>
+    <circle cx="720" cy="95" r="1.5" fill="#d4b870" opacity="0.55"/>
+    <!-- Sun right -->
+    <circle cx="680" cy="115" r="16" fill="#c88820" opacity="0.7"/>
+    <circle cx="680" cy="115" r="22" fill="none" stroke="#c88820" stroke-width="1" opacity="0.25"/>
+    <!-- Ground right -->
+    <rect x="400" y="380" width="400" height="4" fill="#2a4820" opacity="0.6"/>
+  </g>
+  <!-- Character spanning both worlds (center) -->
+  <!-- Body shadow -->
+  <ellipse cx="400" cy="383" rx="14" ry="4" fill="#000000" opacity="0.4"/>
+  <!-- Character silhouette -->
+  <rect x="392" y="340" width="16" height="24" fill="#e8e2d9" opacity="0.82"/>
+  <circle cx="400" cy="332" r="9" fill="#e8e2d9" opacity="0.82"/>
+  <!-- Left half of character (cool tint) -->
+  <rect x="392" y="340" width="8" height="24" fill="#a890d0" opacity="0.18"/>
+  <circle cx="396" cy="332" r="5" fill="#a890d0" opacity="0.12"/>
+  <!-- Right half of character (warm tint) -->
+  <rect x="400" y="340" width="8" height="24" fill="#d4b870" opacity="0.18"/>
+  <circle cx="404" cy="332" r="5" fill="#d4b870" opacity="0.12"/>
+  <!-- Legs -->
+  <rect x="393" y="364" width="6" height="10" fill="#c8b888" opacity="0.75"/>
+  <rect x="401" y="364" width="6" height="10" fill="#c8b888" opacity="0.75"/>
+  <!-- The divide line -->
+  <line x1="400" y1="0" x2="400" y2="500" stroke="#D96535" stroke-width="2.5" filter="url(#divGlow)" opacity="0.8"/>
+  <!-- Palette labels -->
+  <text x="200" y="440" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="8" font-weight="600" letter-spacing="0.18em" fill="#a890d0" opacity="0.5">WORLD  A · NOCTURNE</text>
+  <text x="600" y="440" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="8" font-weight="600" letter-spacing="0.18em" fill="#d4b870" opacity="0.5">WORLD  B · SOLSTICE</text>
+  <!-- Label -->
+  <text x="400" y="478" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="600" letter-spacing="0.22em" fill="#D96535" opacity="0.45">DUAL-WORLD NAVIGATION · SCREEN DIVIDE · WEBGL</text>
+</svg>
