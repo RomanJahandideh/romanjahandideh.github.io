@@ -718,6 +718,206 @@ window.GALLERY_DATA = {
         caption: "Advertising · Poster · 2023",
         description: "Final poster in the advertisement graphic design series — a resolved synthesis of the series' visual vocabulary into a single confident composition.",
         image: "ARTWORKS/advertiment%20Graphic%20design/61.jpg"
+      },
+
+      /* — Fashion Advertisement Campaign Designs — */
+      {
+        title: "Softener — Winter Collection 2023",
+        caption: "Fashion Illustration · Brand Campaign · 2023",
+        description: "Softener Winter 2023 — illustrated fashion campaign using textural collage and ink-rendered silhouettes wrapped in layered knitwear. Earthy palette, bold typography, relaxed brand identity.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/62.png"
+      },
+      {
+        title: "Softener — Spring / Summer 2024",
+        caption: "Fashion Illustration · Brand Campaign · 2024",
+        description: "Softener Spring/Summer 2024 — colorful, movement-driven illustrated campaign. Loose figures in light fabrics against abstract painted planes communicate the brand's soft, everyday energy.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/63.png"
+      },
+      {
+        title: "Softener — Fall 2023 Campaign",
+        caption: "Fashion Illustration · Brand Campaign · 2023",
+        description: "Softener Fall 2023 — Layer up. Move freely. Made for every moment. Collage illustration in burnt orange, forest green, and deep navy communicates the season's relaxed, premium casual identity.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/64.png"
+      },
+      {
+        title: "Lanura — Soft Beginnings, Spring 2025",
+        caption: "Fashion Editorial · Fine Wool · 2025",
+        description: "Lanura Fine Wool Spring 2025 — Soft Beginnings. Minimalist editorial photography of draped wool against a neutral ground. 100% Premium Wool identity communicated through restraint and material focus.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/65.png"
+      },
+      {
+        title: "Lanura — Airy Ease, Summer 2022",
+        caption: "Fashion Editorial · Fine Wool · 2022",
+        description: "Lanura Fine Wool Summer 2022 — Airy Ease. Light for warm days. Woven to breathe. Simplified illustrated mannequin in draped cream wool against a soft warm ground with botanical accent.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/66.png"
+      },
+      {
+        title: "Lanura — Summer Collection Series",
+        caption: "Fashion Editorial · Fine Wool · 2023",
+        description: "Lanura summer editorial series — minimalist compositions exploring the relationship between natural textiles, body, and negative space. Clean type system with generous leading.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/67.png"
+      },
+      {
+        title: "Lanura — Spring Editorial",
+        caption: "Fashion Editorial · Fine Wool · 2024",
+        description: "Lanura spring campaign — soft-focused editorial design pairing premium wool textiles with botanical and architectural references. Quiet palette, considered spacing.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/68.png"
+      },
+      {
+        title: "Lanura — Textile Campaign",
+        caption: "Fashion Editorial · Fine Wool · 2024",
+        description: "Lanura textile campaign — editorial poster using photography and minimal typographic overlay to foreground the quality and character of fine wool garments.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/69.png"
+      },
+      {
+        title: "Lanura — Wrapped Calm, Autumn 2024",
+        caption: "Fashion Editorial · Fine Wool · 2024",
+        description: "Lanura Fine Wool Autumn 2024 — Wrapped Calm. Timeless Company. Honest Design. Warm wool tones, draped scarf editorial, and a quietly authoritative typographic system.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/70.png"
+      },
+      {
+        title: "Aurelle — Paper Forms, Winter 2024",
+        caption: "Fashion Editorial · Atelier Wool · 2024",
+        description: "Aurelle Atelier Wool Winter 2024 — Paper forms. Tailored warmth. Sculptural paper-form fashion figures in oversized coats and structured knitwear. Natural, Textured, Premium Wool.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/71.png"
+      },
+      {
+        title: "Aurelle — Soft Awakening, Spring 2025",
+        caption: "Fashion Editorial · Atelier Wool · 2025",
+        description: "Aurelle Atelier Wool Spring 2025 — Soft Awakening. Light layers. New season. Timeless soul. Pastel paper-form figures in sage and blush against a botanical spring setting.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/72.png"
+      },
+      {
+        title: "Aurelle — Atelier Wool Series",
+        caption: "Fashion Editorial · Atelier Wool · 2025",
+        description: "Aurelle atelier wool series — sculptural paper-form figures presenting the brand's seasonal collection with architectural precision and material depth.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/73.png"
+      },
+      {
+        title: "Aurelle — Seasonal Campaign",
+        caption: "Fashion Editorial · Atelier Wool · 2025",
+        description: "Aurelle seasonal campaign — continuing the paper-form visual language across a new collection. Geometric figure construction conveys tailoring quality through form rather than photography.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/74.png"
+      },
+      {
+        title: "Stripeform — Autumn 2025, Black Series",
+        caption: "Accessories Design · Premium Socks · 2025",
+        description: "Stripeform Premium Sock Series Autumn 2025 — black cable-knit against a bold black-and-white striped architectural corridor. Signature texture. Elevated comfort. Available in essential colorways.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/75.png"
+      },
+      {
+        title: "Stripeform — Autumn 2025, Burgundy",
+        caption: "Accessories Design · Premium Socks · 2025",
+        description: "Stripeform Premium Sock Series Autumn 2025 — rich burgundy wool sock in the brand's signature bold graphic environment. Crafted for comfort. Designed for distinction.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/76.png"
+      },
+      {
+        title: "Stripeform — Autumn 2025, Teal Botanical",
+        caption: "Accessories Design · Premium Socks · 2025",
+        description: "Stripeform Premium Sock Series Autumn 2025 — teal jacquard botanical-pattern sock. Creative design. Signature knit texture. Available in multiple colorways.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/77.png"
+      },
+      {
+        title: "Stripeform — Winter Campaign",
+        caption: "Accessories Design · Premium Socks · 2025",
+        description: "Stripeform winter campaign — continuing the brand's bold graphic language into cooler season colorways. High-contrast environments frame the product as a design object.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/78.png"
+      },
+      {
+        title: "Stripeform — Collection Editorial",
+        caption: "Accessories Design · Premium Socks · 2025",
+        description: "Stripeform collection editorial — geometric striped environments and richly textured knitwear accessories. Designed to inspire. Made to stand apart.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/79.png"
+      },
+      {
+        title: "Rivelle — Illustrated Soul, Winter 2026",
+        caption: "Fashion Illustration · Atelier Collection · 2026",
+        description: "Rivelle Atelier Winter 2026 — Illustrated soul. Real textures. Hand-drawn editorial illustration blending colored-pencil fashion figures with warm architectural environments.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/80.png"
+      },
+      {
+        title: "Rivelle — Light in Motion, Summer 2026",
+        caption: "Fashion Illustration · Atelier Collection · 2026",
+        description: "Rivelle Atelier Summer 2026 — Light in Motion. Illustrated spirit. Real textures. Modern tailoring. Elevated essentials. Pencil-sketch figure on sun-drenched terrace.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/81.png"
+      },
+      {
+        title: "Rivelle — Sunlit Attitude, Summer 2026",
+        caption: "Fashion Illustration · Atelier Collection · 2026",
+        description: "Rivelle Atelier Summer 2026 — Sunlit Attitude. Illustrated spirit. Real textures. Editorial pencil illustration of structured summer tailoring against warm coastal architecture.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/82.png"
+      },
+      {
+        title: "Rivelle — Atelier Editorial",
+        caption: "Fashion Illustration · Atelier Collection · 2026",
+        description: "Rivelle Atelier editorial — the brand's hand-illustrated visual language applied to a seasonal collection. Colored-pencil rendering merges fashion design and artistic expression.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/83.png"
+      },
+      {
+        title: "Rivelle — Spring Grace, Spring 2026",
+        caption: "Fashion Illustration · Atelier Collection · 2026",
+        description: "Rivelle Atelier Spring 2026 — Spring Grace. Sketched illustration in a garden setting — loose spring tailoring rendered in pencil-and-wash. Modern tailoring. Elevated essentials.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/84.png"
+      },
+      {
+        title: "Rivelle — Spring & Winter Series",
+        caption: "Fashion Illustration · Atelier Collection · 2026",
+        description: "Rivelle atelier campaign — seasonal extension of the illustrated editorial series. Consistent hand-drawn identity across contrasting seasonal registers.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/85.png"
+      },
+      {
+        title: "Lipmuse — The Power of Pink",
+        caption: "Beauty Editorial · Illustrated Campaign · 2024",
+        description: "Lipmuse Issue 08 Summer 2024 — The Power of Pink. Silk-touch lip color. Bold illustrated magazine cover format featuring three figures in saturated pink and black. Color with attitude.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/86.png"
+      },
+      {
+        title: "Lipmuse — Color Chemistry",
+        caption: "Beauty Editorial · Illustrated Campaign · 2024",
+        description: "Lipmuse — Color Chemistry. Velvet-touch lip color. Made to be seen. Bold ink illustration of styled figures with intense pink and black palette. Live it. Love it. Lipmuse it.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/87.png"
+      },
+      {
+        title: "Lipmuse — Velvet Lip Color",
+        caption: "Beauty Editorial · Illustrated Campaign · 2024",
+        description: "Lipmuse Velvet Lip Color — rich, velvety lip color that moves with you from sunrise to spotlight. Illustrated editorial combining figure, product, and expressive beauty typography.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/88.png"
+      },
+      {
+        title: "Lipmuse — Selfie Shade",
+        caption: "Beauty Editorial · Illustrated Campaign · 2024",
+        description: "Lipmuse — Selfie Shade. Bold color. Real confidence. Everyday glamour. Capture the moment. Wear the confidence. Illustrated two-figure editorial with velvet lip color campaign messaging.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/89.png"
+      },
+      {
+        title: "Softora — New Season Towel Collection",
+        caption: "Lifestyle Design · Bath Linens · 2026",
+        description: "Softora Bath Linens Spring/Summer 2026 — New Season Towel Collection. Softness in every fold. Premium cotton terry. Spa-level comfort. Clean lifestyle editorial with color swatch palette.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/90.png"
+      },
+      {
+        title: "Softora — Home Textile Editorial",
+        caption: "Lifestyle Design · Bath Linens · 2026",
+        description: "Softora home textile editorial — premium bath linen campaign combining quiet lifestyle imagery with restrained typographic layout. Warmth, softness, and everyday luxury.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/91.png"
+      },
+      {
+        title: "Softora — Spring / Summer 2026",
+        caption: "Lifestyle Design · Bath Linens · 2026",
+        description: "Softora Bath Linens Spring/Summer 2026 — stylized silhouette draped in premium cotton terry in sage green. Softness in every fold. Available in Ivory, Coral, Sage, Charcoal, and Sand.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/92.jpg"
+      },
+      {
+        title: "Softener — Spring / Summer 2024 (Large Format)",
+        caption: "Fashion Illustration · Brand Campaign · 2024",
+        description: "Softener Spring/Summer 2024 large-format edition — the colorful illustrated campaign at full editorial scale, designed for print and billboard advertising applications.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/93.jpg"
+      },
+      {
+        title: "Softener — Fall 2023 (Vertical)",
+        caption: "Fashion Illustration · Brand Campaign · 2023",
+        description: "Softener Fall 2023 vertical edition — Layer up. Move freely. Softness that moves with you. Textural collage illustration in a portrait format for print and social media applications.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/94.jpg"
       }
 
     ]
@@ -791,6 +991,40 @@ window.GALLERY_DATA = {
         caption: "Interactive Web · Canvas · Biomimetic · 2025",
         description: "A living eye interface that tracks cursor position, blinks, dilates, and responds to interaction. Built entirely in vanilla JavaScript and canvas without any external libraries.",
         image: "https://cdnb.artstation.com/p/assets/images/images/099/639/121/large/roman-jahandideh-image-13.jpg"
+      },
+      {
+        title: "Living Interface System",
+        caption: "Portfolio Website · Canvas · D3.js · Biomimetic · 2025",
+        description: "romanjahandideh.com — a personal portfolio built as a living system rather than a static page. Procedural spiderweb canvas, biomimetic interaction model, D3-based work explorer, multi-mode navigation, and scroll-scrubbed video — all working together as one continuous front-end environment.",
+        image: "https://cdna.artstation.com/p/assets/images/images/099/639/606/large/roman-jahandideh-image-15.jpg",
+        link: "https://romanjahandideh.github.io/"
+      },
+      {
+        title: "Procedural Spiderweb Canvas Engine",
+        caption: "Generative Web · Physics Simulation · Canvas · 2025",
+        description: "The procedural background engine powering the portfolio. Spoke-and-ring geometry with spring tension, damping, wind simulation, and mouse-reactive pluck vibration. Each node behaves as a physics object; the center void breathes and tracks the active interface target in real time.",
+        image: "https://cdna.artstation.com/p/assets/images/images/099/639/316/large/roman-jahandideh-image-14.jpg",
+        link: "https://romanjahandideh.github.io/"
+      },
+      {
+        title: "An Introduction You Can Walk Through",
+        caption: "Browser Game · p5.js · WebGL · Narrative Design · 2025",
+        description: "A browser-based game replacing the conventional CV with a twelve-level spatial journey. Each level encodes a biographical chapter — Origins through Now — into environment, palette, and narrative overlay. Navigate through time while reading through space.",
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/639/121/large/roman-jahandideh-image-13.jpg",
+        link: "/game/index.html"
+      },
+      {
+        title: "Dual-World Level Navigation",
+        caption: "Interaction Design · p5.js · WebGL · 2025",
+        description: "A split-screen dual-world mechanic from the portfolio game. A vertical divide separates two parallel world states — different palettes, lighting, and object visibility — while the player's position maps consistently across both. A spatial interaction concept about holding two design states simultaneously.",
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/639/121/large/roman-jahandideh-image-13.jpg",
+        link: "/game/index.html"
+      },
+      {
+        title: "Physiology-Driven Gameplay",
+        caption: "Interaction Design · Unity · Apple Watch · Bioadaptive · 2025",
+        description: "A Unity prototype where heart-rate signals from an Apple Watch control the game environment in real time. Fog density, vegetation stability, and lighting shift as physiological state changes. The body becomes the controller; the world becomes the readout.",
+        image: "https://cdna.artstation.com/p/assets/images/images/099/639/606/large/roman-jahandideh-image-15.jpg"
       }
     ]
   }

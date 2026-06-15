@@ -1742,7 +1742,8 @@ jitter: 0.35,
       "Architecture Design": "narrative-",
       "Game Design": "gamedesign-",
       "Articles": "projects-",
-      "UI/UX Design": "articles-"
+      "UI/UX Design": "articles-",
+      "Web Design": "articles-"
     };
 
     const prefix = categoryToPrefix[category] || "";
@@ -1759,7 +1760,7 @@ jitter: 0.35,
       })
       .sort((a, b) => String(a.id || "").localeCompare(String(b.id || "")));
 
-    if (items.length) return items.slice(0, 5);
+    if (items.length) return items.slice(0, 13);
 
     return Array.from({ length: 5 }, (_, i) => ({
       id: prefix ? `${prefix}${String(i + 1).padStart(2, "0")}` : "",
@@ -1778,7 +1779,9 @@ jitter: 0.35,
     const nodes = [];
 
     const rootTarget = constrainedRootPosition(width, height, forbidden);
-    const mobileLayout = mobileStage2 ? getMobileStage2Layout(width, height, rootTarget, 5) : null;
+    const projects = getProjectsForCategory(category);
+    const childCount = projects.length || 5;
+    const mobileLayout = mobileStage2 ? getMobileStage2Layout(width, height, rootTarget, childCount) : null;
     nodes.push({
       name: category,
       root: true,
@@ -1787,9 +1790,6 @@ jitter: 0.35,
       x: 0, y: 0,
       _vseed: Math.random() * 1000
     });
-
-    const projects = getProjectsForCategory(category);
-    const childCount = projects.length || 5;
     const legPairs = []; // { kneeIndex, footIndex }
 
     for (let i = 0; i < childCount; i++) {

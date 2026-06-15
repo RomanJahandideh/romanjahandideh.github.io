@@ -809,6 +809,292 @@ This project currently uses the three images stored in ../projects/articles-05/i
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`
+    },
+
+    "articles-06": {
+      id: "articles-06",
+      category: "UI/UX Design",
+      title: "Procedural Spiderweb Canvas",
+      link: "https://romanjahandideh.com",
+      images: [
+        "../projects/articles-03/img1.jpg",
+        "../projects/articles-03/img2.jpg",
+        "../projects/articles-03/img3.jpg"
+      ],
+      description: `Procedural Spiderweb Canvas is the generative background engine powering the current portfolio site. Rather than using a prerendered or static visual, the system builds a living web structure from scratch on every page load using a custom canvas pipeline written in vanilla JavaScript.
+
+The geometry is defined by a set of radial spokes and concentric ring segments. Each intersection is treated as a physics node with spring tension, damping, and neighbor-force relationships. Wind simulation applies low-frequency oscillation across the field, while mouse proximity creates directional deflection and pluck vibration that decays naturally through the network. A dynamic center void breathes and tracks the active interface target, causing the entire composition to shift as the user navigates between modes.
+
+The rendering pipeline uses a multi-pass approach: geometry is drawn with stroke alpha modulated by strand tension, while a secondary highlight pass smooths specular-like catches across freshly disturbed strands. The system also detects which radial spoke is nearest to the current interaction point and amplifies that branch's response, creating an organic focus behavior that mirrors how a real web transmits force from a single contact point.
+
+The result is an interface background that behaves as a responsive spatial system. It is not a decorative metaphor but a functional canvas that communicates the state of the interface through motion, tension, and spatial composition.`,
+      text: `Procedural Spiderweb Canvas is the generative background engine powering the current portfolio site. Rather than using a prerendered or static visual, the system builds a living web structure from scratch on every page load using a custom canvas pipeline written in vanilla JavaScript.
+
+The geometry is defined by a set of radial spokes and concentric ring segments. Each intersection is treated as a physics node with spring tension, damping, and neighbor-force relationships. Wind simulation applies low-frequency oscillation across the field, while mouse proximity creates directional deflection and pluck vibration that decays naturally through the network. A dynamic center void breathes and tracks the active interface target, causing the entire composition to shift as the user navigates between modes.
+
+The rendering pipeline uses a multi-pass approach: geometry is drawn with stroke alpha modulated by strand tension, while a secondary highlight pass smooths specular-like catches across freshly disturbed strands. The system also detects which radial spoke is nearest to the current interaction point and amplifies that branch's response, creating an organic focus behavior that mirrors how a real web transmits force from a single contact point.
+
+The result is an interface background that behaves as a responsive spatial system. It is not a decorative metaphor but a functional canvas that communicates the state of the interface through motion, tension, and spatial composition.`
+    },
+
+    "articles-07": {
+      id: "articles-07",
+      category: "UI/UX Design",
+      title: "Dual-World Level Navigation",
+      link: "/game/index.html",
+      images: [
+        "../projects/articles-01/img1.jpg",
+        "../projects/articles-01/img2.jpg",
+        "../projects/articles-01/img3.jpg"
+      ],
+      description: `Dual-World Level Navigation is one of the core interaction mechanics inside the browser game An Introduction You Can Walk Through. The system allows the player to exist in two parallel states simultaneously: a standard navigable world and an alternate visual plane separated by a vertical screen divide that the player can push and pull across the viewport.
+
+The divide is not a filter or shader overlay applied post-render. It is a genuine spatial split: the left and right halves of the canvas draw from different world states, each with its own palette, lighting behavior, and object visibility. The player's position maps consistently across both planes, creating a disorienting sense of occupying two realities at once while remaining physically present in one.
+
+This mechanic was designed as an interface concept rather than a pure game feature. The dual-world divide mirrors how designers often hold two states of a system in tension during design review — the current state and the proposed state, shown simultaneously so differences can be perceived spatially rather than read as text descriptions. By making this comparison spatially playable, the project explores how design critique can become a form of interaction.
+
+The system is implemented in p5.js with a custom WebGL draw-call sequencing layer that manages state separation without duplicating scene geometry. Palette switching, shader reassignment, and world state flags are toggled per draw pass rather than per frame, keeping performance stable across the divide at all screen widths.`,
+      text: `Dual-World Level Navigation is one of the core interaction mechanics inside the browser game An Introduction You Can Walk Through. The system allows the player to exist in two parallel states simultaneously: a standard navigable world and an alternate visual plane separated by a vertical screen divide that the player can push and pull across the viewport.
+
+The divide is not a filter or shader overlay applied post-render. It is a genuine spatial split: the left and right halves of the canvas draw from different world states, each with its own palette, lighting behavior, and object visibility. The player's position maps consistently across both planes, creating a disorienting sense of occupying two realities at once while remaining physically present in one.
+
+This mechanic was designed as an interface concept rather than a pure game feature. The dual-world divide mirrors how designers often hold two states of a system in tension during design review — the current state and the proposed state, shown simultaneously so differences can be perceived spatially rather than read as text descriptions. By making this comparison spatially playable, the project explores how design critique can become a form of interaction.
+
+The system is implemented in p5.js with a custom WebGL draw-call sequencing layer that manages state separation without duplicating scene geometry. Palette switching, shader reassignment, and world state flags are toggled per draw pass rather than per frame, keeping performance stable across the divide at all screen widths.`
+    },
+
+    "articles-08": {
+      id: "articles-08",
+      category: "UI/UX Design",
+      title: "Biographical Narrative System",
+      link: "/game/index.html",
+      images: [
+        "../projects/articles-01/img2.jpg",
+        "../projects/articles-01/img3.jpg",
+        "../projects/articles-01/img1.jpg"
+      ],
+      description: `Biographical Narrative System is the level-and-story architecture behind An Introduction You Can Walk Through — a browser-based game that replaces the conventional CV with a twelve-chapter spatial journey. Each level corresponds to a phase of the designer's life: Origins, Horizon, Light, Realtime, Systems, Research, VR Sense, Bio Loop, Teaching, Mentor, Play Lab, and Now.
+
+Rather than presenting biography as a timeline or list, each chapter encodes its content into the environment itself. Level geometry, obstacle placement, color palette, and ambient text overlays are all authored to reflect the qualities of that life phase. The player navigates forward through physical space and reads through time simultaneously.
+
+Narrative text appears as positioned overlays anchored to spatial triggers rather than cutscene interruptions. When the player reaches a threshold, a passage fades in and holds at the screen edge. The player can continue moving while reading, or pause. This choice is intentional: the system does not pause the world for information, respecting the user's reading pace while keeping them spatially present.
+
+The level sequencer manages transition timing, palette crossfades, narrative display states, and progression flags across all twelve stages using a shared state object. Each level definition includes a cvNarrative string, a palette reference, and layout configuration, making the entire biographical script editable as data rather than embedded code. The resulting system is a scalable template for turning any sequential life or project history into a navigable spatial document.`,
+      text: `Biographical Narrative System is the level-and-story architecture behind An Introduction You Can Walk Through — a browser-based game that replaces the conventional CV with a twelve-chapter spatial journey. Each level corresponds to a phase of the designer's life: Origins, Horizon, Light, Realtime, Systems, Research, VR Sense, Bio Loop, Teaching, Mentor, Play Lab, and Now.
+
+Rather than presenting biography as a timeline or list, each chapter encodes its content into the environment itself. Level geometry, obstacle placement, color palette, and ambient text overlays are all authored to reflect the qualities of that life phase. The player navigates forward through physical space and reads through time simultaneously.
+
+Narrative text appears as positioned overlays anchored to spatial triggers rather than cutscene interruptions. When the player reaches a threshold, a passage fades in and holds at the screen edge. The player can continue moving while reading, or pause. This choice is intentional: the system does not pause the world for information, respecting the user's reading pace while keeping them spatially present.
+
+The level sequencer manages transition timing, palette crossfades, narrative display states, and progression flags across all twelve stages using a shared state object. Each level definition includes a cvNarrative string, a palette reference, and layout configuration, making the entire biographical script editable as data rather than embedded code. The resulting system is a scalable template for turning any sequential life or project history into a navigable spatial document.`
+    },
+
+    "fashion-01": {
+      id: "fashion-01",
+      category: "Graphic Design",
+      title: "Softener Illustrated Campaign Series",
+      link: "",
+      images: [
+        "../ARTWORKS/advertiment%20Graphic%20design/62.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/63.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/64.png"
+      ],
+      description: `Softener Illustrated Campaign Series is a set of seasonal fashion advertisement posters developed for the Softener brand across winter and fall collections. The design language centers on hand-crafted textural illustration combined with collage-style layout, using ink-rendered figures set against layered abstract backgrounds built from torn textures, brushed planes, and earthy pigment tones.
+
+Each poster in the series communicates a different seasonal mood while maintaining visual consistency across the brand. The Winter 2023 campaign uses cool-toned textural fragments and scarf-wrapped silhouettes to evoke layering and warmth. The Spring/Summer 2024 edition shifts to looser, more colorful illustration with figures in motion. The Fall 2023 campaign returns to earthy burnt oranges and forest greens, with bold typographic headlines anchored by the brand's relaxed-fit identity.
+
+The typographic system is clean and utilitarian — sans-serif headlines set at large scale, brief supporting copy positioned in grid-aligned columns, and the Softener logotype used at constant size across formats. The visual weight of the illustration carries each composition, with typography functioning as a counterbalance rather than a dominant element.
+
+The series demonstrates how illustration-driven advertising can maintain brand coherence while adapting its visual register to seasonal context, producing a cohesive campaign family that reads as a single design voice across multiple releases.`,
+      text: `Softener Illustrated Campaign Series is a set of seasonal fashion advertisement posters developed for the Softener brand across winter and fall collections. The design language centers on hand-crafted textural illustration combined with collage-style layout, using ink-rendered figures set against layered abstract backgrounds built from torn textures, brushed planes, and earthy pigment tones.
+
+Each poster in the series communicates a different seasonal mood while maintaining visual consistency across the brand. The Winter 2023 campaign uses cool-toned textural fragments and scarf-wrapped silhouettes to evoke layering and warmth. The Spring/Summer 2024 edition shifts to looser, more colorful illustration with figures in motion. The Fall 2023 campaign returns to earthy burnt oranges and forest greens, with bold typographic headlines anchored by the brand's relaxed-fit identity.
+
+The typographic system is clean and utilitarian — sans-serif headlines set at large scale, brief supporting copy positioned in grid-aligned columns, and the Softener logotype used at constant size across formats. The visual weight of the illustration carries each composition, with typography functioning as a counterbalance rather than a dominant element.
+
+The series demonstrates how illustration-driven advertising can maintain brand coherence while adapting its visual register to seasonal context, producing a cohesive campaign family that reads as a single design voice across multiple releases.`
+    },
+
+    "fashion-02": {
+      id: "fashion-02",
+      category: "Graphic Design",
+      title: "Lanura Fine Wool Editorial",
+      link: "",
+      images: [
+        "../ARTWORKS/advertiment%20Graphic%20design/65.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/66.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/70.png"
+      ],
+      description: `Lanura Fine Wool Editorial is a campaign series for the Lanura brand spanning spring, summer, and autumn collections. The visual strategy leans into minimalism: large open backgrounds, editorial photography of draped wool pieces, and carefully placed abstract botanical forms that suggest the natural origin of the materials without illustrating it literally.
+
+The Spring 2025 edition, titled Soft Beginnings, uses a near-monochrome photographic approach with the garment as sole subject, relying on texture and drape to communicate quality. The Summer 2022 campaign — Airy Ease — introduces a simplified illustrated figure on a mannequin against a warm cream field, trading photography for a more conceptual register while maintaining the same economy of visual information. The Autumn 2024 campaign, Wrapped Calm, returns to editorial photography with a warmer tonal palette, adding scarf layers and deeper wool tones to signal the season shift.
+
+Typography across all three editions uses clean serif and light sans-serif combinations set with generous leading, creating a visual rhythm that reads as calm and considered. Product callouts are minimal: a single tag line, a season label, and an origin note. The wool quality certification icons appear consistently across all editions as a quiet proof-of-craft element.
+
+This series demonstrates editorial design applied to textile advertising, where the product's physical qualities — weight, drape, texture — must be communicated entirely through composition, light, and restraint.`,
+      text: `Lanura Fine Wool Editorial is a campaign series for the Lanura brand spanning spring, summer, and autumn collections. The visual strategy leans into minimalism: large open backgrounds, editorial photography of draped wool pieces, and carefully placed abstract botanical forms that suggest the natural origin of the materials without illustrating it literally.
+
+The Spring 2025 edition, titled Soft Beginnings, uses a near-monochrome photographic approach with the garment as sole subject, relying on texture and drape to communicate quality. The Summer 2022 campaign — Airy Ease — introduces a simplified illustrated figure on a mannequin against a warm cream field, trading photography for a more conceptual register while maintaining the same economy of visual information. The Autumn 2024 campaign, Wrapped Calm, returns to editorial photography with a warmer tonal palette, adding scarf layers and deeper wool tones to signal the season shift.
+
+Typography across all three editions uses clean serif and light sans-serif combinations set with generous leading, creating a visual rhythm that reads as calm and considered. Product callouts are minimal: a single tag line, a season label, and an origin note. The wool quality certification icons appear consistently across all editions as a quiet proof-of-craft element.
+
+This series demonstrates editorial design applied to textile advertising, where the product's physical qualities — weight, drape, texture — must be communicated entirely through composition, light, and restraint.`
+    },
+
+    "fashion-03": {
+      id: "fashion-03",
+      category: "Graphic Design",
+      title: "Aurelle Atelier Wool Campaign",
+      link: "",
+      images: [
+        "../ARTWORKS/advertiment%20Graphic%20design/71.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/72.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/73.png"
+      ],
+      description: `Aurelle Atelier Wool Campaign is a fashion advertising series for the Aurelle brand, presenting premium wool garments through a distinctive paper-form visual language. Rather than using standard fashion photography or drawn illustration, the campaign employs stylized sculptural figures constructed from folded and layered paper-like materials — creating garments that appear architectural and tactile simultaneously.
+
+The Winter 2024 Men & Women Series leads the campaign with the tagline Paper forms. Tailored warmth. Geometric, faceted figures in oversized coats and structured knitwear stand against bold graphic backgrounds, communicating the weight and precision of the tailoring through the rigid geometry of the forms themselves. The Spring 2025 companion piece, Soft Awakening, shifts the palette toward sage greens, blush pinks, and warm cream — the same paper-sculpted figures now posed in garden light, suggesting the arrival of warmer materials for a new season.
+
+Typography is classical and editorial: the brand name set in a large-weight serif at the top, supporting copy in refined light weights with generous tracking. Material certification icons (Natural, Textured, Premium Wool) appear as a consistent footer element across all editions, anchoring the campaign in product quality.
+
+The Aurelle campaign demonstrates how a unified art direction concept — here, the paper-form figure — can carry a brand identity across seasonal shifts while each individual piece still reads as appropriate to its season.`,
+      text: `Aurelle Atelier Wool Campaign is a fashion advertising series for the Aurelle brand, presenting premium wool garments through a distinctive paper-form visual language. Rather than using standard fashion photography or drawn illustration, the campaign employs stylized sculptural figures constructed from folded and layered paper-like materials — creating garments that appear architectural and tactile simultaneously.
+
+The Winter 2024 Men & Women Series leads the campaign with the tagline Paper forms. Tailored warmth. Geometric, faceted figures in oversized coats and structured knitwear stand against bold graphic backgrounds, communicating the weight and precision of the tailoring through the rigid geometry of the forms themselves. The Spring 2025 companion piece, Soft Awakening, shifts the palette toward sage greens, blush pinks, and warm cream — the same paper-sculpted figures now posed in garden light, suggesting the arrival of warmer materials for a new season.
+
+Typography is classical and editorial: the brand name set in a large-weight serif at the top, supporting copy in refined light weights with generous tracking. Material certification icons (Natural, Textured, Premium Wool) appear as a consistent footer element across all editions, anchoring the campaign in product quality.
+
+The Aurelle campaign demonstrates how a unified art direction concept — here, the paper-form figure — can carry a brand identity across seasonal shifts while each individual piece still reads as appropriate to its season.`
+    },
+
+    "fashion-04": {
+      id: "fashion-04",
+      category: "Graphic Design",
+      title: "Stripeform Premium Sock Series",
+      link: "",
+      images: [
+        "../ARTWORKS/advertiment%20Graphic%20design/75.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/76.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/77.png"
+      ],
+      description: `Stripeform Premium Sock Series is a brand campaign for a premium knitwear accessories label built around a strong, graphic visual identity. Where most hosiery advertising relies on lifestyle photography or flat product shots, this series constructs bold architectural environments — geometric striped tunnels, black-and-white perspectival corridors — and places the single product at the center as a sculptural object.
+
+Each poster in the Autumn 2025 Collection presents a different colorway against the same architectural backdrop. The black sock with cable knit texture reads as a statement piece in contrast to the stark graphic ground. The burgundy wool variant conveys warmth and substance. The teal jacquard edition — featuring botanical embroidery — shifts the campaign toward decorative craft, pairing intricate knitwear detail against the stark geometry.
+
+The typographic system is sharp and direct: the STRIPEFORM logotype at maximum scale, a sub-brand line, and a bold seasonal headline. Supporting copy runs in two or three concise lines that function as micro-advertising copy — Signature texture. Elevated comfort. Available in essential colorways. — each line landing with the cadence of a product promise rather than description.
+
+The campaign demonstrates how graphic design can elevate a small accessory product into a brand statement by surrounding it with visual architecture that communicates the same qualities the product itself possesses: precision, structure, and material confidence.`,
+      text: `Stripeform Premium Sock Series is a brand campaign for a premium knitwear accessories label built around a strong, graphic visual identity. Where most hosiery advertising relies on lifestyle photography or flat product shots, this series constructs bold architectural environments — geometric striped tunnels, black-and-white perspectival corridors — and places the single product at the center as a sculptural object.
+
+Each poster in the Autumn 2025 Collection presents a different colorway against the same architectural backdrop. The black sock with cable knit texture reads as a statement piece in contrast to the stark graphic ground. The burgundy wool variant conveys warmth and substance. The teal jacquard edition — featuring botanical embroidery — shifts the campaign toward decorative craft, pairing intricate knitwear detail against the stark geometry.
+
+The typographic system is sharp and direct: the STRIPEFORM logotype at maximum scale, a sub-brand line, and a bold seasonal headline. Supporting copy runs in two or three concise lines that function as micro-advertising copy — Signature texture. Elevated comfort. Available in essential colorways. — each line landing with the cadence of a product promise rather than description.
+
+The campaign demonstrates how graphic design can elevate a small accessory product into a brand statement by surrounding it with visual architecture that communicates the same qualities the product itself possesses: precision, structure, and material confidence.`
+    },
+
+    "fashion-05": {
+      id: "fashion-05",
+      category: "Graphic Design",
+      title: "Rivelle Atelier Summer Collection",
+      link: "",
+      images: [
+        "../ARTWORKS/advertiment%20Graphic%20design/80.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/81.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/82.png"
+      ],
+      description: `Rivelle Atelier Summer Collection is an illustrated editorial campaign for the Rivelle label across the Summer 2026 season. The defining aesthetic choice of this campaign is the combination of hand-drawn colored-pencil illustration with real photographic backgrounds: sun-drenched architectural exteriors, coastal terraces, and warm limestone streets serve as settings for fashion figures rendered in a deliberately sketch-like style.
+
+The effect bridges the romantic tradition of fashion illustration with a contemporary editorial sensibility. The figures feel present in their environments — grounded, casting shadows, occupying space — while the visible pencil marks and loose rendering style signal creative process, craft, and artistic authorship rather than the seamless perfection of pure photography. This visual language suits a brand positioned as an atelier: personal, skilled, and human-made.
+
+The series taglines — Light in Motion, Sunlit Attitude, Illustrated spirit. Real textures. — reinforce this position. They speak to the campaign's formal strategy directly, treating the visual approach itself as the message. The Rivelle monogram appears as a clean typographic mark at the base of each poster, providing a contemporary anchor without competing with the illustration-dominant compositions.
+
+The campaign demonstrates how hand-drawn illustration, when applied with editorial discipline and a defined art direction concept, can communicate luxury, craftsmanship, and seasonal mood more effectively than conventional fashion photography.`,
+      text: `Rivelle Atelier Summer Collection is an illustrated editorial campaign for the Rivelle label across the Summer 2026 season. The defining aesthetic choice of this campaign is the combination of hand-drawn colored-pencil illustration with real photographic backgrounds: sun-drenched architectural exteriors, coastal terraces, and warm limestone streets serve as settings for fashion figures rendered in a deliberately sketch-like style.
+
+The effect bridges the romantic tradition of fashion illustration with a contemporary editorial sensibility. The figures feel present in their environments — grounded, casting shadows, occupying space — while the visible pencil marks and loose rendering style signal creative process, craft, and artistic authorship rather than the seamless perfection of pure photography. This visual language suits a brand positioned as an atelier: personal, skilled, and human-made.
+
+The series taglines — Light in Motion, Sunlit Attitude, Illustrated spirit. Real textures. — reinforce this position. They speak to the campaign's formal strategy directly, treating the visual approach itself as the message. The Rivelle monogram appears as a clean typographic mark at the base of each poster, providing a contemporary anchor without competing with the illustration-dominant compositions.
+
+The campaign demonstrates how hand-drawn illustration, when applied with editorial discipline and a defined art direction concept, can communicate luxury, craftsmanship, and seasonal mood more effectively than conventional fashion photography.`
+    },
+
+    "fashion-06": {
+      id: "fashion-06",
+      category: "Graphic Design",
+      title: "Rivelle Atelier Spring & Winter",
+      link: "",
+      images: [
+        "../ARTWORKS/advertiment%20Graphic%20design/84.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/83.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/85.png"
+      ],
+      description: `Rivelle Atelier Spring & Winter extends the illustrated editorial language of the Rivelle campaign into cooler seasonal registers. Where the Summer Collection used warm stone architecture and coastal light as its backdrop, these editions shift to softer, more interior compositions: garden settings with botanical framing, neutral interior light, and the refined vocabulary of a studio-based atelier.
+
+The Spring 2026 campaign — Spring Grace — presents a figure in loose-fitted spring tailoring, rendered in a delicate pencil-and-wash style against an airy, abstracted garden background. The illustration softens the structural precision of the garments, presenting them as both impeccably designed and naturally worn. The supporting taglines Modern tailoring. Elevated essentials. establish the brand's design proposition without overexplaining it.
+
+The winter edition brings a deeper tonal register: heavier wool pieces, more restrained palettes, and a quieter spatial setting. The illustrated figure is more enclosed, the drawing style slightly denser — a visual shift that reflects the weight and intention of a winter wardrobe.
+
+Together, the Spring & Winter campaign editions demonstrate how a consistent illustration language can carry seasonal variation while keeping the brand's visual identity legible across all of them. The Rivelle monogram, the sketch-first aesthetic, the combination of drawing and real texture — these elements remain constant while the content adapts to the season.`,
+      text: `Rivelle Atelier Spring & Winter extends the illustrated editorial language of the Rivelle campaign into cooler seasonal registers. Where the Summer Collection used warm stone architecture and coastal light as its backdrop, these editions shift to softer, more interior compositions: garden settings with botanical framing, neutral interior light, and the refined vocabulary of a studio-based atelier.
+
+The Spring 2026 campaign — Spring Grace — presents a figure in loose-fitted spring tailoring, rendered in a delicate pencil-and-wash style against an airy, abstracted garden background. The illustration softens the structural precision of the garments, presenting them as both impeccably designed and naturally worn. The supporting taglines Modern tailoring. Elevated essentials. establish the brand's design proposition without overexplaining it.
+
+The winter edition brings a deeper tonal register: heavier wool pieces, more restrained palettes, and a quieter spatial setting. The illustrated figure is more enclosed, the drawing style slightly denser — a visual shift that reflects the weight and intention of a winter wardrobe.
+
+Together, the Spring & Winter campaign editions demonstrate how a consistent illustration language can carry seasonal variation while keeping the brand's visual identity legible across all of them. The Rivelle monogram, the sketch-first aesthetic, the combination of drawing and real texture — these elements remain constant while the content adapts to the season.`
+    },
+
+    "fashion-07": {
+      id: "fashion-07",
+      category: "Graphic Design",
+      title: "Lipmuse Beauty Editorial Campaign",
+      link: "",
+      images: [
+        "../ARTWORKS/advertiment%20Graphic%20design/86.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/87.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/88.png"
+      ],
+      description: `Lipmuse Beauty Editorial Campaign is a bold illustrated advertising series for Lipmuse Lip Color, positioned between fashion magazine cover design and cosmetics advertising. The visual language is deliberately high-energy: bold ink illustrations of styled figures, saturated hot pink and black palettes, expressive line weight, and magazine-format layout conventions applied at poster scale.
+
+The campaign frames Lipmuse as a product for confident self-expression rather than conventional beauty. Each edition places multiple illustrated figures on the page simultaneously — overlapping, gesturing, looking directly at the viewer — creating a sense of social energy and personality rather than the isolated perfection common in product advertising. The lipstick appears as a single physical product within a composition otherwise entirely built from illustration, giving it authority without centering it as the sole subject.
+
+Typography follows magazine editorial logic: a large masthead-style brand name, bold italic headlines, subheadings in light weight at small size. The verbal tone is direct and empowering: Color with attitude. Bold look. Soft feeling. All you. Designed to empower. Made to be remembered. Each phrase functions as a standalone affirmation rather than a product description.
+
+The Color Chemistry and Power of Pink editions each take a different angle on the campaign concept while maintaining a continuous visual identity. Together they demonstrate how illustration-led beauty advertising can communicate personality, attitude, and product confidence within a disciplined editorial design system.`,
+      text: `Lipmuse Beauty Editorial Campaign is a bold illustrated advertising series for Lipmuse Lip Color, positioned between fashion magazine cover design and cosmetics advertising. The visual language is deliberately high-energy: bold ink illustrations of styled figures, saturated hot pink and black palettes, expressive line weight, and magazine-format layout conventions applied at poster scale.
+
+The campaign frames Lipmuse as a product for confident self-expression rather than conventional beauty. Each edition places multiple illustrated figures on the page simultaneously — overlapping, gesturing, looking directly at the viewer — creating a sense of social energy and personality rather than the isolated perfection common in product advertising. The lipstick appears as a single physical product within a composition otherwise entirely built from illustration, giving it authority without centering it as the sole subject.
+
+Typography follows magazine editorial logic: a large masthead-style brand name, bold italic headlines, subheadings in light weight at small size. The verbal tone is direct and empowering: Color with attitude. Bold look. Soft feeling. All you. Designed to empower. Made to be remembered. Each phrase functions as a standalone affirmation rather than a product description.
+
+The Color Chemistry and Power of Pink editions each take a different angle on the campaign concept while maintaining a continuous visual identity. Together they demonstrate how illustration-led beauty advertising can communicate personality, attitude, and product confidence within a disciplined editorial design system.`
+    },
+
+    "fashion-08": {
+      id: "fashion-08",
+      category: "Graphic Design",
+      title: "Softora Home & Lifestyle Collection",
+      link: "",
+      images: [
+        "../ARTWORKS/advertiment%20Graphic%20design/90.png",
+        "../ARTWORKS/advertiment%20Graphic%20design/92.jpg",
+        "../ARTWORKS/advertiment%20Graphic%20design/93.jpg"
+      ],
+      description: `Softora Home & Lifestyle Collection is an advertising campaign for Softora Bath Linens, a home textile brand positioned in the premium lifestyle market. Unlike the fashion-forward campaigns in this portfolio, Softora operates in the quieter register of home and wellness design — where the goal is to communicate softness, comfort, and daily ritual rather than seasonal trends or statement aesthetics.
+
+The Spring/Summer 2026 editions are built around a restrained visual palette: warm sand, sage green, ivory, and muted coral. Figures are stylized but not editorial — closer to the calm silhouettes of Scandinavian lifestyle brands than to the illustration-forward fashion work. One edition features a clean architectural silhouette draped in the product itself, communicating material quality through the visual logic of the figure's posture and the textile's fall. The other employs a direct flat-lay approach with color swatch documentation, appealing to the design-conscious buyer who makes decisions based on material range.
+
+Typography across the campaign is light and functional: clean grotesque type, generous white space, and product-category language (Bath Linens, Premium Cotton Terry, Spa-Level Comfort) used with confidence rather than decoration. The tagline Softness in every fold does what good lifestyle copy should — it is both sensory and literal, landing without effort.
+
+The Softora campaign demonstrates how graphic design shifts in register for home and lifestyle categories, replacing dramatic composition with quiet authority, and trading visual excitement for the kind of trust that invites a purchase decision.`,
+      text: `Softora Home & Lifestyle Collection is an advertising campaign for Softora Bath Linens, a home textile brand positioned in the premium lifestyle market. Unlike the fashion-forward campaigns in this portfolio, Softora operates in the quieter register of home and wellness design — where the goal is to communicate softness, comfort, and daily ritual rather than seasonal trends or statement aesthetics.
+
+The Spring/Summer 2026 editions are built around a restrained visual palette: warm sand, sage green, ivory, and muted coral. Figures are stylized but not editorial — closer to the calm silhouettes of Scandinavian lifestyle brands than to the illustration-forward fashion work. One edition features a clean architectural silhouette draped in the product itself, communicating material quality through the visual logic of the figure's posture and the textile's fall. The other employs a direct flat-lay approach with color swatch documentation, appealing to the design-conscious buyer who makes decisions based on material range.
+
+Typography across the campaign is light and functional: clean grotesque type, generous white space, and product-category language (Bath Linens, Premium Cotton Terry, Spa-Level Comfort) used with confidence rather than decoration. The tagline Softness in every fold does what good lifestyle copy should — it is both sensory and literal, landing without effort.
+
+The Softora campaign demonstrates how graphic design shifts in register for home and lifestyle categories, replacing dramatic composition with quiet authority, and trading visual excitement for the kind of trust that invites a purchase decision.`
     }
   };
 })();
