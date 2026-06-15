@@ -1000,7 +1000,7 @@ window.GALLERY_DATA = {
         caption: "Portfolio Website · Canvas · D3.js · Biomimetic · 2025",
         description: "romanjahandideh.com — a personal portfolio built as a living system rather than a static page. Procedural spiderweb canvas, biomimetic interaction model, D3-based work explorer, multi-mode navigation, and scroll-scrubbed video — all working together as one continuous front-end environment.",
         image: "work/assets/images/web-design/living-interface.svg",
-        link: "https://romanjahandideh.github.io/"
+        link: "https://romanjahandideh.com/"
       },
       {
         title: "Procedural Spiderweb Canvas Engine",
@@ -1014,14 +1014,14 @@ window.GALLERY_DATA = {
         caption: "Browser Game · p5.js · WebGL · Narrative Design · 2025",
         description: "A browser-based game replacing the conventional CV with a twelve-level spatial journey. Each level encodes a biographical chapter — Origins through Now — into environment, palette, and narrative overlay. Navigate through time while reading through space.",
         image: "work/assets/images/web-design/game-intro.svg",
-        link: "/game/index.html"
+        link: "https://romanjahandideh.com/game/index.html"
       },
       {
         title: "Dual-World Level Navigation",
         caption: "Interaction Design · p5.js · WebGL · 2025",
         description: "A split-screen dual-world mechanic from the portfolio game. A vertical divide separates two parallel world states — different palettes, lighting, and object visibility — while the player's position maps consistently across both. A spatial interaction concept about holding two design states simultaneously.",
         image: "work/assets/images/web-design/dual-world.svg",
-        link: "/game/index.html"
+        link: "https://romanjahandideh.com/game/index.html"
       },
       {
         title: "Physiology-Driven Gameplay",
