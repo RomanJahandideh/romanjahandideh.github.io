@@ -263,21 +263,43 @@
   }
 }
 
-/* Title hidden — pure image grid */
-.gallery-thumb-title { display: none; }
+/* Title overlaid at bottom of card — revealed on hover */
+.gallery-thumb-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 26px 8px 7px;
+  background: linear-gradient(to top, rgba(0,0,0,0.70) 0%, transparent 100%);
+  color: rgba(255,255,255,0.95);
+  font-family: "Montserrat", system-ui, sans-serif;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(3px);
+  transition: opacity 0.20s ease, transform 0.20s ease;
+}
 
-/* Hover effect: hovered card vivid + slightly enlarged; others blur + desaturate.
-   Scale is kept tight (1.06) so cards stay within overflow:auto scroll container. */
 @media (hover: hover) {
-  #gallery-grid:has(.gallery-card:hover) .gallery-card:not(:hover) {
-    filter: blur(1.5px) saturate(0.30);
-    opacity: 0.60;
-    transform: scale(0.97);
+  .gallery-card:hover .gallery-thumb-title {
+    opacity: 1;
+    transform: translateY(0);
   }
+}
 
+/* Hover effect: hovered card gains saturation — no blur or desaturation on others. */
+@media (hover: hover) {
   #gallery-grid:has(.gallery-card:hover) .gallery-card:hover {
     transform: scale(1.06);
-    filter: saturate(1.2) brightness(1.04);
+    filter: saturate(1.55);
     z-index: 10;
   }
 }

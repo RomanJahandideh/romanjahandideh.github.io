@@ -1,64 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
-  <defs>
-    <radialGradient id="gameBg" cx="50%" cy="40%" r="60%">
-      <stop offset="0%" stop-color="#1a1520"/>
-      <stop offset="100%" stop-color="#070508"/>
-    </radialGradient>
-  </defs>
-  <rect width="800" height="500" fill="url(#gameBg)"/>
-  <!-- Pixel grid (subtle) -->
-  <g stroke="#ffffff" stroke-opacity="0.025" stroke-width="0.5">
-    <line x1="0" y1="100" x2="800" y2="100"/><line x1="0" y1="150" x2="800" y2="150"/>
-    <line x1="0" y1="200" x2="800" y2="200"/><line x1="0" y1="250" x2="800" y2="250"/>
-    <line x1="0" y1="300" x2="800" y2="300"/><line x1="0" y1="350" x2="800" y2="350"/>
-    <line x1="0" y1="400" x2="800" y2="400"/>
-    <line x1="100" y1="0" x2="100" y2="500"/><line x1="200" y1="0" x2="200" y2="500"/>
-    <line x1="300" y1="0" x2="300" y2="500"/><line x1="400" y1="0" x2="400" y2="500"/>
-    <line x1="500" y1="0" x2="500" y2="500"/><line x1="600" y1="0" x2="600" y2="500"/>
-    <line x1="700" y1="0" x2="700" y2="500"/>
-  </g>
-  <!-- Chapter / level title -->
-  <text x="400" y="90" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" letter-spacing="0.3em" fill="#ffffff" opacity="0.3">CHAPTER I · ORIGINS</text>
-  <!-- Narrative overlay text (dithered feel) -->
-  <text x="120" y="130" font-family="Montserrat,sans-serif" font-size="9" font-weight="400" letter-spacing="0.05em" fill="#c8b888" opacity="0.5">Born in Tabriz. First encounter with form and space...</text>
-  <!-- Platform level geometry -->
-  <!-- Ground platform -->
-  <rect x="0" y="380" width="800" height="4" fill="#c8b888" opacity="0.45"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F8F6F2"/>
+  <!-- Ground -->
+  <line x1="40" y1="290" x2="360" y2="290" stroke="#1C1917" stroke-width="2" stroke-linecap="round"/>
   <!-- Platforms -->
-  <rect x="80" y="320" width="120" height="4" fill="#c8b888" opacity="0.38"/>
-  <rect x="280" y="280" width="100" height="4" fill="#c8b888" opacity="0.38"/>
-  <rect x="460" y="310" width="140" height="4" fill="#c8b888" opacity="0.38"/>
-  <rect x="660" y="260" width="100" height="4" fill="#c8b888" opacity="0.38"/>
-  <!-- Platform shadows -->
-  <rect x="80" y="324" width="120" height="2" fill="#000000" opacity="0.25"/>
-  <rect x="280" y="284" width="100" height="2" fill="#000000" opacity="0.25"/>
-  <!-- Door / goal object (right side) -->
-  <rect x="700" y="230" width="32" height="30" fill="none" stroke="#D96535" stroke-width="1.5" opacity="0.7"/>
-  <rect x="707" y="237" width="8" height="8" fill="#D96535" opacity="0.5"/>
-  <!-- Key object -->
-  <circle cx="290" cy="268" r="5" fill="none" stroke="#c8b888" stroke-width="1.2" opacity="0.65"/>
-  <line x1="295" y1="268" x2="306" y2="268" stroke="#c8b888" stroke-width="1.2" opacity="0.65"/>
-  <line x1="303" y1="268" x2="303" y2="274" stroke="#c8b888" stroke-width="1.2" opacity="0.65"/>
-  <!-- Player character (pixel-style, 14x20px) -->
-  <!-- Body -->
-  <rect x="392" y="344" width="16" height="12" fill="#e8e2d9" opacity="0.88"/>
-  <!-- Head -->
-  <rect x="394" y="332" width="12" height="12" fill="#e8e2d9" opacity="0.88"/>
-  <!-- Eyes -->
-  <rect x="397" y="336" width="2" height="2" fill="#1a1520"/>
-  <rect x="403" y="336" width="2" height="2" fill="#1a1520"/>
-  <!-- Legs -->
-  <rect x="392" y="356" width="6" height="8" fill="#c8b888" opacity="0.8"/>
-  <rect x="402" y="356" width="6" height="8" fill="#c8b888" opacity="0.8"/>
-  <!-- Dual-world split hint -->
-  <line x1="400" y1="170" x2="400" y2="370" stroke="#D96535" stroke-width="0.6" stroke-opacity="0.2" stroke-dasharray="4,6"/>
-  <!-- Left world tint -->
-  <rect x="0" y="160" width="400" height="210" fill="#3a1a5a" opacity="0.06"/>
-  <!-- Right world tint -->
-  <rect x="400" y="160" width="400" height="210" fill="#1a3a2a" opacity="0.06"/>
-  <!-- Score / stats -->
-  <text x="50" y="50" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" letter-spacing="0.1em" fill="#D96535" opacity="0.6">LEVEL  01 / 12</text>
-  <text x="650" y="50" font-family="Montserrat,sans-serif" font-size="9" font-weight="600" letter-spacing="0.1em" fill="#c8b888" opacity="0.5">WORLD  ●  ○</text>
-  <!-- Label -->
-  <text x="400" y="478" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="600" letter-spacing="0.22em" fill="#c8b888" opacity="0.35">AN INTRODUCTION YOU CAN WALK THROUGH · p5.js · WEBGL</text>
+  <line x1="70" y1="244" x2="160" y2="244" stroke="#1C1917" stroke-width="2" stroke-linecap="round"/>
+  <line x1="190" y1="204" x2="270" y2="204" stroke="#1C1917" stroke-width="2" stroke-linecap="round"/>
+  <line x1="290" y1="160" x2="360" y2="160" stroke="#1C1917" stroke-width="2" stroke-linecap="round"/>
+  <!-- Player character (pixel-style) — on ground -->
+  <rect x="110" y="268" width="12" height="12" fill="none" stroke="#1C1917" stroke-width="1.6"/>
+  <rect x="112" y="258" width="8" height="10" fill="none" stroke="#1C1917" stroke-width="1.6"/>
+  <rect x="110" y="280" width="4" height="6" fill="none" stroke="#1C1917" stroke-width="1.2"/>
+  <rect x="118" y="280" width="4" height="6" fill="none" stroke="#1C1917" stroke-width="1.2"/>
+  <!-- Chapter text lines (narrative overlay feel) -->
+  <line x1="60" y1="100" x2="240" y2="100" stroke="#1C1917" stroke-width="1" stroke-opacity="0.25"/>
+  <line x1="60" y1="114" x2="200" y2="114" stroke="#1C1917" stroke-width="1" stroke-opacity="0.2"/>
+  <line x1="60" y1="128" x2="220" y2="128" stroke="#1C1917" stroke-width="1" stroke-opacity="0.18"/>
+  <!-- Door/goal marker -->
+  <rect x="316" y="132" width="22" height="26" fill="none" stroke="#1C1917" stroke-width="1.6" stroke-linejoin="round"/>
+  <circle cx="334" cy="146" r="2" fill="#1C1917"/>
+  <!-- Level counter -->
+  <text x="60" y="78" font-family="Montserrat,sans-serif" font-size="10" font-weight="700" letter-spacing="0.15em" fill="#1C1917" opacity="0.35">01 / 12</text>
 </svg>

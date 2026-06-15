@@ -1,52 +1,37 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
-  <rect width="800" height="500" fill="#0a0a0a"/>
-  <!-- Background web -->
-  <g stroke="#ffffff" stroke-opacity="0.05" stroke-width="0.8" fill="none">
-    <line x1="400" y1="250" x2="400" y2="30"/>
-    <line x1="400" y1="250" x2="612" y2="130"/>
-    <line x1="400" y1="250" x2="712" y2="340"/>
-    <line x1="400" y1="250" x2="590" y2="470"/>
-    <line x1="400" y1="250" x2="210" y2="470"/>
-    <line x1="400" y1="250" x2="88" y2="340"/>
-    <line x1="400" y1="250" x2="188" y2="130"/>
-    <ellipse cx="400" cy="250" rx="90" ry="56"/>
-    <ellipse cx="400" cy="250" rx="180" ry="112"/>
-    <ellipse cx="400" cy="250" rx="270" ry="168"/>
-  </g>
-  <!-- IK joint glow halos -->
-  <circle cx="520" cy="178" r="8" fill="#D96535" opacity="0.18"/>
-  <circle cx="572" cy="232" r="8" fill="#D96535" opacity="0.18"/>
-  <circle cx="560" cy="296" r="8" fill="#D96535" opacity="0.18"/>
-  <circle cx="500" cy="350" r="8" fill="#D96535" opacity="0.18"/>
-  <circle cx="300" cy="350" r="8" fill="#D96535" opacity="0.18"/>
-  <circle cx="240" cy="296" r="8" fill="#D96535" opacity="0.18"/>
-  <circle cx="228" cy="232" r="8" fill="#D96535" opacity="0.18"/>
-  <circle cx="280" cy="178" r="8" fill="#D96535" opacity="0.18"/>
-  <!-- 8 IK legs -->
-  <g stroke="#e8e2d9" stroke-width="2" stroke-linecap="round" fill="none">
-    <path d="M414 238 Q468 208 520 178 Q562 152 600 132"/>
-    <circle cx="520" cy="178" r="4" fill="#D96535"/>
-    <path d="M420 248 Q496 234 572 232 Q624 230 672 228"/>
-    <circle cx="572" cy="232" r="4" fill="#D96535"/>
-    <path d="M418 260 Q490 272 560 296 Q610 314 656 332"/>
-    <circle cx="560" cy="296" r="4" fill="#D96535"/>
-    <path d="M410 266 Q456 306 500 350 Q532 382 556 410"/>
-    <circle cx="500" cy="350" r="4" fill="#D96535"/>
-    <path d="M390 266 Q344 306 300 350 Q268 382 244 410"/>
-    <circle cx="300" cy="350" r="4" fill="#D96535"/>
-    <path d="M382 260 Q310 272 240 296 Q190 314 144 332"/>
-    <circle cx="240" cy="296" r="4" fill="#D96535"/>
-    <path d="M380 248 Q304 234 228 232 Q176 230 128 228"/>
-    <circle cx="228" cy="232" r="4" fill="#D96535"/>
-    <path d="M386 238 Q332 208 280 178 Q238 152 200 132"/>
-    <circle cx="280" cy="178" r="4" fill="#D96535"/>
-  </g>
-  <!-- Spider body -->
-  <ellipse cx="400" cy="256" rx="26" ry="20" fill="#1a1a1a" stroke="#e8e2d9" stroke-width="1.5" opacity="0.9"/>
-  <ellipse cx="400" cy="242" rx="18" ry="14" fill="#e8e2d9" opacity="0.88"/>
-  <!-- Eyes (2 small dots) -->
-  <circle cx="395" cy="239" r="2.5" fill="#0a0a0a"/>
-  <circle cx="405" cy="239" r="2.5" fill="#0a0a0a"/>
-  <!-- Label -->
-  <text x="400" y="478" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="10" font-weight="600" letter-spacing="0.22em" fill="#ffffff" opacity="0.35">EIGHT · PROCEDURAL IK · D3.JS · CANVAS</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#F8F6F2"/>
+  <!-- Body -->
+  <ellipse cx="200" cy="215" rx="22" ry="30" fill="none" stroke="#1C1917" stroke-width="2.2"/>
+  <!-- Head -->
+  <circle cx="200" cy="174" r="17" fill="none" stroke="#1C1917" stroke-width="2.2"/>
+  <!-- Eyes -->
+  <circle cx="194" cy="172" r="2.8" fill="#1C1917"/>
+  <circle cx="206" cy="172" r="2.8" fill="#1C1917"/>
+  <!-- Left legs — two segments each, IK joints marked -->
+  <line x1="179" y1="200" x2="142" y2="174" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="142" y1="174" x2="106" y2="152" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="179" y1="212" x2="138" y2="208" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="138" y1="208" x2="100" y2="218" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="179" y1="224" x2="140" y2="240" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="140" y1="240" x2="104" y2="265" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="179" y1="234" x2="143" y2="262" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="143" y1="262" x2="112" y2="294" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- Right legs -->
+  <line x1="221" y1="200" x2="258" y2="174" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="258" y1="174" x2="294" y2="152" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="221" y1="212" x2="262" y2="208" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="262" y1="208" x2="300" y2="218" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="221" y1="224" x2="260" y2="240" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="260" y1="240" x2="296" y2="265" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="221" y1="234" x2="257" y2="262" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <line x1="257" y1="262" x2="288" y2="294" stroke="#1C1917" stroke-width="1.8" stroke-linecap="round"/>
+  <!-- IK joint dots -->
+  <circle cx="142" cy="174" r="3.2" fill="#1C1917"/>
+  <circle cx="138" cy="208" r="3.2" fill="#1C1917"/>
+  <circle cx="140" cy="240" r="3.2" fill="#1C1917"/>
+  <circle cx="143" cy="262" r="3.2" fill="#1C1917"/>
+  <circle cx="258" cy="174" r="3.2" fill="#1C1917"/>
+  <circle cx="262" cy="208" r="3.2" fill="#1C1917"/>
+  <circle cx="260" cy="240" r="3.2" fill="#1C1917"/>
+  <circle cx="257" cy="262" r="3.2" fill="#1C1917"/>
 </svg>

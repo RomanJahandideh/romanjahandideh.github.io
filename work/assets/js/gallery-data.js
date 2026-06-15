@@ -979,21 +979,21 @@ window.GALLERY_DATA = {
         caption: "Interactive Web · D3.js · Canvas · 2025",
         description: "A real-time procedural spider built with D3.js and inverse kinematics. Legs respond autonomously to terrain with a biologically plausible gait — fully interactive in the browser.",
         image: "work/assets/images/web-design/spider-ik.svg",
-        link: "/work/work/articles-p1.html"
+        link: "https://romanjahandideh.com/"
       },
       {
         title: "Unhatched: Interactive Spider Egg System",
         caption: "Physics Simulation · Canvas · Gyroscope · 2025",
         description: "A physics-based spider egg simulation — eggs cluster, collide, and respond to gravity and gyroscope input on mobile. Soft-body dynamics rendered in canvas.",
         image: "work/assets/images/web-design/unhatched.svg",
-        link: "/work/work/articles-p2.html"
+        link: "https://romanjahandideh.com/"
       },
       {
         title: "Alive: Interactive Eye System",
         caption: "Interactive Web · Canvas · Biomimetic · 2025",
         description: "A living eye interface that tracks cursor position, blinks, dilates, and responds to interaction. Built entirely in vanilla JavaScript and canvas without any external libraries.",
         image: "work/assets/images/web-design/alive-eye.svg",
-        link: "/work/work/articles-p3.html"
+        link: "https://romanjahandideh.com/"
       },
       {
         title: "Living Interface System",
@@ -1007,7 +1007,7 @@ window.GALLERY_DATA = {
         caption: "Generative Web · Physics Simulation · Canvas · 2025",
         description: "The procedural background engine powering the portfolio. Spoke-and-ring geometry with spring tension, damping, wind simulation, and mouse-reactive pluck vibration. Each node behaves as a physics object; the center void breathes and tracks the active interface target in real time.",
         image: "work/assets/images/web-design/spiderweb-canvas.svg",
-        link: "/work/work/articles-p4.html"
+        link: "https://romanjahandideh.com/"
       },
       {
         title: "An Introduction You Can Walk Through",
@@ -1028,7 +1028,7 @@ window.GALLERY_DATA = {
         caption: "Interaction Design · Unity · Apple Watch · Bioadaptive · 2025",
         description: "A Unity prototype where heart-rate signals from an Apple Watch control the game environment in real time. Fog density, vegetation stability, and lighting shift as physiological state changes. The body becomes the controller; the world becomes the readout.",
         image: "work/assets/images/web-design/physiology.svg",
-        link: "/work/work/articles-p5.html"
+        link: "https://romanjahandideh.com/"
       }
     ]
   }
