@@ -1,18 +1,18 @@
 /* =====================================================
    PAGE TRANSITIONS
-   Atmospheric dark dissolve between modes.
-   The curtain is a dark overlay with backdrop-filter
+   Atmospheric light dissolve between modes.
+   The curtain is a near-white overlay with backdrop-filter
    blur — as it fades in the scene behind blurs and
-   dims, creating a cinematic depth-of-field dissolve.
+   brightens, creating a quick depth-of-field dissolve.
    No hard shapes, no text, no color flashes.
    ===================================================== */
 (function () {
   "use strict";
 
   /* ── Timing ──────────────────────────────────────── */
-  var OPEN_DUR  = 0.42;  /* scene dissolves into darkness   */
-  var CLOSE_DUR = 0.55;  /* new scene emerges from darkness */
-  var HOLD      = 0.05;  /* peak darkness hold              */
+  var OPEN_DUR  = 0.26;  /* scene dissolves into whiteness   */
+  var CLOSE_DUR = 0.32;  /* new scene emerges from whiteness */
+  var HOLD      = 0.03;  /* peak whiteness hold              */
   var SWITCH_AT = 0.84;  /* fraction of OPEN_DUR when mode flips */
 
   var MODES = ["home", "work", "teaching"];

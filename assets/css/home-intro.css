@@ -35,7 +35,7 @@
   font-family: "Montserrat", system-ui, sans-serif;
   font-size: clamp(10px, 0.9vw, 12px);
   font-weight: 400;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #D96535;
   white-space: nowrap;
