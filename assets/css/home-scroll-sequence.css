@@ -47,7 +47,7 @@
 
 /* Service title — bolder, contained within the breathing circle */
 .seq-step-title {
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: clamp(20px, 3.0vw, 30px);
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -63,7 +63,7 @@
 
 /* Description */
 .seq-step-desc {
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.68;

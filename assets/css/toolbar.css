@@ -270,7 +270,7 @@
   font-weight: 600;
   line-height: 1.4;
   color: rgba(28,25,23,0.88);
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   max-width: 28ch;
 }
 
@@ -287,7 +287,7 @@
   font-size: 15px;
   line-height: 1.82;
   color: rgba(28,25,23,0.74);
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   max-width: 58ch;
 }
 
@@ -302,7 +302,7 @@
   color: #fff;
   border: none;
   border-radius: 999px;
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
@@ -342,7 +342,7 @@
   color: rgba(28,25,23,0.60);
   border: 1px solid rgba(28,25,23,0.14);
   border-radius: 999px;
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -476,7 +476,7 @@
   color: rgba(28,25,23,0.55);
   border: 1px solid rgba(28,25,23,0.12);
   border-radius: 999px;
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -596,11 +596,11 @@ body.mode-work #main-stack .layer:hover::after,
   filter: none;
 }
 
-/* Shared label — Inter instead of Montserrat */
+/* Shared label */
 body.mode-work #main-stack .layer .label,
 #teaching-main-stack .teaching-layer .label,
 .svc-ball .svc-ball-label {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 8px;
   font-weight: 500;
   letter-spacing: 0.25px;
@@ -675,7 +675,7 @@ body.mode-work #main-stack .layer:focus-visible,
   border: 1px solid rgba(217,101,53,0.22);
   border-radius: 8px;
   color: rgba(28,25,23,0.72);
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 11px;
   font-weight: 500;
   letter-spacing: 0.01em;

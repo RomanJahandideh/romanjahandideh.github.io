@@ -110,7 +110,7 @@
 }
 
 .gallery-eyebrow {
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.22em;
@@ -120,8 +120,8 @@
 }
 
 .gallery-cat-title {
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: clamp(20px, 2.6vw, 26px);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: clamp(22px, 2.6vw, 28px);
   font-weight: 700;
   letter-spacing: -0.01em;
   color: #1C1917;
@@ -139,7 +139,7 @@
 }
 
 .gallery-count {
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.14em;
@@ -225,10 +225,10 @@
   margin-top: 14px;
   color: #D96535;
   text-decoration: none;
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   transition: transform 0.18s ease, color 0.18s ease;
 }
@@ -273,7 +273,7 @@
   padding: 26px 8px 7px;
   background: linear-gradient(to top, rgba(0,0,0,0.70) 0%, transparent 100%);
   color: rgba(255,255,255,0.95);
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.13em;
@@ -327,7 +327,7 @@
 }
 
 .gallery-detail-breadcrumb {
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.18em;
@@ -430,10 +430,10 @@
 }
 
 .gallery-detail-title {
-  font-family: "Montserrat", system-ui, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   color: rgba(250, 248, 244, 0.97);
   margin: 0;
   text-shadow: 0 1px 6px rgba(18, 16, 14, 0.45);
@@ -485,9 +485,9 @@
 }
 
 .gallery-detail-desc {
-  font-family: "Montserrat", system-ui, sans-serif;
-  font-size: 12px;
-  line-height: 1.75;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
   color: rgba(28, 25, 23, 0.54);
   margin: 0;
   display: -webkit-box;

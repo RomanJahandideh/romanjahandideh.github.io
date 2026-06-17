@@ -148,7 +148,7 @@ body[data-mode="teaching"] #teaching-mode{
   place-items: center;
   padding: 20px;
   text-align: center;
-  font-family: "Montserrat", system-ui, -apple-system, sans-serif;
+  font-family: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
   font-size: 10px;
   font-weight: 600;
   line-height: 1.4;
@@ -261,7 +261,7 @@ body[data-mode="teaching"] #teaching-mode{
   border-radius: 999px;
   background: rgba(255,255,255,0.06);
   color: rgba(255,255,255,0.92);
-  font: 500 12px/1 "Montserrat", system-ui, sans-serif;
+  font: 500 12px/1 "Plus Jakarta Sans", system-ui, sans-serif;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
@@ -298,7 +298,7 @@ body[data-mode="teaching"] #teaching-mode{
 
 #teaching-detail-overlay .teaching-detail-kicker{
   margin-bottom: 12px;
-  font: 500 12px/1.4 "Montserrat", system-ui, sans-serif;
+  font: 500 12px/1.4 "Plus Jakarta Sans", system-ui, sans-serif;
   letter-spacing: 0.20em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.52);
@@ -307,20 +307,20 @@ body[data-mode="teaching"] #teaching-mode{
 #teaching-detail-overlay .teaching-detail-title{
   margin: 0 0 18px;
   max-width: 14ch;
-  font: 600 clamp(32px, 3.5vw, 52px)/1.04 "Montserrat", system-ui, sans-serif;
+  font: 600 clamp(32px, 3.5vw, 52px)/1.04 "Plus Jakarta Sans", system-ui, sans-serif;
   color: rgba(255,255,255,0.98);
 }
 
 #teaching-detail-overlay .teaching-detail-text{
   margin: 0 0 30px;
   max-width: 66ch;
-  font: 400 15px/1.85 "Montserrat", system-ui, sans-serif;
+  font: 400 15px/1.85 "Plus Jakarta Sans", system-ui, sans-serif;
   color: rgba(255,255,255,0.78);
 }
 
 #teaching-detail-overlay .teaching-detail-section-title{
   margin-bottom: 16px;
-  font: 500 12px/1.4 "Montserrat", system-ui, sans-serif;
+  font: 500 12px/1.4 "Plus Jakarta Sans", system-ui, sans-serif;
   letter-spacing: 0.20em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.46);
@@ -335,7 +335,7 @@ body[data-mode="teaching"] #teaching-mode{
 
 #teaching-detail-overlay .teaching-detail-list li{
   color: rgba(255,255,255,0.84);
-  font: 400 14px/1.8 "Montserrat", system-ui, sans-serif;
+  font: 400 14px/1.8 "Plus Jakarta Sans", system-ui, sans-serif;
 }
 
 #teaching-detail-overlay .teaching-image-slot{
@@ -358,7 +358,7 @@ body[data-mode="teaching"] #teaching-mode{
   height: 100%;
   min-height: inherit;
   color: rgba(255,255,255,0.38);
-  font: 500 12px/1 "Montserrat", system-ui, sans-serif;
+  font: 500 12px/1 "Plus Jakarta Sans", system-ui, sans-serif;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
