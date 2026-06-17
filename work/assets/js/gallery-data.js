@@ -1352,6 +1352,78 @@ window.GALLERY_DATA = {
         description: "The closing spread — again and again the fish granted wishes, but the more the wife had, the more she wanted. At last she asked for too much. The magic came to an end. Enough is a treasure, and greed can wash good things away. Warm candlelit interior scene of the couple returned to their hut.",
         image: "ARTWORKS/advertiment%20Graphic%20design/book7.png",
         tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Cover",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Cover design for The Long Way Home — A Children's Sea Tale about Courage, Patience, and Finding Home. Original epic by Homer, retold and adapted for children by Roman Jahandideh. A hunched, creature-like figure sits by a coastal shore gazing out at a distant sailboat — warm sepia watercolour palette.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_20_57%20PM.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Page 1",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Opening spread: After a long war, a sailor named Odysseus wanted only one thing — to go home. Far across the sea, his wife and son waited for him. So Odysseus raised his sail, held the wind in his heart, and began the long journey back. Illustration of a small ship character hoisting a white sail.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2008_56_35%20PM.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Page 2",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Storm spread: The sea was beautiful, but it was never simple. Some days the waves carried the ship gently; other days, storms pushed it far from the right path. Odysseus told his sailors, 'We must stay brave and keep moving.' Dynamic ink-wash storm scene with crashing waves.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_01_17%20PM.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Page 3",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Cyclops spread: One evening the sailors found an island with a dark cave. Inside lived a giant who did not like visitors. Odysseus knew strength alone would not save them — so he used clever thinking, quiet steps, and patience to lead his friends back to the ship. Shadowy cave entrance with a lone figure creeping out.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_03_20%20PM.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Page 4",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Sirens spread: The ship sailed near voices singing over the water — sweet, but dangerous. Odysseus told his sailors, 'Do not follow every beautiful sound.' They covered their ears, stayed together, and sailed safely past. Swirling musical notes and shell-like siren forms drifting from the sea.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_05_11%20PM.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Page 6",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Homecoming spread: At last, after many storms, Odysseus reached his own shore. His clothes were torn and his hair full of salt — but his heart knew the land. He walked slowly toward his home, hoping his family had not forgotten him. Solitary figure trudging across a barren coastal plain toward a distant cottage.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_07_12%20PM.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Page 6 (Alternate)",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Alternate illustration for the homecoming spread — same narrative beat, different composition. Odysseus as a silhouetted creature figure walking toward an island visible across open water, capturing the emotional distance between the journey's end and home.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_09_17%20PM.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Page 7",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Closing spread: When Odysseus saw his family again, the long journey felt smaller. He had crossed storms, giants, songs, and lonely seas — but the greatest treasure was not gold or glory. It was home. And he learned that courage is not only fighting. Sometimes, courage is finding your way back. Tender embrace scene in warm sepia.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_10_44%20PM.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Long Way Home — Back Cover",
+        caption: "Children's Book · Editorial Design · Illustration · 2026",
+        description: "Back cover design for The Odyssey: The Long Way Home. Features the full title treatment, subtitle 'A Children's Sea Tale about Courage, Patience, and Finding Home', credits to Homer (original epic) and Roman Jahandideh (retold and adapted), ISBN, and a coastal landscape illustration with ship on the horizon.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_19_23%20PM.png",
+        tags: ["book"]
       }
 
     ]
