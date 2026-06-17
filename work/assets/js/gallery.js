@@ -500,8 +500,8 @@
   }
 
   /* ── Build filter bar ── */
-  var TAG_ORDER  = ["editorial", "fashion", "advertising", "gym"];
-  var TAG_LABELS = { editorial: "Editorial", fashion: "Fashion & Beauty", advertising: "Advertising", gym: "Gym & Sport" };
+  var TAG_ORDER  = ["editorial", "fashion", "advertising", "gym", "book"];
+  var TAG_LABELS = { editorial: "Editorial", fashion: "Fashion & Beauty", advertising: "Advertising", gym: "Gym & Sport", book: "Book Design" };
 
   function _buildFilterBar() {
     if (!_filterBar) return;

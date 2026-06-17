@@ -1295,6 +1295,63 @@ window.GALLERY_DATA = {
         description: "Maple Ridge Run Collective — Move. Run Strong. Stay Wild. Move Together. Join Now. Full-bleed outdoor poster with a female runner mid-stride against a mountain highway. Thursday Social Run · Sunday Distance Run. Maple Ridge, BC.",
         image: "ARTWORKS/advertiment%20Graphic%20design/130.png",
         tags: ["gym"]
+      },
+
+      /* — Book Design — */
+      {
+        title: "The Fisherman and His Wife — Cover",
+        caption: "Children's Book · Editorial Design · Illustration · 2025",
+        description: "Cover design for The Fisherman and His Wife — A Sea Tale about Wishes, Gratitude, and Knowing Enough. Original tale by The Brothers Grimm, retold and adapted for children by Roman Jahandideh. Paper-diorama illustration in midnight blue and ivory with layered coastal scenery.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK1.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Fisherman and His Wife — Page 1",
+        caption: "Children's Book · Editorial Design · Illustration · 2025",
+        description: "Opening spread — Beside the wide blue sea, there lived an old fisherman and his wife. Their home was a tiny hut. He did not ask for much. Paper-diorama scene of cottage, moonlit ocean, and the fisherman rowing out at dawn.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK2.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Fisherman and His Wife — Page 2",
+        caption: "Children's Book · Editorial Design · Illustration · 2025",
+        description: "The fisherman throws his net into the shining sea and catches a beautiful fish with golden scales — an enchanted prince. He releases the fish without asking for anything. Paper-diorama seabed scene with luminous golden fish.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/book5.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Fisherman and His Wife — Page 3",
+        caption: "Children's Book · Editorial Design · Illustration · 2025",
+        description: "The fish grants the fisherman's first wish — the old hut is replaced by a small, cosy cottage. Paper-diorama spread showing the new cottage with warm lamplight and the grateful fisherman at the water's edge.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK4.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Fisherman and His Wife — Page 4",
+        caption: "Children's Book · Editorial Design · Illustration · 2025",
+        description: "The wife grows unhappy and sends the fisherman back — go to the sea and ask the fish for a new wooden house! He does not want to go, but his wife will not stop complaining. Expressive paper-diorama scene of the argument outside the hut.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK3.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Fisherman and His Wife — Page 5",
+        caption: "Children's Book · Editorial Design · Illustration · 2025",
+        description: "The fisherman calls out to the fish in the moonlit sea. The fish waved its fin, and the wish was done — a brand-new wooden house stood beside their old hut. Atmospheric paper-diorama night scene with glowing cottage.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/book6.png",
+        tags: ["book"]
+      },
+
+      {
+        title: "The Fisherman and His Wife — Page 7",
+        caption: "Children's Book · Editorial Design · Illustration · 2025",
+        description: "The closing spread — again and again the fish granted wishes, but the more the wife had, the more she wanted. At last she asked for too much. The magic came to an end. Enough is a treasure, and greed can wash good things away. Warm candlelit interior scene of the couple returned to their hut.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/book7.png",
+        tags: ["book"]
       }
 
     ]
