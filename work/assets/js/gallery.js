@@ -22,14 +22,18 @@
   var _items    = [];
   var _idx      = 0;
   var _touchX   = 0;
-  var _ytLoaded = false;
-  var _opener   = null;     /* element that triggered open — focus returns here */
+  var _ytLoaded   = false;
+  var _opener     = null;   /* element that triggered open — focus returns here */
+  var _filterTag  = "all";
+  var _allItems   = [];
+  var _filterBtns = [];
 
   /* ── DOM refs ── */
   var _overlay, _panel;
   var _listView, _detailView;
   var _catLabel, _catTitle, _countEl, _grid;
   var _lCloseBtn;
+  var _filterBar = null;
   var _dTopbar, _dBreadcrumb, _dDetailCloseBtn;
   var _dImgWrap, _dImg;
   var _dYtWrap, _dYtPoster, _dYtPlay, _dYtIframe;
@@ -110,8 +114,12 @@
     _grid = _el("div");
     _grid.id = "gallery-grid";
 
+    _filterBar = _el("div", "gallery-filter-bar gal-hidden");
+    _filterBar.id = "gallery-filter-bar";
+
     _listView.appendChild(_lCloseBtn);
     _listView.appendChild(header);
+    _listView.appendChild(_filterBar);
     _listView.appendChild(_grid);
 
     /* ─── DETAIL VIEW ─── */
@@ -230,14 +238,17 @@
     var data = window.GALLERY_DATA && window.GALLERY_DATA[cat];
     if (!data || !data.artworks || !data.artworks.length) return;
 
-    _cat   = cat;
-    _items = data.artworks;
+    _cat       = cat;
+    _allItems  = data.artworks;
+    _items     = _allItems.slice();
+    _filterTag = "all";
 
     _catTitle.textContent    = cat;
     _dBreadcrumb.textContent = cat;
     _countEl.textContent     =
       _items.length + (_items.length === 1 ? " piece" : " pieces");
 
+    _buildFilterBar();
     _buildGrid();
     _showList();
 
@@ -290,6 +301,9 @@
 
       card.appendChild(wrap);
       card.appendChild(titleEl);
+
+      /* Stagger entry animation — cap delay at 0.36s for large grids */
+      card.style.animationDelay = Math.min(i * 0.022, 0.36) + "s";
 
       (function (idx) {
         function open() { _showDetail(idx); }
@@ -470,6 +484,77 @@
   function _onTouchEnd(e)   {
     var dx = e.changedTouches[0].clientX - _touchX;
     if (Math.abs(dx) > 50) _navigate(dx < 0 ? 1 : -1);
+  }
+
+  /* ── Auto-derive filter tag from item title (no data changes needed) ── */
+  function _deriveTag(item) {
+    if (item.tags && item.tags.length) return item.tags;
+    var t = item.title || "";
+    if (/^(SFU Design Series|Senior Design Leader|Vancouver Downtown|Shaped by Stories|Fragments of Downtown|Time Stops|Learn AI)/i.test(t))
+      return ["editorial"];
+    if (/^(Aurelle|Lanura|Rivelle|Softener|Stripeform|Lipmuse|Softora)/i.test(t))
+      return ["fashion"];
+    if (/^(Advertisement Design|ITU Event Poster|Taksim|Meeting Day|Virtual Landscape|İstanbul Levent)/i.test(t))
+      return ["advertising"];
+    return [];
+  }
+
+  /* ── Build filter bar ── */
+  var TAG_ORDER  = ["editorial", "fashion", "advertising", "gym"];
+  var TAG_LABELS = { editorial: "Editorial", fashion: "Fashion & Beauty", advertising: "Advertising", gym: "Gym & Sport" };
+
+  function _buildFilterBar() {
+    if (!_filterBar) return;
+    _filterBar.innerHTML = "";
+    _filterBtns = [];
+
+    var tagCounts = {};
+    _allItems.forEach(function (item) {
+      _deriveTag(item).forEach(function (t) {
+        tagCounts[t] = (tagCounts[t] || 0) + 1;
+      });
+    });
+
+    var visible = TAG_ORDER.filter(function (t) { return tagCounts[t]; });
+    if (visible.length === 0) { _filterBar.classList.add("gal-hidden"); return; }
+    _filterBar.classList.remove("gal-hidden");
+
+    var allBtn = _mkFilterPill("all", "All", _allItems.length, true);
+    _filterBar.appendChild(allBtn);
+    _filterBtns.push(allBtn);
+
+    visible.forEach(function (tag) {
+      var btn = _mkFilterPill(tag, TAG_LABELS[tag], tagCounts[tag], false);
+      _filterBar.appendChild(btn);
+      _filterBtns.push(btn);
+    });
+  }
+
+  function _mkFilterPill(tag, label, count, active) {
+    var btn = _el("button", "gallery-filter-pill" + (active ? " is-active" : ""));
+    btn.type = "button";
+    btn.setAttribute("data-tag", tag);
+    var countSpan = _el("span", "gallery-filter-count");
+    countSpan.textContent = count;
+    btn.appendChild(document.createTextNode(label + " "));
+    btn.appendChild(countSpan);
+    btn.addEventListener("click", function () { _applyFilter(tag); });
+    return btn;
+  }
+
+  /* ── Apply filter ── */
+  function _applyFilter(tag) {
+    _filterTag = tag;
+    _filterBtns.forEach(function (btn) {
+      btn.classList.toggle("is-active", btn.getAttribute("data-tag") === tag);
+    });
+    _items = tag === "all"
+      ? _allItems.slice()
+      : _allItems.filter(function (item) { return _deriveTag(item).indexOf(tag) !== -1; });
+    _countEl.textContent = _items.length + (_items.length === 1 ? " piece" : " pieces");
+    _buildGrid();
+    _grid.scrollTop = 0;
+    requestAnimationFrame(function () { _syncSquares(); });
   }
 
   /* ── Public API ── */

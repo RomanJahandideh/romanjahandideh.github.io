@@ -31,8 +31,8 @@
 /* ── Panel (matches About/Contact shell) ── */
 #gallery-panel {
   position: relative;
-  width: min(860px, calc(100vw - 32px));
-  height: min(76vh, 680px);
+  width: min(1060px, calc(100vw - 32px));
+  height: min(86vh, 820px);
   background: rgba(250, 248, 244, 0.94);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -105,7 +105,7 @@
 /* Non-scrolling header — kept compact to maximise grid area */
 .gallery-header {
   flex-shrink: 0;
-  padding: 26px 36px 10px;
+  padding: 22px 36px 0;
   padding-right: 58px;   /* clear the × button */
 }
 
@@ -148,6 +148,73 @@
   margin: 0;
 }
 
+/* ── Filter bar ── */
+.gallery-filter-bar {
+  flex-shrink: 0;
+  display: flex;
+  gap: 6px;
+  padding: 10px 36px 12px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.gallery-filter-bar::-webkit-scrollbar { display: none; }
+
+.gallery-filter-pill {
+  flex-shrink: 0;
+  height: 27px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(28, 25, 23, 0.14);
+  background: transparent;
+  color: rgba(28, 25, 23, 0.50);
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.gallery-filter-pill:hover {
+  background: rgba(28, 25, 23, 0.06);
+  color: rgba(28, 25, 23, 0.80);
+  border-color: rgba(28, 25, 23, 0.22);
+}
+
+.gallery-filter-pill.is-active {
+  background: #D96535;
+  color: #FAF8F4;
+  border-color: #D96535;
+}
+
+.gallery-filter-pill:focus-visible {
+  outline: 2px solid rgba(217, 101, 53, 0.7);
+  outline-offset: 2px;
+}
+
+.gallery-filter-count {
+  font-size: 9px;
+  font-weight: 500;
+  opacity: 0.68;
+  letter-spacing: 0;
+}
+
+.gallery-filter-pill.is-active .gallery-filter-count {
+  opacity: 0.85;
+}
+
+/* Card entry animation — plays on grid rebuild (filter change or open) */
+@keyframes gal-card-in {
+  from { opacity: 0; transform: scale(0.95) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
 /* Scrollable grid — 4 columns, Instagram-style */
 #gallery-grid {
   flex: 1;
@@ -181,9 +248,9 @@
   z-index: 1;
   min-width: 0;         /* prevent grid blowout */
   align-self: start;    /* don't let grid stretch cards taller than their square */
+  animation: gal-card-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
   transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1),
-              filter    0.22s ease,
-              opacity   0.22s ease;
+              filter    0.22s ease;
 }
 
 /* Spacer that forces card height = card width (100% of own width) */
@@ -509,8 +576,12 @@
   }
 
   .gallery-header {
-    padding: 22px 18px 8px;
+    padding: 20px 18px 0;
     padding-right: 48px;
+  }
+
+  .gallery-filter-bar {
+    padding: 8px 16px 10px;
   }
 }
 
@@ -538,14 +609,12 @@ body.gallery-open { overflow: hidden; }
 /* ── Mobile: push panel below the nav bar ── */
 @media (max-width: 736px) {
   #gallery-overlay {
-    /* padding-top shifts the flex centre 32 px below the viewport centre,
-       matching the site-modal offset on mobile (top: calc(50% + 32px)). */
     padding-top: 64px;
   }
 
   #gallery-panel {
     width: calc(100vw - 20px);
-    height: min(82vh, 600px);
+    height: min(86vh, 680px);
     border-radius: 18px;
   }
 }
