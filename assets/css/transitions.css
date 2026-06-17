@@ -85,7 +85,6 @@ body.teaching-detail-open #mode-indicator {
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: rgba(28, 25, 23, 0.50);
   white-space: nowrap;
   opacity: 0;

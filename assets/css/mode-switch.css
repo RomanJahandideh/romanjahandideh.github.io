@@ -153,7 +153,6 @@ body[data-mode="teaching"] #teaching-mode{
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
   color: rgba(28,25,23,0.80);
   opacity: 0;
   transition: opacity 180ms ease;
@@ -177,7 +176,6 @@ body[data-mode="teaching"] #teaching-mode{
   font-size: 11px;
   letter-spacing: 0.18em;
   text-align: center;
-  text-transform: uppercase;
 
   margin-top: var(--hint-offset-y, 24px);
   transform: translateX(var(--hint-offset-x, 0px)) translateY(0);
@@ -263,7 +261,6 @@ body[data-mode="teaching"] #teaching-mode{
   color: rgba(255,255,255,0.92);
   font: 500 12px/1 "Plus Jakarta Sans", system-ui, sans-serif;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
   cursor: pointer;
   z-index: 3;
   transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
@@ -300,7 +297,6 @@ body[data-mode="teaching"] #teaching-mode{
   margin-bottom: 12px;
   font: 500 12px/1.4 "Plus Jakarta Sans", system-ui, sans-serif;
   letter-spacing: 0.20em;
-  text-transform: uppercase;
   color: rgba(255,255,255,0.52);
 }
 
@@ -322,7 +318,6 @@ body[data-mode="teaching"] #teaching-mode{
   margin-bottom: 16px;
   font: 500 12px/1.4 "Plus Jakarta Sans", system-ui, sans-serif;
   letter-spacing: 0.20em;
-  text-transform: uppercase;
   color: rgba(255,255,255,0.46);
 }
 
@@ -360,7 +355,6 @@ body[data-mode="teaching"] #teaching-mode{
   color: rgba(255,255,255,0.38);
   font: 500 12px/1 "Plus Jakarta Sans", system-ui, sans-serif;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
 }
 
 #teaching-detail-overlay .teaching-image-slot[data-empty="true"] img{

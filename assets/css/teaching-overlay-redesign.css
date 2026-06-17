@@ -134,7 +134,6 @@
 .teach-window-section-label {
   font-size: 11px;
   letter-spacing: 0.28em;
-  text-transform: uppercase;
   color: rgba(28,25,23,0.46);
   margin-bottom: 8px;
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -164,7 +163,6 @@
 .teach-window-meta-label {
   font-size: 10px;
   letter-spacing: 0.16em;
-  text-transform: uppercase;
   color: rgba(28,25,23,0.38);
   margin-bottom: 2px;
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;

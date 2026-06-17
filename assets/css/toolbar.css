@@ -259,7 +259,6 @@
 .abt-eyebrow {
   font-size: 11px;
   letter-spacing: 0.34em;
-  text-transform: uppercase;
   color: rgba(28,25,23,0.48);
   margin-bottom: 10px;
 }
@@ -306,7 +305,6 @@
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
   cursor: pointer;
 
   box-shadow: 0 4px 18px rgba(217,101,53,0.36);
@@ -328,7 +326,6 @@
 .abt-timeline-view-title {
   font-size: 11px;
   letter-spacing: 0.32em;
-  text-transform: uppercase;
   color: rgba(28,25,23,0.45);
   margin: 0;
 }
@@ -346,7 +343,6 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   cursor: pointer;
   align-self: flex-start;
   transition: background 0.18s ease, color 0.18s ease;
@@ -480,7 +476,6 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   cursor: pointer;
   z-index: 10;
   transition: background 0.18s ease, color 0.18s ease;
@@ -649,7 +644,6 @@ body.mode-work #main-stack .layer:focus-visible,
   color: #fff;
   font-size: 12px;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
   text-align: center;
   text-decoration: none;
   cursor: pointer;

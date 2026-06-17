@@ -20,8 +20,8 @@
   const buildRootMergedNav = () => `
     <nav class="top-nav top-nav--eye-socket" aria-label="Primary navigation">
       <div class="nav-left">
-        <a href="#top"      data-nav="home"     data-mode-link="home">HOME</a>
-        <a href="#teaching" data-nav="teaching" data-mode-link="teaching">TEACHING</a>
+        <a href="#top"      data-nav="home"     data-mode-link="home">Home</a>
+        <a href="#teaching" data-nav="teaching" data-mode-link="teaching">Teaching</a>
       </div>
 
       <button
@@ -38,29 +38,29 @@
       </button>
 
       <div class="nav-right">
-        <a href="#work"    data-nav="work"    data-mode-link="work">WORK</a>
-        <a href="#contact" data-nav="contact">CONTACT</a>
+        <a href="#work"    data-nav="work"    data-mode-link="work">Work</a>
+        <a href="#contact" data-nav="contact">Contact</a>
       </div>
     </nav>
   `;
 
   const buildStandaloneWorkNav = () => `
     <nav class="top-nav" aria-label="Primary navigation">
-      <a href="../index.html"          data-nav="home">HOME</a>
-      <a href="./index.html"           data-nav="work">WORK</a>
-      <a href="../index.html#teaching" data-nav="teaching">TEACHING</a>
-      <a href="../index.html#about"    data-nav="about">ABOUT</a>
-      <a href="../index.html#contact"  data-nav="contact">CONTACT</a>
+      <a href="../index.html"          data-nav="home">Home</a>
+      <a href="./index.html"           data-nav="work">Work</a>
+      <a href="../index.html#teaching" data-nav="teaching">Teaching</a>
+      <a href="../index.html#about"    data-nav="about">About</a>
+      <a href="../index.html#contact"  data-nav="contact">Contact</a>
     </nav>
   `;
 
   const buildFallbackNav = () => `
     <nav class="top-nav" aria-label="Primary navigation">
-      <a href="/index.html"          data-nav="home">HOME</a>
-      <a href="/work/index.html"     data-nav="work">WORK</a>
-      <a href="/index.html#teaching" data-nav="teaching">TEACHING</a>
-      <a href="/index.html#about"    data-nav="about">ABOUT</a>
-      <a href="/index.html#contact"  data-nav="contact">CONTACT</a>
+      <a href="/index.html"          data-nav="home">Home</a>
+      <a href="/work/index.html"     data-nav="work">Work</a>
+      <a href="/index.html#teaching" data-nav="teaching">Teaching</a>
+      <a href="/index.html#about"    data-nav="about">About</a>
+      <a href="/index.html#contact"  data-nav="contact">Contact</a>
     </nav>
   `;
 

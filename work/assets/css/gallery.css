@@ -28,11 +28,11 @@
   pointer-events: auto;
 }
 
-/* ── Panel (matches About/Contact shell) ── */
+/* ── Panel (matches About/Contact shell exactly) ── */
 #gallery-panel {
   position: relative;
-  width: min(1060px, calc(100vw - 32px));
-  height: min(86vh, 820px);
+  width: min(860px, calc(100vw - 32px));
+  height: min(76vh, 680px);
   background: rgba(250, 248, 244, 0.94);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
@@ -105,17 +105,16 @@
 /* Non-scrolling header — kept compact to maximise grid area */
 .gallery-header {
   flex-shrink: 0;
-  padding: 22px 36px 0;
-  padding-right: 58px;   /* clear the × button */
+  padding: 22px 44px 0;
+  padding-right: 62px;   /* clear the × button */
 }
 
 .gallery-eyebrow {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(28, 25, 23, 0.40);
+  letter-spacing: 0.34em;
+  color: rgba(28, 25, 23, 0.48);
   margin-bottom: 4px;
 }
 
@@ -143,7 +142,6 @@
   font-size: 10px;
   font-weight: 500;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
   color: rgba(28, 25, 23, 0.38);
   margin: 0;
 }
@@ -153,7 +151,7 @@
   flex-shrink: 0;
   display: flex;
   gap: 6px;
-  padding: 10px 36px 12px;
+  padding: 10px 44px 12px;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -172,7 +170,6 @@
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.09em;
-  text-transform: uppercase;
   cursor: pointer;
   white-space: nowrap;
   display: inline-flex;
@@ -220,7 +217,7 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 6px 24px 24px;
+  padding: 6px 28px 28px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
@@ -296,7 +293,6 @@
   font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
   transition: transform 0.18s ease, color 0.18s ease;
 }
 
@@ -344,7 +340,6 @@
   font-size: 8.5px;
   font-weight: 700;
   letter-spacing: 0.13em;
-  text-transform: uppercase;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -398,7 +393,6 @@
   font-size: 10px;
   font-weight: 600;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
   color: rgba(28, 25, 23, 0.36);
   user-select: none;
 }
@@ -572,16 +566,16 @@
   #gallery-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
-    padding: 4px 16px 20px;
+    padding: 4px 18px 20px;
   }
 
   .gallery-header {
-    padding: 20px 18px 0;
-    padding-right: 48px;
+    padding: 20px 20px 0;
+    padding-right: 50px;
   }
 
   .gallery-filter-bar {
-    padding: 8px 16px 10px;
+    padding: 8px 18px 10px;
   }
 }
 
@@ -606,7 +600,7 @@
 /* Scroll lock while gallery is open */
 body.gallery-open { overflow: hidden; }
 
-/* ── Mobile: push panel below the nav bar ── */
+/* ── Mobile: match .site-modal dimensions exactly ── */
 @media (max-width: 736px) {
   #gallery-overlay {
     padding-top: 64px;
@@ -614,7 +608,7 @@ body.gallery-open { overflow: hidden; }
 
   #gallery-panel {
     width: calc(100vw - 20px);
-    height: min(86vh, 680px);
+    height: min(82vh, 600px);
     border-radius: 18px;
   }
 }
