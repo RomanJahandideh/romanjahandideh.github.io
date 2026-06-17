@@ -64,8 +64,8 @@ body[data-mode="teaching"] #teaching-mode{
 }
 
 #home-spiderweb-canvas{
-  z-index: 6;
-  pointer-events: none;
+  display: none !important;
+  pointer-events: none !important;
 }
 
 #card-stack{ position: relative; z-index: 16; }

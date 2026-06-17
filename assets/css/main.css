@@ -344,23 +344,11 @@ body:has(#home-spiderweb-canvas)::after{
   100% { transform: translate3d(0,0,0); }
 }
 
-/* HOME canvas */
-body:has(#home-spiderweb-canvas) #home-spiderweb-canvas{
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 6;
-  pointer-events: none;
-}
-
-/* WORK canvas (must sit above #bg spotlight overlays) */
-body:has(#spiderweb-canvas) #spiderweb-canvas{
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 6;
+/* Spiderweb removed — placeholder divs kept only for body:has() page-type detection */
+#home-spiderweb-canvas,
+#spiderweb-canvas {
+  display: none !important;
+  pointer-events: none !important;
 }
 
 /* HOME hero */
