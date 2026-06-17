@@ -1022,6 +1022,279 @@ window.GALLERY_DATA = {
         caption: "Fashion Illustration · Brand Campaign · 2023",
         description: "Softener Fall 2023 vertical edition — Layer up. Move freely. Softness that moves with you. Textural collage illustration in a portrait format for print and social media applications.",
         image: "ARTWORKS/advertiment%20Graphic%20design/94.jpg"
+      },
+
+      /* — Gym & Sport Advertising — */
+      {
+        title: "Grit House — Build Your Grit",
+        caption: "Sport & Fitness · Gym Advertising · 2025",
+        description: "Grit House Athletic Club — Build Your Grit. Built on Grit. High-contrast black and yellow poster with a female athlete in a strength training environment. Small Group Training · Functional Fitness · Personal Coaching. Surrey, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/95.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Grit House — Own Your Power",
+        caption: "Sport & Fitness · Gym Advertising · 2025",
+        description: "Grit House Athletic Club — Own Your Power. Built on grit, driven by strength. Bold yellow typographic headline over a moody black gym environment. Strength Training · Conditioning · Functional Fitness · Personal Coaching. Surrey, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/96.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Her Peak Fitness — For Every Rep",
+        caption: "Sport & Fitness · Women's Gym · 2025",
+        description: "Her Peak Fitness — For Every Rep. For Every You. A women-focused gym built for strength, designed for you. Annotated black-and-white action photography highlights Women's Strength Training, Personal Coaching, Yoga + Mobility. Surrey, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/97.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Ascend Men's Club — Forge Strength With Purpose",
+        caption: "Sport & Fitness · Men's Fitness Club · 2025",
+        description: "Ascend Men's Club — Forge Strength With Purpose. A men's-focused fitness club built for discipline, performance, and recovery. Minimal double-exposure athletic photography on white. Strength Training · Functional Fitness · Personal Coaching · Sauna & Recovery. Burnaby, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/98.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Grit House — Turn Effort Into Power",
+        caption: "Sport & Fitness · Gym Advertising · 2025",
+        description: "Grit House Athletic Club — Turn Effort Into Power. New classes. New recovery. More ways to train harder. Intense action photography of a female athlete with battle ropes on a black and yellow ground. Train Hard. Recover Smarter. Repeat Stronger. Surrey, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/99.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Volt Core Fitness — Move Loud",
+        caption: "Sport & Fitness · Gym Advertising · 2025",
+        description: "Volt Core Fitness — Move Loud. Train Different. Strength. Energy. Confidence. All in one place. Energetic primary-colour composition with a kettlebell-swinging athlete. Free Trial Week offer. Surrey, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/100.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "HerLift Studio — Rise High, Vol. I",
+        caption: "Sport & Fitness · Women's Gym & Nutrition · 2025",
+        description: "HerLift Studio — Train Strong. Eat Smart. Rise High. Women's Gym & Food Regime Program. Women's Strength Classes · HIIT & Functional Training · Personal Coaching · Nutrition Plans · Meal Guidance · Body Composition Check-ins. Surrey, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/101.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "HerLift Studio — Rise High, Vol. II",
+        caption: "Sport & Fitness · Women's Gym & Nutrition · 2025",
+        description: "HerLift Studio — Train Strong. Eat Smart. Rise High. Second layout variant of the women's gym and nutrition program campaign. Customized Meal Plans · Macro Coaching · Healthy Recipe Guides · Sustainable Fat Loss. Surrey, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/102.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Westminster Flow Studio — Breathe Into It, Vol. I",
+        caption: "Sport & Fitness · Yoga Studio · 2025",
+        description: "Westminster Flow Studio — Breathe Into It. Yoga Classes: Vinyasa · Mobility · Breathwork · Beginner Friendly. Bold typographic headline over a seated yoga figure against a vivid yellow wall. Morning & Evening Sessions. Westminster, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/103.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Westminster Flow Studio — Breathe Into It, Vol. II",
+        caption: "Sport & Fitness · Yoga Studio · 2025",
+        description: "Westminster Flow Studio — Breathe Into It. Second layout of the yoga studio campaign featuring a standing balance pose against the yellow wall exterior. Vinyasa · Mobility · Breathwork · Beginner Friendly. Westminster, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/104.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Westminster Flow Studio — Breathe Into It, Vol. III",
+        caption: "Sport & Fitness · Yoga Studio · 2025",
+        description: "Westminster Flow Studio — Breathe Into It. Third layout variant featuring a warrior-pose figure outdoors. Consistent bold typographic identity across the campaign series. Book Your First Class. Westminster, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/105.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Iron Edge Fitness — Choose Your Hard",
+        caption: "Sport & Fitness · Body Transformation · 2025",
+        description: "Iron Edge Fitness — Choose Your Hard! We don't do easy, we do results. Split before/after transformation photography at the compositional centre. Strength Training · Muscle Building & Fat Loss · Nutrition Coaching · Personalized Workout Plan. Surrey, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/106.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "North Peak Men's Club — Lock In",
+        caption: "Sport & Fitness · Men's Gym · 2025",
+        description: "North Peak Men's Club — Lock In. Discipline Builds Everything. Intense red-ground poster with a male athlete in a sled-push position. Strength Training · Conditioning · Men's Coaching · Body Transformation · Recovery & Mobility. North Vancouver, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/107.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "22nd Street Run Club — Greatness Runs This Block",
+        caption: "Sport & Fitness · Running Club · 2025",
+        description: "22nd Street Run Club — Greatness Runs This Block. A women's running club built for pace, confidence, and community. Layered black-and-white editorial photography of four athletes in motion. Tuesday Tempo · Thursday Social Run · Saturday Long Run. BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/108.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Forge Rise Fitness — Energy Is Earned",
+        caption: "Sport & Fitness · Conceptual Campaign · 2025",
+        description: "Forge Rise Fitness — Energy Is Earned. Train awake. Live stronger. Two moka pots joined at the spout to form a dumbbell — a minimal, conceptually sharp object-metaphor poster on warm beige. Start your morning stronger.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/109.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Forge Rise Fitness — Momentum Is Brewed",
+        caption: "Sport & Fitness · Conceptual Campaign · 2025",
+        description: "Forge Rise Fitness — Momentum Is Brewed. Wake strong. Train stronger. Two French press coffee makers joined handle-to-handle, forming a dumbbell silhouette. Restrained minimal layout on warm beige. Strength · Conditioning · Personal Coaching.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/110.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Prime Edge Fitness — Staying Disciplined",
+        caption: "Sport & Fitness · Gym Advertising · 2025",
+        description: "Prime Edge Fitness — Waking Up Is Hard. Staying Disciplined Is Harder. But the Results Are Worth It. Isolated kettlebell on a neutral background with a structured service grid. Strength Training · Cardio · Personal Training · Nutrition Coaching. Burnaby, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/111.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Prime Edge Fitness — Fuel Becomes Force",
+        caption: "Sport & Fitness · Conceptual Campaign · 2025",
+        description: "Prime Edge Fitness — Fuel Becomes Force. Shake clean. Train stronger. Performance starts with what you build daily. A stainless protein shaker styled as a launch rocket — a clever product-as-hero concept. Burnaby, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/112.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Vancouver Women's Club — Sculpt Your Flow",
+        caption: "Sport & Fitness · Pilates Studio · 2025",
+        description: "Vancouver Women's Club — Sculpt Your Flow. Trending now: Reformer Pilates Sculpt. Soft lavender editorial with a linear body illustration layered over a live-action figure. Core Strength · Mobility · Low-Impact Burn · Beginner Friendly. Vancouver, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/113.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Vancouver Women's Club — Strong From the Core",
+        caption: "Sport & Fitness · Pilates Studio · 2025",
+        description: "Vancouver Women's Club — Strong From the Core, Radiant in Your Flow. Teal-toned Reformer Pilates campaign with a linear body contour illustration. Core Strength · Mobility · Low-Impact Burn · Beginner Friendly. Vancouver, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/114.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Stanley Park Run Club — Run the Loop",
+        caption: "Sport & Fitness · Running Club · 2025",
+        description: "Stanley Park Run Club — Run the Loop. Find your rhythm. Aerial photography of runners on the red seawall path curving through Stanley Park with the Vancouver skyline beyond. All Paces Welcome · Sunrise Runs · Community Pace Groups. Downtown Vancouver, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/115.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Pulse Jam Fitness Club — Train Harder",
+        caption: "Sport & Fitness · Gym Advertising · 2025",
+        description: "Pulse Jam Fitness Club — Train Harder. Move Louder. High-Energy Strength · Cardio · Conditioning. Bold textured red-and-black poster with a sneaker at centre and 3D chrome hand-lettered logotype. Vancouver, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/116.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Iron Halo Fitness — Build Your Power",
+        caption: "Sport & Fitness · Conceptual Campaign · 2025",
+        description: "Iron Halo Fitness — Build Your Power. A weight plate casts a shadow of a flexing bodybuilder — the aspirational self projected from the equipment. Minimal white studio composition. Free Weights · Bodybuilding Coaching · Recovery Zone · Nutrition Support.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/119.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Iron Halo Fitness — Forge Your Form",
+        caption: "Sport & Fitness · Conceptual Campaign · 2025",
+        description: "Iron Halo Fitness — Forge Your Form. A hex dumbbell casts a confident bodybuilder shadow — aspirational self-image rendered through the object. Clean white editorial. Free Weights · Bodybuilding Coaching · Recovery Lounge · Nutrition Support.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/120.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Iron Halo Fitness — Shape Your Strength",
+        caption: "Sport & Fitness · Conceptual Campaign · 2025",
+        description: "Iron Halo Fitness — Shape Your Strength. A kettlebell casts an athletic bodybuilder shadow on a clean white surface. Third in the object-shadow conceptual series. Kettlebell Training · Functional Strength · Recovery Studio · Bodybuilding Coaching.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/121.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Seawall Stride Run Club — Run Vancouver Differently",
+        caption: "Sport & Fitness · Running Club · 2025",
+        description: "Seawall Stride Run Club — Run Vancouver Differently. A surreal spiral red running track winds above the Lions Gate Bridge and Vancouver skyline. Scenic routes. Strong community. Unforgettable city. Sunrise Runs · All Levels Welcome · Waterfront Routes. Stanley Park, Vancouver, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/122.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Pacific Stride Run Club — One City, One Community",
+        caption: "Sport & Fitness · Running Club Illustration · 2025",
+        description: "Pacific Stride Run Club — One City. One Community. Endless Miles. Vancouver's friendliest running club. Rich illustrated poster weaving Stanley Park, the Seawall, Science World, and the city skyline into a single flowing composition. All Paces Welcome · Weekly Group Runs · Community First. Vancouver, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/123.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Vancouver City Run — Seawall to Skyline",
+        caption: "Sport & Fitness · Running Event · 2025",
+        description: "Vancouver City Run — Seawall to Skyline. Campaign 2026. A running shoe sole carries a detailed aerial map of Vancouver etched into the rubber — Stanley Park · False Creek · Downtown. 21.1K Distance. Conceptual editorial poster for a half-marathon running event.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/124.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Forge House — Become Stronger Every Day, Vol. I",
+        caption: "Sport & Fitness · Gym Advertising · 2025",
+        description: "Forge House Performance Gym — Become Stronger Every Day. Strength is built in the 6:00 AM alarms, the last two reps that burn, and the days you train before motivation arrives. Bold red-ground poster with a female athlete leaning on oversized 3D typography. Nişantaşı, Istanbul.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/125.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Forge House — Become Stronger Every Day, Vol. II",
+        caption: "Sport & Fitness · Gym Advertising · 2025",
+        description: "Forge House Performance Gym — Become Stronger Every Day. Second layout variant — the athlete carries the bold 3D letterforms of STRONGER on her back, a visual metaphor for earned progress. Red-ground editorial. Nişantaşı, Istanbul.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/126.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Balance Pilates Studio — Strength. Control. You.",
+        caption: "Sport & Fitness · Pilates Studio · 2025",
+        description: "Balance Pilates Studio — Strength. Control. You. Reformer Pilates Classes. A vertical-format campaign with a clean white ground and confident female figure. Reformer Flow · Core & Stability · Flexibility & Mobility · Mind & Body Connection. Burnaby, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/127.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Lumen Pilates Club — Your Balance Starts Here",
+        caption: "Sport & Fitness · Pilates Studio · 2025",
+        description: "Lumen Pilates Club — Your Balance Starts Here. Clean white editorial with a dancer-like figure and typographic word cloud of pilates disciplines: Reformer · Mat Classes · Posture · Core · Breath · Mobility · Balance. Beginner Friendly · Private Sessions. Burnaby, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/128.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Maple Ridge Run Collective — Go",
+        caption: "Sport & Fitness · Running Club · 2025",
+        description: "Maple Ridge Run Collective — Go. Run Far. Run Free. Run Together. Start Now. Large-format typographic poster with a female runner at the starting line, mountains and sky beyond. Community Run Club: Wednesday Social Run · Sunday Long Run. Maple Ridge, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/129.png",
+        tags: ["gym"]
+      },
+
+      {
+        title: "Maple Ridge Run Collective — Move",
+        caption: "Sport & Fitness · Running Club · 2025",
+        description: "Maple Ridge Run Collective — Move. Run Strong. Stay Wild. Move Together. Join Now. Full-bleed outdoor poster with a female runner mid-stride against a mountain highway. Thursday Social Run · Sunday Distance Run. Maple Ridge, BC.",
+        image: "ARTWORKS/advertiment%20Graphic%20design/130.png",
+        tags: ["gym"]
       }
 
     ]
