@@ -1679,11 +1679,23 @@ body:has(#home-spiderweb-canvas) #eyes {
   filter: drop-shadow(0 8px 22px rgba(28,25,23,0.16));
 }
 
-/* ── Name: force dark on light bg ───────────────────────── */
+/* ── Name + role: full black with cream glow mask behind each letter ── */
 body:has(#home-spiderweb-canvas) .first-name,
 body:has(#home-spiderweb-canvas) .last-name {
-  color: #1C1917;
-  text-shadow: none;
+  color: #000000;
+  text-shadow:
+    0 0 22px rgba(245,244,242,1),
+    0 0 48px rgba(245,244,242,0.92),
+    0 0 80px rgba(245,244,242,0.70),
+    0 0 130px rgba(245,244,242,0.38);
+}
+
+body:has(#home-spiderweb-canvas) .role {
+  color: #000000;
+  text-shadow:
+    0 0 16px rgba(245,244,242,1),
+    0 0 36px rgba(245,244,242,0.85),
+    0 0 65px rgba(245,244,242,0.50);
 }
 
 /* ── Spiderweb: high-specificity rules (GSAP inline also applies) */
