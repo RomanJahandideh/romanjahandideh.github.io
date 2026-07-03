@@ -14,8 +14,18 @@
   window.siteIntroPlaying = true;
 
   function _dismiss() {
-    window.siteIntroPlaying = false;
-    if (_el.parentNode) _el.parentNode.removeChild(_el);
+    if (typeof gsap !== "undefined") {
+      gsap.to(_el, {
+        opacity: 0, duration: 0.9, ease: "power1.inOut",
+        onComplete: function () {
+          window.siteIntroPlaying = false;
+          if (_el.parentNode) _el.parentNode.removeChild(_el);
+        }
+      });
+    } else {
+      window.siteIntroPlaying = false;
+      if (_el.parentNode) _el.parentNode.removeChild(_el);
+    }
   }
 
   /* Fade word in, hold briefly, then snap out */
