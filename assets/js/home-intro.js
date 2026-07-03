@@ -14,18 +14,8 @@
   window.siteIntroPlaying = true;
 
   function _dismiss() {
-    if (typeof gsap !== "undefined") {
-      gsap.to(_el, {
-        opacity: 0, duration: 0.18, ease: "power2.in",
-        onComplete: function () {
-          window.siteIntroPlaying = false;
-          if (_el.parentNode) _el.parentNode.removeChild(_el);
-        }
-      });
-    } else {
-      window.siteIntroPlaying = false;
-      if (_el.parentNode) _el.parentNode.removeChild(_el);
-    }
+    window.siteIntroPlaying = false;
+    if (_el.parentNode) _el.parentNode.removeChild(_el);
   }
 
   /* Fade word in, hold briefly, then snap out */

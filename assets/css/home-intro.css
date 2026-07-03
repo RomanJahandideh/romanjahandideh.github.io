@@ -10,7 +10,7 @@
   display: grid;
   place-items: center;
   align-content: center;
-  row-gap: 36px;
+  row-gap: 32px;
   text-align: center;
   padding: 80px 32px;
   pointer-events: auto;
@@ -18,10 +18,10 @@
 
 #site-intro-word {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: clamp(52px, 9vw, 120px);
-  font-weight: 200;
-  letter-spacing: 0.52em;
-  text-indent: 0.52em;
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 300;
+  letter-spacing: 0.42em;
+  text-indent: 0.42em;
   color: #1C1917;
   opacity: 0;
   line-height: 1;
@@ -31,10 +31,10 @@
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: clamp(9px, 0.85vw, 11px);
   font-weight: 400;
-  letter-spacing: 0.28em;
-  text-indent: 0.28em;
+  letter-spacing: 0.26em;
+  text-indent: 0.26em;
   color: #D96535;
-  opacity: 0.75;
+  opacity: 0.65;
   white-space: nowrap;
   cursor: pointer;
 }
