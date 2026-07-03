@@ -615,6 +615,31 @@ body:has(#home-spiderweb-canvas) .last-name:hover {
     0 0 50px rgba(217,101,53,0.32);
 }
 
+body:has(#home-spiderweb-canvas) .designer-title {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: clamp(13px, 1.4vw, 18px);
+  font-weight: 400;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+  color: #000;
+  margin: 6px 0 2px;
+  text-align: center;
+  text-shadow:
+    0 0 18px rgba(245,244,242,1),
+    0 0 40px rgba(245,244,242,0.85),
+    0 0 70px rgba(245,244,242,0.55);
+  cursor: default;
+  transition: color 0.22s ease, scale 0.22s ease, text-shadow 0.22s ease;
+}
+
+body:has(#home-spiderweb-canvas) .designer-title:hover {
+  color: #D96535;
+  scale: 1.08;
+  text-shadow:
+    0 0 16px rgba(217,101,53,0.60),
+    0 0 38px rgba(217,101,53,0.32);
+}
+
 body:has(#home-spiderweb-canvas) .role{
   margin-top: 0;
   font-size: var(--role-size);
