@@ -16,10 +16,10 @@
   pointer-events: auto;
 }
 
-/* Wide arch SVG container */
+/* Corner-bracket SVG container — roughly square */
 #site-intro-word {
   opacity: 0;
-  width: min(640px, 92vw);
+  width: min(380px, 84vw);
   height: auto;
   display: block;
   transition: opacity 0.75s ease;

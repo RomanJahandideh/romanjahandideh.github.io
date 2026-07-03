@@ -85,17 +85,38 @@
 <!-- Welcome intro — visible by default to prevent FOUC; JS fades out after 2s -->
 <div id="site-intro">
   <div id="site-intro-word" aria-label="Welcome">
-    <svg viewBox="0 10 700 280" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <path id="wc-arch" d="M 10,280 Q 350,10 690,280"/>
-      </defs>
-      <text font-family="'Plus Jakarta Sans', system-ui, sans-serif"
-            font-size="58" font-weight="200" letter-spacing="14" fill="#1C1917">
-        <textPath href="#wc-arch" startOffset="50%" text-anchor="middle">WELCOME</textPath>
+    <svg viewBox="0 0 260 270" xmlns="http://www.w3.org/2000/svg">
+      <!-- subtle L-bracket hairline -->
+      <path d="M 6,57 H 228 V 258" fill="none" stroke="#1C1917" stroke-width="0.6" opacity="0.14"/>
+      <!-- corner dot -->
+      <circle cx="228" cy="42" r="2.6" fill="#D96535" opacity="0.65"/>
+
+      <!-- horizontal: W E L C -->
+      <text font-family="'Plus Jakarta Sans',system-ui,sans-serif"
+            font-size="38" font-weight="200" fill="#1C1917">
+        <tspan x="8"   y="44">W</tspan>
+        <tspan x="74"  y="44">E</tspan>
+        <tspan x="140" y="44">L</tspan>
+        <tspan x="206" y="44">C</tspan>
+      </text>
+
+      <!-- vertical: O M E -->
+      <text font-family="'Plus Jakarta Sans',system-ui,sans-serif"
+            font-size="38" font-weight="200" fill="#1C1917">
+        <tspan x="206" y="110">O</tspan>
+        <tspan x="206" y="176">M</tspan>
+        <tspan x="206" y="242">E</tspan>
+      </text>
+
+      <!-- centre label -->
+      <text x="107" y="176" text-anchor="middle"
+            font-family="'Plus Jakarta Sans',system-ui,sans-serif"
+            font-size="9" font-weight="400" letter-spacing="2.2" fill="#D96535" opacity="0.62">
+        Click anywhere to skip
       </text>
     </svg>
   </div>
-  <p id="site-intro-skip">Click anywhere to skip</p>
+  <p id="site-intro-skip" style="display:none"></p>
 </div>
 
 <!-- Scroll-sequence service step cards (desktop; GSAP drives opacity) -->
@@ -155,7 +176,7 @@
   <p class="designer-title">Graphic Designer</p>
 
   <p class="role">
-    Brand Identity &nbsp;·&nbsp; Motion &nbsp;·&nbsp; Spatial Design
+    <span class="role-item">Brand Identity</span><span class="role-sep">&nbsp;·&nbsp;</span><span class="role-item">Motion</span><span class="role-sep">&nbsp;·&nbsp;</span><span class="role-item">Spatial Design</span>
   </p>
 
   <button id="services-btn" aria-expanded="false" aria-label="Services">
