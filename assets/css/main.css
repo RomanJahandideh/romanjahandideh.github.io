@@ -657,12 +657,23 @@ body:has(#home-spiderweb-canvas) .role{
   transition: color 0.22s ease, scale 0.22s ease, text-shadow 0.22s ease;
 }
 
-body:has(#home-spiderweb-canvas) .role:hover {
+/* role-item: each specialisation is its own hover target */
+body:has(#home-spiderweb-canvas) .role-sep {
+  pointer-events: none;
+}
+
+body:has(#home-spiderweb-canvas) .role-item {
+  display: inline-block;
+  cursor: default;
+  transition: color 0.22s ease, scale 0.22s ease, text-shadow 0.22s ease;
+}
+
+body:has(#home-spiderweb-canvas) .role-item:hover {
   color: #D96535;
-  scale: 1.10;
+  scale: 1.15;
   text-shadow:
-    0 0 16px rgba(217,101,53,0.60),
-    0 0 38px rgba(217,101,53,0.32);
+    0 0 16px rgba(217,101,53,0.65),
+    0 0 38px rgba(217,101,53,0.35);
 }
 
 /* floating statement */
@@ -1742,6 +1753,29 @@ body:has(#home-spiderweb-canvas) .role {
     0 0 16px rgba(245,244,242,1),
     0 0 36px rgba(245,244,242,0.85),
     0 0 65px rgba(245,244,242,0.50);
+}
+
+/* hover overrides placed AFTER cream-glow cascade so orange always wins */
+body:has(#home-spiderweb-canvas) .first-name:hover,
+body:has(#home-spiderweb-canvas) .last-name:hover {
+  color: #D96535;
+  text-shadow:
+    0 0 22px rgba(217,101,53,0.65),
+    0 0 52px rgba(217,101,53,0.38);
+}
+
+body:has(#home-spiderweb-canvas) .designer-title:hover {
+  color: #D96535;
+  text-shadow:
+    0 0 18px rgba(217,101,53,0.65),
+    0 0 42px rgba(217,101,53,0.35);
+}
+
+body:has(#home-spiderweb-canvas) .role-item:hover {
+  color: #D96535;
+  text-shadow:
+    0 0 16px rgba(217,101,53,0.65),
+    0 0 38px rgba(217,101,53,0.35);
 }
 
 /* ── Spiderweb: high-specificity rules (GSAP inline also applies) */
