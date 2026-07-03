@@ -18,23 +18,25 @@
     if (_dismissed) return;
     _dismissed = true;
 
-    _el.style.transition = 'opacity 1.4s ease';
-    _el.style.opacity    = '0';
+    /* Step 1 — fade the text out smoothly (background stays fully opaque) */
+    _word.style.transition = 'opacity 1.0s ease';
+    _word.style.opacity    = '0';
 
-    /* remove after fade completes; fallback timer in case transitionend misfires */
-    function _remove() {
+    var _skip = document.getElementById("site-intro-skip");
+    if (_skip) { _skip.style.transition = 'opacity 0.6s ease'; _skip.style.opacity = '0'; }
+
+    /* Step 2 — once text is gone, remove the container instantly */
+    setTimeout(function () {
       window.siteIntroPlaying = false;
       if (_el.parentNode) _el.parentNode.removeChild(_el);
-    }
-    _el.addEventListener('transitionend', _remove, { once: true });
-    setTimeout(_remove, 1600);
+    }, 1050);
   }
 
   /* Fade word in via CSS transition, then auto-dismiss */
   requestAnimationFrame(function () {
     requestAnimationFrame(function () {
       _word.style.opacity = '1';
-      setTimeout(_dismiss, 750 + 400); /* wait for fade-in + short hold */
+      setTimeout(_dismiss, 750 + 350);
     });
   });
 
