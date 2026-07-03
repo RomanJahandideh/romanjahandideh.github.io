@@ -125,6 +125,90 @@
     svcClose:  () => oneshot({ freq:490,  type:'triangle', dur:0.28, vol:0.088, bend:270 }),
     nameHover: () => oneshot({ freq:1350, type:'sine',     dur:0.30, vol:0.030, bend:950 }),
     roleHover: () => oneshot({ freq:1850, type:'sine',     dur:0.17, vol:0.036 }),
+
+    /* Nav links — crisp editorial tick, same for all four */
+    navHover: () => oneshot({ freq:780, type:'sine', dur:0.10, vol:0.055, bend:920 }),
+
+    /* Eye hover — slow-building presence: low drone + detuned overtone + breath */
+    eyeHover: () => {
+      if (!_unlocked) return;
+      const c = ac(), now = c.currentTime;
+      /* deep drone — slow fade-in, long tail */
+      const g1 = c.createGain();
+      g1.gain.setValueAtTime(0, now);
+      g1.gain.linearRampToValueAtTime(0.078, now + 0.18);
+      g1.gain.exponentialRampToValueAtTime(0.0001, now + 1.0);
+      g1.connect(_master);
+      const o1 = c.createOscillator();
+      o1.type = 'sine'; o1.frequency.value = 110;
+      o1.connect(g1); o1.start(); o1.stop(now + 1.0);
+      /* detuned ethereal overtone — slight beating effect */
+      const g2 = c.createGain();
+      g2.gain.setValueAtTime(0, now);
+      g2.gain.linearRampToValueAtTime(0.038, now + 0.32);
+      g2.gain.exponentialRampToValueAtTime(0.0001, now + 1.3);
+      g2.connect(_master);
+      const o2 = c.createOscillator();
+      o2.type = 'sine'; o2.frequency.value = 553; /* slightly off A5 — unsettling */
+      o2.connect(g2); o2.start(); o2.stop(now + 1.3);
+      /* atmospheric breath */
+      const g3 = c.createGain();
+      g3.gain.setValueAtTime(0.028, now);
+      g3.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+      g3.connect(_master);
+      const ns3 = c.createBufferSource();
+      ns3.buffer = mkNoise(); ns3.loop = true;
+      const bp3 = c.createBiquadFilter();
+      bp3.type = 'bandpass'; bp3.frequency.value = 780; bp3.Q.value = 0.75;
+      ns3.connect(bp3); bp3.connect(g3);
+      ns3.start(); ns3.stop(now + 0.8);
+    },
+
+    /* Eye click — full ethereal opening: drifting drone + minor chord + bell + noise swell */
+    eyeClick: () => {
+      if (!_unlocked) return;
+      const c = ac(), now = c.currentTime;
+      /* deep drone drifts downward — unsettling */
+      const g1 = c.createGain();
+      g1.gain.setValueAtTime(0, now);
+      g1.gain.linearRampToValueAtTime(0.13, now + 0.09);
+      g1.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
+      g1.connect(_master);
+      const o1 = c.createOscillator();
+      o1.type = 'sine';
+      o1.frequency.setValueAtTime(82, now);
+      o1.frequency.linearRampToValueAtTime(62, now + 1.6);
+      o1.connect(g1); o1.start(); o1.stop(now + 1.6);
+      /* minor-key mid tone — slow bloom */
+      const g2 = c.createGain();
+      g2.gain.setValueAtTime(0, now);
+      g2.gain.linearRampToValueAtTime(0.072, now + 0.22);
+      g2.gain.exponentialRampToValueAtTime(0.0001, now + 2.0);
+      g2.connect(_master);
+      const o2 = c.createOscillator();
+      o2.type = 'sine'; o2.frequency.value = 233; /* Bb3 — dark, minor feeling */
+      o2.connect(g2); o2.start(); o2.stop(now + 2.0);
+      /* high bell overtone — long shimmer */
+      const g3 = c.createGain();
+      g3.gain.setValueAtTime(0.055, now);
+      g3.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
+      g3.connect(_master);
+      const o3 = c.createOscillator();
+      o3.type = 'sine'; o3.frequency.value = 1318;
+      o3.connect(g3); o3.start(); o3.stop(now + 2.2);
+      /* atmospheric noise swell */
+      const g4 = c.createGain();
+      g4.gain.setValueAtTime(0, now);
+      g4.gain.linearRampToValueAtTime(0.048, now + 0.28);
+      g4.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+      g4.connect(_master);
+      const ns4 = c.createBufferSource();
+      ns4.buffer = mkNoise(); ns4.loop = true;
+      const bp4 = c.createBiquadFilter();
+      bp4.type = 'bandpass'; bp4.frequency.value = 580; bp4.Q.value = 0.55;
+      ns4.connect(bp4); bp4.connect(g4);
+      ns4.start(); ns4.stop(now + 1.4);
+    },
   };
 
   /* ── Mute toggle ── */
@@ -189,6 +273,20 @@
     const cl = e.target.classList;
     if (cl.contains('role-item'))                                      SND.roleHover();
     else if (cl.contains('first-name') || cl.contains('last-name'))   SND.nameHover();
+  });
+
+  /* ── Nav links (Home · Teaching · Work · Contact) ── */
+  document.addEventListener('mouseover', e => {
+    const link = e.target.closest('.top-nav a[data-nav]');
+    if (link) SND.navHover();
+  });
+
+  /* ── Eye button — hover + click ── */
+  document.addEventListener('mouseover', e => {
+    if (e.target.closest('#about-trigger, .nav-eye-socket')) SND.eyeHover();
+  });
+  document.addEventListener('click', e => {
+    if (e.target.closest('#about-trigger, .nav-eye-socket')) SND.eyeClick();
   });
 
   /* ── Public API (artwork-3d-bg.js calls these) ── */
