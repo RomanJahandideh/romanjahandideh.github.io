@@ -658,9 +658,11 @@
       parY  += (parTY  - parY)  * 0.055;
       tiltX += (tiltTX - tiltX) * 0.055;
       tiltY += (tiltTY - tiltY) * 0.055;
-      /* 3-D plate tilt: side nearest cursor rises toward viewer */
+      /* 3-D plate tilt: side nearest cursor rises toward viewer.
+         scale(1.10) compensates for perspective edge-gap so the body
+         background never shows through during the rotation.            */
       canvas.style.transform =
-        `perspective(1000px) rotateX(${(tiltY * TILT_MAX).toFixed(2)}deg) rotateY(${(-tiltX * TILT_MAX).toFixed(2)}deg)`;
+        `perspective(1000px) rotateX(${(tiltY * TILT_MAX).toFixed(2)}deg) rotateY(${(-tiltX * TILT_MAX).toFixed(2)}deg) scale(1.10)`;
       draw(now * 0.001);
       if (now - lastLoad > 80) { loadNearby(); lastLoad = now; }
     })(0);
