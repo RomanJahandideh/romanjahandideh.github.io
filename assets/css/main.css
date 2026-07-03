@@ -592,7 +592,8 @@ body:has(#home-spiderweb-canvas) .first-name{
   font-weight: 500;
   transform: translate(var(--first-x), var(--first-y)) scale(var(--first-scale));
   transform-origin: center;
-  transition: font-size 0.45s ease;
+  transition: font-size 0.45s ease, color 0.22s ease, scale 0.22s ease, text-shadow 0.22s ease;
+  cursor: default;
 }
 body:has(#home-spiderweb-canvas) .last-name{
   display: block;
@@ -601,7 +602,17 @@ body:has(#home-spiderweb-canvas) .last-name{
   font-weight: 500;
   transform: translate(var(--last-x), var(--last-y)) scale(var(--last-scale));
   transform-origin: center;
-  transition: font-size 0.45s ease;
+  transition: font-size 0.45s ease, color 0.22s ease, scale 0.22s ease, text-shadow 0.22s ease;
+  cursor: default;
+}
+
+body:has(#home-spiderweb-canvas) .first-name:hover,
+body:has(#home-spiderweb-canvas) .last-name:hover {
+  color: #D96535;
+  scale: 1.06;
+  text-shadow:
+    0 0 22px rgba(217,101,53,0.60),
+    0 0 50px rgba(217,101,53,0.32);
 }
 
 body:has(#home-spiderweb-canvas) .role{
@@ -617,6 +628,16 @@ body:has(#home-spiderweb-canvas) .role{
 
   transform-origin: center;
   will-change: transform;
+  cursor: default;
+  transition: color 0.22s ease, scale 0.22s ease, text-shadow 0.22s ease;
+}
+
+body:has(#home-spiderweb-canvas) .role:hover {
+  color: #D96535;
+  scale: 1.10;
+  text-shadow:
+    0 0 16px rgba(217,101,53,0.60),
+    0 0 38px rgba(217,101,53,0.32);
 }
 
 /* floating statement */
