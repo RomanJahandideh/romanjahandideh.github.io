@@ -341,6 +341,7 @@
     document.body.classList.contains("svc-open") ||
     document.body.classList.contains("svc-detail-open");
   const isPanelOpen = () => isHashPanelOpen() || isWorkLockedOpen() || isTeachingDetailOpen() || isGalleryOverlayOpen() || isServicesPanelOpen();
+  window.isPanelOpen = isPanelOpen;   // expose so artwork-3d-bg.js can guard its scroll
 
   const closeTeachingDetail = () => {
     if (!teaching.overlay) return;
@@ -715,6 +716,7 @@
   window.addEventListener("wheel", (e) => {
     if (!isMergedRoot) return;
     if (isPanelOpen()) return;
+    if (window.artworkBgActive) return;   // 3D bg owns scroll
 
     const now = performance.now();
     if (now < lockUntil) return;
@@ -778,6 +780,7 @@
       if (!isMergedRoot) return;
       if (isPanelOpen()) return;
       if (_tapLock) return;
+      if (window.artworkBgActive) return;   // 3D bg owns touch scroll
 
       const t = e.changedTouches[0];
       if (Math.abs(t.clientX - _tapStartX) > 24) return;  /* horizontal swipe */

@@ -540,7 +540,7 @@
 body.mode-work #main-stack .layer,
 #teaching-main-stack .teaching-layer,
 .svc-ball {
-  background: rgba(255,255,255,0.95);
+  background: #D96535;
   border: 1px solid rgba(28,25,23,0.05);
   box-shadow:
     0 5px 22px rgba(28,25,23,0.11),
@@ -569,15 +569,15 @@ body.mode-work #main-stack .layer,
   animation: ff-flicker var(--ff-flicker-speed, 3.4s) ease-in-out infinite;
 }
 
-/* Hover — cream tint + orange glow */
+/* Hover — darken orange */
 body.mode-work #main-stack .layer:hover,
 #teaching-main-stack .teaching-layer:hover,
 #teaching-main-stack .teaching-layer.is-hover,
 .svc-ball:hover {
-  background: rgba(240,237,230,0.98);
-  border-color: rgba(224,123,90,0.22);
+  background: #c9664a;
+  border-color: rgba(28,25,23,0.08);
   box-shadow:
-    0 8px 28px rgba(224,123,90,0.22),
+    0 8px 28px rgba(217,101,53,0.32),
     0 3px 10px rgba(28,25,23,0.10);
 }
 
@@ -602,6 +602,7 @@ body.mode-work #main-stack .layer .label,
   line-height: 1.15;
   padding: 12px;
   text-transform: none;
+  color: #fff;
 }
 
 /* Teaching label — show on hover/focus (mode-switch.css hides by default) */

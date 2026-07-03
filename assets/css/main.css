@@ -650,8 +650,8 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 }
 
 #global-site-hints .global-site-hint-primary{
-  font-size: 9px;
-  letter-spacing: 0.24em;
+  font-size: 12px;
+  letter-spacing: 0.22em;
 }
 
 #global-site-hints .global-site-hint-primary:hover{
@@ -660,8 +660,8 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 }
 
 #global-site-hints .global-site-hint-secondary{
-  font-size: 8px;
-  letter-spacing: 0.18em;
+  font-size: 11px;
+  letter-spacing: 0.16em;
   color: rgba(255,255,255,0.48);
 }
 
@@ -679,6 +679,27 @@ body:has(#home-spiderweb-canvas) #floating-statement{
   #global-site-hints .hint-desktop { display: none; }
   #global-site-hints .hint-touch   { display: inline; }
 }
+
+/* ── Mode-contextual hints ──────────────────────────────────
+   One hint group is visible at a time; parent display:none
+   prevents children from rendering, so touch/desktop swap
+   inside each group works safely.
+   ─────────────────────────────────────────────────────────── */
+.hint-for-work,
+.hint-for-teaching,
+.hint-for-services { display: none; }
+.hint-for-home      { display: inline; }
+
+body.mode-work      .hint-for-home     { display: none; }
+body.mode-work      .hint-for-work     { display: inline; }
+
+body.mode-teaching  .hint-for-home     { display: none; }
+body.mode-teaching  .hint-for-teaching { display: inline; }
+
+body.svc-open       .hint-for-home,
+body.svc-detail-open .hint-for-home   { display: none; }
+body.svc-open       .hint-for-services,
+body.svc-detail-open .hint-for-services { display: inline; }
 
 /* Services open: keep hints visible as a calm footer below the Services button */
 body.svc-open #global-site-hints,
@@ -1688,18 +1709,18 @@ body[data-mode="teaching"] #home-spiderweb-canvas {
 
 /* ── Global hint text: dark on light bg ─────────────────── */
 #global-site-hints .global-site-hint {
-  color: rgba(28,25,23,0.40);
+  color: rgba(28,25,23,0.68);
 }
 
 #global-site-hints .global-site-hint-primary {
-  font-size: 9px;
-  letter-spacing: 0.24em;
+  font-size: 14px;
+  letter-spacing: 0.18em;
 }
 
 #global-site-hints .global-site-hint-secondary {
-  color: rgba(28,25,23,0.28);
-  font-size: 8px;
-  letter-spacing: 0.18em;
+  color: rgba(28,25,23,0.52);
+  font-size: 13px;
+  letter-spacing: 0.14em;
 }
 
 /* ── Nav: all modes are now light (clean up redundant rules) */
@@ -1774,3 +1795,23 @@ body[data-mode="teaching"] #bg {
     transform: none;
   }
 }
+
+/* =========================================================
+   3D ARTWORK BACKGROUND
+   ========================================================= */
+#artwork-3d-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 4;   /* above iris overlay (z3) and bg stack (z0–2) */
+  display: block;
+  pointer-events: none;
+}
+
+/* When the 3D bg is active, hide overlays designed for the
+   old dark-video background — iris vignette, grain, fog trail,
+   the scene veil, and the #bg image stack. */
+body.has-artwork-bg::before,
+body.has-artwork-bg::after   { display: none !important; }
+body.has-artwork-bg #bg      { display: none !important; }
+body.has-artwork-bg #fog-trail-canvas { display: none !important; }
+body.has-artwork-bg #scene-veil       { display: none !important; }

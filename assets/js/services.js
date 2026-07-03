@@ -716,18 +716,19 @@
   function _handleOutside(e) {
     if (_state === "closed") return;
 
-    /* In detail state: click outside desc → close desc only, keep balls */
+    /* Always allow the toggle button through — it has its own handler */
+    if (_btn && _btn.contains(e.target)) return;
+
+    /* In detail state: click on desc or balls → keep open */
     if (_state === "detail") {
       if (_desc && _desc.contains(e.target)) return;
-      if (_hero && _hero.contains(e.target)) return;
+      if (_ballsWrap && _ballsWrap.contains(e.target)) return;
       _closeDetail();
       return;
     }
 
-    /* In open state: click outside hero+nav → close everything */
-    if (_hero && _hero.contains(e.target)) return;
-    var nav = document.getElementById("site-nav");
-    if (nav && nav.contains(e.target)) return;
+    /* In open state: only the balls wrap is "inside" — everything else closes */
+    if (_ballsWrap && _ballsWrap.contains(e.target)) return;
     _closeAll();
   }
 
