@@ -147,7 +147,7 @@
 /* ── Description panel ── */
 #svc-desc {
   position: fixed;
-  bottom: 100px;
+  bottom: 158px;
   left: 50%;
   transform: translateX(-50%);
   width: min(520px, calc(100vw - 40px));
@@ -219,7 +219,7 @@
   }
 
   #svc-desc {
-    bottom: 108px;
+    bottom: 165px;
     width: min(480px, calc(100vw - 24px));
   }
 
