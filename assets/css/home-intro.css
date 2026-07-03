@@ -16,10 +16,10 @@
   pointer-events: auto;
 }
 
-/* Corner-bracket SVG container — roughly square */
+/* Corner-bracket SVG — constrained to same footprint as name+title block */
 #site-intro-word {
   opacity: 0;
-  width: min(380px, 84vw);
+  width: min(240px, 60vw);
   height: auto;
   display: block;
   transition: opacity 0.75s ease;
