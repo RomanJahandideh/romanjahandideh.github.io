@@ -51,7 +51,6 @@
     let lastDrawT   = 0;
     let wasDragging = false;
     const shockwaves = [];   // { x, y, r, life }
-    const sparkles   = [];   // mouse trail particles { x, y, vx, vy, life, size }
 
     /* ── Veil + resize ── */
     function buildVeil() {
@@ -171,16 +170,6 @@
       parTY  = (e.clientY - H / 2) * 0.032;
       tiltTX = (e.clientX - W / 2) / (W / 2);
       tiltTY = (e.clientY - H / 2) / (H / 2);
-      if (!dragObj && Math.random() < 0.55) {
-        sparkles.push({
-          x: e.clientX + (Math.random() - 0.5) * 8,
-          y: e.clientY + (Math.random() - 0.5) * 8,
-          vx: (Math.random() - 0.5) * 1.3,
-          vy: -0.6 - Math.random() * 1.6,
-          life: 1.0, size: 1.0 + Math.random() * 2.2,
-        });
-        if (sparkles.length > 55) sparkles.shift();
-      }
       if (dragObj) {
         wasDragging = true;
         dragVelX = e.clientX - prevDragMX;
@@ -279,7 +268,9 @@
       lastDrawT = t;
       const CX = W / 2 + parX, CY = H / 2 + parY;
       const svcOpen = document.body.classList.contains('svc-open') ||
-                      document.body.classList.contains('svc-detail-open');
+                      document.body.classList.contains('svc-detail-open') ||
+                      document.body.classList.contains('mode-work') ||
+                      document.body.classList.contains('mode-teaching');
 
       /* ── Spring physics + mouse repulsion ── */
       objects.forEach(obj => {
@@ -400,23 +391,6 @@
         ctx.arc(px, py, Math.max(0.3, p.size * sc), 0, Math.PI * 2);
         ctx.fill();
       });
-      ctx.globalAlpha = 1;
-
-      /* ── Mouse sparkle trail ── */
-      for (let i = sparkles.length - 1; i >= 0; i--) {
-        const sp = sparkles[i];
-        sp.x += sp.vx; sp.y += sp.vy;
-        sp.vy *= 0.96; sp.vx *= 0.98;
-        sp.life -= 0.038;
-        if (sp.life <= 0) { sparkles.splice(i, 1); continue; }
-        const r = sp.size * sp.life;
-        if (r > 0.15) {
-          ctx.beginPath();
-          ctx.arc(sp.x, sp.y, r, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(217,101,53,${(sp.life * 0.58).toFixed(2)})`;
-          ctx.fill();
-        }
-      }
       ctx.globalAlpha = 1;
 
       /* ── Artwork renderer ── */
@@ -649,7 +623,7 @@
     let lastLoad = 0;
     (function tick(now) {
       requestAnimationFrame(tick);
-      if (autoDrift) velocity -= 0.09 + Math.sin(now * 0.00072) * 0.055 + Math.sin(now * 0.00193) * 0.025;
+      if (autoDrift) velocity -= 0.15 + Math.sin(now * 0.00072) * 0.08 + Math.sin(now * 0.00193) * 0.04;
       velocity *= 0.88;
       cameraZ  += velocity;
       parX  += (parTX  - parX)  * 0.055;
