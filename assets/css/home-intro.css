@@ -1,7 +1,10 @@
 /* =========================================================
-   WELCOME INTRO — arched text
+   WELCOME INTRO
+   WELCOME sits in the exact position of JAHANDIDEH on the hero.
+   Ghost elements mirror the hero grid so the layout matches.
    ========================================================= */
 
+/* ── Full-page overlay — mirrors .hero grid ── */
 #site-intro {
   position: fixed;
   inset: 0;
@@ -10,43 +13,55 @@
   display: grid;
   place-items: center;
   align-content: center;
-  row-gap: 20px;
+  row-gap: 22px;          /* same as .hero row-gap */
   text-align: center;
-  padding: 60px 24px;
+  padding: 120px 20px 80px; /* same as .hero padding */
   pointer-events: auto;
 }
 
-/* Corner-bracket SVG — constrained to same footprint as name+title block */
+/* ── Name block: ROMAN ghost + WELCOME stacked — mirrors h1.name ── */
+.wc-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Invisible ROMAN — occupies the same height as .first-name */
+.wc-first-ghost {
+  display: block;
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-size: var(--first-size);
+  letter-spacing: var(--first-letterspace);
+  font-weight: 500;
+  line-height: 1.15;
+  color: transparent;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── WELCOME — same type as .last-name ── */
 #site-intro-word {
   opacity: 0;
-  width: min(240px, 60vw);
-  height: auto;
   display: block;
-  transition: opacity 0.75s ease;
-  will-change: opacity;
-}
-
-#site-intro {
-  will-change: opacity;
-}
-
-#site-intro-word svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-#site-intro-skip {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: clamp(9px, 0.85vw, 11px);
-  font-weight: 400;
-  letter-spacing: 0.28em;
-  text-indent: 0.28em;
-  color: #D96535;
-  opacity: 0.60;
-  white-space: nowrap;
-  cursor: pointer;
-  margin: 0;
+  font-size: var(--last-size);
+  letter-spacing: var(--last-letterspace);
+  text-indent: var(--last-letterspace);
+  font-weight: 500;
+  line-height: 1.15;
+  color: #1C1917;
+  text-align: center;
+  transition: opacity 0.85s ease;
+  will-change: opacity;
+}
+
+/* ── Sub-ghost — mirrors designer-title + role + services-btn heights ──
+   Pushes the whole block up so WELCOME aligns with JAHANDIDEH.        */
+.wc-sub-ghost {
+  display: block;
+  pointer-events: none;
+  /* designer-title ≈ 22px + gap 22 + role ≈ 14px + gap 22 + btn ≈ 42px */
+  height: 122px;
 }
 
 @media (prefers-reduced-motion: reduce) {

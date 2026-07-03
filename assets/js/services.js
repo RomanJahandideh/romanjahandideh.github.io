@@ -43,7 +43,7 @@
   var _btnOpenTween = null; /* reference to the "slide to bottom" tween — kill only this, not the scroll-sequence's timeline tween */
 
   /* ── DOM refs ── */
-  var _btn, _divider, _ballsWrap, _balls, _heroName, _heroRole, _hero;
+  var _btn, _divider, _ballsWrap, _balls, _heroName, _heroRole, _heroDesignerTitle, _hero;
   var _desc, _descText, _viewWorkLink;
 
   /* ═══════════════════════════════════════════════════════
@@ -402,9 +402,10 @@
     _descText     = document.getElementById("svc-desc-text");
     _viewWorkLink = document.getElementById("svc-view-work");
     _balls        = Array.from(document.querySelectorAll(".svc-ball"));
-    _heroName     = document.querySelector(".hero .name");
-    _heroRole     = document.querySelector(".hero .role");
-    _hero         = document.querySelector(".hero");
+    _heroName          = document.querySelector(".hero .name");
+    _heroRole          = document.querySelector(".hero .role");
+    _heroDesignerTitle = document.querySelector(".hero .designer-title");
+    _hero              = document.querySelector(".hero");
 
     if (!_btn || !_balls.length) return;
 
@@ -469,6 +470,7 @@
       /* ── Instant / reduced-motion fallback ── */
       if (_heroName) { _heroName.style.opacity = "0"; _heroName.style.height = "0"; _heroName.style.overflow = "hidden"; }
       if (_heroRole) { _heroRole.style.opacity = "0"; _heroRole.style.height = "0"; _heroRole.style.overflow = "hidden"; }
+      if (_heroDesignerTitle) { _heroDesignerTitle.style.opacity = "0"; _heroDesignerTitle.style.height = "0"; _heroDesignerTitle.style.overflow = "hidden"; }
       if (_hero) _hero.style.rowGap = "0";
       _btn.style.position  = "fixed";
       _btn.style.bottom    = "44px";
@@ -482,11 +484,16 @@
 
     /* hint text stays visible — repositioned via CSS .svc-open rule */
 
-    /* ── Fade + collapse name and role ── */
+    /* ── Fade + collapse name, designer title, and role ── */
     window.gsap.to(_heroName, { opacity: 0, duration: 0.25, ease: "power2.in",
       onComplete: function () {
         if (_heroName) { _heroName.style.height = "0"; _heroName.style.overflow = "hidden"; }
         if (_hero) _hero.style.rowGap = "0";
+      }
+    });
+    window.gsap.to(_heroDesignerTitle, { opacity: 0, duration: 0.22, ease: "power2.in",
+      onComplete: function () {
+        if (_heroDesignerTitle) { _heroDesignerTitle.style.height = "0"; _heroDesignerTitle.style.overflow = "hidden"; }
       }
     });
     window.gsap.to(_heroRole, { opacity: 0, duration: 0.20, ease: "power2.in",
@@ -580,6 +587,7 @@
 
     /* Restore layout heights immediately — elements are invisible so no visible shift */
     if (_heroName) { _heroName.style.height = ""; _heroName.style.overflow = ""; }
+    if (_heroDesignerTitle) { _heroDesignerTitle.style.height = ""; _heroDesignerTitle.style.overflow = ""; }
     if (_heroRole) { _heroRole.style.height = ""; _heroRole.style.overflow = ""; }
     if (_hero) _hero.style.rowGap = "";
 
@@ -594,6 +602,7 @@
       _btn.style.width     = "";
       _btn.style.opacity   = "";
       if (_heroName) _heroName.style.opacity = "";
+      if (_heroDesignerTitle) _heroDesignerTitle.style.opacity = "";
       if (_heroRole) _heroRole.style.opacity = "";
       _cleanupBalls();
       document.body.classList.remove("svc-closing");
@@ -649,6 +658,12 @@
         { opacity: 0 },
         { opacity: 1, duration: 0.38, ease: "power2.out", delay: 0.22,
           onComplete: function () { window.gsap.set(_heroName, { clearProps: "opacity" }); }
+        }
+      );
+      window.gsap.fromTo(_heroDesignerTitle,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.35, ease: "power2.out", delay: 0.25,
+          onComplete: function () { window.gsap.set(_heroDesignerTitle, { clearProps: "opacity" }); }
         }
       );
       window.gsap.fromTo(_heroRole,

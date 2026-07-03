@@ -592,7 +592,7 @@ body:has(#home-spiderweb-canvas) .first-name{
   font-weight: 500;
   transform: translate(var(--first-x), var(--first-y)) scale(var(--first-scale));
   transform-origin: center;
-  transition: font-size 0.45s ease, color 0.22s ease, scale 0.22s ease, text-shadow 0.22s ease;
+  transition: font-size 0.45s ease, opacity 0.55s ease;
   cursor: default;
 }
 body:has(#home-spiderweb-canvas) .last-name{
@@ -602,17 +602,16 @@ body:has(#home-spiderweb-canvas) .last-name{
   font-weight: 500;
   transform: translate(var(--last-x), var(--last-y)) scale(var(--last-scale));
   transform-origin: center;
-  transition: font-size 0.45s ease, color 0.22s ease, scale 0.22s ease, text-shadow 0.22s ease;
+  transition: font-size 0.45s ease, opacity 0.55s ease;
   cursor: default;
 }
 
-body:has(#home-spiderweb-canvas) .first-name:hover,
+/* shy fade — each name span retreats independently on hover */
+body:has(#home-spiderweb-canvas) .first-name:hover {
+  opacity: 0.08;
+}
 body:has(#home-spiderweb-canvas) .last-name:hover {
-  color: #D96535;
-  scale: 1.06;
-  text-shadow:
-    0 0 22px rgba(217,101,53,0.60),
-    0 0 50px rgba(217,101,53,0.32);
+  opacity: 0.08;
 }
 
 body:has(#home-spiderweb-canvas) .designer-title {
@@ -1756,14 +1755,6 @@ body:has(#home-spiderweb-canvas) .role {
 }
 
 /* hover overrides placed AFTER cream-glow cascade so orange always wins */
-body:has(#home-spiderweb-canvas) .first-name:hover,
-body:has(#home-spiderweb-canvas) .last-name:hover {
-  color: #D96535;
-  text-shadow:
-    0 0 22px rgba(217,101,53,0.65),
-    0 0 52px rgba(217,101,53,0.38);
-}
-
 body:has(#home-spiderweb-canvas) .designer-title:hover {
   color: #D96535;
   text-shadow:

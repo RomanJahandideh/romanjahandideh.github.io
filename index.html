@@ -26,7 +26,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/main.css?v=20260703t" />
+<link rel="stylesheet" href="assets/css/main.css?v=20260703v" />
 <link rel="stylesheet" href="assets/css/mode-switch.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 <link rel="stylesheet" href="assets/css/teaching-overlay-redesign.css?v=20260617a" />
@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="assets/css/toolbar.css?v=20260703b" />
 <link rel="stylesheet" href="assets/css/home-scroll-sequence.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/home-smoke.css?v=20260616b" />
-<link rel="stylesheet" href="assets/css/home-intro.css?v=20260703o" />
+<link rel="stylesheet" href="assets/css/home-intro.css?v=20260703r" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 
@@ -84,44 +84,16 @@
 
 <!-- Welcome intro — visible by default to prevent FOUC; JS fades out after 2s -->
 <div id="site-intro">
-  <div id="site-intro-word" aria-label="Welcome">
-    <!--
-      L-shape: vertical arm goes DOWN the LEFT side (W→E→L),
-      horizontal arm goes RIGHT along the BOTTOM (C→O→M→E).
-      Open space is top-right — where skip label lives.
-      Reading direction: top→bottom then left→right. Natural UX flow.
-    -->
-    <svg viewBox="0 0 260 270" xmlns="http://www.w3.org/2000/svg">
-      <!-- hairline L-bracket tracing the inner corner -->
-      <path d="M 40,18 V 252 H 244" fill="none" stroke="#1C1917" stroke-width="0.55" opacity="0.14"/>
-      <!-- orange corner dot at the 90° turn -->
-      <circle cx="40" cy="252" r="2.5" fill="#D96535" opacity="0.65"/>
-
-      <!-- vertical arm: W E L (down the left) -->
-      <text font-family="'Plus Jakarta Sans',system-ui,sans-serif"
-            font-size="38" font-weight="200" fill="#1C1917">
-        <tspan x="10" y="44" >W</tspan>
-        <tspan x="10" y="110">E</tspan>
-        <tspan x="10" y="176">L</tspan>
-      </text>
-
-      <!-- horizontal arm: C O M E (right along the bottom) -->
-      <text font-family="'Plus Jakarta Sans',system-ui,sans-serif"
-            font-size="38" font-weight="200" fill="#1C1917">
-        <tspan x="10"  y="242">C</tspan>
-        <tspan x="76"  y="242">O</tspan>
-        <tspan x="142" y="242">M</tspan>
-        <tspan x="208" y="242">E</tspan>
-      </text>
-
-      <!-- skip label — centred in the open top-right quadrant -->
-      <text x="148" y="118" text-anchor="middle"
-            font-family="'Plus Jakarta Sans',system-ui,sans-serif"
-            font-size="10.5" font-weight="300" letter-spacing="2" fill="#D96535" opacity="0.68">
-        Click anywhere to skip
-      </text>
-    </svg>
+  <!--
+    Mirror the hero grid exactly so WELCOME lands
+    in the same position as JAHANDIDEH on the main page.
+    Ghost elements match ROMAN above and designer-title+role+button below.
+  -->
+  <div class="wc-frame">
+    <span class="wc-first-ghost" aria-hidden="true">ROMAN</span>
+    <div id="site-intro-word" aria-label="Welcome">WELCOME</div>
   </div>
+  <span class="wc-sub-ghost" aria-hidden="true"></span>
   <p id="site-intro-skip" style="display:none"></p>
 </div>
 
@@ -662,7 +634,7 @@
 <script src="work/assets/js/gallery.js?v=20260616d"></script>
 <script src="assets/js/transitions.js"></script>
 <script src="assets/js/home-scroll-sequence.js"></script>
-<script src="assets/js/services.js?v=20260702a"></script>
+<script src="assets/js/services.js?v=20260703a"></script>
 <script src="assets/js/artwork-3d-bg.js?v=20260703i"></script>
 <script src="assets/js/toolbar-about.js"></script>
 <script src="assets/js/contact-panel.js"></script>
