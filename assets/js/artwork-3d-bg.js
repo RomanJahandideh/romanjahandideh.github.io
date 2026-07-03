@@ -651,7 +651,7 @@
     let lastLoad = 0;
     (function tick(now) {
       requestAnimationFrame(tick);
-      if (autoDrift) velocity -= 0.05 + Math.sin(now * 0.00072) * 0.042 + Math.sin(now * 0.00193) * 0.018;
+      if (autoDrift) velocity -= 0.09 + Math.sin(now * 0.00072) * 0.055 + Math.sin(now * 0.00193) * 0.025;
       velocity *= 0.88;
       cameraZ  += velocity;
       parX  += (parTX  - parX)  * 0.055;
