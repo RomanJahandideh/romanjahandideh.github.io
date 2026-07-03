@@ -126,8 +126,11 @@
     nameHover: () => oneshot({ freq:1350, type:'sine',     dur:0.30, vol:0.030, bend:950 }),
     roleHover: () => oneshot({ freq:1850, type:'sine',     dur:0.17, vol:0.036 }),
 
-    /* Nav links — crisp editorial tick, same for all four */
+    /* Nav links + all UI buttons — crisp editorial tick */
     navHover: () => oneshot({ freq:780, type:'sine', dur:0.10, vol:0.055, bend:920 }),
+
+    /* Ball hover — soft upward bloom as ball expands */
+    ballHover: () => oneshot({ freq:340, type:'sine', dur:0.13, vol:0.042, bend:560 }),
 
     /* Eye hover — slow-building presence: low drone + detuned overtone + breath */
     eyeHover: () => {
@@ -275,10 +278,34 @@
     else if (cl.contains('first-name') || cl.contains('last-name'))   SND.nameHover();
   });
 
-  /* ── Nav links (Home · Teaching · Work · Contact) ── */
+  /* ── All UI buttons: nav links, panel buttons, form buttons, mode dots ── */
+  const _BTN_SEL = [
+    '.top-nav a[data-nav]',   /* Home · Teaching · Work · Contact */
+    '#services-btn',           /* Services toggle on home */
+    '.site-modal-close',       /* Close buttons on all panels */
+    '.abt-timeline-btn',       /* "Visual Timeline" CTA */
+    '.abt-back-btn',           /* Back button inside timeline */
+    '.contact-cv-btn',         /* Download CV */
+    '.contact-actions .btn',   /* Send / Reset in contact form */
+    '.panel-close',            /* Panel close links */
+    '.svc-view-work-link',     /* "View Work →" in service cards */
+    '.mode-dot-wrap',          /* Mode indicator dots */
+    '.contact-link',           /* Social links in contact panel */
+  ].join(', ');
   document.addEventListener('mouseover', e => {
-    const link = e.target.closest('.top-nav a[data-nav]');
-    if (link) SND.navHover();
+    if (e.target.closest(_BTN_SEL)) SND.navHover();
+  });
+
+  /* ── Ball hover — svc balls, work layers, teaching layers ── */
+  let _lastBall = null;
+  const _BALL_SEL = '.svc-ball, #main-stack .layer, .teaching-layer';
+  document.addEventListener('mouseover', e => {
+    const ball = e.target.closest(_BALL_SEL);
+    if (ball && ball !== _lastBall) { _lastBall = ball; SND.ballHover(); }
+  });
+  document.addEventListener('mouseout', e => {
+    const ball = e.target.closest(_BALL_SEL);
+    if (ball && !ball.contains(e.relatedTarget)) _lastBall = null;
   });
 
   /* ── Eye button — hover + click ── */
