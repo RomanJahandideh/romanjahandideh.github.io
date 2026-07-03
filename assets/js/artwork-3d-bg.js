@@ -279,9 +279,7 @@
       lastDrawT = t;
       const CX = W / 2 + parX, CY = H / 2 + parY;
       const svcOpen = document.body.classList.contains('svc-open') ||
-                      document.body.classList.contains('svc-detail-open') ||
-                      document.body.classList.contains('mode-work') ||
-                      document.body.classList.contains('mode-teaching');
+                      document.body.classList.contains('svc-detail-open');
 
       /* ── Spring physics + mouse repulsion ── */
       objects.forEach(obj => {
