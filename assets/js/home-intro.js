@@ -6,41 +6,37 @@
   if (!_el || !_word) return;
 
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    _el.parentNode.removeChild(_el);
+    if (_el.parentNode) _el.parentNode.removeChild(_el);
     return;
   }
 
-  /* Block interaction until dismissed */
   window.siteIntroPlaying = true;
 
+  var _dismissed = false;
+
   function _dismiss() {
-    if (typeof gsap !== "undefined") {
-      gsap.to(_el, {
-        opacity: 0, duration: 0.9, ease: "power1.inOut",
-        onComplete: function () {
-          window.siteIntroPlaying = false;
-          if (_el.parentNode) _el.parentNode.removeChild(_el);
-        }
-      });
-    } else {
+    if (_dismissed) return;
+    _dismissed = true;
+
+    _el.style.transition = 'opacity 1.4s ease';
+    _el.style.opacity    = '0';
+
+    /* remove after fade completes; fallback timer in case transitionend misfires */
+    function _remove() {
       window.siteIntroPlaying = false;
       if (_el.parentNode) _el.parentNode.removeChild(_el);
     }
+    _el.addEventListener('transitionend', _remove, { once: true });
+    setTimeout(_remove, 1600);
   }
 
-  /* Fade word in, hold briefly, then snap out */
-  var _skip = document.getElementById("site-intro-skip");
-
-  if (typeof gsap !== "undefined") {
-    gsap.to(_word, {
-      opacity: 1, duration: 0.55, ease: "power2.out",
-      onComplete: function () {
-        setTimeout(_dismiss, 300);
-      }
+  /* Fade word in via CSS transition, then auto-dismiss */
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      _word.style.opacity = '1';
+      setTimeout(_dismiss, 750 + 400); /* wait for fade-in + short hold */
     });
-  } else {
-    setTimeout(_dismiss, 300);
-  }
+  });
 
   /* Skip on any interaction */
   function _onSkip() {

@@ -22,6 +22,12 @@
   width: min(640px, 92vw);
   height: auto;
   display: block;
+  transition: opacity 0.75s ease;
+  will-change: opacity;
+}
+
+#site-intro {
+  will-change: opacity;
 }
 
 #site-intro-word svg {
