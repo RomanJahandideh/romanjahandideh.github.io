@@ -32,11 +32,11 @@
     gsap.to(_word, {
       opacity: 1, duration: 0.7, ease: "power2.out",
       onComplete: function () {
-        setTimeout(_dismiss, 1800);
+        setTimeout(_dismiss, 500);
       }
     });
   } else {
-    setTimeout(_dismiss, 1800);
+    setTimeout(_dismiss, 500);
   }
 
   /* Skip on any interaction */

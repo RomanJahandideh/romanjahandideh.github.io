@@ -641,7 +641,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 
 #global-site-hints .global-site-hint{
   margin: 0;
-  color: rgba(255,255,255,0.58);
+  color: rgba(0,0,0,0.85);
   text-wrap: balance;
   display: inline-block;
   transition: color 0.22s ease, transform 0.22s ease;
@@ -662,7 +662,7 @@ body:has(#home-spiderweb-canvas) #floating-statement{
 #global-site-hints .global-site-hint-secondary{
   font-size: 11px;
   letter-spacing: 0.16em;
-  color: rgba(255,255,255,0.48);
+  color: rgba(0,0,0,0.70);
 }
 
 #global-site-hints .global-site-hint-secondary:hover{
@@ -1707,9 +1707,9 @@ body[data-mode="teaching"] #home-spiderweb-canvas {
   transition: opacity 0.45s ease;
 }
 
-/* ── Global hint text: dark on light bg ─────────────────── */
+/* ── Global hint text: always full black ─────────────────── */
 #global-site-hints .global-site-hint {
-  color: rgba(28,25,23,0.68);
+  color: rgba(0,0,0,0.85) !important;
 }
 
 #global-site-hints .global-site-hint-primary {
@@ -1718,7 +1718,7 @@ body[data-mode="teaching"] #home-spiderweb-canvas {
 }
 
 #global-site-hints .global-site-hint-secondary {
-  color: rgba(28,25,23,0.52);
+  color: rgba(0,0,0,0.70) !important;
   font-size: 13px;
   letter-spacing: 0.14em;
 }

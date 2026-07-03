@@ -29,13 +29,13 @@
 
     /* ── All state before resize() ── */
     let W = 0, H = 0;
-    let veilGrad    = null;
+    let veilGrad    = null, navVeilGrad = null;
     let cameraZ     = 0, velocity = 0;
     let mouseX      = 0, mouseY   = 0;
     let parX        = 0, parY     = 0, parTX = 0, parTY = 0;
     let hoveredObj  = null, hoverT = 0;
     let hoverTiltB  = 0, hoverTiltC = 0;   // smooth 3-D skew for hovered image
-    let autoDrift   = false, driftTimer = null;
+    let autoDrift   = true, driftTimer = null;
     let lineOffsets = Array.from({ length: 18 }, () => Math.random());
     let dragObj     = null;
     let dragStartMX = 0, dragStartMY = 0;
@@ -49,11 +49,20 @@
     /* ── Veil + resize ── */
     function buildVeil() {
       const cx = W / 2, cy = H / 2;
-      veilGrad = ctx.createRadialGradient(cx, cy, 90, cx, cy, 460);
-      veilGrad.addColorStop(0,    'rgba(245,244,242,0.96)');
-      veilGrad.addColorStop(0.38, 'rgba(245,244,242,0.82)');
-      veilGrad.addColorStop(0.68, 'rgba(245,244,242,0.38)');
+      veilGrad = ctx.createRadialGradient(cx, cy, 50, cx, cy, 300);
+      veilGrad.addColorStop(0,    'rgba(245,244,242,0.95)');
+      veilGrad.addColorStop(0.25, 'rgba(245,244,242,0.76)');
+      veilGrad.addColorStop(0.50, 'rgba(245,244,242,0.40)');
+      veilGrad.addColorStop(0.75, 'rgba(245,244,242,0.12)');
       veilGrad.addColorStop(1,    'rgba(245,244,242,0)');
+
+      /* nav toolbar veil — small soft halo at top-centre */
+      const nx = W / 2, ny = 115;
+      navVeilGrad = ctx.createRadialGradient(nx, ny, 0, nx, ny, 210);
+      navVeilGrad.addColorStop(0,    'rgba(245,244,242,0.92)');
+      navVeilGrad.addColorStop(0.35, 'rgba(245,244,242,0.60)');
+      navVeilGrad.addColorStop(0.65, 'rgba(245,244,242,0.22)');
+      navVeilGrad.addColorStop(1,    'rgba(245,244,242,0)');
     }
 
     function resize() {
@@ -130,7 +139,7 @@
     function resetDrift() {
       autoDrift = false;
       clearTimeout(driftTimer);
-      driftTimer = setTimeout(() => { autoDrift = true; }, 5000);
+      driftTimer = setTimeout(() => { autoDrift = true; }, 2000);
     }
 
     /* ── Input ── */
@@ -147,7 +156,6 @@
       prevDragMX  = e.clientX; prevDragMY  = e.clientY;
       dragVelX = 0; dragVelY = 0;
       hit.velX = 0; hit.velY = 0;
-      resetDrift();
     }, { capture: true, passive: false });
 
     window.addEventListener('mousemove', e => {
@@ -161,8 +169,6 @@
         dragObj.dispX = dragStartDX + (e.clientX - dragStartMX);
         dragObj.dispY = dragStartDY + (e.clientY - dragStartMY);
         prevDragMX = e.clientX; prevDragMY = e.clientY;
-      } else {
-        resetDrift();
       }
     }, { passive: true });
 
@@ -192,7 +198,7 @@
     window.addEventListener('wheel', e => {
       if (window.isPanelOpen && window.isPanelOpen()) return;
       if (dragObj) return;
-      velocity -= e.deltaY * 0.55;
+      velocity -= e.deltaY * 0.18;
       resetDrift();
     }, { passive: true });
 
@@ -221,7 +227,7 @@
         dragObj.dispY = dragStartDY + (ty_ - dragStartMY);
         prevDragMX = tx; prevDragMY = ty_;
       } else {
-        velocity += (ty0 - ty_) * 4; ty0 = ty_;
+        velocity += (ty0 - ty_) * 1.4; ty0 = ty_;
       }
     }, { passive: true });
 
@@ -253,7 +259,9 @@
       lastDrawT = t;
       const CX = W / 2 + parX, CY = H / 2 + parY;
       const svcOpen = document.body.classList.contains('svc-open') ||
-                      document.body.classList.contains('svc-detail-open');
+                      document.body.classList.contains('svc-detail-open') ||
+                      document.body.classList.contains('mode-work') ||
+                      document.body.classList.contains('mode-teaching');
 
       /* ── Spring physics + mouse repulsion ── */
       objects.forEach(obj => {
@@ -536,8 +544,11 @@
         ctx.fillRect(W / 2 - 320, H - 300, 640, 320);
       }
 
-      /* ── Centre veil — always last ── */
+      /* ── Nav toolbar veil — top-centre halo ── */
       ctx.filter = 'none'; ctx.globalAlpha = 1;
+      if (navVeilGrad) { ctx.fillStyle = navVeilGrad; ctx.fillRect(W / 2 - 210, 0, 420, 325); }
+
+      /* ── Centre veil — always last ── */
       if (veilGrad) { ctx.fillStyle = veilGrad; ctx.fillRect(0, 0, W, H); }
     }
 
@@ -545,8 +556,8 @@
     let lastLoad = 0;
     (function tick(now) {
       requestAnimationFrame(tick);
-      if (autoDrift) velocity -= 0.10;
-      velocity *= 0.91;
+      if (autoDrift) velocity -= 0.05 + Math.sin(now * 0.00072) * 0.042 + Math.sin(now * 0.00193) * 0.018;
+      velocity *= 0.88;
       cameraZ  += velocity;
       parX += (parTX - parX) * 0.055;
       parY += (parTY - parY) * 0.055;

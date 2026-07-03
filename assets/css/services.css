@@ -75,23 +75,14 @@
     box-shadow 220ms ease;
 }
 
-/* Flicker overlay — identical to work-card.css ::after */
+/* Flicker overlay — disabled, balls show as solid orange */
 .svc-ball::after {
   content: "";
   position: absolute;
   inset: 0;
   border-radius: 50%;
   pointer-events: none;
-
-  background: rgba(255,255,255,0.95);
-  opacity: var(--ff-flicker-max-opacity, 0.98);
-  transform: scale(1);
-  transform-origin: center;
-  filter:
-    brightness(var(--ff-flicker-max-brightness, 1.12))
-    contrast(var(--ff-flicker-max-contrast, 1.06));
-
-  animation: ff-flicker var(--ff-flicker-speed, 3.4s) ease-in-out infinite;
+  opacity: 0;
 }
 
 /* Hover: stop flicker — visual handled by canonical rule in toolbar.css */
@@ -132,13 +123,13 @@
   text-align: center;
 
   font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  line-height: 1.3;
-  color: rgba(28,25,23,0.88);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.25;
+  color: #fff;
   word-break: break-word;
 
-  opacity: 0;
+  opacity: 1;
   transition: opacity 180ms ease;
   pointer-events: none;
   z-index: 2;
@@ -211,18 +202,19 @@
 /* ── Mobile ── */
 @media (max-width: 736px) {
   #svc-balls-wrap {
-    gap: 10px;
-    margin-top: 14px;
+    gap: 8px;
+    margin-top: 10px;
+    max-width: calc(100vw - 32px);
   }
 
   .svc-ball {
-    width: 74px;
-    height: 74px;
+    width: 64px;
+    height: 64px;
   }
 
   .svc-ball-label {
-    font-size: 7px;
-    padding: 9px;
+    font-size: 6.5px;
+    padding: 7px;
     word-break: break-word;
   }
 

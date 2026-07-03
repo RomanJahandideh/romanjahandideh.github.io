@@ -549,7 +549,7 @@ body.mode-work #main-stack .layer,
   -webkit-backdrop-filter: none;
 }
 
-/* Teaching ::after — full flicker overlay (mode-switch.css had display:none) */
+/* Teaching ::after — disabled, balls show as solid orange */
 #teaching-main-stack .teaching-layer::after {
   display: block;
   content: "";
@@ -557,16 +557,14 @@ body.mode-work #main-stack .layer,
   inset: 0;
   border-radius: 50%;
   pointer-events: none;
+  opacity: 0;
+}
 
-  background: rgba(255,255,255,0.95);
-  opacity: var(--ff-flicker-max-opacity, 0.98);
-  transform-origin: center;
-  transform: scale(1);
-  filter:
-    brightness(var(--ff-flicker-max-brightness, 1.12))
-    contrast(var(--ff-flicker-max-contrast, 1.06));
-
-  animation: ff-flicker var(--ff-flicker-speed, 3.4s) ease-in-out infinite;
+/* Work ::after — disabled, balls show as solid orange */
+body.mode-work #main-stack .layer::after {
+  opacity: 0;
+  animation: none;
+  filter: none;
 }
 
 /* Hover — darken orange */
@@ -596,16 +594,22 @@ body.mode-work #main-stack .layer .label,
 #teaching-main-stack .teaching-layer .label,
 .svc-ball .svc-ball-label {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 8px;
-  font-weight: 500;
-  letter-spacing: 0.25px;
-  line-height: 1.15;
-  padding: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  padding: 10px;
   text-transform: none;
   color: #fff;
+  text-shadow: none;
 }
 
-/* Teaching label — show on hover/focus (mode-switch.css hides by default) */
+/* Ball labels — always visible */
+#teaching-main-stack .teaching-layer .label,
+body.mode-work #main-stack .layer .label {
+  opacity: 1;
+}
+
 #teaching-main-stack .teaching-layer:hover .label,
 #teaching-main-stack .teaching-layer.is-hover .label,
 #teaching-main-stack .teaching-layer:focus-visible .label {
@@ -622,11 +626,12 @@ body.mode-work #main-stack .layer:focus-visible,
     0 0 0 6px rgba(224,123,90,0.18);
 }
 
-/* Touch devices — always-visible labels */
+/* Touch devices — labels already always visible globally */
 @media (pointer: coarse) {
   #teaching-main-stack .teaching-layer .label,
+  body.mode-work #main-stack .layer .label,
   .svc-ball .svc-ball-label {
-    opacity: 0.80;
+    opacity: 1;
   }
 }
 
