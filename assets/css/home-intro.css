@@ -1,5 +1,5 @@
 /* =========================================================
-   WELCOME INTRO
+   WELCOME INTRO — circular stamp layout
    ========================================================= */
 
 #site-intro {
@@ -10,21 +10,24 @@
   display: grid;
   place-items: center;
   align-content: center;
-  row-gap: 32px;
+  row-gap: 28px;
   text-align: center;
-  padding: 80px 32px;
+  padding: 60px 32px;
   pointer-events: auto;
 }
 
+/* SVG circle container */
 #site-intro-word {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: clamp(38px, 5vw, 68px);
-  font-weight: 300;
-  letter-spacing: 0.42em;
-  text-indent: 0.42em;
-  color: #1C1917;
   opacity: 0;
-  line-height: 1;
+  width: min(320px, 72vmin);
+  height: min(320px, 72vmin);
+  display: block;
+}
+
+#site-intro-word svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
 }
 
 #site-intro-skip {
@@ -37,6 +40,7 @@
   opacity: 0.65;
   white-space: nowrap;
   cursor: pointer;
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
