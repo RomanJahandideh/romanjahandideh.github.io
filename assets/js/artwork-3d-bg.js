@@ -156,6 +156,8 @@
       const hit = findArtworkAt(e.clientX, e.clientY, lastDrawT);
       if (!hit) return;
       e.stopPropagation(); e.preventDefault();
+      window.SoundEngine?.artHover();
+      window.SoundEngine?.artDrag();
       dragObj = hit;
       dragStartDX = hit.dispX; dragStartDY = hit.dispY;
       dragStartMX = e.clientX; dragStartMY = e.clientY;
@@ -193,12 +195,12 @@
       dragObj.velX = 0; dragObj.velY = 0; dragObj = null;
     });
 
-    /* click on empty space → shockwave */
+    /* click: artwork → chime sound; empty space → shockwave */
     window.addEventListener('click', e => {
       if (e.target.closest('a, button, input, select, textarea, [role="button"]')) return;
       if (wasDragging) return;
       const hit = findArtworkAt(e.clientX, e.clientY, lastDrawT);
-      if (hit) return;
+      if (hit) { window.SoundEngine?.artHover(); return; }
       if (shockwaves.length < 4) {
         shockwaves.push({ x: e.clientX, y: e.clientY, r: 0, life: 1.0 });
       }

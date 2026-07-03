@@ -1881,6 +1881,36 @@ body[data-mode="teaching"] #bg {
 }
 
 /* =========================================================
+   SOUND TOGGLE BUTTON
+   ========================================================= */
+#snd-toggle {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 200;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(28,25,23,0.18);
+  background: rgba(245,244,242,0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1C1917;
+  font-size: 13px;
+  opacity: 0.45;
+  transition: opacity 0.22s ease, background 0.22s ease;
+  padding: 0;
+}
+#snd-toggle:hover { opacity: 1; }
+#snd-toggle .snd-icon-off { display: none; }
+#snd-toggle.is-muted .snd-icon-on  { display: none; }
+#snd-toggle.is-muted .snd-icon-off { display: inline; }
+
+/* =========================================================
    3D ARTWORK BACKGROUND
    ========================================================= */
 #artwork-3d-bg {

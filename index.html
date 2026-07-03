@@ -26,7 +26,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/main.css?v=20260703w" />
+<link rel="stylesheet" href="assets/css/main.css?v=20260703x" />
 <link rel="stylesheet" href="assets/css/mode-switch.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
 <link rel="stylesheet" href="assets/css/teaching-overlay-redesign.css?v=20260617a" />
@@ -52,6 +52,12 @@
 
 <!-- 3D floating artwork background — driven by artwork-3d-bg.js -->
 <canvas id="artwork-3d-bg" aria-hidden="true"></canvas>
+
+<!-- ── Sound toggle ── -->
+<button id="snd-toggle" aria-label="Mute sound" title="Toggle sound">
+  <i class="fas fa-volume-high snd-icon-on"></i>
+  <i class="fas fa-volume-xmark snd-icon-off"></i>
+</button>
 
 <!-- ── Mode transition curtain ── -->
 <div id="mode-curtain" aria-hidden="true">
@@ -636,6 +642,7 @@
 <script src="assets/js/home-scroll-sequence.js"></script>
 <script src="assets/js/services.js?v=20260703a"></script>
 <script src="assets/js/artwork-3d-bg.js?v=20260703k"></script>
+<script src="assets/js/sound-engine.js?v=20260703a"></script>
 <script src="assets/js/toolbar-about.js"></script>
 <script src="assets/js/contact-panel.js"></script>
 <script src="assets/js/home-intro.js?v=5"></script>
