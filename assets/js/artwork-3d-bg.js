@@ -4,14 +4,17 @@
   window.artworkBgActive = true;
   document.body.classList.add('has-artwork-bg');
 
-  const FOV         = 700;
-  const CYCLE       = 3800;
-  const LOAD_D      = 2800;
-  const SPRING_K    = 0.11;
-  const SPRING_DAMP = 0.70;
-  const MAX_VISIBLE = 60;
-  const PUSH_R      = 190;   // mouse repulsion radius px
-  const PUSH_STR    = 1.4;   // repulsion strength per frame
+  const FOV            = 700;
+  const CYCLE          = 3800;
+  const LOAD_D         = 2800;
+  const SPRING_K       = 0.11;
+  const SPRING_DAMP    = 0.70;
+  const MAX_VISIBLE    = 60;
+  const PUSH_R         = 190;    // mouse repulsion radius px
+  const PUSH_STR       = 1.4;    // repulsion strength per frame
+  const PROX_SCALE_R   = 270;    // proximity scale-up radius px
+  const PROX_SCALE_MAX = 0.22;   // max extra scale at cursor centre
+  const TILT_MAX       = 7;      // max 3-D tilt degrees
 
   function makeRng(seed) {
     let s = (seed | 0) >>> 0;
@@ -26,6 +29,8 @@
     const canvas = document.getElementById('artwork-3d-bg');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
+    canvas.style.willChange     = 'transform';
+    canvas.style.transformOrigin = '50% 50%';
 
     /* ── All state before resize() ── */
     let W = 0, H = 0;
@@ -33,6 +38,7 @@
     let cameraZ     = 0, velocity = 0;
     let mouseX      = 0, mouseY   = 0;
     let parX        = 0, parY     = 0, parTX = 0, parTY = 0;
+    let tiltX       = 0, tiltY    = 0, tiltTX = 0, tiltTY = 0;
     let hoveredObj  = null, hoverT = 0;
     let hoverTiltB  = 0, hoverTiltC = 0;   // smooth 3-D skew for hovered image
     let autoDrift   = true, driftTimer = null;
@@ -163,6 +169,8 @@
       mouseX = e.clientX; mouseY = e.clientY;
       parTX  = (e.clientX - W / 2) * 0.055;
       parTY  = (e.clientY - H / 2) * 0.032;
+      tiltTX = (e.clientX - W / 2) / (W / 2);
+      tiltTY = (e.clientY - H / 2) / (H / 2);
       if (!dragObj && Math.random() < 0.55) {
         sparkles.push({
           x: e.clientX + (Math.random() - 0.5) * 8,
@@ -191,6 +199,7 @@
     });
 
     window.addEventListener('mouseleave', () => {
+      tiltTX = 0; tiltTY = 0;  // plate returns to flat when cursor leaves
       if (!dragObj) return;
       dragObj.velX = 0; dragObj.velY = 0; dragObj = null;
     });
@@ -433,25 +442,31 @@
         const isHovered = obj === hoveredObj;
         const spotlight = anyHover && !isHovered && !isDragged ? 1 - hoverT * 0.50 : 1;
         const finalA    = depthA * spotlight;
-        const lift      = isDragged ? 1.12 : (isHovered ? 1 + hoverT * 0.08 : 1);
+
+        /* proximity distance — shared by scale boost + approach glow */
+        const proxDist  = (!isHovered && !isDragged && obj.img)
+          ? Math.hypot(mouseX - sx, mouseY - sy)
+          : Infinity;
+        const proxBoost = proxDist < PROX_SCALE_R
+          ? (1 - proxDist / PROX_SCALE_R) * PROX_SCALE_MAX
+          : 0;
+
+        const lift      = isDragged ? 1.12 : (isHovered ? 1 + hoverT * 0.08 : 1 + proxBoost);
         const dsw       = sw * lift, dsh = sh * lift;
         const distC     = Math.hypot(sx - W / 2, sy - H / 2);
         const sat       = (isHovered || isDragged) ? 1 : Math.min(1, Math.max(0, (distC - 80) / 280));
 
         /* ── Approach glow — warm halo grows as cursor nears image ── */
-        if (!isHovered && !isDragged && obj.img) {
-          const proxDist = Math.hypot(mouseX - sx, mouseY - sy);
-          if (proxDist < 230) {
-            const proxA = (1 - proxDist / 230) * 0.22 * depthA;
-            if (proxA > 0.01) {
-              const gr = Math.max(dsw, dsh) * 0.70 + 20;
-              const pg = ctx.createRadialGradient(sx, sy, Math.min(dsw, dsh) * 0.15, sx, sy, gr);
-              pg.addColorStop(0,   `rgba(217,101,53,${proxA.toFixed(3)})`);
-              pg.addColorStop(1,   'rgba(217,101,53,0)');
-              ctx.globalAlpha = 1;
-              ctx.fillStyle = pg;
-              ctx.fillRect(sx - gr, sy - gr, gr * 2, gr * 2);
-            }
+        if (proxDist < 230) {
+          const proxA = (1 - proxDist / 230) * 0.22 * depthA;
+          if (proxA > 0.01) {
+            const gr = Math.max(dsw, dsh) * 0.70 + 20;
+            const pg = ctx.createRadialGradient(sx, sy, Math.min(dsw, dsh) * 0.15, sx, sy, gr);
+            pg.addColorStop(0, `rgba(217,101,53,${proxA.toFixed(3)})`);
+            pg.addColorStop(1, 'rgba(217,101,53,0)');
+            ctx.globalAlpha = 1;
+            ctx.fillStyle = pg;
+            ctx.fillRect(sx - gr, sy - gr, gr * 2, gr * 2);
           }
         }
 
@@ -639,8 +654,13 @@
       if (autoDrift) velocity -= 0.05 + Math.sin(now * 0.00072) * 0.042 + Math.sin(now * 0.00193) * 0.018;
       velocity *= 0.88;
       cameraZ  += velocity;
-      parX += (parTX - parX) * 0.055;
-      parY += (parTY - parY) * 0.055;
+      parX  += (parTX  - parX)  * 0.055;
+      parY  += (parTY  - parY)  * 0.055;
+      tiltX += (tiltTX - tiltX) * 0.055;
+      tiltY += (tiltTY - tiltY) * 0.055;
+      /* 3-D plate tilt: side nearest cursor rises toward viewer */
+      canvas.style.transform =
+        `perspective(1000px) rotateX(${(tiltY * TILT_MAX).toFixed(2)}deg) rotateY(${(-tiltX * TILT_MAX).toFixed(2)}deg)`;
       draw(now * 0.001);
       if (now - lastLoad > 80) { loadNearby(); lastLoad = now; }
     })(0);
