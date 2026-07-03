@@ -14,29 +14,32 @@
   window.siteIntroPlaying = true;
 
   function _dismiss() {
-    window.siteIntroPlaying = false;
     if (typeof gsap !== "undefined") {
       gsap.to(_el, {
-        opacity: 0, duration: 0.55, ease: "power2.in",
-        onComplete: function () { if (_el.parentNode) _el.parentNode.removeChild(_el); }
+        opacity: 0, duration: 0.18, ease: "power2.in",
+        onComplete: function () {
+          window.siteIntroPlaying = false;
+          if (_el.parentNode) _el.parentNode.removeChild(_el);
+        }
       });
     } else {
+      window.siteIntroPlaying = false;
       if (_el.parentNode) _el.parentNode.removeChild(_el);
     }
   }
 
-  /* Fade word in, hold, then fade everything out */
+  /* Fade word in, hold briefly, then snap out */
   var _skip = document.getElementById("site-intro-skip");
 
   if (typeof gsap !== "undefined") {
     gsap.to(_word, {
-      opacity: 1, duration: 0.7, ease: "power2.out",
+      opacity: 1, duration: 0.55, ease: "power2.out",
       onComplete: function () {
-        setTimeout(_dismiss, 500);
+        setTimeout(_dismiss, 300);
       }
     });
   } else {
-    setTimeout(_dismiss, 500);
+    setTimeout(_dismiss, 300);
   }
 
   /* Skip on any interaction */
