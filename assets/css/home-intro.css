@@ -1,5 +1,5 @@
 /* =========================================================
-   WELCOME INTRO — circular stamp layout
+   WELCOME INTRO — arched text
    ========================================================= */
 
 #site-intro {
@@ -10,23 +10,23 @@
   display: grid;
   place-items: center;
   align-content: center;
-  row-gap: 28px;
+  row-gap: 20px;
   text-align: center;
-  padding: 60px 32px;
+  padding: 60px 24px;
   pointer-events: auto;
 }
 
-/* SVG circle container */
+/* Wide arch SVG container */
 #site-intro-word {
   opacity: 0;
-  width: min(320px, 72vmin);
-  height: min(320px, 72vmin);
+  width: min(640px, 92vw);
+  height: auto;
   display: block;
 }
 
 #site-intro-word svg {
   width: 100%;
-  height: 100%;
+  height: auto;
   overflow: visible;
 }
 
@@ -34,10 +34,10 @@
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: clamp(9px, 0.85vw, 11px);
   font-weight: 400;
-  letter-spacing: 0.26em;
-  text-indent: 0.26em;
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
   color: #D96535;
-  opacity: 0.65;
+  opacity: 0.60;
   white-space: nowrap;
   cursor: pointer;
   margin: 0;

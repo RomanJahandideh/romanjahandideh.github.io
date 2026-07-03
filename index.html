@@ -42,7 +42,7 @@
 <link rel="stylesheet" href="assets/css/toolbar.css?v=20260703b" />
 <link rel="stylesheet" href="assets/css/home-scroll-sequence.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/home-smoke.css?v=20260616b" />
-<link rel="stylesheet" href="assets/css/home-intro.css?v=20260703l" />
+<link rel="stylesheet" href="assets/css/home-intro.css?v=20260703m" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 
@@ -85,22 +85,13 @@
 <!-- Welcome intro — visible by default to prevent FOUC; JS fades out after 2s -->
 <div id="site-intro">
   <div id="site-intro-word" aria-label="Welcome">
-    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 10 700 280" xmlns="http://www.w3.org/2000/svg">
       <defs>
-        <!-- full circle starting at 9 o'clock, clockwise — top = 25% offset -->
-        <path id="wc-ring" d="M 50,200 a 150,150 0 1,1 300,0 a 150,150 0 1,1 -300,0"/>
+        <path id="wc-arch" d="M 10,280 Q 350,10 690,280"/>
       </defs>
-      <!-- thin ring -->
-      <circle cx="200" cy="200" r="150" fill="none" stroke="#1C1917" stroke-width="0.7" opacity="0.18"/>
-      <!-- cardinal dots -->
-      <circle cx="200" cy="50"  r="2.8" fill="#D96535" opacity="0.55"/>
-      <circle cx="350" cy="200" r="2.8" fill="#D96535" opacity="0.55"/>
-      <circle cx="200" cy="350" r="2.8" fill="#D96535" opacity="0.55"/>
-      <circle cx="50"  cy="200" r="2.8" fill="#D96535" opacity="0.55"/>
-      <!-- circular text — centred at 12 o'clock -->
       <text font-family="'Plus Jakarta Sans', system-ui, sans-serif"
-            font-size="20" font-weight="300" letter-spacing="22" fill="#1C1917">
-        <textPath href="#wc-ring" startOffset="25%" text-anchor="middle">WELCOME</textPath>
+            font-size="58" font-weight="200" letter-spacing="14" fill="#1C1917">
+        <textPath href="#wc-arch" startOffset="50%" text-anchor="middle">WELCOME</textPath>
       </text>
     </svg>
   </div>
