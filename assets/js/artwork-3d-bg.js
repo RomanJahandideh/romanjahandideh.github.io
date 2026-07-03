@@ -45,6 +45,7 @@
     let lastDrawT   = 0;
     let wasDragging = false;
     const shockwaves = [];   // { x, y, r, life }
+    const sparkles   = [];   // mouse trail particles { x, y, vx, vy, life, size }
 
     /* ── Veil + resize ── */
     function buildVeil() {
@@ -162,6 +163,16 @@
       mouseX = e.clientX; mouseY = e.clientY;
       parTX  = (e.clientX - W / 2) * 0.055;
       parTY  = (e.clientY - H / 2) * 0.032;
+      if (!dragObj && Math.random() < 0.55) {
+        sparkles.push({
+          x: e.clientX + (Math.random() - 0.5) * 8,
+          y: e.clientY + (Math.random() - 0.5) * 8,
+          vx: (Math.random() - 0.5) * 1.3,
+          vy: -0.6 - Math.random() * 1.6,
+          life: 1.0, size: 1.0 + Math.random() * 2.2,
+        });
+        if (sparkles.length > 55) sparkles.shift();
+      }
       if (dragObj) {
         wasDragging = true;
         dragVelX = e.clientX - prevDragMX;
@@ -384,6 +395,23 @@
       });
       ctx.globalAlpha = 1;
 
+      /* ── Mouse sparkle trail ── */
+      for (let i = sparkles.length - 1; i >= 0; i--) {
+        const sp = sparkles[i];
+        sp.x += sp.vx; sp.y += sp.vy;
+        sp.vy *= 0.96; sp.vx *= 0.98;
+        sp.life -= 0.038;
+        if (sp.life <= 0) { sparkles.splice(i, 1); continue; }
+        const r = sp.size * sp.life;
+        if (r > 0.15) {
+          ctx.beginPath();
+          ctx.arc(sp.x, sp.y, r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(217,101,53,${(sp.life * 0.58).toFixed(2)})`;
+          ctx.fill();
+        }
+      }
+      ctx.globalAlpha = 1;
+
       /* ── Artwork renderer ── */
       const anyHover = hoverT > 0.02;
       const BG = '#f5f4f2';
@@ -409,6 +437,23 @@
         const dsw       = sw * lift, dsh = sh * lift;
         const distC     = Math.hypot(sx - W / 2, sy - H / 2);
         const sat       = (isHovered || isDragged) ? 1 : Math.min(1, Math.max(0, (distC - 80) / 280));
+
+        /* ── Approach glow — warm halo grows as cursor nears image ── */
+        if (!isHovered && !isDragged && obj.img) {
+          const proxDist = Math.hypot(mouseX - sx, mouseY - sy);
+          if (proxDist < 230) {
+            const proxA = (1 - proxDist / 230) * 0.22 * depthA;
+            if (proxA > 0.01) {
+              const gr = Math.max(dsw, dsh) * 0.70 + 20;
+              const pg = ctx.createRadialGradient(sx, sy, Math.min(dsw, dsh) * 0.15, sx, sy, gr);
+              pg.addColorStop(0,   `rgba(217,101,53,${proxA.toFixed(3)})`);
+              pg.addColorStop(1,   'rgba(217,101,53,0)');
+              ctx.globalAlpha = 1;
+              ctx.fillStyle = pg;
+              ctx.fillRect(sx - gr, sy - gr, gr * 2, gr * 2);
+            }
+          }
+        }
 
         if (obj.img) {
           ctx.save();
@@ -470,6 +515,41 @@
       if (dragObj) {
         const dez = effZ(dragObj);
         if (dez < -25 && dez > -CYCLE * 0.93) renderObj({ obj: dragObj, ez: dez });
+      }
+
+      /* ── Constellation web — threads between nearby images ── */
+      {
+        const CMAX = 14, CTHR = 265;
+        let lineCount = 0;
+        const pts = items.map(({ obj, ez }) => {
+          if (!obj.img) return null;
+          const sc = FOV / (FOV - ez);
+          if (sc <= 0 || sc > 5 || !isFinite(sc)) return null;
+          const fy = Math.sin(t * obj.floatFreq + obj.floatPhase) * obj.floatAmp;
+          const sx = CX + obj.x * sc + obj.dispX;
+          const sy = CY + (obj.y + fy) * sc + obj.dispY;
+          if (sx < -60 || sx > W + 60 || sy < -60 || sy > H + 60) return null;
+          return { sx, sy };
+        });
+        for (let a = 0; a < pts.length && lineCount < CMAX; a++) {
+          if (!pts[a]) continue;
+          for (let b = a + 1; b < pts.length && lineCount < CMAX; b++) {
+            if (!pts[b]) continue;
+            const d = Math.hypot(pts[a].sx - pts[b].sx, pts[a].sy - pts[b].sy);
+            if (d < CTHR) {
+              const al = (1 - d / CTHR) * 0.16;
+              ctx.globalAlpha = al;
+              ctx.strokeStyle = 'rgba(217,101,53,1)';
+              ctx.lineWidth   = (1 - d / CTHR) * 1.5;
+              ctx.beginPath();
+              ctx.moveTo(pts[a].sx, pts[a].sy);
+              ctx.lineTo(pts[b].sx, pts[b].sy);
+              ctx.stroke();
+              lineCount++;
+            }
+          }
+        }
+        ctx.globalAlpha = 1;
       }
 
       /* ── Shockwave rings ── */
