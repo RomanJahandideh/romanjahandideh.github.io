@@ -203,6 +203,7 @@ body:has(#home-spiderweb-canvas){
   height: 100vh;
   overscroll-behavior: none;
   touch-action: none;
+  background: #f5f4f2; /* match canvas fill exactly so tilt edge-gaps are invisible */
 }
 
 /* WORK scroll lock */
