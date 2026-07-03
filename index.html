@@ -85,33 +85,39 @@
 <!-- Welcome intro — visible by default to prevent FOUC; JS fades out after 2s -->
 <div id="site-intro">
   <div id="site-intro-word" aria-label="Welcome">
+    <!--
+      L-shape: vertical arm goes DOWN the LEFT side (W→E→L),
+      horizontal arm goes RIGHT along the BOTTOM (C→O→M→E).
+      Open space is top-right — where skip label lives.
+      Reading direction: top→bottom then left→right. Natural UX flow.
+    -->
     <svg viewBox="0 0 260 270" xmlns="http://www.w3.org/2000/svg">
-      <!-- subtle L-bracket hairline -->
-      <path d="M 6,57 H 228 V 258" fill="none" stroke="#1C1917" stroke-width="0.6" opacity="0.14"/>
-      <!-- corner dot -->
-      <circle cx="228" cy="42" r="2.6" fill="#D96535" opacity="0.65"/>
+      <!-- hairline L-bracket tracing the inner corner -->
+      <path d="M 40,18 V 252 H 244" fill="none" stroke="#1C1917" stroke-width="0.55" opacity="0.14"/>
+      <!-- orange corner dot at the 90° turn -->
+      <circle cx="40" cy="252" r="2.5" fill="#D96535" opacity="0.65"/>
 
-      <!-- horizontal: W E L C -->
+      <!-- vertical arm: W E L (down the left) -->
       <text font-family="'Plus Jakarta Sans',system-ui,sans-serif"
             font-size="38" font-weight="200" fill="#1C1917">
-        <tspan x="8"   y="44">W</tspan>
-        <tspan x="74"  y="44">E</tspan>
-        <tspan x="140" y="44">L</tspan>
-        <tspan x="206" y="44">C</tspan>
+        <tspan x="10" y="44" >W</tspan>
+        <tspan x="10" y="110">E</tspan>
+        <tspan x="10" y="176">L</tspan>
       </text>
 
-      <!-- vertical: O M E -->
+      <!-- horizontal arm: C O M E (right along the bottom) -->
       <text font-family="'Plus Jakarta Sans',system-ui,sans-serif"
             font-size="38" font-weight="200" fill="#1C1917">
-        <tspan x="206" y="110">O</tspan>
-        <tspan x="206" y="176">M</tspan>
-        <tspan x="206" y="242">E</tspan>
+        <tspan x="10"  y="242">C</tspan>
+        <tspan x="76"  y="242">O</tspan>
+        <tspan x="142" y="242">M</tspan>
+        <tspan x="208" y="242">E</tspan>
       </text>
 
-      <!-- centre label -->
-      <text x="107" y="176" text-anchor="middle"
+      <!-- skip label — centred in the open top-right quadrant -->
+      <text x="148" y="118" text-anchor="middle"
             font-family="'Plus Jakarta Sans',system-ui,sans-serif"
-            font-size="9" font-weight="400" letter-spacing="2.2" fill="#D96535" opacity="0.62">
+            font-size="10.5" font-weight="300" letter-spacing="2" fill="#D96535" opacity="0.68">
         Click anywhere to skip
       </text>
     </svg>
