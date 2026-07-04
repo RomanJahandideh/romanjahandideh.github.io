@@ -249,11 +249,10 @@
 
     resetDrift();
 
-    /* ── Lazy load ── */
-    function loadNearby() {
+    /* ── Preload all images in parallel ── */
+    function preloadAll() {
       objects.forEach(obj => {
         if (obj.loaded || obj.loading) return;
-        if (effZ(obj) < -LOAD_D) return;
         obj.loading = true;
         const img = new Image();
         img.onload = () => {
@@ -622,7 +621,6 @@
     }
 
     /* ── Tick ── */
-    let lastLoad = 0;
     (function tick(now) {
       requestAnimationFrame(tick);
       if (autoDrift) velocity -= 0.15 + Math.sin(now * 0.00072) * 0.08 + Math.sin(now * 0.00193) * 0.04;
@@ -638,10 +636,9 @@
       canvas.style.transform =
         `perspective(1000px) rotateX(${(tiltY * TILT_MAX).toFixed(2)}deg) rotateY(${(-tiltX * TILT_MAX).toFixed(2)}deg) scale(1.10)`;
       draw(now * 0.001);
-      if (now - lastLoad > 80) { loadNearby(); lastLoad = now; }
     })(0);
 
-    loadNearby();
+    preloadAll();
   }
 
   Promise.resolve().then(init);
