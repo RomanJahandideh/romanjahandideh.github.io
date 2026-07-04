@@ -13,7 +13,7 @@
     if (!_ctx) {
       _ctx = new (window.AudioContext || window.webkitAudioContext)();
       _master = _ctx.createGain();
-      _master.gain.value = _muted ? 0 : 0.75;
+      _master.gain.value = _muted ? 0 : 1.4;
       _master.connect(_ctx.destination);
     }
     if (_ctx.state === 'suspended') _ctx.resume();
@@ -63,11 +63,11 @@
     /* Sub sine hum — almost felt, barely heard */
     _ambSub = c.createOscillator();
     _ambSub.type = 'sine'; _ambSub.frequency.value = 48;
-    const sg = c.createGain(); sg.gain.value = 0.028;
+    const sg = c.createGain(); sg.gain.value = 0.07;
     _ambSub.connect(sg); sg.connect(_ambGain); _ambSub.start();
 
     /* Slow fade-in over 5 s */
-    _ambGain.gain.setTargetAtTime(0.058, now, 5.0);
+    _ambGain.gain.setTargetAtTime(0.15, now, 5.0);
   }
 
   /* Scroll drives ambient: filter opens up and pitch rises with speed */
@@ -76,7 +76,7 @@
     const c = ac(), now = c.currentTime;
     const clamped = Math.min(speed / 18, 1);          // 0–1 normalised
     const targetFreq = 260 + clamped * 1100;           // 260 Hz idle → 1360 Hz fast
-    const targetVol  = 0.058 + clamped * 0.10;        // ambient swells with speed
+    const targetVol  = 0.15 + clamped * 0.25;          // ambient swells with speed
     const targetPitch = 48 + clamped * 28;             // sub rises from 48→76 Hz
     _ambLp.frequency.setTargetAtTime(targetFreq,  now, 0.18);
     _ambGain.gain.setTargetAtTime(targetVol,      now, 0.18);
@@ -118,19 +118,19 @@
 
   /* ── Named sounds ── */
   const SND = {
-    artHover:  () => oneshot({ freq:2100, type:'sine',     dur:0.22, vol:0.048 }),
-    artDrag:   () => oneshot({ freq:210,  type:'sine',     dur:0.15, vol:0.085, bend:130 }),
-    section:   () => oneshot({ freq:620,  noisy:true,      dur:0.44, vol:0.062 }),
-    svcOpen:   () => oneshot({ freq:340,  type:'triangle', dur:0.28, vol:0.088, bend:490 }),
-    svcClose:  () => oneshot({ freq:490,  type:'triangle', dur:0.28, vol:0.088, bend:270 }),
-    nameHover: () => oneshot({ freq:1350, type:'sine',     dur:0.30, vol:0.030, bend:950 }),
-    roleHover: () => oneshot({ freq:1850, type:'sine',     dur:0.17, vol:0.036 }),
+    artHover:  () => oneshot({ freq:2100, type:'sine',     dur:0.22, vol:0.12 }),
+    artDrag:   () => oneshot({ freq:210,  type:'sine',     dur:0.15, vol:0.20, bend:130 }),
+    section:   () => oneshot({ freq:620,  noisy:true,      dur:0.44, vol:0.16 }),
+    svcOpen:   () => oneshot({ freq:340,  type:'triangle', dur:0.28, vol:0.22, bend:490 }),
+    svcClose:  () => oneshot({ freq:490,  type:'triangle', dur:0.28, vol:0.22, bend:270 }),
+    nameHover: () => oneshot({ freq:1350, type:'sine',     dur:0.30, vol:0.075, bend:950 }),
+    roleHover: () => oneshot({ freq:1850, type:'sine',     dur:0.17, vol:0.09 }),
 
     /* Nav links + all UI buttons — crisp editorial tick */
-    navHover: () => oneshot({ freq:780, type:'sine', dur:0.10, vol:0.055, bend:920 }),
+    navHover: () => oneshot({ freq:780, type:'sine', dur:0.10, vol:0.14, bend:920 }),
 
     /* Ball hover — soft upward bloom as ball expands */
-    ballHover: () => oneshot({ freq:340, type:'sine', dur:0.13, vol:0.042, bend:560 }),
+    ballHover: () => oneshot({ freq:340, type:'sine', dur:0.13, vol:0.10, bend:560 }),
 
     /* Eye hover — slow-building presence: low drone + detuned overtone + breath */
     eyeHover: () => {
@@ -139,7 +139,7 @@
       /* deep drone — slow fade-in, long tail */
       const g1 = c.createGain();
       g1.gain.setValueAtTime(0, now);
-      g1.gain.linearRampToValueAtTime(0.078, now + 0.18);
+      g1.gain.linearRampToValueAtTime(0.20, now + 0.18);
       g1.gain.exponentialRampToValueAtTime(0.0001, now + 1.0);
       g1.connect(_master);
       const o1 = c.createOscillator();
@@ -148,7 +148,7 @@
       /* detuned ethereal overtone — slight beating effect */
       const g2 = c.createGain();
       g2.gain.setValueAtTime(0, now);
-      g2.gain.linearRampToValueAtTime(0.038, now + 0.32);
+      g2.gain.linearRampToValueAtTime(0.095, now + 0.32);
       g2.gain.exponentialRampToValueAtTime(0.0001, now + 1.3);
       g2.connect(_master);
       const o2 = c.createOscillator();
@@ -156,7 +156,7 @@
       o2.connect(g2); o2.start(); o2.stop(now + 1.3);
       /* atmospheric breath */
       const g3 = c.createGain();
-      g3.gain.setValueAtTime(0.028, now);
+      g3.gain.setValueAtTime(0.07, now);
       g3.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
       g3.connect(_master);
       const ns3 = c.createBufferSource();
@@ -174,7 +174,7 @@
       /* deep drone drifts downward — unsettling */
       const g1 = c.createGain();
       g1.gain.setValueAtTime(0, now);
-      g1.gain.linearRampToValueAtTime(0.13, now + 0.09);
+      g1.gain.linearRampToValueAtTime(0.32, now + 0.09);
       g1.gain.exponentialRampToValueAtTime(0.0001, now + 1.6);
       g1.connect(_master);
       const o1 = c.createOscillator();
@@ -185,7 +185,7 @@
       /* minor-key mid tone — slow bloom */
       const g2 = c.createGain();
       g2.gain.setValueAtTime(0, now);
-      g2.gain.linearRampToValueAtTime(0.072, now + 0.22);
+      g2.gain.linearRampToValueAtTime(0.18, now + 0.22);
       g2.gain.exponentialRampToValueAtTime(0.0001, now + 2.0);
       g2.connect(_master);
       const o2 = c.createOscillator();
@@ -193,7 +193,7 @@
       o2.connect(g2); o2.start(); o2.stop(now + 2.0);
       /* high bell overtone — long shimmer */
       const g3 = c.createGain();
-      g3.gain.setValueAtTime(0.055, now);
+      g3.gain.setValueAtTime(0.14, now);
       g3.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
       g3.connect(_master);
       const o3 = c.createOscillator();
@@ -202,7 +202,7 @@
       /* atmospheric noise swell */
       const g4 = c.createGain();
       g4.gain.setValueAtTime(0, now);
-      g4.gain.linearRampToValueAtTime(0.048, now + 0.28);
+      g4.gain.linearRampToValueAtTime(0.12, now + 0.28);
       g4.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
       g4.connect(_master);
       const ns4 = c.createBufferSource();
@@ -218,7 +218,7 @@
   function setMute(on) {
     _muted = on;
     localStorage.setItem('rj-snd', on ? '0' : '1');
-    if (_master) _master.gain.setTargetAtTime(on ? 0 : 0.75, ac().currentTime, 0.28);
+    if (_master) _master.gain.setTargetAtTime(on ? 0 : 1.4, ac().currentTime, 0.28);
     const btn = document.getElementById('snd-toggle');
     if (btn) {
       btn.setAttribute('aria-label', on ? 'Unmute sound' : 'Mute sound');
