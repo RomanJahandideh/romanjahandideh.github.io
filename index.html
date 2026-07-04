@@ -460,17 +460,17 @@
 </div>
 
 <!-- GSAP 3.15 — animation engine -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
 <!-- GLightbox — fullscreen image lightbox -->
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
 
-<script src="assets/js/main.js?v=20260702a"></script>
-<script src="assets/js/nav.js?v=20260617a"></script>
-<script src="assets/js/teaching-overlay-redesign.js"></script>
-<script src="assets/js/home-fog-trail.js"></script>
+<script src="assets/js/main.js?v=20260702a" defer></script>
+<script src="assets/js/nav.js?v=20260617a" defer></script>
+<script src="assets/js/teaching-overlay-redesign.js" defer></script>
+<script src="assets/js/home-fog-trail.js" defer></script>
 
-<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://d3js.org/d3.v3.min.js" defer></script>
 
 <!-- =========================================================
      STAGE 3 PATH FIX (IMPORTANT)
@@ -619,18 +619,16 @@
 })();
 </script>
 
-<script src="work/assets/js/stage3-modal.js"></script>
-<script src="work/assets/js/work-d3-interaction.js"></script>
-<script src="work/assets/js/gallery-data.js?v=20260616f"></script>
-<script src="work/assets/js/gallery.js?v=20260616d"></script>
-<script src="assets/js/transitions.js"></script>
-<script src="assets/js/home-scroll-sequence.js"></script>
-<script src="assets/js/services.js?v=20260703a"></script>
-<script src="assets/js/artwork-3d-bg.js?v=20260703m"></script>
-<script src="assets/js/sound-engine.js?v=20260703e"></script>
-<script src="assets/js/toolbar-about.js"></script>
-<script src="assets/js/contact-panel.js"></script>
-<script src="assets/js/home-intro.js?v=5"></script>
+<script src="work/assets/js/stage3-modal.js" defer></script>
+<script src="work/assets/js/work-d3-interaction.js" defer></script>
+<script src="work/assets/js/gallery-data.js?v=20260616f" defer></script>
+<script src="work/assets/js/gallery.js?v=20260616d" defer></script>
+<script src="assets/js/transitions.js" defer></script>
+<script src="assets/js/home-scroll-sequence.js" defer></script>
+<script src="assets/js/services.js?v=20260703a" defer></script>
+<script src="assets/js/toolbar-about.js" defer></script>
+<script src="assets/js/contact-panel.js" defer></script>
+<script src="assets/js/home-intro.js?v=5" defer></script>
 
 <script>
 (function(){
@@ -663,36 +661,27 @@
 </script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
 <script>
-(function(){
-  emailjs.init({
-    publicKey: "d7nhsXUjJgF2hEBp3"
+window.addEventListener('load', function() {
+  emailjs.init({ publicKey: "d7nhsXUjJgF2hEBp3" });
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    emailjs.sendForm('service_od2ej9r', 'template_lm7g5ls', this)
+      .then(function() { alert('Message sent successfully.'); form.reset(); },
+            function(error) { alert('Failed to send message.'); console.error(error); });
   });
-})();
+}, { once: true });
 </script>
 
 <script>
-(function(){
-  var form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    emailjs.sendForm(
-      'service_od2ej9r',
-      'template_lm7g5ls',
-      this
-    ).then(function() {
-      alert('Message sent successfully.');
-      form.reset();
-    }, function(error) {
-      alert('Failed to send message.');
-      console.error(error);
-    });
+window.addEventListener('load', function() {
+  ['assets/js/artwork-3d-bg.js?v=20260703m', 'assets/js/sound-engine.js?v=20260703e'].forEach(function(src) {
+    var s = document.createElement('script'); s.src = src; document.body.appendChild(s);
   });
-})();
+}, { once: true });
 </script>
 
 </body>
