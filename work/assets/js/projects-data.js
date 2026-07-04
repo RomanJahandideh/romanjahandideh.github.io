@@ -9,9 +9,9 @@
       title: "Ruby’s Oil Problem",
       link: "https://drive.google.com/file/d/1Olhoy87hzowQUpkbaYdXCAvtr_jQ8SZ6/view?usp=sharing",
       images: [
-        "../projects/animations-01/img1.jpg",
-        "../projects/animations-01/img2.jpg",
-        "../projects/animations-01/img3.jpg"
+        "../projects/animations-01/img1.webp",
+        "../projects/animations-01/img2.webp",
+        "../projects/animations-01/img3.webp"
       ],
       description: `Ruby is a small service robot who once played an important role in everyday life. Over time, however, society began replacing older machines with newer models that promised greater efficiency and intelligence. As people quickly embraced the latest technology, robots like Ruby were quietly left behind. The story explores how progress can sometimes overlook the value of what already exists.
 
@@ -24,7 +24,7 @@ Lighting and rendering were produced using Arnold, helping shape the atmosphere 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Ruby’s Oil Problem is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/animations-01/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/animations-01/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -37,9 +37,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Record Player Advertisement",
       link: "https://drive.google.com/file/d/1WY10wN83dha7bghHFXLCTw0JSziF7QJe/view?usp=sharing",
       images: [
-        "../projects/animations-02/img1.jpg",
-        "../projects/animations-02/img2.jpg",
-        "../projects/animations-02/img3.jpg"
+        "../projects/animations-02/img1.webp",
+        "../projects/animations-02/img2.webp",
+        "../projects/animations-02/img3.webp"
       ],
       description: `APOLLO LM-IX Record Player Advertisement is a stylized commercial animation project developed within IAT 343 Animation at Simon Fraser University during Summer 2025. Created as a fictional advertisement for a custom-designed turntable system, the project focuses on cinematic product presentation, rhythm-driven editing, and visually dynamic transitions designed to emulate modern motion branding and animated commercial workflows.
 
@@ -50,7 +50,7 @@ From a technical perspective, the production explored non-photoreal rendering pi
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `APOLLO LM-IX Record Player Advertisement is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/animations-02/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/animations-02/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -63,9 +63,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Under Pressure",
       link: "https://drive.google.com/file/d/1hdu3LHnH_Y5GFJ3TnZqf3E8B7KkrWPcI/view?usp=sharing",
       images: [
-        "../projects/animations-03/img1.jpg",
-        "../projects/animations-03/img2.jpg",
-        "../projects/animations-03/img3.jpg"
+        "../projects/animations-03/img1.webp",
+        "../projects/animations-03/img2.webp",
+        "../projects/animations-03/img3.webp"
       ],
       description: `Under Pressure is a high-energy music-video-style animation project developed within IAT 343 Animation at Simon Fraser University during Summer 2025. Inspired by contemporary commercial music videos and motion branding aesthetics, the project combines cinematic action choreography, rhythm-based editing, and stylized character animation into a fast-paced narrative centered around two rival thieves competing to steal a diamond inside a museum environment.
 
@@ -76,7 +76,7 @@ From a technical perspective, the project explored character rigging, walk and r
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Under Pressure is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/animations-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/animations-03/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -89,9 +89,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "DEADEnd Job",
       link: "https://drive.google.com/file/d/12UjXyz0qIa0qGeBAHA-Yqa8bEP93UEXS/view?usp=sharing",
       images: [
-        "../projects/animations-04/img1.jpg",
-        "../projects/animations-04/img2.jpg",
-        "../projects/animations-04/img3.jpg"
+        "../projects/animations-04/img1.webp",
+        "../projects/animations-04/img2.webp",
+        "../projects/animations-04/img3.webp"
       ],
       description: `DEADEnd Job is a stylized narrative animation project developed within IAT 343 Animation at Simon Fraser University. Blending surreal visual storytelling with exaggerated workplace scenarios, the film explores themes of burnout, pressure, and personal agency through the perspective of an overworked office employee trapped inside a psychologically distorted corporate environment.
 
@@ -102,7 +102,7 @@ From a technical perspective, the production explored character modelling, riggi
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `DEADEnd Job is a placeholder entry for the Animations section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/animations-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/animations-04/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -115,9 +115,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Pot Bound: The Turnish Relay",
       link: "https://drive.google.com/file/d/1Ij6MyLEmH3Qycy23aXXWAKYHZOUAPlVO/view?usp=sharing",
       images: [
-        "../projects/animations-05/img1.jpg",
-        "../projects/animations-05/img2.jpg",
-        "../projects/animations-05/img3.jpg"
+        "../projects/animations-05/img1.webp",
+        "../projects/animations-05/img2.webp",
+        "../projects/animations-05/img3.webp"
       ],
       description: `Pot Bound: The Turnish Relay is a stylized character-driven animation project developed within IAT 343 Animation at Simon Fraser University during Spring 2026. Built around a playful rivalry between a turnip and a radish competing to reach a pot of soup first, the project combines comedic timing, exaggerated environmental scale, and soft cinematic storytelling within a fully stylized kitchen environment.
 
@@ -128,7 +128,7 @@ From a technical perspective, the project explored stylized modelling, character
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Pot Bound: The Turnish Relay is a stylized character-driven animation project developed within IAT 343 Animation at Simon Fraser University during Spring 2026. Built around a playful rivalry between a turnip and a radish competing to reach a pot of soup first, the project combines comedic timing, exaggerated environmental scale, and soft cinematic storytelling within a fully stylized kitchen environment.
 
-This project currently uses the three images stored in ../projects/animations-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/animations-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -141,9 +141,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "The Old Detective Cat",
       link: "https://opensea.io/collection/thetableman",
       images: [
-        "../projects/cgart-01/img1.jpg",
-        "../projects/cgart-01/img2.jpg",
-        "../projects/cgart-01/img3.jpg"
+        "../projects/cgart-01/img1.webp",
+        "../projects/cgart-01/img2.webp",
+        "../projects/cgart-01/img3.webp"
       ],
       description: `This project is part of my digital graphic design and NFT artwork series exploring visual storytelling through character design and stylized environments. The scene presents a surreal narrative centered on a detective cat observing a miniature world composed of architectural elements, characters, and atmospheric details. Through scale contrast and cinematic lighting, the composition creates a playful yet mysterious visual environment.
 
@@ -154,7 +154,7 @@ The production workflow combines 3D modeling and digital post-production. The sc
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `The Old Detective Cat is a placeholder entry for the CG Art section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/cgart-01/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/cgart-01/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -167,9 +167,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "The old cook",
       link: "https://opensea.io/collection/thetableman",
       images: [
-        "../projects/cgart-02/img1.jpg",
-        "../projects/cgart-02/img2.jpg",
-        "../projects/cgart-02/img3.jpg"
+        "../projects/cgart-02/img1.webp",
+        "../projects/cgart-02/img2.webp",
+        "../projects/cgart-02/img3.webp"
       ],
       description: `This project is part of my digital CG and NFT artwork series focused on character-driven visual storytelling. The piece portrays a stylized eccentric cook preparing a mysterious potion within a surreal kitchen environment. Through exaggerated character features and carefully arranged objects, the composition creates a humorous yet slightly dark narrative atmosphere.
 
@@ -180,7 +180,7 @@ The artwork was produced using a 3D workflow combining Cinema 4D for modeling an
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `The old cook is a placeholder entry for the CG Art section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/cgart-02/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/cgart-02/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -193,9 +193,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "The pirate",
       link: "https://opensea.io/collection/thetableman",
       images: [
-        "../projects/cgart-03/img1.jpg",
-        "../projects/cgart-03/img2.jpg",
-        "../projects/cgart-03/img3.jpg"
+        "../projects/cgart-03/img1.webp",
+        "../projects/cgart-03/img2.webp",
+        "../projects/cgart-03/img3.webp"
       ],
       description: `This artwork is part of a series of personal CG and NFT projects focused on character-based scenes and stylized visual storytelling. The image presents a pirate-inspired character placed within a small narrative environment built from supporting objects and environmental details. The scene combines playful elements with a slightly mysterious atmosphere. This artwork is also used as the background image on the main page of this website, where it helps create an immediate visual introduction to the overall style of the portfolio.
 
@@ -203,7 +203,7 @@ The design process focused on building a balanced composition around the central
 
 The project was produced through a 3D digital workflow. Modeling and scene construction were completed in Cinema 4D, where the character, props, and environment were assembled and arranged. Lighting, materials, and final rendering were developed using Arnold Renderer to achieve consistent shading and atmospheric depth. After rendering, the image was refined through post-production adjustments in Adobe Photoshop and Adobe Lightroom, where colour balance, contrast, and overall image clarity were improved.
 
-This project currently uses the three images stored in ../projects/cgart-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/cgart-03/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -216,9 +216,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Frogs castle",
       link: "https://opensea.io/collection/thetableman",
       images: [
-        "../projects/cgart-04/img1.jpg",
-        "../projects/cgart-04/img2.jpg",
-        "../projects/cgart-04/img3.jpg"
+        "../projects/cgart-04/img1.webp",
+        "../projects/cgart-04/img2.webp",
+        "../projects/cgart-04/img3.webp"
       ],
       description: `This artwork is part of a series of personal CG and NFT projects focused on character-driven scenes and imaginative environments. The image presents a stylized frog character placed within a fantasy castle setting, combining playful storytelling with architectural elements. The scene explores a whimsical world where character and environment work together to create a small narrative moment.
 
@@ -229,7 +229,7 @@ The project was developed using a 3D digital workflow. Modeling and scene constr
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Frogs castle is a placeholder entry for the CG Art section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/cgart-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/cgart-04/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -242,9 +242,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Ruby Series",
       link: "https://www.behance.net/Romman",
       images: [
-        "../projects/cgart-05/img1.jpg",
-        "../projects/cgart-05/img2.jpg",
-        "../projects/cgart-05/img3.jpg"
+        "../projects/cgart-05/img1.webp",
+        "../projects/cgart-05/img2.webp",
+        "../projects/cgart-05/img3.webp"
       ],
       description: `This project is part of the Ruby Series, a collection of personal CG and NFT artworks focused on character-based scenes and stylized visual storytelling. The series explores small narrative environments built around a central character named Ruby, combining playful design elements with atmospheric settings. Each piece presents a self-contained moment that blends character expression with a simplified environmental context.
 
@@ -255,7 +255,7 @@ The artworks in this series were developed through a 3D digital workflow. Modeli
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Ash Room Collector is a placeholder entry for the CG Art section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/cgart-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/cgart-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -268,9 +268,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Zangar Museum",
       link: "https://drive.google.com/file/d/1KGnHBVet8pmC6MfJFtKnczkq9d0n7I96/view?usp=sharing",
       images: [
-        "../projects/narrative-01/img1.jpg",
-        "../projects/narrative-01/img2.jpg",
-        "../projects/narrative-01/img3.jpg"
+        "../projects/narrative-01/img1.webp",
+        "../projects/narrative-01/img2.webp",
+        "../projects/narrative-01/img3.webp"
       ],
       description: `The Zangar Museum project was developed as my final architectural thesis at Tabriz Art University. The main goal of the project was to design a cultural institution that reflects the political and social transformations experienced by the city of Tabriz over the past century. The design attempts to translate historical tension and resilience into architectural form. Instead of using traditional symmetrical composition, the building is formed through fragmented volumes and sharp angular geometries. These intersecting masses symbolize different historical periods and conflicts that shaped the identity of the region. The museum becomes not only a place for exhibitions but also a spatial narrative that guides visitors through the layered history of the city.
 
@@ -281,7 +281,7 @@ The final visualizations were produced using Corona Renderer. Materials such as 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `The City Under Rain is a placeholder entry for the Narrative section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/narrative-01/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/narrative-01/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -294,9 +294,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Architecture School",
       link: "https://drive.google.com/file/d/1KGnHBVet8pmC6MfJFtKnczkq9d0n7I96/view?usp=sharing",
       images: [
-        "../projects/narrative-02/img1.jpg",
-        "../projects/narrative-02/img2.jpg",
-        "../projects/narrative-02/img3.jpg"
+        "../projects/narrative-02/img1.webp",
+        "../projects/narrative-02/img2.webp",
+        "../projects/narrative-02/img3.webp"
       ],
       description: `The Architecture School project explores the design of an educational environment dedicated to architectural learning and creative collaboration. The building is organized around a central circulation spine that connects studios, lecture halls, workshops, and exhibition spaces. The goal of the project was to create an academic building that encourages interaction between students while providing flexible learning spaces.
 
@@ -309,7 +309,7 @@ The AutoCAD drawings were then used as the base for constructing the three-dimen
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Threads of the Last Map is a placeholder entry for the Narrative section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/narrative-02/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/narrative-02/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -322,9 +322,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Büyükada Landscape Design",
       link: "https://drive.google.com/file/d/1KGnHBVet8pmC6MfJFtKnczkq9d0n7I96/view?usp=sharing",
       images: [
-        "../projects/narrative-03/img1.jpg",
-        "../projects/narrative-03/img2.jpg",
-        "../projects/narrative-03/img3.jpg"
+        "../projects/narrative-03/img1.webp",
+        "../projects/narrative-03/img2.webp",
+        "../projects/narrative-03/img3.webp"
       ],
       description: `The Büyükada Landscape Design project explores the relationship between natural landscape, pedestrian circulation, and urban experience on Büyükada Island in Istanbul. The goal of the project was to design a landscape intervention that respects the ecological character of the island while creating meaningful public spaces for visitors and residents. Büyükada is known for its historical architecture, dense vegetation, and pedestrian-oriented environment, therefore the design approach focused on integrating landscape elements with the natural terrain rather than imposing heavy architectural structures.
 
@@ -339,7 +339,7 @@ After completing the technical drawings, the project was modeled in 3ds Max to b
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Rooms That Remember is a placeholder entry for the Narrative section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/narrative-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/narrative-03/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -352,9 +352,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Interior Design",
       link: "https://drive.google.com/file/d/1KGnHBVet8pmC6MfJFtKnczkq9d0n7I96/view?usp=sharing",
       images: [
-        "../projects/narrative-04/img1.jpg",
-        "../projects/narrative-04/img2.jpg",
-        "../projects/narrative-04/img3.jpg"
+        "../projects/narrative-04/img1.webp",
+        "../projects/narrative-04/img2.webp",
+        "../projects/narrative-04/img3.webp"
       ],
       description: `My interior design work focuses on the development of functional, visually coherent, and user-centered interior environments. The design approach integrates spatial planning, material selection, lighting strategy, and environmental analysis in order to create spaces that support both human comfort and architectural clarity. Each project aims to balance aesthetic quality with practical considerations such as circulation efficiency, spatial hierarchy, and usability.
 
@@ -369,7 +369,7 @@ To communicate the design intent and spatial atmosphere, final visualizations ar
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `A Small Rebellion of Light is a placeholder entry for the Narrative section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/narrative-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/narrative-04/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -382,9 +382,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Design Awards",
       link: "https://archicomp.ir/old/1396-web/10/A0-000-147-%D9%86%D8%AA%D8%A7%DB%8C%D8%AC-%D9%85%D8%B3%D8%A7%D8%A8%D9%82%D9%87-%D9%85%D8%B9%D9%85%D8%A7%D8%B1%DB%8C-%D9%86%D8%A7%D9%85%D8%B9%D9%85%D8%A7%D8%B1%DB%8C-%D8%A7%D8%B3%DA%A9%D8%A7%D9%86-%D9%85%D9%88%D9%82%D8%AA.php",
       images: [
-        "../projects/narrative-05/img1.jpg",
-        "../projects/narrative-05/img2.jpg",
-        "../projects/narrative-05/img3.jpg"
+        "../projects/narrative-05/img1.webp",
+        "../projects/narrative-05/img2.webp",
+        "../projects/narrative-05/img3.webp"
       ],
       description: `As part of my academic and professional development, I have participated in architectural design competitions that explore innovative responses to environmental and humanitarian challenges. One of the key competition projects focused on designing a compact emergency structure intended for rapid deployment in disaster-affected areas.
 
@@ -397,7 +397,7 @@ The project was developed through a digital design workflow. The architectural d
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `The Museum of Lost Voices is a placeholder entry for the Narrative section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/narrative-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/narrative-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -410,20 +410,20 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Signal Garden",
       link: "",
       images: [
-        "../projects/gamedesign-01/img1.jpg",
-        "../projects/gamedesign-01/img2.jpg",
-        "../projects/gamedesign-01/img3.jpg"
+        "../projects/gamedesign-01/img1.webp",
+        "../projects/gamedesign-01/img2.webp",
+        "../projects/gamedesign-01/img3.webp"
       ],
       description: `Signal Garden is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-01/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-01/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Signal Garden is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-01/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-01/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -436,20 +436,20 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Gravestone Courier",
       link: "",
       images: [
-        "../projects/gamedesign-02/img1.jpg",
-        "../projects/gamedesign-02/img2.jpg",
-        "../projects/gamedesign-02/img3.jpg"
+        "../projects/gamedesign-02/img1.webp",
+        "../projects/gamedesign-02/img2.webp",
+        "../projects/gamedesign-02/img3.webp"
       ],
       description: `Gravestone Courier is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-02/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-02/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Gravestone Courier is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-02/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-02/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -462,20 +462,20 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Circuit Hollow",
       link: "",
       images: [
-        "../projects/gamedesign-03/img1.jpg",
-        "../projects/gamedesign-03/img2.jpg",
-        "../projects/gamedesign-03/img3.jpg"
+        "../projects/gamedesign-03/img1.webp",
+        "../projects/gamedesign-03/img2.webp",
+        "../projects/gamedesign-03/img3.webp"
       ],
       description: `Circuit Hollow is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-03/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Circuit Hollow is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-03/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -488,20 +488,20 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Soft Collision Protocol",
       link: "",
       images: [
-        "../projects/gamedesign-04/img1.jpg",
-        "../projects/gamedesign-04/img2.jpg",
-        "../projects/gamedesign-04/img3.jpg"
+        "../projects/gamedesign-04/img1.webp",
+        "../projects/gamedesign-04/img2.webp",
+        "../projects/gamedesign-04/img3.webp"
       ],
       description: `Soft Collision Protocol is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-04/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Soft Collision Protocol is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-04/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -514,20 +514,20 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "The Fifth Checkpoint",
       link: "",
       images: [
-        "../projects/gamedesign-05/img1.jpg",
-        "../projects/gamedesign-05/img2.jpg",
-        "../projects/gamedesign-05/img3.jpg"
+        "../projects/gamedesign-05/img1.webp",
+        "../projects/gamedesign-05/img2.webp",
+        "../projects/gamedesign-05/img3.webp"
       ],
       description: `The Fifth Checkpoint is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `The Fifth Checkpoint is a placeholder entry for the Game Design section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/gamedesign-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/gamedesign-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -540,9 +540,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Perception-Driven Design for VR Interfaces",
       link: "https://www.researchgate.net/publication/373998765_Creating_Immersive_Virtual_Landscapes_A_User-Centered_Approach_to_Enhance_Depth_Perception_in_Head-Mounted_Displays",
       images: [
-        "../projects/projects-01/img1.jpg",
-        "../projects/projects-01/img2.jpg",
-        "../projects/projects-01/img3.jpg"
+        "../projects/projects-01/img1.webp",
+        "../projects/projects-01/img2.webp",
+        "../projects/projects-01/img3.webp"
       ],
       description: `Depth Cues in Immersive VR Interfaces presents a research-driven investigation into how color, luminance, and transparency influence perceived depth in head-mounted displays. Developed through a user-centered experimental workflow, the project connects immersive interface design with spatial cognition, interaction accuracy, and the visual logic required to build more legible virtual environments.
 
@@ -553,7 +553,7 @@ Beyond technical development, the work demonstrates the ability to translate des
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Perception-Driven Design for VR Interfaces is a placeholder entry for the Projects section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/projects-01/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/projects-01/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -566,9 +566,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "AI Social Characters",
       link: "https://drive.google.com/file/d/11X_LKggh1IfxvXVQ0qhEYhacuDe-jzgU/view?usp=sharing",
       images: [
-        "../projects/projects-02/img1.jpg",
-        "../projects/projects-02/img2.jpg",
-        "../projects/projects-02/img3.jpg"
+        "../projects/projects-02/img1.webp",
+        "../projects/projects-02/img2.webp",
+        "../projects/projects-02/img3.webp"
       ],
       description: `This article presents SocialEyes, an AI-driven virtual reality framework designed to support social interaction training for individuals with autism spectrum disorder (ASD). The project explores how intelligent virtual environments can help users practice social communication through interactions with multiple AI characters. Each character represents a distinct personality profile and responds dynamically to user behavior, creating a more natural and engaging social experience.
 
@@ -579,7 +579,7 @@ By combining artificial intelligence, behavioral modeling, and immersive VR inte
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Archive Bloom is a placeholder entry for the Projects section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/projects-02/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/projects-02/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -592,20 +592,20 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "North Window Build",
       link: "",
       images: [
-        "../projects/projects-03/img1.jpg",
-        "../projects/projects-03/img2.jpg",
-        "../projects/projects-03/img3.jpg"
+        "../projects/projects-03/img1.webp",
+        "../projects/projects-03/img2.webp",
+        "../projects/projects-03/img3.webp"
       ],
       description: `North Window Build is a placeholder entry for the Projects section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/projects-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/projects-03/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `North Window Build is a placeholder entry for the Projects section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/projects-03/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/projects-03/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -618,20 +618,20 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Field Notes Machine",
       link: "",
       images: [
-        "../projects/projects-04/img1.jpg",
-        "../projects/projects-04/img2.jpg",
-        "../projects/projects-04/img3.jpg"
+        "../projects/projects-04/img1.webp",
+        "../projects/projects-04/img2.webp",
+        "../projects/projects-04/img3.webp"
       ],
       description: `Field Notes Machine is a placeholder entry for the Projects section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/projects-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/projects-04/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Field Notes Machine is a placeholder entry for the Projects section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/projects-04/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/projects-04/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -644,20 +644,20 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Quiet Orbit Prototype",
       link: "",
       images: [
-        "../projects/projects-05/img1.jpg",
-        "../projects/projects-05/img2.jpg",
-        "../projects/projects-05/img3.jpg"
+        "../projects/projects-05/img1.webp",
+        "../projects/projects-05/img2.webp",
+        "../projects/projects-05/img3.webp"
       ],
       description: `Quiet Orbit Prototype is a placeholder entry for the Projects section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/projects-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/projects-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Quiet Orbit Prototype is a placeholder entry for the Projects section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/projects-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/projects-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -670,9 +670,9 @@ Suggested future edits for this card: add a short project summary, describe the 
   title: "Playable Learning Interface",
   link: "/game/index.html",
   images: [
-    "../projects/articles-01/img1.jpg",
-    "../projects/articles-01/img2.jpg",
-    "../projects/articles-01/img3.jpg"
+    "../projects/articles-01/img1.webp",
+    "../projects/articles-01/img2.webp",
+    "../projects/articles-01/img3.webp"
   ],
   description: `Playable Learning Interface is a browser-based interactive prototype that explores how educational or informational content can be delivered through movement, scene transition, and level-based discovery rather than static reading. The project reframes a typically passive process as a playable experience, encouraging users to navigate forward, uncover new content, and remain engaged through progression.
 
@@ -696,9 +696,9 @@ Visually, the project uses a custom shader and post-processing workflow with pal
   title: "Perception-Driven Design for VR Interfaces",
   link: "https://www.researchgate.net/publication/373998765_Creating_Immersive_Virtual_Landscapes_A_User-Centered_Approach_to_Enhance_Depth_Perception_in_Head-Mounted_Displays",
   images: [
-    "../projects/articles-02/img1.jpg",
-    "../projects/articles-02/img2.jpg",
-    "../projects/articles-02/img3.jpg"
+    "../projects/articles-02/img1.webp",
+    "../projects/articles-02/img2.webp",
+    "../projects/articles-02/img3.webp"
   ],
   description: `Depth Cues in Immersive VR Interfaces presents a research-driven investigation into how color, luminance, and transparency influence perceived depth in head-mounted displays. Developed through a user-centered experimental workflow, the project connects immersive interface design with spatial cognition, interaction accuracy, and the visual logic required to build more legible virtual environments.
 
@@ -722,9 +722,9 @@ This project reflects a practice that moves across UI/UX design, immersive envir
   title: "Living Interface System",
   link: "https://romanjahandideh.com",
   images: [
-    "../projects/articles-03/img1.jpg",
-    "../projects/articles-03/img2.jpg",
-    "../projects/articles-03/img3.jpg"
+    "../projects/articles-03/img1.webp",
+    "../projects/articles-03/img2.webp",
+    "../projects/articles-03/img3.webp"
   ],
   description: `Living Interface System is my personal portfolio website, developed as a custom interactive environment rather than a conventional page-based interface. The project is inspired by living natural systems, but its logic is implemented through structured front-end engineering: layered interaction states, procedural motion, responsive spatial behavior, and modular UI transitions that work together as one connected system.
 
@@ -752,9 +752,9 @@ More than a personal website, it functions as a case study in how biomimetic res
   title: "Physiology-Driven Gameplay",
   link: "",
   images: [
-    "../projects/articles-04/img1.jpg",
-    "../projects/articles-04/img2.jpg",
-    "../projects/articles-04/img3.jpg"
+    "../projects/articles-04/img1.webp",
+    "../projects/articles-04/img2.webp",
+    "../projects/articles-04/img3.webp"
   ],
   description: `Physiology-Driven Gameplay explores how physiological signals can become part of the interaction logic of a game environment. Instead of presenting biometric data through graphs or meters, the project integrates heart-rate activity directly into environmental behavior. The goal is to transform internal bodily signals into spatial and atmospheric changes so the environment itself becomes the interface through which the player perceives their physiological state.
 
@@ -791,20 +791,20 @@ The resulting system forms a continuous feedback loop connecting the player’s 
       title: "Making Systems Feel Personal",
       link: "",
       images: [
-        "../projects/articles-05/img1.jpg",
-        "../projects/articles-05/img2.jpg",
-        "../projects/articles-05/img3.jpg"
+        "../projects/articles-05/img1.webp",
+        "../projects/articles-05/img2.webp",
+        "../projects/articles-05/img3.webp"
       ],
       description: `Making Systems Feel Personal is a placeholder entry for the Articles section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/articles-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/articles-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
 Suggested future edits for this card: add a short project summary, describe the tools or pipeline you used, explain the visual direction, and end with what you learned or what you would improve next.`,
       text: `Making Systems Feel Personal is a placeholder entry for the Articles section of the portfolio. It exists so the full three-stage system can run with real project ids, real image paths, and real text content instead of broken demo placeholders.
 
-This project currently uses the three images stored in ../projects/articles-05/img1.jpg, img2.jpg, and img3.jpg. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
+This project currently uses the three images stored in ../projects/articles-05/img1.webp, img2.webp, and img3.webp. For now, the text is intentionally generic. Later you can replace it with your actual concept, process, research notes, production details, or final reflection without changing the site structure.
 
 The goal of this entry is simple: keep Stage 2 and Stage 3 fully connected, show a believable title, and provide enough paragraph material for the embed layout to render properly. Nobody needs more drama than that from a portfolio loader.
 
@@ -817,9 +817,9 @@ Suggested future edits for this card: add a short project summary, describe the 
       title: "Procedural Spiderweb Canvas",
       link: "https://romanjahandideh.com",
       images: [
-        "../projects/articles-03/img1.jpg",
-        "../projects/articles-03/img2.jpg",
-        "../projects/articles-03/img3.jpg"
+        "../projects/articles-03/img1.webp",
+        "../projects/articles-03/img2.webp",
+        "../projects/articles-03/img3.webp"
       ],
       description: `Procedural Spiderweb Canvas is the generative background engine powering the current portfolio site. Rather than using a prerendered or static visual, the system builds a living web structure from scratch on every page load using a custom canvas pipeline written in vanilla JavaScript.
 
@@ -843,9 +843,9 @@ The result is an interface background that behaves as a responsive spatial syste
       title: "Dual-World Level Navigation",
       link: "/game/index.html",
       images: [
-        "../projects/articles-01/img1.jpg",
-        "../projects/articles-01/img2.jpg",
-        "../projects/articles-01/img3.jpg"
+        "../projects/articles-01/img1.webp",
+        "../projects/articles-01/img2.webp",
+        "../projects/articles-01/img3.webp"
       ],
       description: `Dual-World Level Navigation is one of the core interaction mechanics inside the browser game An Introduction You Can Walk Through. The system allows the player to exist in two parallel states simultaneously: a standard navigable world and an alternate visual plane separated by a vertical screen divide that the player can push and pull across the viewport.
 
@@ -869,9 +869,9 @@ The system is implemented in p5.js with a custom WebGL draw-call sequencing laye
       title: "Biographical Narrative System",
       link: "/game/index.html",
       images: [
-        "../projects/articles-01/img2.jpg",
-        "../projects/articles-01/img3.jpg",
-        "../projects/articles-01/img1.jpg"
+        "../projects/articles-01/img2.webp",
+        "../projects/articles-01/img3.webp",
+        "../projects/articles-01/img1.webp"
       ],
       description: `Biographical Narrative System is the level-and-story architecture behind An Introduction You Can Walk Through — a browser-based game that replaces the conventional CV with a twelve-chapter spatial journey. Each level corresponds to a phase of the designer's life: Origins, Horizon, Light, Realtime, Systems, Research, VR Sense, Bio Loop, Teaching, Mentor, Play Lab, and Now.
 
@@ -895,9 +895,9 @@ The level sequencer manages transition timing, palette crossfades, narrative dis
       title: "Softener Illustrated Campaign Series",
       link: "",
       images: [
-        "../ARTWORKS/advertiment%20Graphic%20design/62.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/63.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/64.png"
+        "../ARTWORKS/advertiment%20Graphic%20design/62.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/63.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/64.webp"
       ],
       description: `Softener Illustrated Campaign Series is a set of seasonal fashion advertisement posters developed for the Softener brand across winter and fall collections. The design language centers on hand-crafted textural illustration combined with collage-style layout, using ink-rendered figures set against layered abstract backgrounds built from torn textures, brushed planes, and earthy pigment tones.
 
@@ -921,9 +921,9 @@ The series demonstrates how illustration-driven advertising can maintain brand c
       title: "Lanura Fine Wool Editorial",
       link: "",
       images: [
-        "../ARTWORKS/advertiment%20Graphic%20design/65.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/66.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/70.png"
+        "../ARTWORKS/advertiment%20Graphic%20design/65.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/66.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/70.webp"
       ],
       description: `Lanura Fine Wool Editorial is a campaign series for the Lanura brand spanning spring, summer, and autumn collections. The visual strategy leans into minimalism: large open backgrounds, editorial photography of draped wool pieces, and carefully placed abstract botanical forms that suggest the natural origin of the materials without illustrating it literally.
 
@@ -947,9 +947,9 @@ This series demonstrates editorial design applied to textile advertising, where 
       title: "Aurelle Atelier Wool Campaign",
       link: "",
       images: [
-        "../ARTWORKS/advertiment%20Graphic%20design/71.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/72.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/73.png"
+        "../ARTWORKS/advertiment%20Graphic%20design/71.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/72.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/73.webp"
       ],
       description: `Aurelle Atelier Wool Campaign is a fashion advertising series for the Aurelle brand, presenting premium wool garments through a distinctive paper-form visual language. Rather than using standard fashion photography or drawn illustration, the campaign employs stylized sculptural figures constructed from folded and layered paper-like materials — creating garments that appear architectural and tactile simultaneously.
 
@@ -973,9 +973,9 @@ The Aurelle campaign demonstrates how a unified art direction concept — here, 
       title: "Stripeform Premium Sock Series",
       link: "",
       images: [
-        "../ARTWORKS/advertiment%20Graphic%20design/75.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/76.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/77.png"
+        "../ARTWORKS/advertiment%20Graphic%20design/75.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/76.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/77.webp"
       ],
       description: `Stripeform Premium Sock Series is a brand campaign for a premium knitwear accessories label built around a strong, graphic visual identity. Where most hosiery advertising relies on lifestyle photography or flat product shots, this series constructs bold architectural environments — geometric striped tunnels, black-and-white perspectival corridors — and places the single product at the center as a sculptural object.
 
@@ -999,9 +999,9 @@ The campaign demonstrates how graphic design can elevate a small accessory produ
       title: "Rivelle Atelier Summer Collection",
       link: "",
       images: [
-        "../ARTWORKS/advertiment%20Graphic%20design/80.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/81.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/82.png"
+        "../ARTWORKS/advertiment%20Graphic%20design/80.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/81.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/82.webp"
       ],
       description: `Rivelle Atelier Summer Collection is an illustrated editorial campaign for the Rivelle label across the Summer 2026 season. The defining aesthetic choice of this campaign is the combination of hand-drawn colored-pencil illustration with real photographic backgrounds: sun-drenched architectural exteriors, coastal terraces, and warm limestone streets serve as settings for fashion figures rendered in a deliberately sketch-like style.
 
@@ -1025,9 +1025,9 @@ The campaign demonstrates how hand-drawn illustration, when applied with editori
       title: "Rivelle Atelier Spring & Winter",
       link: "",
       images: [
-        "../ARTWORKS/advertiment%20Graphic%20design/84.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/83.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/85.png"
+        "../ARTWORKS/advertiment%20Graphic%20design/84.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/83.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/85.webp"
       ],
       description: `Rivelle Atelier Spring & Winter extends the illustrated editorial language of the Rivelle campaign into cooler seasonal registers. Where the Summer Collection used warm stone architecture and coastal light as its backdrop, these editions shift to softer, more interior compositions: garden settings with botanical framing, neutral interior light, and the refined vocabulary of a studio-based atelier.
 
@@ -1051,9 +1051,9 @@ Together, the Spring & Winter campaign editions demonstrate how a consistent ill
       title: "Lipmuse Beauty Editorial Campaign",
       link: "",
       images: [
-        "../ARTWORKS/advertiment%20Graphic%20design/86.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/87.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/88.png"
+        "../ARTWORKS/advertiment%20Graphic%20design/86.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/87.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/88.webp"
       ],
       description: `Lipmuse Beauty Editorial Campaign is a bold illustrated advertising series for Lipmuse Lip Color, positioned between fashion magazine cover design and cosmetics advertising. The visual language is deliberately high-energy: bold ink illustrations of styled figures, saturated hot pink and black palettes, expressive line weight, and magazine-format layout conventions applied at poster scale.
 
@@ -1077,9 +1077,9 @@ The Color Chemistry and Power of Pink editions each take a different angle on th
       title: "Softora Home & Lifestyle Collection",
       link: "",
       images: [
-        "../ARTWORKS/advertiment%20Graphic%20design/90.png",
-        "../ARTWORKS/advertiment%20Graphic%20design/92.jpg",
-        "../ARTWORKS/advertiment%20Graphic%20design/93.jpg"
+        "../ARTWORKS/advertiment%20Graphic%20design/90.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/92.webp",
+        "../ARTWORKS/advertiment%20Graphic%20design/93.webp"
       ],
       description: `Softora Home & Lifestyle Collection is an advertising campaign for Softora Bath Linens, a home textile brand positioned in the premium lifestyle market. Unlike the fashion-forward campaigns in this portfolio, Softora operates in the quieter register of home and wellness design — where the goal is to communicate softness, comfort, and daily ritual rather than seasonal trends or statement aesthetics.
 

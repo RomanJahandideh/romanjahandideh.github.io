@@ -650,7 +650,7 @@ body {
 
 		.image:before {
 			pointer-events: none;
-			background-image: url("../../images/overlay.png");
+			background-image: url("../../images/overlay.webp");
 			background-color: rgba(19, 21, 25, 0.5);
 			border-radius: 4px;
 			content: '';
@@ -1111,7 +1111,7 @@ body {
 /* BG */
 /* ========= HANDLES ========= */
 :root {
-  --bg-image: url("../../images/bg.jpeg");
+  --bg-image: url("../../images/bg.webp");
 
   --bg-zoom: 2;
   --bg-pos-x: 50%;

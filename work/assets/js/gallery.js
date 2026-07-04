@@ -283,7 +283,7 @@
       img.decoding = "async";
 
       if (item.youtube) {
-        img.src = "https://img.youtube.com/vi/" + item.youtube + "/hqdefault.jpg";
+        img.src = "https://img.youtube.com/vi/" + item.youtube + "/hqdefault.webp";
         var badge = _el("div", "gallery-thumb-play");
         badge.innerHTML =
           '<svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">' +
@@ -365,10 +365,10 @@
     if (item.youtube) {
       var ytId = item.youtube;
       _dYtWrap.style.display = "flex";
-      _dYtPoster.src = "https://img.youtube.com/vi/" + ytId + "/maxresdefault.jpg";
+      _dYtPoster.src = "https://img.youtube.com/vi/" + ytId + "/maxresdefault.webp";
       _dYtPoster.alt = item.title || "";
       _dYtPoster.onerror = function () {
-        this.src = "https://img.youtube.com/vi/" + ytId + "/hqdefault.jpg";
+        this.src = "https://img.youtube.com/vi/" + ytId + "/hqdefault.webp";
         this.onerror = null;
       };
       _dYtIframe.setAttribute(

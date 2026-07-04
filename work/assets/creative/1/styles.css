@@ -172,7 +172,7 @@ body{
 .circle{
   background-size: cover;
   background-position: center;
-  background-image: url("../../ruby.png");
+  background-image: url("../../ruby.webp");
   border-radius: 48% 52% 45% 55% / 52% 46% 54% 48%;
   animation: blobMorph 12s ease-in-out infinite;
 }
@@ -181,7 +181,7 @@ body{
   border-radius: 20px;
   background-size: cover;
   background-position: center;
-  background-image: url("../../ruby.png");
+  background-image: url("../../ruby.webp");
 }
 
 /* =========================
@@ -324,7 +324,7 @@ body{
 }
 
 .blockItem.isImage{
-  background-image: url("../../ruby.png");
+  background-image: url("../../ruby.webp");
   background-size: cover;
   background-position: center;
   border: none;

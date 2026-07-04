@@ -11,7 +11,7 @@
   --font: "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
   /* ===== HOME Background system ===== */
-  --bg-image: url("../../images/bg.jpeg");
+  --bg-image: url("../../images/bg.webp");
   --bg-zoom: 1.0;
   --bg-pos-x: 50%;
   --bg-pos-y: 50%;

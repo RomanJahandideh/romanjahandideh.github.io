@@ -689,7 +689,7 @@ function preload() {
   playerBop = gameData.getJSON("playerBop.json");
 
   if (isDev) {
-    devPlaneImage = gameData.getImage("devPlane.png");
+    devPlaneImage = gameData.getImage("devPlane.webp");
   }
 
   gameFont = gameData.getFont("AtkinsonHyperlegible-Regular.ttf");

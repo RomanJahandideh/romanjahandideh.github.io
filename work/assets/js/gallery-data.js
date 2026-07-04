@@ -71,25 +71,25 @@ window.GALLERY_DATA = {
         title: "Ruby — Garden Room",
         caption: "CG Character · Maya · Arnold · 2025",
         description: "Ruby, a decommissioned service robot, watches a butterfly drift through a mist-filled room. Soft atmospheric light and intimate scale create a quietly melancholic narrative.",
-        image: "ARTWORKS/ruby.png"
+        image: "ARTWORKS/ruby.webp"
       },
       {
         title: "Ruby — Noir",
         caption: "CG Character · Maya · Arnold · 2025",
         description: "Ruby framed in a dark moody portrait — cigarette in hand, low-key lighting, and a graphic chequered background. Character design exploring personality through environment and stillness.",
-        image: "ARTWORKS/27f879131992509.619fd36f4f170.png"
+        image: "ARTWORKS/27f879131992509.619fd36f4f170.webp"
       },
       {
         title: "Ruby — Wasteland",
         caption: "CG Character · Maya · Arnold · 2025",
         description: "Full-body character render — Ruby standing in a smoke-filled environment against a chequered floor. Cinematic composition balancing character detail with environmental storytelling.",
-        image: "ARTWORKS/7e11b4132239739.61a5426d35e61.jpg"
+        image: "ARTWORKS/7e11b4132239739.61a5426d35e61.webp"
       },
       {
         title: "Ruby — Rust",
         caption: "CG Character · Maya · Arnold · 2025",
         description: "Ruby perched on a rusted red car in a post-apocalyptic landscape. Warm dust-light and surface aging techniques communicate the passage of time and the robot's displacement.",
-        image: "ARTWORKS/ddc242131939163.619ee8ca528ba.jpg"
+        image: "ARTWORKS/ddc242131939163.619ee8ca528ba.webp"
       },
       {
         title: "Postcards from Future Iran",
@@ -107,31 +107,31 @@ window.GALLERY_DATA = {
         title: "Dinovic",
         caption: "CG Art · Cinema 4D · Arnold · NFT",
         description: "A ceramic-glazed dinosaur character displayed on a wooden plinth. Sculpture-like surface treatment and studio lighting draw attention to form, texture, and character personality.",
-        image: "ARTWORKS/Dinovic.jpeg"
+        image: "ARTWORKS/Dinovic.webp"
       },
       {
         title: "Frog's Castle",
         caption: "CG Art · Cinema 4D · Arnold · NFT",
         description: "A medieval wooden village environment built as a diorama on a wooden plinth. Whimsical world-building where architecture and material craft create a self-contained narrative.",
-        image: "ARTWORKS/Frogs%20castle.jpeg"
+        image: "ARTWORKS/Frogs%20castle.webp"
       },
       {
         title: "The Old Cook",
         caption: "CG Art · Cinema 4D · Arnold · NFT",
         description: "A grotesque yet endearing cook character with a steaming cauldron. Dark humour through character design — exaggerated proportions, expressive pose, and controlled environmental storytelling.",
-        image: "ARTWORKS/The%20old%20cook.jpeg"
+        image: "ARTWORKS/The%20old%20cook.webp"
       },
       {
         title: "The Old Detective Cat",
         caption: "CG Art · Cinema 4D · Arnold · NFT",
         description: "A detective cat observing a miniature world of architectural elements and characters. Scale contrast and cinematic lighting create a playful yet mysterious visual environment.",
-        image: "ARTWORKS/The%20old%20detective%20cat.jpeg"
+        image: "ARTWORKS/The%20old%20detective%20cat.webp"
       },
       {
         title: "The Pirate",
         caption: "CG Art · Cinema 4D · Arnold · NFT",
         description: "A pirate ship diorama on a sculpted plinth. Also used as the background image of this portfolio's main page. Produced with Cinema 4D, Arnold, Photoshop, and Lightroom.",
-        image: "ARTWORKS/The%20pirate.jpeg"
+        image: "ARTWORKS/The%20pirate.webp"
       }
     ]
   },
@@ -143,115 +143,115 @@ window.GALLERY_DATA = {
         title: "Flow",
         caption: "Display Typeface · Illustrator · 2025",
         description: "Flow — a casual handwritten display typeface with organic, expressive letterforms. Applied across lifestyle merchandise to demonstrate versatility and character.",
-        image: "ARTWORKS/Font%20design/1.png"
+        image: "ARTWORKS/Font%20design/1.webp"
       },
       {
         title: "Drift",
         caption: "Display Typeface · Illustrator · 2025",
         description: "Drift — a flowing handwritten typeface with natural, expressive strokes and a sense of effortless movement. Designed for lifestyle, fashion, and editorial applications.",
-        image: "ARTWORKS/Font%20design/2.png"
+        image: "ARTWORKS/Font%20design/2.webp"
       },
       {
         title: "Sway · Nomad · Vertex · Pulse",
         caption: "Font Collection · Illustrator · 2025",
         description: "Four complementary typefaces — handwritten, all-caps serif, geometric sans, and condensed bold — demonstrated across apparel, drinkware, tote bags, and notebooks.",
-        image: "ARTWORKS/Font%20design/3.png"
+        image: "ARTWORKS/Font%20design/3.webp"
       },
       {
         title: "Echo · Glitch · Fray · Melt",
         caption: "Font Collection · Illustrator · 2025",
         description: "Four expressive typefaces spanning casual handwritten to distressed irregular styles. Each with a distinct visual personality, shown applied to everyday objects.",
-        image: "ARTWORKS/Font%20design/4.png"
+        image: "ARTWORKS/Font%20design/4.webp"
       },
       {
         title: "Nocturne · River · Crumble · Aero",
         caption: "Font Collection · Illustrator · 2025",
         description: "A four-typeface set covering a range of expressive territories — from elegant refined forms to distressed textures to clean geometric construction.",
-        image: "ARTWORKS/Font%20design/5.png"
+        image: "ARTWORKS/Font%20design/5.webp"
       },
       {
         title: "Tide · Breach · North · Whale — Vol. I",
         caption: "Font Collection · Illustrator · 2025",
         description: "A nature-themed geometric typeface collection inspired by ocean and coastal environments. Bold, structured letterforms with a raw, elemental character.",
-        image: "ARTWORKS/Font%20design/6.png"
+        image: "ARTWORKS/Font%20design/6.webp"
       },
       {
         title: "Tide · Breach · North · Whale — Vol. II",
         caption: "Font Collection · Illustrator · 2025",
         description: "Extended presentation of the coastal typeface series — alternative applications and mockups highlighting adaptability across formats and surfaces.",
-        image: "ARTWORKS/Font%20design/7.png"
+        image: "ARTWORKS/Font%20design/7.webp"
       },
       {
         title: "Glacier · Loon · Pine · Northstar+",
         caption: "Font Collection · Illustrator · 2025",
         description: "Wilderness-inspired typeface collection — clean, modern forms evoking outdoor environments, exploration, and the Canadian landscape. Applied across apparel, drinkware, tote bags, and print.",
-        image: "ARTWORKS/Font%20design/8.png"
+        image: "ARTWORKS/Font%20design/8.webp"
       },
       {
         title: "Canada — Typeface Family I",
         caption: "Typeface Family · Illustrator · 2025",
         description: "Canada — a bold multilingual type system presented in four variant groups. This sheet features strong condensed and editorial display weights applied to apparel and branded goods.",
-        image: "ARTWORKS/Font%20design/9.png"
+        image: "ARTWORKS/Font%20design/9.webp"
       },
       {
         title: "Canada — Typeface Family II",
         caption: "Typeface Family · Illustrator · 2025",
         description: "Canada typeface family — second weight group. Clean geometric, script, and condensed variants shown across lifestyle merchandise.",
-        image: "ARTWORKS/Font%20design/10.png"
+        image: "ARTWORKS/Font%20design/10.webp"
       },
       {
         title: "Canada — Typeface Family III",
         caption: "Typeface Family · Illustrator · 2025",
         description: "Canada typeface family — third variant group featuring additional weights and stylistic alternates. Demonstrating range across fashion and print applications.",
-        image: "ARTWORKS/Font%20design/11.png"
+        image: "ARTWORKS/Font%20design/11.webp"
       },
       {
         title: "North Wild · True North · Limitless · Break Rules",
         caption: "Character Type System · Illustrator · 2025",
         description: "Four personality-driven typefaces — The Explorer, The Thinker, The Dreamer, The Rebel. Each font embodies a distinct character archetype, shown with full character sets.",
-        image: "ARTWORKS/Font%20design/12.png"
+        image: "ARTWORKS/Font%20design/12.webp"
       },
       {
         title: "North Untamed · True North · Limitless · Break Rules — Extended",
         caption: "Character Type System · Illustrator · 2025",
         description: "Detailed character presentation of the North type family. Raw, structured, fluid, and disruptive typographic voices — shown in full character sets and landscape photography applications.",
-        image: "ARTWORKS/Font%20design/13.png"
+        image: "ARTWORKS/Font%20design/13.webp"
       },
       {
         title: "North Untamed · True North · Limitless · Break Rules — Dark",
         caption: "Character Type System · Illustrator · 2025",
         description: "Dark mockup series for the North/True North/Limitless/Break Rules type family — applied to hats, water bottles, tote bags, and skateboards in a high-contrast editorial style.",
-        image: "ARTWORKS/Font%20design/14.png"
+        image: "ARTWORKS/Font%20design/14.webp"
       },
       {
         title: "Canada — Lifestyle Series I",
         caption: "Typeface Family · Illustrator · 2025",
         description: "Canada typeface family applied to lifestyle and fashion accessories — water bottle, tote bag, baseball cap, and notebook. Demonstrating versatility across product categories.",
-        image: "ARTWORKS/Font%20design/15.png"
+        image: "ARTWORKS/Font%20design/15.webp"
       },
       {
         title: "Canada — Lifestyle Series II",
         caption: "Typeface Family · Illustrator · 2025",
         description: "Canada typeface in lowercase and mixed-case applications. Clean, contemporary product mockups showing a softer, more approachable side of the typeface family.",
-        image: "ARTWORKS/Font%20design/16.png"
+        image: "ARTWORKS/Font%20design/16.webp"
       },
       {
         title: "Canada — Lifestyle Series III",
         caption: "Typeface Family · Illustrator · 2025",
         description: "Canada typeface family in another lifestyle context — accessories and fashion items in a neutral tonal palette, emphasising the type's adaptability to minimal brand environments.",
-        image: "ARTWORKS/Font%20design/17.png"
+        image: "ARTWORKS/Font%20design/17.webp"
       },
       {
         title: "Canada — Lifestyle Series IV",
         caption: "Typeface Family · Illustrator · 2025",
         description: "Canada typeface applied to natural and sculptural objects — a stone fragment, incense holder, bonsai tree, and suspension lamp. A serene, editorial lifestyle presentation.",
-        image: "ARTWORKS/Font%20design/18.png"
+        image: "ARTWORKS/Font%20design/18.webp"
       },
       {
         title: "Wrath · Fluxe · Thorn · Onyr",
         caption: "Font Collection · Illustrator · 2025",
         description: "Four dark, experimental typefaces for editorial and music branding — distressed brush strokes, liquefied letterforms, sharp serifs, and occult-adjacent geometry. Applied to skateboards, bottles, bags, and phone cases.",
-        image: "ARTWORKS/Font%20design/19.png"
+        image: "ARTWORKS/Font%20design/19.webp"
       }
     ]
   },
@@ -264,154 +264,154 @@ window.GALLERY_DATA = {
         title: "Advertisement Design — 19",
         caption: "Advertising · Poster · 2023",
         description: "Event advertisement built around a central photographic focal point with floating typographic layers — clean spatial hierarchy.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/19.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/19.webp"
       },
 
       {
         title: "Time Stops, Stories Remain",
         caption: "Photo Editorial · SFU · 2025",
         description: "GASTOWN — Historic Heart, Timeless Stories. A poster anchored around the iconic steam clock, blending painterly texture with bold typographic contrast.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/8.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/8.webp"
       },
 
       {
         title: "Advertisement Design — 59",
         caption: "Advertising · Poster · 2023",
         description: "Commercial advertising design exploring the poster format at human scale — body proportion used as a spatial and compositional reference.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/59.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/59.webp"
       },
 
       {
         title: "Aurelle — Soft Awakening, Spring 2025",
         caption: "Fashion Editorial · Atelier Wool · 2025",
         description: "Aurelle Atelier Wool Spring 2025 — Soft Awakening. Light layers. New season. Timeless soul. Pastel paper-form figures in sage and blush against a botanical spring setting.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/72.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/72.webp"
       },
 
       {
         title: "Advertisement Design — 37",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement design using rule lines and structured white space to organise dense information with editorial clarity.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/37.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/37.webp"
       },
 
       {
         title: "Softener — Winter Collection 2023",
         caption: "Fashion Illustration · Brand Campaign · 2023",
         description: "Softener Winter 2023 — illustrated fashion campaign using textural collage and ink-rendered silhouettes wrapped in layered knitwear. Earthy palette, bold typography, relaxed brand identity.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/62.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/62.webp"
       },
 
       {
         title: "İstanbul Levent",
         caption: "Editorial Design · Architecture Guide · 2023",
         description: "İstanbul Levent — NAIBOUR. An architectural guide poster featuring Levent's most notable modern buildings. Bold yellow accent colour, photography, and structured information typography.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/10.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/10.webp"
       },
 
       {
         title: "SFU Design Series — 09",
         caption: "Graphic Design · SFU · 2025",
         description: "Part of the SFU Vancouver design series — exploring the intersection of documentary photography and editorial graphic design in the context of urban storytelling.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/9.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/9.webp"
       },
 
       {
         title: "Lipmuse — Color Chemistry",
         caption: "Beauty Editorial · Illustrated Campaign · 2024",
         description: "Lipmuse — Color Chemistry. Velvet-touch lip color. Made to be seen. Bold ink illustration of styled figures with intense pink and black palette. Live it. Love it. Lipmuse it.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/87.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/87.webp"
       },
 
       {
         title: "Advertisement Design — 52",
         caption: "Advertising · Poster · 2023",
         description: "Commercial poster exploring depth through overlapping planes — foreground type, midground image, and background wash in layers.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/52.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/52.webp"
       },
 
       {
         title: "Aurelle — Paper Forms, Winter 2024",
         caption: "Fashion Editorial · Atelier Wool · 2024",
         description: "Aurelle Atelier Wool Winter 2024 — Paper forms. Tailored warmth. Sculptural paper-form fashion figures in oversized coats and structured knitwear. Natural, Textured, Premium Wool.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/71.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/71.webp"
       },
 
       {
         title: "SFU Design Series — 14",
         caption: "Graphic Design · SFU · 2025",
         description: "Vancouver series poster — merging typographic boldness with photographic texture in an editorial format.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/14.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/14.webp"
       },
 
       {
         title: "Advertisement Design — 56",
         caption: "Advertising · Poster · 2023",
         description: "Commercial design using a grid overlay as both structural tool and visible design element active within the composition.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/56.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/56.webp"
       },
 
       {
         title: "Stripeform — Winter Campaign",
         caption: "Accessories Design · Premium Socks · 2025",
         description: "Stripeform winter campaign — continuing the brand's bold graphic language into cooler season colorways. High-contrast environments frame the product as a design object.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/78.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/78.webp"
       },
 
       {
         title: "SFU Design Series — 07",
         caption: "Graphic Design · SFU · 2025",
         description: "Editorial poster from the SFU Vancouver series — combining documentary photography with structured typographic layout to communicate place and identity.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/7.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/7.webp"
       },
 
       {
         title: "Advertisement Design — 35",
         caption: "Advertising · Poster · 2023",
         description: "Advertising poster with a horizontal band composition — distinct zones for image, headline, and detail information.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/35.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/35.webp"
       },
 
       {
         title: "Shaped by Stories",
         caption: "Photo Editorial · SFU · 2025",
         description: "A visual narrative of Vancouver's architecture, culture, and everyday life — seeing the city differently. Photography and design by Roman Jahandideh at Simon Fraser University.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/6.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/6.webp"
       },
 
       {
         title: "SFU Design Series — 13",
         caption: "Graphic Design · SFU · 2025",
         description: "Editorial poster from the SFU Vancouver design series — typography-led composition combining urban photography with structured information hierarchy.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/13.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/13.webp"
       },
 
       {
         title: "Softora — New Season Towel Collection",
         caption: "Lifestyle Design · Bath Linens · 2026",
         description: "Softora Bath Linens Spring/Summer 2026 — New Season Towel Collection. Softness in every fold. Premium cotton terry. Spa-level comfort. Clean lifestyle editorial with color swatch palette.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/90.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/90.webp"
       },
 
       {
         title: "Advertisement Design — 36",
         caption: "Advertising · Poster · 2023",
         description: "Commercial and event poster exploring typographic scale as visual hierarchy — one word defines the entire reading experience.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/36.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/36.webp"
       },
 
       {
         title: "SFU Design Series — 16",
         caption: "Graphic Design · SFU · 2025",
         description: "Final poster in the SFU Vancouver series — a typographic and photographic composition reflecting on urban experience and design thinking.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/16.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/16.webp"
       },
 
       {
         title: "Taksim Taşkışla",
         caption: "Event Identity · Poster · ITU · 2023",
         description: "Event poster for Taksim Taşkışla — Istanbul Technical University. Bold typographic composition with cultural depth and architectural imagery.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/1.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/1.webp"
       },
 
       /* — Remaining works (SFU series, ITU/Advertisement series, Fashion campaign series) — */
@@ -419,609 +419,609 @@ window.GALLERY_DATA = {
         title: "Senior Design Leader",
         caption: "Self-Promotion · Poster · SFU · 2025",
         description: "Personal brand positioning poster — establishing the role of a senior design leader through bold typography, urban photography, and authoritative visual language.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/1.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/1.webp"
       },
 
       {
         title: "Vancouver Downtown — Stories in the Dark",
         caption: "Photo Editorial · SFU · 2025",
         description: "A visual exploration of contrast, culture, and the quiet beauty hidden in plain sight — Vancouver after dark. Photography and graphic design by Roman Jahandideh, produced at Simon Fraser University.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/2.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/2.webp"
       },
 
       {
         title: "SFU Design Series — 03",
         caption: "Graphic Design · SFU · 2025",
         description: "Part of a personal graphic design series produced at Simon Fraser University — exploring Vancouver as a subject through photography and typographic composition.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/3.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/3.webp"
       },
 
       {
         title: "Fragments of Downtown",
         caption: "Photo Editorial · SFU · 2025",
         description: "A visual journey through Vancouver after dark — photographs and graphic design by Roman Jahandideh, exploring the city's atmospheric, layered character through light and shadow.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/4.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/4.webp"
       },
 
       {
         title: "SFU Design Series — 05",
         caption: "Graphic Design · SFU · 2025",
         description: "Part of a personal graphic design series produced at Simon Fraser University — merging editorial photography with typographic narrative about Vancouver and urban life.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/5.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/5.webp"
       },
 
       {
         title: "SFU Design Series — 10",
         caption: "Graphic Design · SFU · 2025",
         description: "Vancouver-based editorial poster design — photography and graphic layout produced as part of the Simon Fraser University design portfolio series.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/10.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/10.webp"
       },
 
       {
         title: "Learn AI Generated Images",
         caption: "Workshop Poster · SFU · 2025",
         description: "Workshop and tutorial promotional design — Turn Imagination Into Reality. Creative Tools, Limitless Possibilities. Tutor and graphic designer Roman Jahandideh, Simon Fraser University.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/12.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/12.webp"
       },
 
       {
         title: "SFU Design Series — 15",
         caption: "Graphic Design · SFU · 2025",
         description: "Part of the Simon Fraser University design portfolio — editorial photography and graphic design exploring Vancouver's visual identity.",
-        image: "ARTWORKS/Gra%5Bhic%20designs/15.png"
+        image: "ARTWORKS/Gra%5Bhic%20designs/15.webp"
       },
 
       {
         title: "ITU Event Poster — 02",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Institutional event poster for Istanbul Technical University — combining visual impact with clear communication hierarchy for academic and cultural programming.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/2.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/2.webp"
       },
 
       {
         title: "Meeting Day",
         caption: "Event Identity · Poster · ITU · 2023",
         description: "Meeting Day — ITU Makine Fakültesi Mekatronik Mühendisliği Kulübü. Surreal collage design merging classical sculpture with architectural photography. Fikirler Paylaşıldıkça Gelişir.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/3.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/3.webp"
       },
 
       {
         title: "ITU Event Poster — 04",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Event and workshop promotional poster for Istanbul Technical University — bold, high-contrast graphic design for academic club programming.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/4.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/4.webp"
       },
 
       {
         title: "Virtual Landscape Lab",
         caption: "Workshop Poster · ITU · 2023",
         description: "Virtual Landscape Lab — ITU Mimarlık Fakültesi, Peyzaj Mimarlığı Bölümü. Dijital araçlarla peyzaj tasarımı ve sunum atölyesi. Surreal collage poster for a digital landscape design workshop.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/5.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/5.webp"
       },
 
       {
         title: "ITU Event Poster — 06",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Institutional design for Istanbul Technical University event programming — clear visual hierarchy and bold typographic treatment.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/6.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/6.webp"
       },
 
       {
         title: "ITU Event Poster — 07",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Event poster for ITU student club programming — designed for academic and cultural outreach with a bold, contemporary visual language.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/7.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/7.webp"
       },
 
       {
         title: "ITU Event Poster — 08",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Academic event promotion poster — Istanbul Technical University. Strong typographic composition for institutional communication.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/8.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/8.webp"
       },
 
       {
         title: "ITU Event Poster — 09",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Event design for Istanbul Technical University — balancing visual energy with clear informational structure for student club communication.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/9.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/9.webp"
       },
 
       {
         title: "ITU Event Poster — 11",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Promotional event poster for Istanbul Technical University — part of a series of institutional graphic design work for academic clubs and events.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/11.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/11.webp"
       },
 
       {
         title: "ITU Event Poster — 12",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Academic event identity design — ITU student club promotional poster with bold typographic and photographic composition.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/12.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/12.webp"
       },
 
       {
         title: "ITU Event Poster — 13",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Istanbul Technical University event poster — clear visual communication for academic programming with a contemporary graphic language.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/13.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/13.webp"
       },
 
       {
         title: "ITU Event Poster — 14",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Event promotion poster for ITU student programming — balancing institutional identity with engaging visual design.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/14.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/14.webp"
       },
 
       {
         title: "ITU Event Poster — 15",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Academic club event poster — Istanbul Technical University. Part of an ongoing series of graphic design work for institutional communication.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/15.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/15.webp"
       },
 
       {
         title: "ITU Event Poster — 16",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Event identity design for Istanbul Technical University — typographically driven poster with strong visual hierarchy.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/16.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/16.webp"
       },
 
       {
         title: "ITU Event Poster — 17",
         caption: "Event Design · Poster · ITU · 2023",
         description: "Final .png format in the ITU poster series — a high-contrast event promotion design for academic and cultural programming.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/17.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/17.webp"
       },
 
       {
         title: "Advertisement Design — 18",
         caption: "Advertising · Poster · 2023",
         description: "Poster design exploring contrast between geometric restraint and photographic energy — layered composition with strong vertical rhythm.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/18.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/18.webp"
       },
 
       {
         title: "Advertisement Design — 20",
         caption: "Advertising · Poster · 2023",
         description: "Minimal promotional layout with a single dominant image, offset headline, and tight grid structure for visual precision.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/20.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/20.webp"
       },
 
       {
         title: "Advertisement Design — 21",
         caption: "Advertising · Poster · 2023",
         description: "Commercial poster exploring colour field as both background and compositional device — warm palette, controlled spacing.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/21.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/21.webp"
       },
 
       {
         title: "Advertisement Design — 22",
         caption: "Advertising · Poster · 2023",
         description: "Typography-forward advertisement — oversized display face anchors the layout while photography recedes into the lower register.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/22.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/22.webp"
       },
 
       {
         title: "Advertisement Design — 23",
         caption: "Advertising · Poster · 2023",
         description: "Product and event promotion poster — structured in a diagonal axis to create dynamic tension and visual forward motion.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/23.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/23.webp"
       },
 
       {
         title: "Advertisement Design — 24",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement design with a split-field composition: image zone and pure typographic zone in deliberate balance.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/24.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/24.webp"
       },
 
       {
         title: "Advertisement Design — 25",
         caption: "Advertising · Poster · 2023",
         description: "Cultural event poster — the human figure becomes a graphic element, silhouetted against a high-contrast background.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/25.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/25.webp"
       },
 
       {
         title: "Advertisement Design — 26",
         caption: "Advertising · Poster · 2023",
         description: "Commercial design leveraging negative space as a design tool — restrained layout with maximum visual impact.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/26.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/26.webp"
       },
 
       {
         title: "Advertisement Design — 27",
         caption: "Advertising · Poster · 2023",
         description: "Poster study in layered transparency: overlapping photographic and typographic elements at varied opacities for visual depth.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/27.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/27.webp"
       },
 
       {
         title: "Advertisement Design — 28",
         caption: "Advertising · Poster · 2023",
         description: "Event and product advertisement — circular compositional geometry creates visual containment and a clear focal centre.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/28.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/28.webp"
       },
 
       {
         title: "Advertisement Design — 29",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement poster with a strict two-colour palette — high-contrast approach delivers clarity at any scale or context.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/29.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/29.webp"
       },
 
       {
         title: "Advertisement Design — 30",
         caption: "Advertising · Poster · 2023",
         description: "Promotional piece built on a three-row grid — title, image, and action zones clearly defined and rhythmically spaced.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/30.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/30.webp"
       },
 
       {
         title: "Advertisement Design — 31",
         caption: "Advertising · Poster · 2023",
         description: "Commercial poster exploring texture as a design surface — photographic grain and typographic texture in productive dialogue.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/31.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/31.webp"
       },
 
       {
         title: "Advertisement Design — 32",
         caption: "Advertising · Poster · 2023",
         description: "Event identity poster — bold logotype centred over a full-bleed photograph, with supporting information in a clean footer band.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/32.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/32.webp"
       },
 
       {
         title: "Advertisement Design — 33",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement design with an asymmetric layout — visual weight distributed off-centre for a dynamic, editorial quality.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/33.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/33.webp"
       },
 
       {
         title: "Advertisement Design — 34",
         caption: "Advertising · Poster · 2023",
         description: "Promotional communication built around a cropped portrait — extreme close-up commands attention, text serves as anchor.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/34.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/34.webp"
       },
 
       {
         title: "Advertisement Design — 38",
         caption: "Advertising · Poster · 2023",
         description: "Event promotion poster — a single bold colour field occupies the composition, type set in reversal for stark contrast.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/38.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/38.webp"
       },
 
       {
         title: "Advertisement Design — 39",
         caption: "Advertising · Poster · 2023",
         description: "Advertising series poster with motion-implied photography — blur effect communicates urgency and kinetic energy.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/39.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/39.webp"
       },
 
       {
         title: "Advertisement Design — 40",
         caption: "Advertising · Poster · 2023",
         description: "Commercial poster design combining grid structure with deliberate visual interruption — one element breaks the rule for impact.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/40.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/40.webp"
       },
 
       {
         title: "Advertisement Design — 41",
         caption: "Advertising · Poster · 2023",
         description: "Promotional poster — photography cropped to the edge of the frame, pushing the subject beyond its usual compositional boundary.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/41.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/41.webp"
       },
 
       {
         title: "Advertisement Design — 42",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement design where colour temperature does the communicative work — warm versus cool zones establish clear visual hierarchy.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/42.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/42.webp"
       },
 
       {
         title: "Advertisement Design — 43",
         caption: "Advertising · Poster · 2023",
         description: "Event poster with a collage sensibility — layered photographic fragments arranged in an intentional, irregular visual grid.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/43.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/43.webp"
       },
 
       {
         title: "Advertisement Design — 44",
         caption: "Advertising · Poster · 2023",
         description: "Advertising design exploring the relationship between large-scale illustration and compact, restrained typographic information.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/44.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/44.webp"
       },
 
       {
         title: "Advertisement Design — 45",
         caption: "Advertising · Poster · 2023",
         description: "Commercial poster with full-bleed photography and an ultra-minimal typographic overlay — image-led, text-supported communication.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/45.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/45.webp"
       },
 
       {
         title: "Advertisement Design — 46",
         caption: "Advertising · Poster · 2023",
         description: "Event promotion poster using repeating pattern as background — controlled visual busyness creates premium, textured depth.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/46.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/46.webp"
       },
 
       {
         title: "Advertisement Design — 47",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement design — headline set in an oversized condensed typeface creates a strong vertical reading axis through the composition.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/47.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/47.webp"
       },
 
       {
         title: "Advertisement Design — 48",
         caption: "Advertising · Poster · 2023",
         description: "Promotional piece exploring monochromatic visual language — a single tonal range unifies image and type into a cohesive whole.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/48.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/48.webp"
       },
 
       {
         title: "Advertisement Design — 49",
         caption: "Advertising · Poster · 2023",
         description: "Commercial advertising poster where the product becomes the central compositional axis — an object-as-hero approach.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/49.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/49.webp"
       },
 
       {
         title: "Advertisement Design — 50",
         caption: "Advertising · Poster · 2023",
         description: "Event poster with a strong diagonal composition — photographic subject and text aligned to the same visual vector.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/50.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/50.webp"
       },
 
       {
         title: "Advertisement Design — 51",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement design built around rhythm — repeated typographic and graphic elements create a visual cadence across the poster.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/51.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/51.webp"
       },
 
       {
         title: "Advertisement Design — 53",
         caption: "Advertising · Poster · 2023",
         description: "Promotional poster with an editorial, magazine-layout sensibility — grid-conscious design and typographically confident hierarchy.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/53.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/53.webp"
       },
 
       {
         title: "Advertisement Design — 54",
         caption: "Advertising · Poster · 2023",
         description: "Event identity design — logotype and image share equal compositional weight, neither subordinate to the other.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/54.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/54.webp"
       },
 
       {
         title: "Advertisement Design — 55",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement series poster with a cinematic widescreen crop — letterboxed composition for a dramatic, screen-like visual quality.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/55.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/55.webp"
       },
 
       {
         title: "Advertisement Design — 57",
         caption: "Advertising · Poster · 2023",
         description: "Promotional piece with a geometric abstraction layer over photography — shape and image in productive, unresolved tension.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/57.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/57.webp"
       },
 
       {
         title: "Advertisement Design — 58",
         caption: "Advertising · Poster · 2023",
         description: "Event advertisement poster — expressive display title contrasts with clean sans-serif supporting information in a bold typographic pairing.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/58.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/58.webp"
       },
 
       {
         title: "Advertisement Design — 60",
         caption: "Advertising · Poster · 2023",
         description: "Advertisement series poster — distorted and rotated typographic elements bring kinetic energy to what is otherwise a static format.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/60.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/60.webp"
       },
 
       {
         title: "Advertisement Design — 61",
         caption: "Advertising · Poster · 2023",
         description: "Final poster in the advertisement graphic design series — a resolved synthesis of the series' visual vocabulary into a single confident composition.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/61.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/61.webp"
       },
 
       {
         title: "Softener — Spring / Summer 2024",
         caption: "Fashion Illustration · Brand Campaign · 2024",
         description: "Softener Spring/Summer 2024 — colorful, movement-driven illustrated campaign. Loose figures in light fabrics against abstract painted planes communicate the brand's soft, everyday energy.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/63.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/63.webp"
       },
 
       {
         title: "Softener — Fall 2023 Campaign",
         caption: "Fashion Illustration · Brand Campaign · 2023",
         description: "Softener Fall 2023 — Layer up. Move freely. Made for every moment. Collage illustration in burnt orange, forest green, and deep navy communicates the season's relaxed, premium casual identity.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/64.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/64.webp"
       },
 
       {
         title: "Lanura — Soft Beginnings, Spring 2025",
         caption: "Fashion Editorial · Fine Wool · 2025",
         description: "Lanura Fine Wool Spring 2025 — Soft Beginnings. Minimalist editorial photography of draped wool against a neutral ground. 100% Premium Wool identity communicated through restraint and material focus.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/65.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/65.webp"
       },
 
       {
         title: "Lanura — Airy Ease, Summer 2022",
         caption: "Fashion Editorial · Fine Wool · 2022",
         description: "Lanura Fine Wool Summer 2022 — Airy Ease. Light for warm days. Woven to breathe. Simplified illustrated mannequin in draped cream wool against a soft warm ground with botanical accent.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/66.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/66.webp"
       },
 
       {
         title: "Lanura — Summer Collection Series",
         caption: "Fashion Editorial · Fine Wool · 2023",
         description: "Lanura summer editorial series — minimalist compositions exploring the relationship between natural textiles, body, and negative space. Clean type system with generous leading.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/67.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/67.webp"
       },
 
       {
         title: "Lanura — Spring Editorial",
         caption: "Fashion Editorial · Fine Wool · 2024",
         description: "Lanura spring campaign — soft-focused editorial design pairing premium wool textiles with botanical and architectural references. Quiet palette, considered spacing.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/68.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/68.webp"
       },
 
       {
         title: "Lanura — Textile Campaign",
         caption: "Fashion Editorial · Fine Wool · 2024",
         description: "Lanura textile campaign — editorial poster using photography and minimal typographic overlay to foreground the quality and character of fine wool garments.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/69.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/69.webp"
       },
 
       {
         title: "Lanura — Wrapped Calm, Autumn 2024",
         caption: "Fashion Editorial · Fine Wool · 2024",
         description: "Lanura Fine Wool Autumn 2024 — Wrapped Calm. Timeless Company. Honest Design. Warm wool tones, draped scarf editorial, and a quietly authoritative typographic system.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/70.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/70.webp"
       },
 
       {
         title: "Aurelle — Atelier Wool Series",
         caption: "Fashion Editorial · Atelier Wool · 2025",
         description: "Aurelle atelier wool series — sculptural paper-form figures presenting the brand's seasonal collection with architectural precision and material depth.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/73.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/73.webp"
       },
 
       {
         title: "Aurelle — Seasonal Campaign",
         caption: "Fashion Editorial · Atelier Wool · 2025",
         description: "Aurelle seasonal campaign — continuing the paper-form visual language across a new collection. Geometric figure construction conveys tailoring quality through form rather than photography.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/74.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/74.webp"
       },
 
       {
         title: "Stripeform — Autumn 2025, Black Series",
         caption: "Accessories Design · Premium Socks · 2025",
         description: "Stripeform Premium Sock Series Autumn 2025 — black cable-knit against a bold black-and-white striped architectural corridor. Signature texture. Elevated comfort. Available in essential colorways.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/75.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/75.webp"
       },
 
       {
         title: "Stripeform — Autumn 2025, Burgundy",
         caption: "Accessories Design · Premium Socks · 2025",
         description: "Stripeform Premium Sock Series Autumn 2025 — rich burgundy wool sock in the brand's signature bold graphic environment. Crafted for comfort. Designed for distinction.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/76.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/76.webp"
       },
 
       {
         title: "Stripeform — Autumn 2025, Teal Botanical",
         caption: "Accessories Design · Premium Socks · 2025",
         description: "Stripeform Premium Sock Series Autumn 2025 — teal jacquard botanical-pattern sock. Creative design. Signature knit texture. Available in multiple colorways.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/77.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/77.webp"
       },
 
       {
         title: "Stripeform — Collection Editorial",
         caption: "Accessories Design · Premium Socks · 2025",
         description: "Stripeform collection editorial — geometric striped environments and richly textured knitwear accessories. Designed to inspire. Made to stand apart.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/79.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/79.webp"
       },
 
       {
         title: "Rivelle — Illustrated Soul, Winter 2026",
         caption: "Fashion Illustration · Atelier Collection · 2026",
         description: "Rivelle Atelier Winter 2026 — Illustrated soul. Real textures. Hand-drawn editorial illustration blending colored-pencil fashion figures with warm architectural environments.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/80.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/80.webp"
       },
 
       {
         title: "Rivelle — Light in Motion, Summer 2026",
         caption: "Fashion Illustration · Atelier Collection · 2026",
         description: "Rivelle Atelier Summer 2026 — Light in Motion. Illustrated spirit. Real textures. Modern tailoring. Elevated essentials. Pencil-sketch figure on sun-drenched terrace.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/81.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/81.webp"
       },
 
       {
         title: "Rivelle — Sunlit Attitude, Summer 2026",
         caption: "Fashion Illustration · Atelier Collection · 2026",
         description: "Rivelle Atelier Summer 2026 — Sunlit Attitude. Illustrated spirit. Real textures. Editorial pencil illustration of structured summer tailoring against warm coastal architecture.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/82.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/82.webp"
       },
 
       {
         title: "Rivelle — Atelier Editorial",
         caption: "Fashion Illustration · Atelier Collection · 2026",
         description: "Rivelle Atelier editorial — the brand's hand-illustrated visual language applied to a seasonal collection. Colored-pencil rendering merges fashion design and artistic expression.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/83.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/83.webp"
       },
 
       {
         title: "Rivelle — Spring Grace, Spring 2026",
         caption: "Fashion Illustration · Atelier Collection · 2026",
         description: "Rivelle Atelier Spring 2026 — Spring Grace. Sketched illustration in a garden setting — loose spring tailoring rendered in pencil-and-wash. Modern tailoring. Elevated essentials.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/84.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/84.webp"
       },
 
       {
         title: "Rivelle — Spring & Winter Series",
         caption: "Fashion Illustration · Atelier Collection · 2026",
         description: "Rivelle atelier campaign — seasonal extension of the illustrated editorial series. Consistent hand-drawn identity across contrasting seasonal registers.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/85.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/85.webp"
       },
 
       {
         title: "Lipmuse — The Power of Pink",
         caption: "Beauty Editorial · Illustrated Campaign · 2024",
         description: "Lipmuse Issue 08 Summer 2024 — The Power of Pink. Silk-touch lip color. Bold illustrated magazine cover format featuring three figures in saturated pink and black. Color with attitude.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/86.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/86.webp"
       },
 
       {
         title: "Lipmuse — Velvet Lip Color",
         caption: "Beauty Editorial · Illustrated Campaign · 2024",
         description: "Lipmuse Velvet Lip Color — rich, velvety lip color that moves with you from sunrise to spotlight. Illustrated editorial combining figure, product, and expressive beauty typography.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/88.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/88.webp"
       },
 
       {
         title: "Lipmuse — Selfie Shade",
         caption: "Beauty Editorial · Illustrated Campaign · 2024",
         description: "Lipmuse — Selfie Shade. Bold color. Real confidence. Everyday glamour. Capture the moment. Wear the confidence. Illustrated two-figure editorial with velvet lip color campaign messaging.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/89.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/89.webp"
       },
 
       {
         title: "Softora — Home Textile Editorial",
         caption: "Lifestyle Design · Bath Linens · 2026",
         description: "Softora home textile editorial — premium bath linen campaign combining quiet lifestyle imagery with restrained typographic layout. Warmth, softness, and everyday luxury.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/91.png"
+        image: "ARTWORKS/advertiment%20Graphic%20design/91.webp"
       },
 
       {
         title: "Softora — Spring / Summer 2026",
         caption: "Lifestyle Design · Bath Linens · 2026",
         description: "Softora Bath Linens Spring/Summer 2026 — stylized silhouette draped in premium cotton terry in sage green. Softness in every fold. Available in Ivory, Coral, Sage, Charcoal, and Sand.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/92.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/92.webp"
       },
 
       {
         title: "Softener — Spring / Summer 2024 (Large Format)",
         caption: "Fashion Illustration · Brand Campaign · 2024",
         description: "Softener Spring/Summer 2024 large-format edition — the colorful illustrated campaign at full editorial scale, designed for print and billboard advertising applications.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/93.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/93.webp"
       },
 
       {
         title: "Softener — Fall 2023 (Vertical)",
         caption: "Fashion Illustration · Brand Campaign · 2023",
         description: "Softener Fall 2023 vertical edition — Layer up. Move freely. Softness that moves with you. Textural collage illustration in a portrait format for print and social media applications.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/94.jpg"
+        image: "ARTWORKS/advertiment%20Graphic%20design/94.webp"
       },
 
       /* — Gym & Sport Advertising — */
@@ -1029,7 +1029,7 @@ window.GALLERY_DATA = {
         title: "Grit House — Build Your Grit",
         caption: "Sport & Fitness · Gym Advertising · 2025",
         description: "Grit House Athletic Club — Build Your Grit. Built on Grit. High-contrast black and yellow poster with a female athlete in a strength training environment. Small Group Training · Functional Fitness · Personal Coaching. Surrey, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/95.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/95.webp",
         tags: ["gym"]
       },
 
@@ -1037,7 +1037,7 @@ window.GALLERY_DATA = {
         title: "Grit House — Own Your Power",
         caption: "Sport & Fitness · Gym Advertising · 2025",
         description: "Grit House Athletic Club — Own Your Power. Built on grit, driven by strength. Bold yellow typographic headline over a moody black gym environment. Strength Training · Conditioning · Functional Fitness · Personal Coaching. Surrey, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/96.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/96.webp",
         tags: ["gym"]
       },
 
@@ -1045,7 +1045,7 @@ window.GALLERY_DATA = {
         title: "Her Peak Fitness — For Every Rep",
         caption: "Sport & Fitness · Women's Gym · 2025",
         description: "Her Peak Fitness — For Every Rep. For Every You. A women-focused gym built for strength, designed for you. Annotated black-and-white action photography highlights Women's Strength Training, Personal Coaching, Yoga + Mobility. Surrey, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/97.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/97.webp",
         tags: ["gym"]
       },
 
@@ -1053,7 +1053,7 @@ window.GALLERY_DATA = {
         title: "Ascend Men's Club — Forge Strength With Purpose",
         caption: "Sport & Fitness · Men's Fitness Club · 2025",
         description: "Ascend Men's Club — Forge Strength With Purpose. A men's-focused fitness club built for discipline, performance, and recovery. Minimal double-exposure athletic photography on white. Strength Training · Functional Fitness · Personal Coaching · Sauna & Recovery. Burnaby, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/98.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/98.webp",
         tags: ["gym"]
       },
 
@@ -1061,7 +1061,7 @@ window.GALLERY_DATA = {
         title: "Grit House — Turn Effort Into Power",
         caption: "Sport & Fitness · Gym Advertising · 2025",
         description: "Grit House Athletic Club — Turn Effort Into Power. New classes. New recovery. More ways to train harder. Intense action photography of a female athlete with battle ropes on a black and yellow ground. Train Hard. Recover Smarter. Repeat Stronger. Surrey, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/99.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/99.webp",
         tags: ["gym"]
       },
 
@@ -1069,7 +1069,7 @@ window.GALLERY_DATA = {
         title: "Volt Core Fitness — Move Loud",
         caption: "Sport & Fitness · Gym Advertising · 2025",
         description: "Volt Core Fitness — Move Loud. Train Different. Strength. Energy. Confidence. All in one place. Energetic primary-colour composition with a kettlebell-swinging athlete. Free Trial Week offer. Surrey, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/100.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/100.webp",
         tags: ["gym"]
       },
 
@@ -1077,7 +1077,7 @@ window.GALLERY_DATA = {
         title: "HerLift Studio — Rise High, Vol. I",
         caption: "Sport & Fitness · Women's Gym & Nutrition · 2025",
         description: "HerLift Studio — Train Strong. Eat Smart. Rise High. Women's Gym & Food Regime Program. Women's Strength Classes · HIIT & Functional Training · Personal Coaching · Nutrition Plans · Meal Guidance · Body Composition Check-ins. Surrey, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/101.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/101.webp",
         tags: ["gym"]
       },
 
@@ -1085,7 +1085,7 @@ window.GALLERY_DATA = {
         title: "HerLift Studio — Rise High, Vol. II",
         caption: "Sport & Fitness · Women's Gym & Nutrition · 2025",
         description: "HerLift Studio — Train Strong. Eat Smart. Rise High. Second layout variant of the women's gym and nutrition program campaign. Customized Meal Plans · Macro Coaching · Healthy Recipe Guides · Sustainable Fat Loss. Surrey, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/102.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/102.webp",
         tags: ["gym"]
       },
 
@@ -1093,7 +1093,7 @@ window.GALLERY_DATA = {
         title: "Westminster Flow Studio — Breathe Into It, Vol. I",
         caption: "Sport & Fitness · Yoga Studio · 2025",
         description: "Westminster Flow Studio — Breathe Into It. Yoga Classes: Vinyasa · Mobility · Breathwork · Beginner Friendly. Bold typographic headline over a seated yoga figure against a vivid yellow wall. Morning & Evening Sessions. Westminster, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/103.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/103.webp",
         tags: ["gym"]
       },
 
@@ -1101,7 +1101,7 @@ window.GALLERY_DATA = {
         title: "Westminster Flow Studio — Breathe Into It, Vol. II",
         caption: "Sport & Fitness · Yoga Studio · 2025",
         description: "Westminster Flow Studio — Breathe Into It. Second layout of the yoga studio campaign featuring a standing balance pose against the yellow wall exterior. Vinyasa · Mobility · Breathwork · Beginner Friendly. Westminster, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/104.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/104.webp",
         tags: ["gym"]
       },
 
@@ -1109,7 +1109,7 @@ window.GALLERY_DATA = {
         title: "Westminster Flow Studio — Breathe Into It, Vol. III",
         caption: "Sport & Fitness · Yoga Studio · 2025",
         description: "Westminster Flow Studio — Breathe Into It. Third layout variant featuring a warrior-pose figure outdoors. Consistent bold typographic identity across the campaign series. Book Your First Class. Westminster, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/105.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/105.webp",
         tags: ["gym"]
       },
 
@@ -1117,7 +1117,7 @@ window.GALLERY_DATA = {
         title: "Iron Edge Fitness — Choose Your Hard",
         caption: "Sport & Fitness · Body Transformation · 2025",
         description: "Iron Edge Fitness — Choose Your Hard! We don't do easy, we do results. Split before/after transformation photography at the compositional centre. Strength Training · Muscle Building & Fat Loss · Nutrition Coaching · Personalized Workout Plan. Surrey, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/106.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/106.webp",
         tags: ["gym"]
       },
 
@@ -1125,7 +1125,7 @@ window.GALLERY_DATA = {
         title: "North Peak Men's Club — Lock In",
         caption: "Sport & Fitness · Men's Gym · 2025",
         description: "North Peak Men's Club — Lock In. Discipline Builds Everything. Intense red-ground poster with a male athlete in a sled-push position. Strength Training · Conditioning · Men's Coaching · Body Transformation · Recovery & Mobility. North Vancouver, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/107.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/107.webp",
         tags: ["gym"]
       },
 
@@ -1133,7 +1133,7 @@ window.GALLERY_DATA = {
         title: "22nd Street Run Club — Greatness Runs This Block",
         caption: "Sport & Fitness · Running Club · 2025",
         description: "22nd Street Run Club — Greatness Runs This Block. A women's running club built for pace, confidence, and community. Layered black-and-white editorial photography of four athletes in motion. Tuesday Tempo · Thursday Social Run · Saturday Long Run. BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/108.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/108.webp",
         tags: ["gym"]
       },
 
@@ -1141,7 +1141,7 @@ window.GALLERY_DATA = {
         title: "Forge Rise Fitness — Energy Is Earned",
         caption: "Sport & Fitness · Conceptual Campaign · 2025",
         description: "Forge Rise Fitness — Energy Is Earned. Train awake. Live stronger. Two moka pots joined at the spout to form a dumbbell — a minimal, conceptually sharp object-metaphor poster on warm beige. Start your morning stronger.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/109.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/109.webp",
         tags: ["gym"]
       },
 
@@ -1149,7 +1149,7 @@ window.GALLERY_DATA = {
         title: "Forge Rise Fitness — Momentum Is Brewed",
         caption: "Sport & Fitness · Conceptual Campaign · 2025",
         description: "Forge Rise Fitness — Momentum Is Brewed. Wake strong. Train stronger. Two French press coffee makers joined handle-to-handle, forming a dumbbell silhouette. Restrained minimal layout on warm beige. Strength · Conditioning · Personal Coaching.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/110.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/110.webp",
         tags: ["gym"]
       },
 
@@ -1157,7 +1157,7 @@ window.GALLERY_DATA = {
         title: "Prime Edge Fitness — Staying Disciplined",
         caption: "Sport & Fitness · Gym Advertising · 2025",
         description: "Prime Edge Fitness — Waking Up Is Hard. Staying Disciplined Is Harder. But the Results Are Worth It. Isolated kettlebell on a neutral background with a structured service grid. Strength Training · Cardio · Personal Training · Nutrition Coaching. Burnaby, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/111.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/111.webp",
         tags: ["gym"]
       },
 
@@ -1165,7 +1165,7 @@ window.GALLERY_DATA = {
         title: "Prime Edge Fitness — Fuel Becomes Force",
         caption: "Sport & Fitness · Conceptual Campaign · 2025",
         description: "Prime Edge Fitness — Fuel Becomes Force. Shake clean. Train stronger. Performance starts with what you build daily. A stainless protein shaker styled as a launch rocket — a clever product-as-hero concept. Burnaby, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/112.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/112.webp",
         tags: ["gym"]
       },
 
@@ -1173,7 +1173,7 @@ window.GALLERY_DATA = {
         title: "Vancouver Women's Club — Sculpt Your Flow",
         caption: "Sport & Fitness · Pilates Studio · 2025",
         description: "Vancouver Women's Club — Sculpt Your Flow. Trending now: Reformer Pilates Sculpt. Soft lavender editorial with a linear body illustration layered over a live-action figure. Core Strength · Mobility · Low-Impact Burn · Beginner Friendly. Vancouver, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/113.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/113.webp",
         tags: ["gym"]
       },
 
@@ -1181,7 +1181,7 @@ window.GALLERY_DATA = {
         title: "Vancouver Women's Club — Strong From the Core",
         caption: "Sport & Fitness · Pilates Studio · 2025",
         description: "Vancouver Women's Club — Strong From the Core, Radiant in Your Flow. Teal-toned Reformer Pilates campaign with a linear body contour illustration. Core Strength · Mobility · Low-Impact Burn · Beginner Friendly. Vancouver, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/114.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/114.webp",
         tags: ["gym"]
       },
 
@@ -1189,7 +1189,7 @@ window.GALLERY_DATA = {
         title: "Stanley Park Run Club — Run the Loop",
         caption: "Sport & Fitness · Running Club · 2025",
         description: "Stanley Park Run Club — Run the Loop. Find your rhythm. Aerial photography of runners on the red seawall path curving through Stanley Park with the Vancouver skyline beyond. All Paces Welcome · Sunrise Runs · Community Pace Groups. Downtown Vancouver, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/115.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/115.webp",
         tags: ["gym"]
       },
 
@@ -1197,7 +1197,7 @@ window.GALLERY_DATA = {
         title: "Pulse Jam Fitness Club — Train Harder",
         caption: "Sport & Fitness · Gym Advertising · 2025",
         description: "Pulse Jam Fitness Club — Train Harder. Move Louder. High-Energy Strength · Cardio · Conditioning. Bold textured red-and-black poster with a sneaker at centre and 3D chrome hand-lettered logotype. Vancouver, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/116.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/116.webp",
         tags: ["gym"]
       },
 
@@ -1205,7 +1205,7 @@ window.GALLERY_DATA = {
         title: "Iron Halo Fitness — Build Your Power",
         caption: "Sport & Fitness · Conceptual Campaign · 2025",
         description: "Iron Halo Fitness — Build Your Power. A weight plate casts a shadow of a flexing bodybuilder — the aspirational self projected from the equipment. Minimal white studio composition. Free Weights · Bodybuilding Coaching · Recovery Zone · Nutrition Support.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/119.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/119.webp",
         tags: ["gym"]
       },
 
@@ -1213,7 +1213,7 @@ window.GALLERY_DATA = {
         title: "Iron Halo Fitness — Forge Your Form",
         caption: "Sport & Fitness · Conceptual Campaign · 2025",
         description: "Iron Halo Fitness — Forge Your Form. A hex dumbbell casts a confident bodybuilder shadow — aspirational self-image rendered through the object. Clean white editorial. Free Weights · Bodybuilding Coaching · Recovery Lounge · Nutrition Support.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/120.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/120.webp",
         tags: ["gym"]
       },
 
@@ -1221,7 +1221,7 @@ window.GALLERY_DATA = {
         title: "Iron Halo Fitness — Shape Your Strength",
         caption: "Sport & Fitness · Conceptual Campaign · 2025",
         description: "Iron Halo Fitness — Shape Your Strength. A kettlebell casts an athletic bodybuilder shadow on a clean white surface. Third in the object-shadow conceptual series. Kettlebell Training · Functional Strength · Recovery Studio · Bodybuilding Coaching.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/121.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/121.webp",
         tags: ["gym"]
       },
 
@@ -1229,7 +1229,7 @@ window.GALLERY_DATA = {
         title: "Seawall Stride Run Club — Run Vancouver Differently",
         caption: "Sport & Fitness · Running Club · 2025",
         description: "Seawall Stride Run Club — Run Vancouver Differently. A surreal spiral red running track winds above the Lions Gate Bridge and Vancouver skyline. Scenic routes. Strong community. Unforgettable city. Sunrise Runs · All Levels Welcome · Waterfront Routes. Stanley Park, Vancouver, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/122.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/122.webp",
         tags: ["gym"]
       },
 
@@ -1237,7 +1237,7 @@ window.GALLERY_DATA = {
         title: "Pacific Stride Run Club — One City, One Community",
         caption: "Sport & Fitness · Running Club Illustration · 2025",
         description: "Pacific Stride Run Club — One City. One Community. Endless Miles. Vancouver's friendliest running club. Rich illustrated poster weaving Stanley Park, the Seawall, Science World, and the city skyline into a single flowing composition. All Paces Welcome · Weekly Group Runs · Community First. Vancouver, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/123.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/123.webp",
         tags: ["gym"]
       },
 
@@ -1245,7 +1245,7 @@ window.GALLERY_DATA = {
         title: "Vancouver City Run — Seawall to Skyline",
         caption: "Sport & Fitness · Running Event · 2025",
         description: "Vancouver City Run — Seawall to Skyline. Campaign 2026. A running shoe sole carries a detailed aerial map of Vancouver etched into the rubber — Stanley Park · False Creek · Downtown. 21.1K Distance. Conceptual editorial poster for a half-marathon running event.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/124.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/124.webp",
         tags: ["gym"]
       },
 
@@ -1253,7 +1253,7 @@ window.GALLERY_DATA = {
         title: "Forge House — Become Stronger Every Day, Vol. I",
         caption: "Sport & Fitness · Gym Advertising · 2025",
         description: "Forge House Performance Gym — Become Stronger Every Day. Strength is built in the 6:00 AM alarms, the last two reps that burn, and the days you train before motivation arrives. Bold red-ground poster with a female athlete leaning on oversized 3D typography. Nişantaşı, Istanbul.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/125.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/125.webp",
         tags: ["gym"]
       },
 
@@ -1261,7 +1261,7 @@ window.GALLERY_DATA = {
         title: "Forge House — Become Stronger Every Day, Vol. II",
         caption: "Sport & Fitness · Gym Advertising · 2025",
         description: "Forge House Performance Gym — Become Stronger Every Day. Second layout variant — the athlete carries the bold 3D letterforms of STRONGER on her back, a visual metaphor for earned progress. Red-ground editorial. Nişantaşı, Istanbul.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/126.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/126.webp",
         tags: ["gym"]
       },
 
@@ -1269,7 +1269,7 @@ window.GALLERY_DATA = {
         title: "Balance Pilates Studio — Strength. Control. You.",
         caption: "Sport & Fitness · Pilates Studio · 2025",
         description: "Balance Pilates Studio — Strength. Control. You. Reformer Pilates Classes. A vertical-format campaign with a clean white ground and confident female figure. Reformer Flow · Core & Stability · Flexibility & Mobility · Mind & Body Connection. Burnaby, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/127.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/127.webp",
         tags: ["gym"]
       },
 
@@ -1277,7 +1277,7 @@ window.GALLERY_DATA = {
         title: "Lumen Pilates Club — Your Balance Starts Here",
         caption: "Sport & Fitness · Pilates Studio · 2025",
         description: "Lumen Pilates Club — Your Balance Starts Here. Clean white editorial with a dancer-like figure and typographic word cloud of pilates disciplines: Reformer · Mat Classes · Posture · Core · Breath · Mobility · Balance. Beginner Friendly · Private Sessions. Burnaby, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/128.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/128.webp",
         tags: ["gym"]
       },
 
@@ -1285,7 +1285,7 @@ window.GALLERY_DATA = {
         title: "Maple Ridge Run Collective — Go",
         caption: "Sport & Fitness · Running Club · 2025",
         description: "Maple Ridge Run Collective — Go. Run Far. Run Free. Run Together. Start Now. Large-format typographic poster with a female runner at the starting line, mountains and sky beyond. Community Run Club: Wednesday Social Run · Sunday Long Run. Maple Ridge, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/129.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/129.webp",
         tags: ["gym"]
       },
 
@@ -1293,7 +1293,7 @@ window.GALLERY_DATA = {
         title: "Maple Ridge Run Collective — Move",
         caption: "Sport & Fitness · Running Club · 2025",
         description: "Maple Ridge Run Collective — Move. Run Strong. Stay Wild. Move Together. Join Now. Full-bleed outdoor poster with a female runner mid-stride against a mountain highway. Thursday Social Run · Sunday Distance Run. Maple Ridge, BC.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/130.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/130.webp",
         tags: ["gym"]
       },
 
@@ -1302,7 +1302,7 @@ window.GALLERY_DATA = {
         title: "The Fisherman and His Wife — Cover",
         caption: "Children's Book · Editorial Design · Illustration · 2025",
         description: "Cover design for The Fisherman and His Wife — A Sea Tale about Wishes, Gratitude, and Knowing Enough. Original tale by The Brothers Grimm, retold and adapted for children by Roman Jahandideh. Paper-diorama illustration in midnight blue and ivory with layered coastal scenery.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK1.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK1.webp",
         tags: ["book"]
       },
 
@@ -1310,7 +1310,7 @@ window.GALLERY_DATA = {
         title: "The Fisherman and His Wife — Page 1",
         caption: "Children's Book · Editorial Design · Illustration · 2025",
         description: "Opening spread — Beside the wide blue sea, there lived an old fisherman and his wife. Their home was a tiny hut. He did not ask for much. Paper-diorama scene of cottage, moonlit ocean, and the fisherman rowing out at dawn.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK2.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK2.webp",
         tags: ["book"]
       },
 
@@ -1318,7 +1318,7 @@ window.GALLERY_DATA = {
         title: "The Fisherman and His Wife — Page 2",
         caption: "Children's Book · Editorial Design · Illustration · 2025",
         description: "The fisherman throws his net into the shining sea and catches a beautiful fish with golden scales — an enchanted prince. He releases the fish without asking for anything. Paper-diorama seabed scene with luminous golden fish.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/book5.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/book5.webp",
         tags: ["book"]
       },
 
@@ -1326,7 +1326,7 @@ window.GALLERY_DATA = {
         title: "The Fisherman and His Wife — Page 3",
         caption: "Children's Book · Editorial Design · Illustration · 2025",
         description: "The fish grants the fisherman's first wish — the old hut is replaced by a small, cosy cottage. Paper-diorama spread showing the new cottage with warm lamplight and the grateful fisherman at the water's edge.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK4.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK4.webp",
         tags: ["book"]
       },
 
@@ -1334,7 +1334,7 @@ window.GALLERY_DATA = {
         title: "The Fisherman and His Wife — Page 4",
         caption: "Children's Book · Editorial Design · Illustration · 2025",
         description: "The wife grows unhappy and sends the fisherman back — go to the sea and ask the fish for a new wooden house! He does not want to go, but his wife will not stop complaining. Expressive paper-diorama scene of the argument outside the hut.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK3.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/BOOK3.webp",
         tags: ["book"]
       },
 
@@ -1342,7 +1342,7 @@ window.GALLERY_DATA = {
         title: "The Fisherman and His Wife — Page 5",
         caption: "Children's Book · Editorial Design · Illustration · 2025",
         description: "The fisherman calls out to the fish in the moonlit sea. The fish waved its fin, and the wish was done — a brand-new wooden house stood beside their old hut. Atmospheric paper-diorama night scene with glowing cottage.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/book6.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/book6.webp",
         tags: ["book"]
       },
 
@@ -1350,7 +1350,7 @@ window.GALLERY_DATA = {
         title: "The Fisherman and His Wife — Page 7",
         caption: "Children's Book · Editorial Design · Illustration · 2025",
         description: "The closing spread — again and again the fish granted wishes, but the more the wife had, the more she wanted. At last she asked for too much. The magic came to an end. Enough is a treasure, and greed can wash good things away. Warm candlelit interior scene of the couple returned to their hut.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/book7.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/book7.webp",
         tags: ["book"]
       },
 
@@ -1358,7 +1358,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Cover",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Cover design for The Long Way Home — A Children's Sea Tale about Courage, Patience, and Finding Home. Original epic by Homer, retold and adapted for children by Roman Jahandideh. A hunched, creature-like figure sits by a coastal shore gazing out at a distant sailboat — warm sepia watercolour palette.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_20_57%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_20_57%20PM.webp",
         tags: ["book"]
       },
 
@@ -1366,7 +1366,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Page 1",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Opening spread: After a long war, a sailor named Odysseus wanted only one thing — to go home. Far across the sea, his wife and son waited for him. So Odysseus raised his sail, held the wind in his heart, and began the long journey back. Illustration of a small ship character hoisting a white sail.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2008_56_35%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2008_56_35%20PM.webp",
         tags: ["book"]
       },
 
@@ -1374,7 +1374,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Page 2",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Storm spread: The sea was beautiful, but it was never simple. Some days the waves carried the ship gently; other days, storms pushed it far from the right path. Odysseus told his sailors, 'We must stay brave and keep moving.' Dynamic ink-wash storm scene with crashing waves.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_01_17%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_01_17%20PM.webp",
         tags: ["book"]
       },
 
@@ -1382,7 +1382,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Page 3",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Cyclops spread: One evening the sailors found an island with a dark cave. Inside lived a giant who did not like visitors. Odysseus knew strength alone would not save them — so he used clever thinking, quiet steps, and patience to lead his friends back to the ship. Shadowy cave entrance with a lone figure creeping out.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_03_20%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_03_20%20PM.webp",
         tags: ["book"]
       },
 
@@ -1390,7 +1390,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Page 4",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Sirens spread: The ship sailed near voices singing over the water — sweet, but dangerous. Odysseus told his sailors, 'Do not follow every beautiful sound.' They covered their ears, stayed together, and sailed safely past. Swirling musical notes and shell-like siren forms drifting from the sea.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_05_11%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_05_11%20PM.webp",
         tags: ["book"]
       },
 
@@ -1398,7 +1398,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Page 6",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Homecoming spread: At last, after many storms, Odysseus reached his own shore. His clothes were torn and his hair full of salt — but his heart knew the land. He walked slowly toward his home, hoping his family had not forgotten him. Solitary figure trudging across a barren coastal plain toward a distant cottage.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_07_12%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_07_12%20PM.webp",
         tags: ["book"]
       },
 
@@ -1406,7 +1406,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Page 6 (Alternate)",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Alternate illustration for the homecoming spread — same narrative beat, different composition. Odysseus as a silhouetted creature figure walking toward an island visible across open water, capturing the emotional distance between the journey's end and home.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_09_17%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_09_17%20PM.webp",
         tags: ["book"]
       },
 
@@ -1414,7 +1414,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Page 7",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Closing spread: When Odysseus saw his family again, the long journey felt smaller. He had crossed storms, giants, songs, and lonely seas — but the greatest treasure was not gold or glory. It was home. And he learned that courage is not only fighting. Sometimes, courage is finding your way back. Tender embrace scene in warm sepia.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_10_44%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_10_44%20PM.webp",
         tags: ["book"]
       },
 
@@ -1422,7 +1422,7 @@ window.GALLERY_DATA = {
         title: "The Long Way Home — Back Cover",
         caption: "Children's Book · Editorial Design · Illustration · 2026",
         description: "Back cover design for The Odyssey: The Long Way Home. Features the full title treatment, subtitle 'A Children's Sea Tale about Courage, Patience, and Finding Home', credits to Homer (original epic) and Roman Jahandideh (retold and adapted), ISBN, and a coastal landscape illustration with ship on the horizon.",
-        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_19_23%20PM.png",
+        image: "ARTWORKS/advertiment%20Graphic%20design/New%20folder/ChatGPT%20Image%20Jun%2016%2C%202026%2C%2009_19_23%20PM.webp",
         tags: ["book"]
       }
 
@@ -1436,43 +1436,43 @@ window.GALLERY_DATA = {
         title: "Ruby — 3D Production Pipeline",
         caption: "3D Process · Maya · Arnold · 2025",
         description: "Split-screen view of the Ruby character's Maya production environment alongside the final rendered output. Shows the relationship between viewport geometry and Arnold-rendered result.",
-        image: "ARTWORKS/dbf628133866069.61c86f208111f.jpg"
+        image: "ARTWORKS/dbf628133866069.61c86f208111f.webp"
       },
       {
         title: "Postcards from Future Iran — Concept",
         caption: "3D Process · Maya · Arnold · 2025",
         description: "Initial concept development for the Postcards from Future Iran series — establishing the retrofuturistic visual language, narrative direction, and environmental mood.",
-        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/413/large/roman-jahandideh-image.jpg"
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/413/large/roman-jahandideh-image.webp"
       },
       {
         title: "Postcards from Future Iran — References",
         caption: "3D Process · Maya · Arnold · 2025",
         description: "Moodboard and reference gathering stage — identifying architectural precedents, material textures, and lighting references that inform the final environments.",
-        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/571/large/roman-jahandideh-image-1.jpg"
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/571/large/roman-jahandideh-image-1.webp"
       },
       {
         title: "Postcards from Future Iran — Blocking",
         caption: "3D Process · Maya · Arnold · 2025",
         description: "Environment blocking and spatial layout — establishing proportions, camera positions, and the fundamental geometry of each scene before detailing begins.",
-        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/659/large/roman-jahandideh-image-2.jpg"
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/659/large/roman-jahandideh-image-2.webp"
       },
       {
         title: "Postcards from Future Iran — Lighting",
         caption: "3D Process · Maya · Arnold · 2025",
         description: "Lighting and atmosphere development — shaping the emotional tone of each environment through controlled light sources, shadow behaviour, and atmospheric depth.",
-        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/927/large/roman-jahandideh-image-3.jpg"
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/430/927/large/roman-jahandideh-image-3.webp"
       },
       {
         title: "Postcards from Future Iran — Materials",
         caption: "3D Process · Maya · Arnold · 2025",
         description: "Material and texture pass — applying surface properties, wear, and aging to architectural elements to reinforce the narrative of abandonment and retrofuturism.",
-        image: "https://cdnb.artstation.com/p/assets/images/images/099/431/029/large/roman-jahandideh-image-4.jpg"
+        image: "https://cdnb.artstation.com/p/assets/images/images/099/431/029/large/roman-jahandideh-image-4.webp"
       },
       {
         title: "Postcards from Future Iran — Final Renders",
         caption: "3D Process · Maya · Arnold · 2025",
         description: "Final production renders with full compositing, colour grading, and post-processing — the complete visual output of the design process series.",
-        image: "https://cdna.artstation.com/p/assets/images/images/099/431/072/large/roman-jahandideh-image-5.jpg"
+        image: "https://cdna.artstation.com/p/assets/images/images/099/431/072/large/roman-jahandideh-image-5.webp"
       }
     ]
   },
