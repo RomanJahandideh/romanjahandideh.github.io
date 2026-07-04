@@ -24,13 +24,16 @@
   function init() {
     const gd = window.GALLERY_DATA?.['Graphic Design'];
     if (!gd?.artworks?.length) return;
-    const artworks = gd.artworks.filter(a => a.image);
+    /* Cap to 60 — canvas shows MAX_VISIBLE=60 at a time; loading more is wasted bandwidth */
+    const artworks = gd.artworks.filter(a => a.image).slice(0, 60);
 
     const canvas = document.getElementById('artwork-3d-bg');
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    canvas.style.willChange     = 'transform';
+    canvas.style.willChange      = 'transform';
     canvas.style.transformOrigin = '50% 50%';
+    canvas.style.opacity         = '0';
+    canvas.style.transition      = 'opacity 1.2s ease';
 
     /* ── All state before resize() ── */
     let W = 0, H = 0;
@@ -50,6 +53,7 @@
     let prevDragMX  = 0, prevDragMY = 0;
     let lastDrawT   = 0;
     let wasDragging = false;
+    let _revealed   = false;
     const shockwaves = [];   // { x, y, r, life }
 
     /* ── Veil + resize ── */
@@ -636,7 +640,15 @@
       canvas.style.transform =
         `perspective(1000px) rotateX(${(tiltY * TILT_MAX).toFixed(2)}deg) rotateY(${(-tiltX * TILT_MAX).toFixed(2)}deg) scale(1.10)`;
       draw(now * 0.001);
+      /* Reveal canvas once 20+ images ready — all appear together, not one-by-one */
+      if (!_revealed && objects.filter(o => o.loaded).length >= 20) {
+        _revealed = true;
+        canvas.style.opacity = '1';
+      }
     })(0);
+
+    /* Hard fallback: force reveal after 6 s regardless of load state */
+    setTimeout(() => { if (!_revealed) { _revealed = true; canvas.style.opacity = '1'; } }, 6000);
 
     preloadAll();
   }
