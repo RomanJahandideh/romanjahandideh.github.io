@@ -35,7 +35,17 @@ function init(){
     return pdf.getPage(1).then(function(firstPage){
       var vp=firstPage.getViewport({scale:1});
       var aspect=vp.width/vp.height;
-      var pageH=560,pageW=Math.round(pageH*aspect);
+      var availRect=stage.getBoundingClientRect();
+      var availW=availRect.width,availH=availRect.height;
+      var doubleUp=availW>500;
+      var contentAspect=doubleUp?aspect*2:aspect;
+      var fitW=availW,fitH=fitW/contentAspect;
+      if(fitH>availH){fitH=availH;fitW=fitH*contentAspect}
+      stage.style.flex="0 0 auto";
+      stage.style.width=Math.round(fitW)+"px";
+      stage.style.height=Math.round(fitH)+"px";
+      stage.style.margin="auto";
+      var pageH=Math.round(fitH),pageW=Math.round(doubleUp?fitW/2:fitW);
       var pages=[];
       for(var i=1;i<=pdf.numPages;i++){
         var pageEl=document.createElement("div");
@@ -48,7 +58,7 @@ function init(){
 
       var flip=new PageFlipCtor(mount,{
         width:pageW,height:pageH,size:"stretch",
-        minWidth:200,maxWidth:900,minHeight:280,maxHeight:1200,
+        minWidth:150,maxWidth:2000,minHeight:200,maxHeight:2000,
         showCover:false,usePortrait:true,maxShadowOpacity:.5,
         mobileScrollSupport:true,useMouseEvents:true
       });
