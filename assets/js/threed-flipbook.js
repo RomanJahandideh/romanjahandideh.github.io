@@ -9,11 +9,27 @@ function init(){
   pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
   var src=mount.getAttribute("data-pdf-src");
   var wrap=mount.parentElement;
-  var toolbar=document.createElement("div");
-  toolbar.className="threed-flip-toolbar";
-  toolbar.innerHTML='<button type="button" class="abt-timeline-btn threed-flip-prev" aria-label="Previous page">‹ Prev</button><span class="threed-flip-status" aria-live="polite"></span><button type="button" class="abt-timeline-btn threed-flip-next" aria-label="Next page">Next ›</button>';
-  wrap.insertBefore(toolbar,mount);
+  var stage=document.createElement("div");
+  stage.className="threed-flip-stage";
+  wrap.insertBefore(stage,mount);
+  var prevBtn=document.createElement("button");
+  prevBtn.type="button";
+  prevBtn.className="threed-flip-arrow threed-flip-prev";
+  prevBtn.setAttribute("aria-label","Previous page");
+  prevBtn.innerHTML="&#8249;";
+  stage.appendChild(prevBtn);
+  stage.appendChild(mount);
+  var nextBtn=document.createElement("button");
+  nextBtn.type="button";
+  nextBtn.className="threed-flip-arrow threed-flip-next";
+  nextBtn.setAttribute("aria-label","Next page");
+  nextBtn.innerHTML="&#8250;";
+  stage.appendChild(nextBtn);
   mount.classList.add("threed-flip-book");
+  var statusEl=document.createElement("div");
+  statusEl.className="threed-flip-status";
+  statusEl.setAttribute("aria-live","polite");
+  wrap.appendChild(statusEl);
 
   pdfjsLib.getDocument(src).promise.then(function(pdf){
     return pdf.getPage(1).then(function(firstPage){
@@ -53,7 +69,6 @@ function init(){
       function renderAround(n){
         for(var d=-1;d<=3;d++)renderPage(n+d);
       }
-      var statusEl=toolbar.querySelector(".threed-flip-status");
       function updateStatus(){
         var n=flip.getCurrentPageIndex()+1;
         statusEl.textContent="Page "+n+" / "+pdf.numPages;
@@ -65,8 +80,8 @@ function init(){
         renderAround(e.data+1);
         updateStatus();
       });
-      toolbar.querySelector(".threed-flip-prev").addEventListener("click",function(){flip.flipPrev()});
-      toolbar.querySelector(".threed-flip-next").addEventListener("click",function(){flip.flipNext()});
+      prevBtn.addEventListener("click",function(){flip.flipPrev()});
+      nextBtn.addEventListener("click",function(){flip.flipNext()});
     });
   }).catch(function(err){
     mount.innerHTML='<p style="padding:24px;font-size:13px;color:rgba(28,25,23,.6)">Could not load the portfolio PDF.</p>';
