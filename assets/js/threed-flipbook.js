@@ -1,20 +1,20 @@
 !function(){"use strict";var started=false;
 var TOC=[
-  {title:"Photography",start:6,end:13,desc:"A visual diary shot through a designer's eye. Every frame treats composition, light, and negative space with the same rigor as a brand campaign — turning ordinary street scenes and quiet interiors into deliberate studies of contrast, mood, and story."},
-  {title:"Bosom (Sculpture)",start:14,end:14,desc:"Bosom, winner of a Tabriz sculpture competition on the theme of family. One gesture — a father's protective grip on his son — is sculpted to carry an entire narrative about instinct, tradition, and the quiet tension between protection and control."},
-  {title:"Zangar Museum",start:15,end:30,desc:"A conceptual museum where the building itself is the brand. Its faceted, folded form reads as large-scale visual identity for the institution it represents — an architecture-as-logo approach that earned 1st place among the graduating class's dissertation projects."},
-  {title:"Architecture School",start:31,end:41,desc:"A campus identity told entirely through form. Deconstructivist volumes are layered over Qajar-era Iranian motifs, and Islamic geometric patterns do double duty — ornamenting the facade by day and casting patterned light through the interiors, one signature language carried from the outside in."},
-  {title:"Pilgrimages Airport",start:42,end:50,desc:"Wayfinding at the scale of a building. An Islamic-geometry algorithm generates the airport's entire form, giving pilgrims one continuous, instantly legible visual language from the tarmac to the terminal gate — branding that guides rather than just decorates."},
-  {title:"Rose Residential",start:51,end:60,desc:"A residential brand built from pattern and performance. A mashrabiya-inspired lattice facade cuts solar heat and cools the building passively, while doubling as a signature, ownable visual identity, recognizable from any angle."},
-  {title:"Rumi Museum",start:61,end:68,desc:"A spatial identity built around motion. The museum's rotational form choreographs every visitor along the same dark-to-light procession central to Sufi philosophy — turning Rumi's poetry, and the whirl of Sama dance, into an architectural brand experience."},
-  {title:"Kitchen Design",start:69,end:75,desc:"Interior renders art-directed like product photography. Material, light, and framing are composed to sell a mood and a lifestyle as much as a room — the same instincts used in a campaign shoot, applied here to cabinetry and countertops."},
-  {title:"Home Design",start:76,end:80,desc:"Full-home interior visualizations treated as lifestyle campaigns. Each render is composed to tell a story about how a space is lived in — not just how it's built — image-making that sells a feeling first and a floor plan second."},
-  {title:"Chairs Story",start:81,end:83,desc:"An abstract render series treating furniture as sculpture. Chair forms are caught mid-motion, inspired by the whirling of Molana's Sama dance — object design pushed toward pure visual storytelling."},
-  {title:"Hedayat School",start:84,end:90,desc:"Brand-grade documentation of a real, built project. A late-Qajar-era house in Urmia is archived with editorial care as it moves from private residence to school across three generations of ownership — heritage preservation presented like a case study."},
+  {title:"Photography",start:6,end:13,desc:"A visual diary shot through a designer's eye. Every frame treats composition, light, and negative space with the same rigor as a brand campaign, turning ordinary street scenes and quiet interiors into deliberate studies of contrast, mood, and story."},
+  {title:"Bosom (Sculpture)",start:14,end:14,desc:"Winner of a Tabriz sculpture competition on the theme of family. Bosom sculpts one gesture, a father's protective grip on his son, into a narrative about instinct, tradition, and the tension between protection and control."},
+  {title:"Zangar Museum",start:15,end:30,desc:"A conceptual museum where the building itself is the brand. Its faceted, folded form reads as large-scale visual identity for the institution it represents, an architecture-as-logo approach that earned 1st place among the graduating class's dissertation projects."},
+  {title:"Architecture School",start:31,end:41,desc:"A campus identity told entirely through form. Deconstructivist volumes are layered over Qajar-era Iranian motifs, and Islamic geometric patterns do double duty, ornamenting the facade by day and casting patterned light through the interiors as one signature language carried from the outside in."},
+  {title:"Pilgrimages Airport",start:42,end:50,desc:"Wayfinding at the scale of a building. An Islamic-geometry algorithm generates the airport's entire form, giving pilgrims one continuous, instantly legible visual language from the tarmac to the terminal gate: branding that guides rather than just decorates."},
+  {title:"Rose Residential",start:51,end:60,desc:"A residential brand built from pattern and performance. A mashrabiya-inspired lattice facade cuts solar heat and cools the building passively, while doubling as a signature, ownable visual identity recognizable from any angle."},
+  {title:"Rumi Museum",start:61,end:68,desc:"A spatial identity built around motion. The museum's rotational form choreographs every visitor along the same dark-to-light procession central to Sufi philosophy, turning Rumi's poetry and the whirl of Sama dance into an architectural brand experience."},
+  {title:"Kitchen Design",start:69,end:75,desc:"Interior renders art-directed like product photography. Material, light, and framing are composed to sell a mood and a lifestyle as much as a room, the same instincts used in a campaign shoot applied here to cabinetry and countertops."},
+  {title:"Home Design",start:76,end:80,desc:"Full-home interior visualizations treated as lifestyle campaigns. Each render is composed to tell a story about how a space is lived in, not just how it's built: image-making that sells a feeling first and a floor plan second."},
+  {title:"Chairs Story",start:81,end:83,desc:"An abstract render series treating furniture as sculpture. Chair forms are caught mid-motion, inspired by the whirling of Molana's Sama dance, object design pushed toward pure visual storytelling."},
+  {title:"Hedayat School",start:84,end:90,desc:"Brand-grade documentation of a real, built project. A late-Qajar-era house in Urmia is archived with editorial care as it moves from private residence to school across three generations of ownership, heritage preservation presented like a case study."},
   {title:"Green Wall",start:91,end:97,desc:"A modular planter-and-furniture system where sustainability is the visual identity. Greenery is designed directly into the object rather than bolted on afterward, making the message part of the form itself, not an add-on."},
-  {title:"Temporary Residence vs. Disasters",start:98,end:103,desc:"A competition-winning emergency housing concept, engineered to deploy fast after natural disasters. Proof that clear, urgent design communication can move exactly as quickly as the crisis it's built to answer."},
-  {title:"Abstract Photo of City",start:104,end:106,desc:"“The Ghost of Playground,” a 2018 award-winning abstract cityscape. The same compositional eye behind every project in this portfolio, distilled into a single, striking frame — evidence the design thinking travels across mediums."},
-  {title:"Rain Gardens on Büyükada",start:107,end:132,desc:"A landscape research project turned visual system. Rain gardens and green infrastructure are mapped, diagrammed, and branded as one cohesive strategy for stormwater and carbon management on Büyükada island, Istanbul — data made legible through design."}
+  {title:"Temporary Residence vs. Disasters",start:98,end:103,thumb:100,desc:"A competition-winning emergency housing concept, engineered to deploy fast after natural disasters. Proof that clear, urgent design communication can move exactly as quickly as the crisis it's built to answer."},
+  {title:"Abstract Photo of City",start:104,end:106,desc:"“The Ghost of Playground,” a 2018 award-winning abstract cityscape. The same compositional eye behind every project in this portfolio, distilled into a single, striking frame, evidence the design thinking travels across mediums."},
+  {title:"Rain Gardens on Büyükada",start:107,end:132,desc:"A landscape research project turned visual system. Rain gardens and green infrastructure are mapped, diagrammed, and branded as one cohesive strategy for stormwater and carbon management on Büyükada island, Istanbul, data made legible through design."}
 ];
 function findProject(pageNum){
   for(var i=0;i<TOC.length;i++){
@@ -45,7 +45,14 @@ function init(){
     var pill=document.createElement("button");
     pill.type="button";
     pill.className="threed-project-pill";
-    pill.textContent=project.title;
+    var thumb=document.createElement("span");
+    thumb.className="threed-project-pill-thumb";
+    thumb.appendChild(document.createElement("canvas"));
+    var label=document.createElement("span");
+    label.className="threed-project-pill-label";
+    label.textContent=project.title;
+    pill.appendChild(thumb);
+    pill.appendChild(label);
     pill.addEventListener("click",function(){jumpToProject(project)});
     navEl.appendChild(pill);
     return pill;
@@ -139,6 +146,20 @@ function init(){
           pill.classList.toggle("is-active",project===TOC[idx]);
         });
       }
+
+      TOC.forEach(function(project,idx){
+        var thumbPage=project.thumb||Math.min(project.start+1,project.end);
+        pdf.getPage(thumbPage).then(function(page){
+          var canvas=pills[idx].querySelector("canvas");
+          var srcViewport=page.getViewport({scale:1});
+          var target=44;
+          var scale=target/Math.min(srcViewport.width,srcViewport.height);
+          var viewport=page.getViewport({scale:scale});
+          canvas.width=Math.round(viewport.width);
+          canvas.height=Math.round(viewport.height);
+          page.render({canvasContext:canvas.getContext("2d"),viewport:viewport});
+        });
+      });
 
       renderAround(1);
       updateInfo();
