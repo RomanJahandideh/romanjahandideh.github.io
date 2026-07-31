@@ -409,6 +409,10 @@
             <div class="label">Font Design</div>
           </a>
 
+          <a class="layer layer7" data-category="3D Design" role="button" tabindex="0" aria-label="Browse 3D Design">
+            <div class="label">3D Design</div>
+          </a>
+
         </div>
       </div>
 
@@ -488,16 +492,39 @@
 
 </div>
 
+<!-- ================= 3D DESIGN WINDOW ================= -->
+
+<div id="threed-window" class="site-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="3D Design — Roman Jahandideh">
+
+  <div class="abt-view abt-text-view">
+    <div>
+      <div class="abt-eyebrow">3D Design</div>
+      <p class="abt-title">Architecture and Design Portfolio — a spatial visualization and 3D design showcase.</p>
+    </div>
+    <hr class="abt-divider">
+    <div class="abt-timeline-wrap threed-timeline-wrap" id="threed-flipbook-wrap">
+      <div id="threed-flipbook" data-pdf-src="assets/pdf/architecture-and-design-portfolio.pdf"></div>
+    </div>
+  </div>
+
+</div>
+
 <!-- GSAP 3.15 — animation engine -->
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
 <!-- GLightbox — fullscreen image lightbox -->
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
 
+<!-- 3D Design flipbook — pdf.js renders pages, page-flip drives the book effect -->
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js" defer></script>
+
 <script src="assets/js/main.js?v=20260704a" defer></script>
 <script src="assets/js/nav.js?v=20260617a" defer></script>
 <script src="assets/js/teaching-overlay-redesign.js" defer></script>
 <script src="assets/js/home-fog-trail.js" defer></script>
+<script src="assets/js/threed-panel.js" defer></script>
+<script src="assets/js/threed-flipbook.js" defer></script>
 
 <script src="https://d3js.org/d3.v3.min.js" defer></script>
 
@@ -665,7 +692,7 @@
 (function(){
   function syncModalLock(){
     var h = (location.hash || "").toLowerCase();
-    var open = (h === "#about" || h === "#contact");
+    var open = (h === "#about" || h === "#contact" || h === "#3d-design");
     document.documentElement.classList.toggle("modal-open", open);
     document.body.classList.toggle("modal-open", open);
   }
@@ -676,10 +703,10 @@
 
   function blockScroll(e){
     var h = (location.hash || "").toLowerCase();
-    if (h !== "#about" && h !== "#contact") return;
+    if (h !== "#about" && h !== "#contact" && h !== "#3d-design") return;
 
     var target = e.target;
-    if (target && target.closest && target.closest("#contact .panel-inner, #about .panel-inner")) {
+    if (target && target.closest && target.closest("#contact .panel-inner, #about .panel-inner, #threed-window")) {
       return;
     }
 
