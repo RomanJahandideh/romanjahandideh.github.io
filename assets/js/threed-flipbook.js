@@ -29,6 +29,15 @@ function init(){
   var PageFlipCtor=(window.St&&window.St.PageFlip)||window.PageFlip;
   if(!PageFlipCtor)return;
   started=true;
+  mount.classList.add("threed-flip-book");
+  var loadingEl=document.createElement("div");
+  loadingEl.className="threed-flip-loading";
+  loadingEl.textContent="Loading the portfolio…";
+  mount.appendChild(loadingEl);
+  function clearLoading(){
+    if(loadingEl&&loadingEl.parentNode)loadingEl.parentNode.removeChild(loadingEl);
+    loadingEl=null;
+  }
   pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
   var src=mount.getAttribute("data-pdf-src");
   var wrap=mount.parentElement;
@@ -67,7 +76,6 @@ function init(){
   nextBtn.setAttribute("aria-label","Next page");
   nextBtn.innerHTML="&#8250;";
   stage.appendChild(nextBtn);
-  mount.classList.add("threed-flip-book");
 
   var infoEl=document.createElement("div");
   infoEl.className="threed-project-info";
@@ -116,14 +124,14 @@ function init(){
 
       var rendered={};
       function renderPage(n){
-        if(rendered[n]||n<1||n>pdf.numPages)return;
+        if(rendered[n]||n<1||n>pdf.numPages)return Promise.resolve();
         rendered[n]=true;
-        pdf.getPage(n).then(function(page){
+        return pdf.getPage(n).then(function(page){
           var canvas=pages[n-1].querySelector("canvas");
           var viewport=page.getViewport({scale:2});
           canvas.width=viewport.width;
           canvas.height=viewport.height;
-          page.render({canvasContext:canvas.getContext("2d"),viewport:viewport});
+          return page.render({canvasContext:canvas.getContext("2d"),viewport:viewport}).promise;
         });
       }
       function renderAround(n){
@@ -140,6 +148,7 @@ function init(){
         });
       }
 
+      renderPage(1).then(clearLoading);
       renderAround(1);
       updateInfo();
       flip.on("flip",function(e){
