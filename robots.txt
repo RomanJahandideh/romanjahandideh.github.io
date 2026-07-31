@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://romanjahandideh.github.io/sitemap.xml
+Sitemap: https://romanjahandideh.com/sitemap.xml
