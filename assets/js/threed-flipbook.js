@@ -12,7 +12,7 @@ var TOC=[
   {title:"Chairs Story",start:81,end:83,desc:"An abstract render series treating furniture as sculpture. Chair forms are caught mid-motion, inspired by the whirling of Molana's Sama dance, object design pushed toward pure visual storytelling."},
   {title:"Hedayat School",start:84,end:90,desc:"Brand-grade documentation of a real, built project. A late-Qajar-era house in Urmia is archived with editorial care as it moves from private residence to school across three generations of ownership, heritage preservation presented like a case study."},
   {title:"Green Wall",start:91,end:97,desc:"A modular planter-and-furniture system where sustainability is the visual identity. Greenery is designed directly into the object rather than bolted on afterward, making the message part of the form itself, not an add-on."},
-  {title:"Temporary Residence vs. Disasters",start:98,end:103,thumb:100,desc:"A competition-winning emergency housing concept, engineered to deploy fast after natural disasters. Proof that clear, urgent design communication can move exactly as quickly as the crisis it's built to answer."},
+  {title:"Temporary Residence vs. Disasters",start:98,end:103,desc:"A competition-winning emergency housing concept, engineered to deploy fast after natural disasters. Proof that clear, urgent design communication can move exactly as quickly as the crisis it's built to answer."},
   {title:"Abstract Photo of City",start:104,end:106,desc:"“The Ghost of Playground,” a 2018 award-winning abstract cityscape. The same compositional eye behind every project in this portfolio, distilled into a single, striking frame, evidence the design thinking travels across mediums."},
   {title:"Rain Gardens on Büyükada",start:107,end:132,desc:"A landscape research project turned visual system. Rain gardens and green infrastructure are mapped, diagrammed, and branded as one cohesive strategy for stormwater and carbon management on Büyükada island, Istanbul, data made legible through design."}
 ];
@@ -45,14 +45,7 @@ function init(){
     var pill=document.createElement("button");
     pill.type="button";
     pill.className="threed-project-pill";
-    var thumb=document.createElement("span");
-    thumb.className="threed-project-pill-thumb";
-    thumb.appendChild(document.createElement("canvas"));
-    var label=document.createElement("span");
-    label.className="threed-project-pill-label";
-    label.textContent=project.title;
-    pill.appendChild(thumb);
-    pill.appendChild(label);
+    pill.textContent=project.title;
     pill.addEventListener("click",function(){jumpToProject(project)});
     navEl.appendChild(pill);
     return pill;
@@ -146,20 +139,6 @@ function init(){
           pill.classList.toggle("is-active",project===TOC[idx]);
         });
       }
-
-      TOC.forEach(function(project,idx){
-        var thumbPage=project.thumb||Math.min(project.start+1,project.end);
-        pdf.getPage(thumbPage).then(function(page){
-          var canvas=pills[idx].querySelector("canvas");
-          var srcViewport=page.getViewport({scale:1});
-          var target=44;
-          var scale=target/Math.min(srcViewport.width,srcViewport.height);
-          var viewport=page.getViewport({scale:scale});
-          canvas.width=Math.round(viewport.width);
-          canvas.height=Math.round(viewport.height);
-          page.render({canvasContext:canvas.getContext("2d"),viewport:viewport});
-        });
-      });
 
       renderAround(1);
       updateInfo();
