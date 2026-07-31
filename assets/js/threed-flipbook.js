@@ -1,20 +1,20 @@
 !function(){"use strict";var started=false;
 var TOC=[
-  {title:"Photography",start:6,end:13,desc:"A personal photography practice exploring light, shadow, and everyday scenes."},
-  {title:"Bosom (Sculpture)",start:14,end:14,desc:"Winner of a Tabriz sculpture contest on the theme of family — a father's instinctive grip on his son, rooted in regional child-rearing traditions."},
-  {title:"Zangar Museum",start:15,end:30,desc:"A conceptual museum honoring a celebrated Iranian writer — his top-ranked graduation dissertation project."},
-  {title:"Architecture School",start:31,end:41,desc:"A school of architecture blending modern deconstructivist form with Qajar-era Iranian tradition and Islamic-pattern lighting."},
-  {title:"Pilgrimages Airport",start:42,end:50,desc:"An airport for religious pilgrims, its form generated from an Islamic geometric algorithm."},
-  {title:"Rose Residential",start:51,end:60,desc:"A residential complex built for passive cooling and low-energy design, its facade patterned after Islamic geometry."},
-  {title:"Rumi Museum",start:61,end:68,desc:"A museum commemorating the poet Rumi (Molana) — its rotational form and dark-to-light procession inspired by Sufi whirling (Sama) dance."},
-  {title:"Kitchen Design",start:69,end:75,desc:"Interior renders exploring kitchen layouts, materials, and lighting."},
-  {title:"Home Design",start:76,end:80,desc:"Interior renders for full home layouts, from living spaces to bedrooms."},
-  {title:"Chairs Story",start:81,end:83,desc:"An abstract render series studying chair forms, inspired by Molana's whirling dance."},
-  {title:"Hedayat School",start:84,end:90,desc:"Documentation of the historic Hedayat School of Urmia, a late-Qajar-era house converted to a school across three generations of ownership."},
-  {title:"Green Wall",start:91,end:97,desc:"A modular green-wall and planter system integrating greenery into furniture and small architectural elements."},
-  {title:"Temporary Residence vs. Disasters",start:98,end:103,desc:"A competition-winning design for rapidly deployable emergency housing after natural disasters."},
-  {title:"Abstract Photo of City",start:104,end:106,desc:"“The Ghost of Playground” — a 2018 award-winning abstract city photograph."},
-  {title:"Rain Gardens on Büyükada",start:107,end:132,desc:"Landscape research designing rain gardens and green infrastructure for stormwater and carbon management on Büyükada island, Istanbul."}
+  {title:"Photography",start:6,end:13,desc:"A visual diary shot through a designer's eye — composition, light, and negative space handled with the same rigor as a brand campaign, turning street scenes and quiet interiors into studies of contrast and mood."},
+  {title:"Bosom (Sculpture)",start:14,end:14,desc:"Winner of a Tabriz sculpture competition on the theme of family. A single gesture — a father's protective grip on his son — carved to carry a whole narrative about instinct and tradition."},
+  {title:"Zangar Museum",start:15,end:30,desc:"A conceptual museum whose faceted, folded form doubles as large-scale visual identity for the institution it represents — ranked 1st among the graduating class's dissertation projects."},
+  {title:"Architecture School",start:31,end:41,desc:"A campus identity told through form: deconstructivist volumes layered over Qajar-era Iranian motifs, with Islamic geometric patterns doing double duty as facade ornament and interior lighting design."},
+  {title:"Pilgrimages Airport",start:42,end:50,desc:"Wayfinding at the scale of a building — an Islamic-geometry algorithm generates the airport's form, giving pilgrims a single, instantly legible visual language from tarmac to terminal."},
+  {title:"Rose Residential",start:51,end:60,desc:"A residential brand expressed in pattern and performance: a mashrabiya-inspired lattice facade cuts solar heat and cools passively while giving the building a signature, ownable look."},
+  {title:"Rumi Museum",start:61,end:68,desc:"A spatial identity built around motion — the museum's rotational form choreographs visitors along the same dark-to-light path central to Sufi philosophy, turning Rumi's poetry into architecture."},
+  {title:"Kitchen Design",start:69,end:75,desc:"Interior renders styled like product photography — material, light, and framing composed to sell a mood as much as a room."},
+  {title:"Home Design",start:76,end:80,desc:"Full-home interior visualizations treated as lifestyle campaigns, each render composed to tell a story about how a space is lived in, not just how it's built."},
+  {title:"Chairs Story",start:81,end:83,desc:"An abstract render series treating furniture as sculpture — chair forms caught mid-motion, inspired by the whirling of Molana's Sama dance."},
+  {title:"Hedayat School",start:84,end:90,desc:"Brand-grade documentation of a real, built project: a late-Qajar-era house in Urmia archived as it moved from private residence to school across three generations of ownership."},
+  {title:"Green Wall",start:91,end:97,desc:"A modular planter-and-furniture system where sustainability becomes the visual identity — greenery designed into the object itself rather than added on afterward."},
+  {title:"Temporary Residence vs. Disasters",start:98,end:103,desc:"A competition-winning emergency housing concept designed to deploy fast after natural disasters — proof good design can move as quickly as the crisis it answers."},
+  {title:"Abstract Photo of City",start:104,end:106,desc:"“The Ghost of Playground,” a 2018 award-winning abstract cityscape — the same compositional eye behind every project in this portfolio, applied to a single frame."},
+  {title:"Rain Gardens on Büyükada",start:107,end:132,desc:"A landscape research project turned visual system: rain gardens and green infrastructure mapped, diagrammed, and branded as one cohesive strategy for stormwater and carbon management on Büyükada island, Istanbul."}
 ];
 function findProject(pageNum){
   for(var i=0;i<TOC.length;i++){
@@ -32,6 +32,11 @@ function init(){
   pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js";
   var src=mount.getAttribute("data-pdf-src");
   var wrap=mount.parentElement;
+  var win=document.getElementById("threed-window");
+
+  var counterEl=document.createElement("div");
+  counterEl.className="threed-page-counter";
+  win.appendChild(counterEl);
 
   var navEl=document.createElement("div");
   navEl.className="threed-project-nav";
@@ -127,7 +132,8 @@ function init(){
       function updateInfo(){
         var n=flip.getCurrentPageIndex()+1;
         var project=findProject(n);
-        titleEl.textContent=(project?project.title+" — ":"")+"Page "+n+" / "+pdf.numPages;
+        counterEl.textContent="Page "+n+" / "+pdf.numPages;
+        titleEl.textContent=project?project.title:"";
         descEl.textContent=project?project.desc:"";
         pills.forEach(function(pill,idx){
           pill.classList.toggle("is-active",project===TOC[idx]);
