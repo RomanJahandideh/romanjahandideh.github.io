@@ -14,7 +14,14 @@
         a circular eye with a centered pupil, and a right triangle.
     </desc>
 
-    <!-- Transparent background -->
+    <!-- White background -->
+    <rect
+        x="0"
+        y="0"
+        width="1000"
+        height="1000"
+        fill="#FFFFFF"
+    />
 
     <!-- Vertical rectangular stem -->
     <rect
