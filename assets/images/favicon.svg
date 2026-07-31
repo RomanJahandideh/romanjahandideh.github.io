@@ -1,3 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <text x="33" y="45" font-family="Georgia, 'Times New Roman', serif" font-size="40" font-weight="600" fill="#1c1917" text-anchor="middle">R</text>
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="1000"
+    height="1000"
+    viewBox="0 0 1000 1000"
+    role="img"
+    aria-labelledby="logoTitle logoDescription"
+    shape-rendering="geometricPrecision">
+
+    <title id="logoTitle">Geometric R Eye Logo</title>
+
+    <desc id="logoDescription">
+        A geometric capital letter R created from a vertical rectangle,
+        a circular eye with a centered pupil, and a right triangle.
+    </desc>
+
+    <!-- Transparent background -->
+
+    <!-- Vertical rectangular stem -->
+    <rect
+        x="170"
+        y="120"
+        width="200"
+        height="760"
+        fill="#000000"
+    />
+
+    <!-- Outer black eye circle -->
+    <circle
+        cx="570"
+        cy="290"
+        r="170"
+        fill="#000000"
+    />
+
+    <!-- White eyeball interior -->
+    <circle
+        cx="570"
+        cy="290"
+        r="103"
+        fill="#FFFFFF"
+    />
+
+    <!-- Centered black pupil -->
+    <circle
+        cx="570"
+        cy="290"
+        r="51"
+        fill="#000000"
+    />
+
+    <!-- Triangular R leg -->
+    <polygon
+        points="
+            400,430
+            400,880
+            850,880
+        "
+        fill="#000000"
+    />
+
 </svg>
