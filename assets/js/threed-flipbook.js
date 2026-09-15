@@ -163,5 +163,28 @@ function init(){
     console.warn("3D Design flipbook failed to load:",err);
   });
 }
-window.addEventListener("portfolio:3ddesign-open",init);
+var libsLoaded=false,libsLoading=null;
+function loadScript(src){
+  return new Promise(function(resolve,reject){
+    var s=document.createElement("script");
+    s.src=src;
+    s.onload=resolve;
+    s.onerror=reject;
+    document.head.appendChild(s);
+  });
+}
+function ensureLibs(){
+  if(libsLoaded)return Promise.resolve();
+  if(libsLoading)return libsLoading;
+  libsLoading=Promise.all([
+    loadScript("https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"),
+    loadScript("https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js")
+  ]).then(function(){libsLoaded=true});
+  return libsLoading;
+}
+window.addEventListener("portfolio:3ddesign-open",function(){
+  ensureLibs().then(init).catch(function(err){
+    console.warn("3D Design flipbook: failed to load pdf.js/page-flip:",err);
+  });
+});
 }();
