@@ -39,6 +39,7 @@
     "addressCountry": "CA"
   },
   "sameAs": [
+    "https://orcid.org/0009-0000-2842-4268",
     "https://www.linkedin.com/in/roman-jahandideh-38b207351",
     "https://www.researchgate.net/profile/Romman-Jahandideh",
     "https://www.instagram.com/roman_jahandideh/",
@@ -68,7 +69,8 @@
 <link rel="stylesheet" href="work/assets/css/gallery.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/home-clouds.css?v=20260616b" />
 <link rel="stylesheet" href="assets/css/transitions.css?v=20260617a" />
-<link rel="stylesheet" href="assets/css/services.css?v=20260703q" />
+<link rel="stylesheet" href="assets/css/services.css?v=20260915c" />
+<link rel="stylesheet" href="assets/css/projects.css?v=20260916b" />
 <link rel="stylesheet" href="assets/css/toolbar.css?v=20260704b" />
 <link rel="stylesheet" href="assets/css/home-scroll-sequence.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/home-smoke.css?v=20260616b" />
@@ -121,24 +123,24 @@
 <!-- Scroll-sequence service step cards (desktop; GSAP drives opacity) -->
 <div id="seq-steps" aria-hidden="true">
   <div class="seq-step-card" data-step="0">
-    <h3 class="seq-step-title">Visual &amp; Spatial Information Systems</h3>
-    <p class="seq-step-desc">Systems-level visual thinking (identity, typography, layout, iconography, data-driven diagrams) applied to make dense or technical information legible at a glance. The same instinct behind making complex planning and spatial data accessible and actionable.</p>
-    <a href="#" class="svc-view-work-link seq-step-link">View Work <span aria-hidden="true">&#8594;</span></a>
+    <h3 class="seq-step-title">BioTerrarium: Game World Dynamics</h3>
+    <p class="seq-step-desc">A glass ecosystem in Unity whose fog, vegetation, and light respond in real time to a player's heart rate and heart rate variability from an Apple Watch. Tested with 24 participants. Submitted to ACM SIGGRAPH 2026, revised, and not accepted.</p>
+    <a href="#" class="svc-view-work-link seq-step-link">View Project <span aria-hidden="true">&#8594;</span></a>
   </div>
   <div class="seq-step-card" data-step="1">
-    <h3 class="seq-step-title">Computational &amp; Parametric Design</h3>
-    <p class="seq-step-desc">Real-time 3D and algorithmic form generation: Rhino/Grasshopper parametric systems, an Islamic-geometry algorithm that generated an entire airport's architectural form, and real-time engines (Unity, Unreal) now used to build interactive, responsive environments.</p>
-    <a href="#" class="svc-view-work-link seq-step-link">View Work <span aria-hidden="true">&#8594;</span></a>
+    <h3 class="seq-step-title">Reading a Remote Teammate's Body</h3>
+    <p class="seq-step-desc">Extends the same ambient reciprocity behind BioTerrarium into remote collaboration, asking whether a teammate's physiological state can be felt without turning it into a chart. Submitted to ACM, in revision, resubmitting in 2027.</p>
+    <a href="#" class="svc-view-work-link seq-step-link">View Project <span aria-hidden="true">&#8594;</span></a>
   </div>
   <div class="seq-step-card" data-step="2">
-    <h3 class="seq-step-title">Human-AI Co-Design &amp; Interaction Research</h3>
-    <p class="seq-step-desc">Interfaces and systems built to be studied, not just shipped. Working research prototypes tested with real participants, including a heart-rate-driven game world validated in a 24-person study. A paper in preparation, <em>The Human Touch in AI Architecture</em>, extends this into human-AI collaboration in design.</p>
-    <a href="#" class="svc-view-work-link seq-step-link">View Work <span aria-hidden="true">&#8594;</span></a>
+    <h3 class="seq-step-title">Eye-Tracking Locomotion in VR</h3>
+    <p class="seq-step-desc">A study using a person's own gaze as the locomotion input in virtual reality, aimed at making architectural and landscape walkthroughs feel like looking around a real place. Submitted to CAADRIA 2024.</p>
+    <a href="#" class="svc-view-work-link seq-step-link">View Project <span aria-hidden="true">&#8594;</span></a>
   </div>
   <div class="seq-step-card" data-step="3">
-    <h3 class="seq-step-title">Performance-Informed Design</h3>
-    <p class="seq-step-desc">Environmental and material performance folded into early-stage design: a passive-cooling lattice facade, a stormwater and carbon-management strategy for Büyükada island, and VR research on environmental legibility and depth perception in landscape and architectural space.</p>
-    <a href="#" class="svc-view-work-link seq-step-link">View Work <span aria-hidden="true">&#8594;</span></a>
+    <h3 class="seq-step-title">Creating Immersive Virtual Landscapes</h3>
+    <p class="seq-step-desc">Master's research into depth perception and environmental legibility inside head-mounted virtual landscapes, the foundation for how every spatial environment since, including BioTerrarium, has been built. Published at eCAADe 2023.</p>
+    <a href="#" class="svc-view-work-link seq-step-link">View Project <span aria-hidden="true">&#8594;</span></a>
   </div>
 </div>
 
@@ -149,7 +151,7 @@
     <span class="hint-for-home"><span class="hint-desktop">Scroll to journey through the work.</span><span class="hint-touch">Swipe to journey through the work.</span></span>
     <span class="hint-for-work"><span class="hint-desktop">Hover a sphere to reveal its category. Click to explore.</span><span class="hint-touch">Tap a sphere to explore its category.</span></span>
     <span class="hint-for-teaching"><span class="hint-desktop">Hover a subject to reveal it. Click to dive deeper.</span><span class="hint-touch">Tap a subject to reveal it.</span></span>
-    <span class="hint-for-services"><span class="hint-desktop">Hover a service to reveal it. Click to learn more.</span><span class="hint-touch">Tap a service to learn more.</span></span>
+    <span class="hint-for-services"><span class="hint-desktop">Scroll to read. Press Esc or Close to exit.</span><span class="hint-touch">Swipe to read. Tap Close to exit.</span></span>
   </p>
   <p class="global-site-hint global-site-hint-secondary">© 2026 Roman Jahandideh. All rights reserved.</p>
 </div>
@@ -179,24 +181,9 @@
     <span class="role-item">Physiological Computing</span><span class="role-sep">&nbsp;·&nbsp;</span><span class="role-item">Bioadaptive XR</span><span class="role-sep">&nbsp;·&nbsp;</span><span class="role-item">Embodied Interaction</span>
   </p>
 
-  <button id="services-btn" aria-expanded="false" aria-label="Services">
-    Services
+  <button id="services-btn" aria-expanded="false" aria-label="Open Projects">
+    Projects
   </button>
-
-  <div id="svc-balls-wrap" aria-hidden="true" role="group" aria-label="Services, click to learn more">
-    <button class="svc-ball" data-idx="0" type="button" aria-label="Visual and Spatial Information Systems">
-      <span class="svc-ball-label">Visual &amp;<br>Info Systems</span>
-    </button>
-    <button class="svc-ball" data-idx="1" type="button" aria-label="Computational and Parametric Design">
-      <span class="svc-ball-label">Computational<br>Design</span>
-    </button>
-    <button class="svc-ball" data-idx="2" type="button" aria-label="Human-AI Co-Design and Interaction Research">
-      <span class="svc-ball-label">Human-AI<br>Co-Design</span>
-    </button>
-    <button class="svc-ball" data-idx="3" type="button" aria-label="Performance-Informed Design">
-      <span class="svc-ball-label">Performance<br>Design</span>
-    </button>
-  </div>
 
   <div id="floating-statement">
     Vancouver, BC &nbsp;·&nbsp; Open to Research Collaboration
@@ -233,7 +220,7 @@
       <div class="about-clean-intro">
         <div class="about-clean-intro-label">Introduction</div>
         <p class="about-clean-intro-text">
-          Researcher working across architecture, landscape design, and computational systems: human-AI co-design, performance-informed design, and embodied interaction. Holds a Master's in Landscape Architecture Design (Istanbul Technical University), with VR research on depth perception and environmental legibility in head-mounted displays, published at eCAADe and CAADRIA. Architectural project work spans generative, algorithm-driven form and performance-integrated design, including passive-cooling facades and stormwater and carbon-management strategies. Current work at Simon Fraser University builds interactive systems that respond to physiological signals in real time, methodology now extending into a paper in preparation on AI in architectural design.
+          Researcher working across architecture, landscape design, and computational systems: human-AI co-design, performance-informed design, and embodied interaction. Holds a Master's in Landscape Architecture Design (Istanbul Technical University), with VR research on depth perception and environmental legibility in head-mounted displays, published at eCAADe and submitted to CAADRIA. Architectural project work spans generative, algorithm-driven form and performance-integrated design, including passive-cooling facades and stormwater and carbon-management strategies. Current work at Simon Fraser University builds interactive systems that respond to physiological signals in real time, methodology now extending into a paper in preparation on AI in architectural design.
         </p>
       </div>
     </div>
@@ -308,6 +295,20 @@
               <span class="text">
                 <span class="label">ResearchGate</span>
                 <span class="meta">Publications & research</span>
+              </span>
+            </a>
+
+            <!-- ORCID -->
+            <a class="contact-link" role="listitem" href="https://orcid.org/0009-0000-2842-4268" target="_blank" rel="noopener">
+              <span class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img" focusable="false">
+                  <circle cx="12" cy="12" r="12" fill="#A6CE39"/>
+                  <text x="12" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#fff">iD</text>
+                </svg>
+              </span>
+              <span class="text">
+                <span class="label">ORCID</span>
+                <span class="meta">0009-0000-2842-4268</span>
               </span>
             </a>
 
@@ -434,14 +435,206 @@
 
 </main>
 
-<!-- ================= SERVICE DESCRIPTION PANEL ================= -->
+<!-- ================= PROJECTS OVERLAY ================= -->
+<!-- The home page itself fades to grayscale behind this; see projects-overlay.css/js -->
 
-<div id="svc-desc" aria-hidden="true" aria-live="polite">
-  <div id="svc-desc-inner">
-    <p id="svc-desc-text"></p>
-    <a id="svc-view-work" href="#" class="svc-view-work-link" style="visibility:hidden">
-      View Work &rarr;
-    </a>
+<div id="projects-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Projects">
+
+  <button id="projects-close" type="button" aria-label="Close projects">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>Close</span>
+    <span class="projects-close-key" aria-hidden="true">Esc</span>
+  </button>
+
+  <div id="projects-overlay-scroll" tabindex="-1">
+    <div class="projects-overlay-inner">
+
+      <header class="projects-header">
+        <p class="projects-eyebrow">Projects</p>
+        <h2 class="projects-title">Research projects and publications</h2>
+        <p class="projects-intro">
+          These are the research projects behind the practice: the systems I designed and built, the studies I ran on them, and the papers that came out of it. Some are published, one is working its way back through review, and one did not make it past review at all. I think it is worth showing all three honestly, since that is what research actually looks like.
+        </p>
+      </header>
+
+      <div class="projects-list">
+
+        <article class="project-card" id="project-0" data-project="0">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/bioterrarium-hero.webp" aria-label="View a larger image of BioTerrarium">
+              <img src="assets/images/projects/bioterrarium-hero.webp" alt="The BioTerrarium environment, a glass-enclosed ecosystem with glowing purple crystal vegetation, fog, and a small lighthouse" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--notaccepted">Submitted, ACM SIGGRAPH 2026</span>
+              <h3 class="project-card-title">Embedding Physiological Responsiveness into Game World Dynamics</h3>
+              <p class="project-card-venue">BioTerrarium &middot; Unity, Apple Watch heart rate &amp; HRV &middot; within subjects study, n&nbsp;=&nbsp;24</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Most games ask a lot of a player's nervous system and give almost nothing back. I wanted to build a small world that pays attention to the body instead of asking the player to pay attention to a meter. BioTerrarium is a closed glass ecosystem, a kind of living terrarium, where fog, vegetation, and light respond in real time to the player's own heart rate and heart rate variability. When the player is calm, the terrarium clears and grows. When stress builds, the world fogs over, overgrows, and the light desaturates. Nothing is ever shown as a number, the environment simply reflects the state of the body back to the player.</p>
+              <h4>Watch it in action</h4>
+              <div class="project-card-video">
+                <iframe src="https://www.youtube-nocookie.com/embed/eQTvM0gaBxc" title="BioTerrarium: a biofeedback environment for embodied self-regulation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+              <h4>How it works</h4>
+              <p>The system reads heart rate from an Apple Watch Series 7 over Bluetooth and Apple HealthKit, bridges it through a small Swift app, and streams it into Unity over a WebSocket with under 100 milliseconds of latency. A two minute resting baseline sets a personal reference for each player, and every reading afterward is normalized against that baseline and sorted into one of four zones, from Coherent Calm through Focused Arousal and Stress Escalation to Dysregulated Overdrive. Each zone maps to fog density, vegetation growth, light diffusion, and a shader based blur, updated ten times a second so the world always feels like it is breathing along with the player.</p>
+              <figure class="project-card-figure">
+                <img src="assets/images/projects/bioterrarium-zones.webp" alt="The four physiological regulation zones, Coherent Calm, Focused Arousal, Stress Escalation, and Dysregulated Overdrive, each shown in the terrarium" loading="lazy" />
+                <figcaption>The four regulation zones used in the terrarium, from Coherent Calm to Dysregulated Overdrive.</figcaption>
+              </figure>
+              <h4>More from the environment</h4>
+              <div class="project-card-gallery">
+                <a class="project-thumb project-thumb--tall" href="assets/images/projects/bioterrarium-env-2.webp" aria-label="View a larger image of the terrarium's fenced clearing">
+                  <img src="assets/images/projects/bioterrarium-env-2.webp" alt="A glowing clearing in the terrarium seen past a wooden fence, with a warm light and red marker in the fog" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="assets/images/projects/bioterrarium-env-3.webp" aria-label="View a larger image of the terrarium's lighthouse village">
+                  <img src="assets/images/projects/bioterrarium-env-3.webp" alt="A small lighthouse village overlooking a magenta patterned pool inside the terrarium" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="assets/images/projects/bioterrarium-env-4.webp" aria-label="View a larger image of the terrarium in Dysregulated Overdrive">
+                  <img src="assets/images/projects/bioterrarium-env-4.webp" alt="A ring of violet light and static breaking through the ground in the terrarium's most dysregulated state" loading="lazy" />
+                </a>
+              </div>
+              <h4>What it produced</h4>
+              <p>I ran a within subjects study with 24 participants, comparing this bioadaptive terrarium against an identical environment that changed on a fixed schedule instead of responding to the body. Players in the bioadaptive condition had a lower average heart rate, noticeably higher heart rate variability, and spent close to 80 percent of their playtime in the two calmest zones. Afterward they also reported more mindful attention, more positive affect, less negative affect, and deeper flow. In interviews, people described the terrarium as something that was breathing back at them and that calmed when they calmed.</p>
+              <h4>Where it stands</h4>
+              <p>I submitted this work to ACM SIGGRAPH 2026. It went through a full round of reviewer feedback and revisions, and in the end the paper was not accepted. I still think the system and the study hold up, and I am looking at where this line of research fits next.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/BioTerrarium" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" id="project-1" data-project="1">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/remote-teammates-body.svg" aria-label="View a larger image for Reading a Remote Teammate's Body">
+              <img src="assets/images/projects/remote-teammates-body.svg" alt="Abstract illustration of two figures connected by a shared pulse waveform" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--revision">In revision, ACM &middot; resubmitting 2027</span>
+              <h3 class="project-card-title">Reading a Remote Teammate's Body</h3>
+              <p class="project-card-venue">Remote collaboration &middot; ambient physiological awareness &middot; ACM</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>BioTerrarium showed that a single player's heart rhythm can shape a world around them without ever putting a number on screen. This project asks what happens when a second person joins that loop. Reading a Remote Teammate's Body looks at synchronous remote collaboration, the kind of screen sharing, co-design, or joint problem solving that increasingly happens with a teammate who is only present through a call, and asks how that teammate's focus, strain, or calm might be conveyed ambiently instead of displayed as a chart.</p>
+              <h4>How it works</h4>
+              <p>It extends the same ambient reciprocity principle behind BioTerrarium, letting an environment quietly carry a trace of a collaborator's physiological state, into a two person, real time setting, so presence and strain can be sensed the way they would be in the same room, instead of read off a screen.</p>
+              <h4>Where it stands</h4>
+              <p>I submitted this work to an ACM venue. The reviewers asked for a revise and resubmit rather than an outright acceptance or rejection, which means the core idea held up but the paper needs another pass. I am working through that feedback now, with the resubmission planned for 2027.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" id="project-2" data-project="2">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/eye-tracking-locomotion.svg" aria-label="View a larger image for Optimizing Eye-Tracking Locomotion in Virtual Environments">
+              <img src="assets/images/projects/eye-tracking-locomotion.svg" alt="Abstract illustration of an eye above a gaze path crossing a virtual ground plane" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--submitted">Submitted, CAADRIA 2024</span>
+              <h3 class="project-card-title">Optimizing Eye-Tracking Locomotion in Virtual Environments</h3>
+              <p class="project-card-venue">Virtual Landscape Interface X Lab &middot; head-mounted display research</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Most VR locomotion still relies on a thumbstick or a teleport point, and both break the sense of presence a virtual landscape is trying to build. This project looks at using eye tracking itself as the locomotion input, letting where a person looks help guide where and how they move through a space, so exploring an environment feels closer to looking around a real place than operating a control scheme.</p>
+              <h4>How it works</h4>
+              <p>Building on the environmental legibility work from Creating Immersive Virtual Landscapes, this study compares different eye tracking locomotion schemes for comfort, accuracy, and how naturally they let someone explore a head-mounted VR environment, aimed at walkthroughs a client can move through without a tutorial.</p>
+              <h4>Where it stands</h4>
+              <p>I submitted this work to CAADRIA 2024, the Conference on Computer-Aided Architectural Design Research in Asia.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener">View on ResearchGate &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" id="project-3" data-project="3">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/immersive-virtual-landscapes.svg" aria-label="View a larger image for Creating Immersive Virtual Landscapes">
+              <img src="assets/images/projects/immersive-virtual-landscapes.svg" alt="Abstract illustration of layered landscape contours seen through a headset frame" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--published">Published &middot; eCAADe 2023</span>
+              <h3 class="project-card-title">Creating Immersive Virtual Landscapes</h3>
+              <p class="project-card-venue">Virtual Landscape Interface X Lab &middot; depth perception &amp; environmental legibility</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>During my Master's research in landscape architecture, I worked in the Virtual Landscape Interface X Lab studying how people actually perceive depth and distance inside a head-mounted display. A virtual landscape can look right and still feel flat once you are standing inside it, and that gap matters for architectural and planning work, where a client or a reviewer needs to trust a space before it gets built.</p>
+              <h4>How it works</h4>
+              <p>This paper walks through the design and construction of an immersive virtual landscape built specifically to test environmental legibility: the visual cues, layering, and scale references that let a viewer read distance and depth correctly once they put on a headset.</p>
+              <h4>What it produced</h4>
+              <p>The findings from this study now shape how I build every spatial environment since, including the terrarium world in BioTerrarium, where legibility, not just visual fidelity, decides whether an environment reads correctly to the person standing inside it.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://doi.org/10.52842/conf.ecaade.2023.1.149" target="_blank" rel="noopener">Read the published paper &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" id="project-4" data-project="4">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/vr-sickness-benchmark.webp" aria-label="View a larger image of the VR sickness benchmark environment">
+              <img src="assets/images/projects/vr-sickness-benchmark.webp" alt="A snowy virtual city environment with glowing windows and red lanterns, used in the VR sickness benchmark" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--research">Research study &middot; iSpace Lab, SFU</span>
+              <h3 class="project-card-title">Testing Cybersickness in Passive and Active VR Locomotion</h3>
+              <p class="project-card-venue">iSpace Research Lab (Bernhard Riecke, SFU) &middot; SteamVR, HP Reverb G2 &amp; Meta Quest</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Cybersickness is still one of the biggest things standing between VR and comfortable, everyday use, and how a person moves through a virtual space, whether they are actively walking it or being moved through it, changes how sick that movement makes them feel. I ran a study comparing passive and active locomotion using the VR sickness benchmark built by the iSpace Research Lab at Simon Fraser University, under Bernhard Riecke.</p>
+              <h4>How it works</h4>
+              <p>The benchmark measures body sway before and after movement with eyes open and closed, then moves the participant through a virtual environment while they self report their cybersickness level in real time on a controller. It can also toggle common mitigation techniques on or off mid study, including static and dynamic field of view reduction, dynamic blur, and a virtual nose, and it automatically halts movement if a participant crosses a set discomfort threshold. I used this system to compare how passive and active locomotion differ in the cybersickness they produce, and where those mitigation techniques help most.</p>
+              <h4>Where it stands</h4>
+              <p>This was a research study run through the iSpace Lab rather than a solo build. The benchmark itself is the lab's own open source tool, and I have forked it on GitHub to keep a record of the exact version my study ran on.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/VRSickness_Benchmark" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+              <a class="project-card-link" href="http://ispace.iat.sfu.ca/riecke/" target="_blank" rel="noopener">iSpace Research Lab &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" id="project-5" data-project="5">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/socialeyes-hero.webp" aria-label="View a larger image of the two SocialEyes virtual agents">
+              <img src="assets/images/projects/socialeyes-hero.webp" alt="Two animated child avatars seated in a virtual classroom, the AI agents used in SocialEyes" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--research">Course research project &middot; IAT 813, SFU</span>
+              <h3 class="project-card-title">SocialEyes: Adaptive VR Social Skills Training for Autism</h3>
+              <p class="project-card-venue">Bayesian AI &middot; gaze triggered virtual agents &middot; Oculus Quest 3</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Coming from a design background, artificial intelligence used to feel like the part of this field I was most afraid of, too technical and too far from what I knew. SocialEyes is what happened when I decided to face that instead of avoiding it. It is a virtual reality framework that helps children with autism spectrum disorder practice social interaction with sixteen AI driven virtual agents, each built around a distinct Myers Briggs personality type, who respond only when the child actually looks at them.</p>
+              <h4>How it works</h4>
+              <p>A Bayesian network sits behind every agent, deciding how it reacts to a gaze and to the behavior of the agent nearest to it, so responses stay consistent with that agent's personality while never feeling scripted or repetitive. Six scientifically validated facial expressions, happiness, sadness, surprise, anger, fear, and neutral, give children clear emotional cues to read and respond to. Oculus Quest 3's eye tracking detects exactly which agent a child is looking at, so only the nearest agent responds at a time, keeping interactions structured instead of overwhelming.</p>
+              <figure class="project-card-figure">
+                <img src="assets/images/projects/socialeyes-expressions.webp" alt="Six facial expressions used by the SocialEyes agents: happiness, neutral, surprise, sadness, anger, and fear" loading="lazy" />
+                <figcaption>The six scientifically validated facial expressions the agents use to make their emotional state easy to read.</figcaption>
+              </figure>
+              <h4>What it produced</h4>
+              <p>The task asks a child to find five social friends among thirty two agents, turning practice into something with a goal rather than an open ended simulation. To validate the AI itself, I ran a Monte Carlo simulation of thousands of agent gaze and gesture sequences and compared the resulting probabilities against the same values computed directly from the Bayesian network. They matched closely, for example a 24 percent simulated rate against a 25 percent computed rate for one gesture, confirming that the probabilistic logic underneath the agents was internally consistent and behaving the way it was designed to.</p>
+              <h4>Where it stands</h4>
+              <p>This started as a project for IAT 813 and is still a proof of concept rather than a deployed clinical tool, limited for now to gaze based interaction and a classroom sized environment. The next step I want to take is adding real time facial expression recognition, so the agents can respond to a child's own face and not just where they are looking.</p>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+    </div>
   </div>
 </div>
 
@@ -460,7 +653,7 @@
       </div>
     </div>
     <hr class="abt-divider">
-    <p class="abt-body">Researcher at the intersection of architecture, landscape design, and computational systems. Holds a Master's in Landscape Architecture Design (Istanbul Technical University), where VR research in the Virtual Landscape / Interface X Lab examined depth perception and environmental legibility in head-mounted displays, published at eCAADe and CAADRIA. Architectural project work spans generative, algorithm-driven form (an Islamic-geometry system generating an entire airport's massing) and performance-integrated design (a mashrabiya-inspired facade cutting solar heat passively, a stormwater and carbon-management strategy for Büyükada island). Current work at Simon Fraser University's iViz Lab builds interactive systems that respond to physiological signals in real time: a Unity game world driven by live heart-rate and HRV data, tested in a 24-participant study. This methodology now extends into a paper in preparation, <em>The Human Touch in AI Architecture</em>. Teaches graphic design, 3D animation, and narrative media as a Teaching Assistant at SFU.</p>
+    <p class="abt-body">Researcher at the intersection of architecture, landscape design, and computational systems. Holds a Master's in Landscape Architecture Design (Istanbul Technical University), where VR research in the Virtual Landscape / Interface X Lab examined depth perception and environmental legibility in head-mounted displays, published at eCAADe and submitted to CAADRIA. Architectural project work spans generative, algorithm-driven form (an Islamic-geometry system generating an entire airport's massing) and performance-integrated design (a mashrabiya-inspired facade cutting solar heat passively, a stormwater and carbon-management strategy for Büyükada island). Current work at Simon Fraser University's iViz Lab builds interactive systems that respond to physiological signals in real time: a Unity game world driven by live heart-rate and HRV data, tested in a 24-participant study. This methodology now extends into a paper in preparation, <em>The Human Touch in AI Architecture</em>. Teaches graphic design, 3D animation, and narrative media as a Teaching Assistant at SFU.</p>
     <a class="abt-publication" href="#3d-design" onclick="window.Portfolio3DDesign &amp;&amp; window.Portfolio3DDesign.open();">
       <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       View architecture &amp; landscape portfolio
@@ -470,17 +663,21 @@
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
         <em>Creating Immersive Virtual Landscapes</em> &middot; eCAADe 2023
       </a>
-      <a class="abt-publication" href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener">
+      <a class="abt-publication" href="#" data-open-project="2">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
-        <em>Optimizing Eye-Tracking Locomotion in Virtual Environments</em> &middot; CAADRIA 2024
+        <em>Optimizing Eye-Tracking Locomotion in Virtual Environments</em> &middot; Submitted, CAADRIA 2024
       </a>
-      <a class="abt-publication" href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener">
+      <a class="abt-publication" href="#" data-open-project="1">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
-        <em>Reading a Remote Teammate's Body</em> &middot; Under review, ACM
+        <em>Reading a Remote Teammate's Body</em> &middot; In revision, ACM, resubmitting 2027
       </a>
-      <a class="abt-publication" href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener">
+      <a class="abt-publication" href="#" data-open-project="0">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="currentColor"/></svg>
-        <em>Embedding Physiological Responsiveness into Game World Dynamics</em> &middot; Submitted, ACM SIGGRAPH 2026
+        <em>Embedding Physiological Responsiveness into Game World Dynamics</em> &middot; Submitted, ACM SIGGRAPH 2026, not accepted
+      </a>
+      <a class="abt-publication" href="#" data-open-project="">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        View all projects
       </a>
     </div>
     <button class="abt-timeline-btn" id="abt-timeline-btn" type="button">
@@ -704,7 +901,7 @@
 <script src="assets/js/transitions.js" defer></script>
 <script src="assets/js/home-scroll-sequence.js" defer></script>
 <script src="assets/js/home-touch-scroll.js?v=20260703a" defer></script>
-<script src="assets/js/services.js?v=20260703a" defer></script>
+<script src="assets/js/services.js?v=20260915c" defer></script>
 <script src="assets/js/toolbar-about.js" defer></script>
 <script src="assets/js/contact-panel.js" defer></script>
 <script src="assets/js/home-intro.js?v=5" defer></script>

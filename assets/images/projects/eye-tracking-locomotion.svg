@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" role="img" aria-label="Abstract illustration of an eye above a gaze path crossing a ground plane grid">
+  <defs>
+    <linearGradient id="bgE" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5F4F2"/>
+      <stop offset="100%" stop-color="#EDE8DE"/>
+    </linearGradient>
+    <radialGradient id="glowE" cx="50%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#8B7BB5" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#8B7BB5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1000" height="750" fill="url(#bgE)"/>
+  <rect width="1000" height="750" fill="url(#glowE)"/>
+  <g stroke="#1C1917" stroke-opacity="0.08" stroke-width="1">
+    <path d="M0 620 L1000 620"/>
+    <path d="M120 620 L360 730"/>
+    <path d="M320 620 L440 730"/>
+    <path d="M500 620 L500 730"/>
+    <path d="M680 620 L560 730"/>
+    <path d="M880 620 L640 730"/>
+  </g>
+  <g fill="none" stroke="#1C1917" stroke-opacity="0.6" stroke-width="2.4">
+    <path d="M330 300 C 400 240, 600 240, 670 300 C 600 360, 400 360, 330 300 Z"/>
+  </g>
+  <circle cx="500" cy="300" r="34" fill="#FAF8F4" stroke="#1C1917" stroke-opacity="0.6" stroke-width="2.2"/>
+  <circle cx="500" cy="300" r="15" fill="#D96535" fill-opacity="0.85"/>
+  <g fill="none" stroke="#D96535" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="1 10">
+    <path d="M500 340 C 470 420, 380 470, 260 500"/>
+  </g>
+  <g fill="none" stroke="#8B7BB5" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="1 10">
+    <path d="M500 340 C 540 420, 640 470, 780 505"/>
+  </g>
+  <circle cx="260" cy="500" r="7" fill="#D96535" fill-opacity="0.85"/>
+  <circle cx="780" cy="505" r="7" fill="#8B7BB5" fill-opacity="0.85"/>
+  <circle cx="390" cy="470" r="4.5" fill="#D96535" fill-opacity="0.6"/>
+  <circle cx="620" cy="475" r="4.5" fill="#8B7BB5" fill-opacity="0.6"/>
+</svg>

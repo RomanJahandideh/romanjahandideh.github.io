@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" role="img" aria-label="Abstract illustration of layered landscape contours viewed through a headset frame">
+  <defs>
+    <linearGradient id="bgL" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5F4F2"/>
+      <stop offset="100%" stop-color="#EDE8DE"/>
+    </linearGradient>
+    <radialGradient id="glowL" cx="50%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#D96535" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#D96535" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1000" height="750" fill="url(#bgL)"/>
+  <rect width="1000" height="750" fill="url(#glowL)"/>
+  <g stroke="#1C1917" stroke-opacity="0.07" stroke-width="1">
+    <line x1="0" y1="90" x2="1000" y2="90"/>
+    <line x1="0" y1="190" x2="1000" y2="190"/>
+    <line x1="0" y1="290" x2="1000" y2="290"/>
+    <line x1="0" y1="390" x2="1000" y2="390"/>
+    <line x1="0" y1="490" x2="1000" y2="490"/>
+    <line x1="0" y1="590" x2="1000" y2="590"/>
+    <line x1="0" y1="690" x2="1000" y2="690"/>
+  </g>
+  <circle cx="500" cy="240" r="92" fill="none" stroke="#8B7BB5" stroke-opacity="0.45" stroke-width="1.4"/>
+  <g fill="none" stroke="#1C1917" stroke-opacity="0.55" stroke-width="2.2" stroke-linejoin="round">
+    <path d="M60 560 L220 420 L340 500 L470 360 L600 470 L740 340 L860 460 L940 400"/>
+    <path d="M60 610 L200 500 L330 555 L460 440 L590 530 L730 420 L860 520 L940 470" stroke-opacity="0.32"/>
+    <path d="M60 660 L190 580 L320 610 L450 520 L580 590 L720 500 L850 585 L940 545" stroke-opacity="0.18"/>
+  </g>
+  <g stroke="#D96535" stroke-width="3" stroke-linecap="round" fill="none">
+    <rect x="405" y="330" width="190" height="96" rx="20" stroke-opacity="0.85"/>
+    <circle cx="450" cy="378" r="16" stroke-opacity="0.85"/>
+    <circle cx="550" cy="378" r="16" stroke-opacity="0.85"/>
+    <path d="M470 378 h60" stroke-opacity="0.5"/>
+  </g>
+  <line x1="500" y1="330" x2="500" y2="150" stroke="#8B7BB5" stroke-width="1.4" stroke-dasharray="3 6" stroke-opacity="0.6"/>
+  <circle cx="500" cy="150" r="5" fill="#8B7BB5" fill-opacity="0.7"/>
+</svg>

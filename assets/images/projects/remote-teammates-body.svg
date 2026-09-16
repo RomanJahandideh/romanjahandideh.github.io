@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 750" role="img" aria-label="Abstract illustration of two figures connected by a shared pulse waveform">
+  <defs>
+    <linearGradient id="bgR" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#F5F4F2"/>
+      <stop offset="100%" stop-color="#EDE8DE"/>
+    </linearGradient>
+    <radialGradient id="glowR" cx="50%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="#D96535" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#D96535" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1000" height="750" fill="url(#bgR)"/>
+  <rect width="1000" height="750" fill="url(#glowR)"/>
+  <g stroke="#1C1917" stroke-opacity="0.06" stroke-width="1">
+    <line x1="0" y1="150" x2="1000" y2="150"/>
+    <line x1="0" y1="300" x2="1000" y2="300"/>
+    <line x1="0" y1="450" x2="1000" y2="450"/>
+    <line x1="0" y1="600" x2="1000" y2="600"/>
+  </g>
+  <g fill="none" stroke="#1C1917" stroke-opacity="0.55" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="240" cy="300" r="46"/>
+    <path d="M150 560 C150 460, 330 460, 330 560 L330 590 L150 590 Z"/>
+  </g>
+  <g fill="none" stroke="#1C1917" stroke-opacity="0.3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="760" cy="300" r="46"/>
+    <path d="M670 560 C670 460, 850 460, 850 560 L850 590 L670 590 Z"/>
+  </g>
+  <g fill="none" stroke="#D96535" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M240 430 C 300 430, 320 430, 360 430 L 410 350 L 460 480 L 500 300 L 540 480 L 590 350 L 640 430 C 680 430, 700 430, 760 430"/>
+  </g>
+  <circle cx="240" cy="430" r="6" fill="#D96535"/>
+  <circle cx="760" cy="430" r="6" fill="#D96535"/>
+  <g stroke="#8B7BB5" stroke-opacity="0.55" stroke-width="1.4" stroke-dasharray="2 8">
+    <path d="M240 254 C 350 180, 650 180, 760 254"/>
+  </g>
+</svg>
