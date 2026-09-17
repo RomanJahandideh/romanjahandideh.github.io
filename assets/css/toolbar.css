@@ -2,6 +2,13 @@
 .abt-location{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:rgba(28,25,23,.56);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:12px;font-weight:500;letter-spacing:.01em;align-self:flex-start}
 .abt-location svg{flex-shrink:0;color:#D96535}
 .abt-sticky-header{position:sticky;top:0;z-index:3;background:#FAF8F4;padding-bottom:4px;transform:translateZ(0);will-change:transform;isolation:isolate}
-.abt-sticky-header .abt-interests{margin-top:18px}
-.abt-sticky-header .abt-divider{margin-top:18px}
-.abt-interests-text{margin:0;font-size:15px;font-weight:700;line-height:1.6;color:rgba(28,25,23,.88);font-family:"Plus Jakarta Sans",system-ui,sans-serif;max-width:58ch}
+.abt-sticky-header .abt-interests{margin-top:12px}
+.abt-sticky-header .abt-divider{margin-top:12px}
+.abt-interests-text{margin:0;font-size:14px;font-weight:700;line-height:1.55;color:rgba(28,25,23,.88);font-family:"Plus Jakarta Sans",system-ui,sans-serif}
+.abt-links-row{display:flex;flex-wrap:wrap;gap:10px}
+#about-window .abt-text-view{gap:14px;padding:32px 40px 26px}
+#about-window .abt-title{max-width:60ch}
+#about-window .abt-body{max-width:none}
+#about-window .abt-eyebrow{margin-bottom:6px}
+@media (max-width:736px){#about-window .abt-text-view{padding:24px 20px 18px;gap:10px}}
+@media (max-width:640px){#about-window .abt-text-view{padding:18px 16px 14px;gap:8px}}
