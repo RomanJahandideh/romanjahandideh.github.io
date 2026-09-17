@@ -93,6 +93,10 @@
       return;
     }
 
+    if (window.PortfolioAbout && window.PortfolioAbout.isOpen && window.PortfolioAbout.isOpen()) {
+      window.PortfolioAbout.close();
+    }
+
     isOpen = true;
     lastFocus = document.activeElement;
     document.body.classList.add("svc-open");
