@@ -52,904 +52,320 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
-<link rel="preconnect" href="https://d3js.org">
 
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/css/main.css?v=20260703x" />
-<link rel="stylesheet" href="assets/css/mode-switch.css?v=20260617a" />
-<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
-<link rel="stylesheet" href="assets/css/teaching-overlay-redesign.css?v=20260617a" />
-
-<link rel="stylesheet" href="work/assets/css/main.css?v=20260616b" />
-<link rel="stylesheet" href="work/assets/css/work-card.css?v=20260616b" />
-<link rel="stylesheet" href="work/assets/css/work-cards-d3.css?v=20260616b" />
-<link rel="stylesheet" href="work/assets/css/stage3-modal.css?v=20260616b" />
-<link rel="stylesheet" href="work/assets/css/gallery.css?v=20260617a" />
-<link rel="stylesheet" href="assets/css/home-clouds.css?v=20260616b" />
-<link rel="stylesheet" href="assets/css/transitions.css?v=20260617a" />
-<link rel="stylesheet" href="assets/css/services.css?v=20260915c" />
-<link rel="stylesheet" href="assets/css/projects.css?v=20260916b" />
-<link rel="stylesheet" href="assets/css/toolbar.css?v=20260704b" />
-<link rel="stylesheet" href="assets/css/home-scroll-sequence.css?v=20260617a" />
-<link rel="stylesheet" href="assets/css/home-smoke.css?v=20260616b" />
-<link rel="stylesheet" href="assets/css/home-intro.css?v=20260703r" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<link rel="stylesheet" href="assets/css/academic.css?v=20260917a" />
 </head>
 
-<body data-mode="home" class="mode-home">
+<body class="academic">
 
-<div id="bg"></div>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
-<!-- 3D floating artwork background — driven by artwork-3d-bg.js -->
-<canvas id="artwork-3d-bg" aria-hidden="true"></canvas>
-
-<!-- ── Sound toggle ── -->
-<button id="snd-toggle" aria-label="Mute sound" title="Toggle sound">
-  <i class="fas fa-volume-high snd-icon-on"></i>
-  <i class="fas fa-volume-xmark snd-icon-off"></i>
-</button>
-
-<!-- ── Mode transition curtain ── -->
-<div id="mode-curtain" aria-hidden="true">
-  <div class="curtain-face">
-    <span class="curtain-label"></span>
+<header class="site-header">
+  <div class="site-header-inner">
+    <a class="site-logo" href="#top">Roman Jahandideh</a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+    </button>
+    <ul class="site-nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#practice">Practice</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="nav-cv-btn" href="Roman_Jahandideh_CV.pdf" download="Roman_Jahandideh_CV.pdf">CV</a></li>
+    </ul>
   </div>
-</div>
+</header>
 
+<main id="main-content">
 
-<canvas id="fog-trail-canvas" aria-hidden="true"></canvas>
-<div id="home-spiderweb-canvas" aria-hidden="true"></div>
-
-<!-- Cream veil: softens home state; fades out as you scroll in -->
-<div id="scene-veil" aria-hidden="true"></div>
-
-<!-- Welcome intro — visible by default to prevent FOUC; JS fades out after 2s -->
-<div id="site-intro">
-  <!--
-    Mirror the hero grid exactly so WELCOME lands
-    in the same position as JAHANDIDEH on the main page.
-    Ghost elements match ROMAN above and designer-title+role+button below.
-  -->
-  <div class="wc-frame">
-    <span class="wc-first-ghost" aria-hidden="true">ROMAN</span>
-    <div id="site-intro-word" aria-label="Welcome">WELCOME</div>
-  </div>
-  <span class="wc-sub-ghost" aria-hidden="true"></span>
-  <p id="site-intro-skip" style="display:none"></p>
-</div>
-
-<!-- Scroll-sequence service step cards (desktop; GSAP drives opacity) -->
-<div id="seq-steps" aria-hidden="true">
-  <div class="seq-step-card" data-step="0">
-    <h3 class="seq-step-title">BioTerrarium: Game World Dynamics</h3>
-    <p class="seq-step-desc">A glass ecosystem in Unity whose fog, vegetation, and light respond in real time to a player's heart rate and heart rate variability from an Apple Watch. Tested with 24 participants. Submitted to ACM SIGGRAPH 2026, revised, and not accepted.</p>
-    <a href="#" class="svc-view-work-link seq-step-link">View Project <span aria-hidden="true">&#8594;</span></a>
-  </div>
-  <div class="seq-step-card" data-step="1">
-    <h3 class="seq-step-title">Reading a Remote Teammate's Body</h3>
-    <p class="seq-step-desc">Extends the same ambient reciprocity behind BioTerrarium into remote collaboration, asking whether a teammate's physiological state can be felt without turning it into a chart. Submitted to ACM, in revision, resubmitting in 2027.</p>
-    <a href="#" class="svc-view-work-link seq-step-link">View Project <span aria-hidden="true">&#8594;</span></a>
-  </div>
-  <div class="seq-step-card" data-step="2">
-    <h3 class="seq-step-title">Eye-Tracking Locomotion in VR</h3>
-    <p class="seq-step-desc">A study using a person's own gaze as the locomotion input in virtual reality, aimed at making architectural and landscape walkthroughs feel like looking around a real place. Submitted to CAADRIA 2024.</p>
-    <a href="#" class="svc-view-work-link seq-step-link">View Project <span aria-hidden="true">&#8594;</span></a>
-  </div>
-  <div class="seq-step-card" data-step="3">
-    <h3 class="seq-step-title">Creating Immersive Virtual Landscapes</h3>
-    <p class="seq-step-desc">Master's research into depth perception and environmental legibility inside head-mounted virtual landscapes, the foundation for how every spatial environment since, including BioTerrarium, has been built. Published at eCAADe 2023.</p>
-    <a href="#" class="svc-view-work-link seq-step-link">View Project <span aria-hidden="true">&#8594;</span></a>
-  </div>
-</div>
-
-<div id="site-nav"></div>
-
-<div id="global-site-hints" aria-hidden="true">
-  <p class="global-site-hint global-site-hint-primary">
-    <span class="hint-for-home"><span class="hint-desktop">Scroll to journey through the work.</span><span class="hint-touch">Swipe to journey through the work.</span></span>
-    <span class="hint-for-work"><span class="hint-desktop">Hover a sphere to reveal its category. Click to explore.</span><span class="hint-touch">Tap a sphere to explore its category.</span></span>
-    <span class="hint-for-teaching"><span class="hint-desktop">Hover a subject to reveal it. Click to dive deeper.</span><span class="hint-touch">Tap a subject to reveal it.</span></span>
-    <span class="hint-for-services"><span class="hint-desktop">Scroll to read. Press Esc or Close to exit.</span><span class="hint-touch">Swipe to read. Tap Close to exit.</span></span>
-  </p>
-  <p class="global-site-hint global-site-hint-secondary">© 2026 Roman Jahandideh. All rights reserved.</p>
-</div>
-
-<!-- ================= HOME ================= -->
-
-<main id="top" class="hero">
-
-  <div id="eyes" style="opacity:0">
-    <div class="eye">
-      <div class="glasses-ring">
-        <span class="ring-marker"></span>
+  <!-- ================= HERO ================= -->
+  <section id="top" class="hero-academic">
+    <div class="wrap">
+      <p class="hero-eyebrow">Researcher · Vancouver, BC</p>
+      <h1 class="hero-name">Roman Jahandideh</h1>
+      <p class="hero-tagline">Researcher in human&#8211;computer interaction, physiological computing, and embodied design. I build interactive systems that respond to the body &mdash; bioadaptive game worlds, ambient biosignal interfaces, and VR perception studies &mdash; and study how digital environments shape the physical spaces and lives they sit inside of.</p>
+      <p class="hero-meta">
+        <span>iViz Lab, Simon Fraser University</span>
+        <span>M.Sc. Landscape Architecture Design, Istanbul Technical University</span>
+        <span>Open to research collaboration</span>
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#research">View Research</a>
+        <a class="btn btn-secondary" href="Roman_Jahandideh_CV.pdf" download="Roman_Jahandideh_CV.pdf">Download CV</a>
+        <a class="btn btn-secondary" href="#contact">Contact</a>
       </div>
-      <div class="pupil"></div>
     </div>
-  </div>
+  </section>
 
-  <h1 class="name">
-    <span class="first-name">ROMAN</span>
-    <span class="last-name">JAHANDIDEH</span>
-    <span class="sr-only" lang="fa" dir="rtl">رمان جهاندیده</span>
-  </h1>
-
-  <p class="designer-title">Researcher</p>
-
-  <p class="role">
-    <span class="role-item">Human-Computer Interaction (HCI)</span><span class="role-sep">&nbsp;·&nbsp;</span><span class="role-item">Computational Design</span><span class="role-sep">&nbsp;·&nbsp;</span><span class="role-item">UX Research</span><span class="role-sep">&nbsp;·&nbsp;</span><span class="role-item">Game Design</span>
-  </p>
-
-  <button id="services-btn" aria-expanded="false" aria-label="Open Projects">
-    Projects
-  </button>
-
-  <div id="floating-statement">
-    Vancouver, BC &nbsp;·&nbsp; Open to Research Collaboration
-  </div>
-
-</main>
-
-<!-- ================= ABOUT ================= -->
-
-<section id="about" class="panel">
-  <div class="panel-inner template-article about-panel-inner about-panel-clean">
-
-    <h2 class="major">About</h2>
-
-    <div class="about-clean-layout">
-      <div class="about-clean-top">
-        <div class="about-clean-eyebrow">Career Journey</div>
-        <p class="about-clean-title">A visual timeline of my academic, artistic, and technical path.</p>
+  <!-- ================= ABOUT ================= -->
+  <section id="about" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">About</p>
+        <h2 class="section-title">Background &amp; research question</h2>
       </div>
 
-      <div class="about-clean-timeline">
+      <p class="about-question">The question I&rsquo;m chasing: how can digital environments be designed to optimize the real, physical spaces we live in and the lives we live inside them?</p>
+
+      <div class="about-body">
+        <p>Researcher building digital 3D environments and generative, AI-assisted design systems, with a background in architecture, landscape design, and VR research into how space is experienced. That background, built during a Master&rsquo;s at Istanbul Technical University, first raised the question above.</p>
+        <p>Architectural project work spans generative, algorithm-driven form and performance-integrated design, including passive-cooling facades and stormwater and carbon-management strategies, alongside VR research on depth perception and environmental legibility in head-mounted displays, published at eCAADe and submitted to CAADRIA.</p>
+        <p>That question now drives research at Simon Fraser University&rsquo;s iViz Lab, combining generative AI-assisted design with physiologically adaptive, biofeedback-driven interaction &mdash; methodology now extending into a paper in preparation on AI in architectural design. Also teaches graphic design and 3D animation at SFU.</p>
+      </div>
+
+      <div class="interests-block">
+        <p class="interests-label">Research interests</p>
+        <ul class="interests-tags">
+          <li>Generative &amp; AI-assisted design for the built environment</li>
+          <li>Physiologically adaptive &amp; biofeedback-driven systems</li>
+          <li>Embodied interaction in virtual &amp; game environments</li>
+          <li>Human-centered empirical user studies</li>
+        </ul>
+      </div>
+
+      <div class="about-timeline">
+        <p class="about-timeline-label">Career timeline</p>
         <iframe
-          src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vTKxs9hIhSFF0u99AZULMMe5vzgvLHjPTI3DQzaboQD49Y624idx3M316gdFTD2mVCgFU3EwvOUKCvr&font=Default&lang=en&start_at_end=true&timenav_position=bottom&initial_zoom=2&width=100%25&height=650"
+          src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vTKxs9hIhSFF0u99AZULMMe5vzgvLHjPTI3DQzaboQD49Y624idx3M316gdFTD2mVCgFU3EwvOUKCvr&font=Default&lang=en&start_at_end=true&timenav_position=bottom&initial_zoom=2&width=100%25&height=520"
           width="100%"
-          height="650"
+          height="520"
           webkitallowfullscreen
           mozallowfullscreen
           allowfullscreen
           frameborder="0"
-          loading="lazy">
+          loading="lazy"
+          title="Career timeline">
         </iframe>
       </div>
-
-      <div class="about-clean-intro">
-        <div class="about-clean-intro-label">Introduction</div>
-        <p class="about-clean-intro-text">
-          Researcher working across architecture, landscape design, and computational systems: human-AI co-design, performance-informed design, and embodied interaction. Holds a Master's in Landscape Architecture Design (Istanbul Technical University), with VR research on depth perception and environmental legibility in head-mounted displays, published at eCAADe and submitted to CAADRIA. Architectural project work spans generative, algorithm-driven form and performance-integrated design, including passive-cooling facades and stormwater and carbon-management strategies. Current work at Simon Fraser University builds interactive systems that respond to physiological signals in real time, methodology now extending into a paper in preparation on AI in architectural design.
-        </p>
-      </div>
     </div>
+  </section>
 
-    <a class="panel-close" href="#top">Close</a>
-  </div>
-</section>
-
-<!-- ================= CONTACT ================= -->
-
-<div id="contact" class="site-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Contact Roman Jahandideh">
-
-  <div class="contact-window-body">
-    <div class="abt-eyebrow">Contact</div>
-
-    <div class="contact-grid">
-
-      <!-- Left: Form -->
-      <form id="contact-form" class="contact-form" action="#" method="post" autocomplete="on">
-        <div class="fields">
-
-          <div class="field half">
-            <label for="contact-name">Name</label>
-            <input id="contact-name" name="from_name" type="text" placeholder="Your name" />
-          </div>
-
-          <div class="field half">
-            <label for="contact-email">Email</label>
-            <input id="contact-email" name="reply_email" type="email" placeholder="you@domain.com" />
-          </div>
-
-          <div class="field">
-            <label for="contact-message">Message</label>
-            <textarea id="contact-message" name="message" rows="5" placeholder="Tell me a bit about what you're reaching out for."></textarea>
-          </div>
-
-        </div>
-
-        <div class="contact-actions">
-          <button type="submit" class="btn primary">Send Message</button>
-          <button type="reset" class="btn">Reset</button>
-        </div>
-      </form>
-
-      <!-- Right: Professional links -->
-      <aside class="contact-side" aria-label="Professional links">
-        <div class="contact-card">
-          <div class="contact-card-title">Find me online</div>
-
-          <div class="contact-links" role="list">
-
-            <!-- LinkedIn -->
-            <a class="contact-link" role="listitem" href="https://www.linkedin.com/in/roman-jahandideh-38b207351" target="_blank" rel="noopener">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false">
-                  <path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.0V9.0h3.111v1.561h.044c.434-.823 1.494-1.69 3.073-1.69 3.287 0 3.89 2.164 3.89 4.977v6.604zM5.337 7.433a1.81 1.81 0 1 1 0-3.62 1.81 1.81 0 0 1 0 3.62zM6.956 20.452H3.716V9.0h3.24v11.452z"/>
-                </svg>
-              </span>
-              <span class="text">
-                <span class="label">LinkedIn</span>
-                <span class="meta">Professional profile</span>
-              </span>
-            </a>
-
-            <!-- ResearchGate -->
-            <a class="contact-link" role="listitem" href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false">
-                  <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm5.37 14.566h-2.284c-1.095 0-1.5-.43-1.5-1.525v-1.274c0-.79-.324-1.1-1.13-1.1H10.8v3.9H8.63V7.434h4.515c2.534 0 3.67 1.1 3.67 2.95 0 1.29-.68 2.16-1.76 2.46v.03c.976.29 1.315.95 1.315 2.06v.92c0 .45.12.69.63.69zM12.94 11.12c1.006 0 1.53-.34 1.53-1.155 0-.79-.524-1.14-1.53-1.14H10.8v2.295h2.14z"/>
-                </svg>
-              </span>
-              <span class="text">
-                <span class="label">ResearchGate</span>
-                <span class="meta">Publications & research</span>
-              </span>
-            </a>
-
-            <!-- ORCID -->
-            <a class="contact-link" role="listitem" href="https://orcid.org/0009-0000-2842-4268" target="_blank" rel="noopener">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false">
-                  <circle cx="12" cy="12" r="12" fill="#A6CE39"/>
-                  <text x="12" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#fff">iD</text>
-                </svg>
-              </span>
-              <span class="text">
-                <span class="label">ORCID</span>
-                <span class="meta">0009-0000-2842-4268</span>
-              </span>
-            </a>
-
-            <!-- Behance -->
-            <a class="contact-link" role="listitem" href="https://www.behance.net/Romman" target="_blank" rel="noopener">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false">
-                  <path d="M9.6 11.1c.66-.34 1.1-1.04 1.1-1.86 0-1.84-1.34-2.74-3.5-2.74H2v10.9h5.4c2.3 0 3.8-1 3.8-3.08 0-1.3-.66-2.28-1.6-2.72zM4.35 8.3h2.45c.98 0 1.55.35 1.55 1.18 0 .88-.57 1.2-1.55 1.2H4.35V8.3zm2.75 7.05H4.35v-2.7h2.8c1.1 0 1.75.45 1.75 1.35 0 1-.65 1.35-1.8 1.35zM14.1 7.55h4.2V6.2h-4.2v1.35zm2.05 2.05c-2.55 0-4.15 1.82-4.15 4.1 0 2.5 1.52 4.2 4.25 4.2 1.82 0 3.25-.9 3.75-2.6h-2.1c-.2.6-.8.95-1.55.95-1.1 0-1.75-.6-1.82-1.75h5.6c.12-2.6-1.38-4.9-3.98-4.9zm-1.6 3.35c.15-1.05.75-1.6 1.62-1.6.98 0 1.5.55 1.58 1.6h-3.2z"/>
-                </svg>
-              </span>
-              <span class="text">
-                <span class="label">Behance</span>
-                <span class="meta">Selected work</span>
-              </span>
-            </a>
-
-            <!-- Instagram -->
-            <a class="contact-link" role="listitem" href="https://www.instagram.com/roman_jahandideh/" target="_blank" rel="noopener">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false">
-                  <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 10.5zM18 6.8a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 6.8z"/>
-                </svg>
-              </span>
-              <span class="text">
-                <span class="label">Instagram</span>
-                <span class="meta">Process & updates</span>
-              </span>
-            </a>
-
-            <!-- ArtStation -->
-            <a class="contact-link" role="listitem" href="https://romanjahandideh.artstation.com" target="_blank" rel="noopener">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false">
-                  <path d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.401-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.129-1.268H8.45L22.549 22c.906-.545 1.451-1.534 1.451-2.252zm-10.444-1.338-3.556-5.797-3.556 5.797h7.112z"/>
-                </svg>
-              </span>
-              <span class="text">
-                <span class="label">ArtStation</span>
-                <span class="meta">Full portfolio</span>
-              </span>
-            </a>
-
-            <!-- GitHub -->
-            <a class="contact-link" role="listitem" href="https://github.com/RomanJahandideh" target="_blank" rel="noopener">
-              <span class="icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" role="img" focusable="false">
-                  <path d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.88 3.17 9.02 7.57 10.48.55.1.75-.24.75-.53v-1.86c-3.08.67-3.73-1.3-3.73-1.3-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.46-.28-5.05-1.23-5.05-5.48 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14.88-.24 1.83-.36 2.77-.36.94 0 1.89.12 2.77.36 2.12-1.44 3.05-1.14 3.05-1.14.6 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.2-5.08 5.48.4.35.76 1.04.76 2.1v3.11c0 .29.2.64.76.53 4.4-1.46 7.56-5.6 7.56-10.48C23.25 5.48 18.27.5 12 .5z"/>
-                </svg>
-              </span>
-              <span class="text">
-                <span class="label">GitHub</span>
-                <span class="meta">Code & prototypes</span>
-              </span>
-            </a>
-
-          </div>
-
-          <div class="contact-note">
-
-          </div>
-          <a class="contact-cv-btn" href="Roman_Jahandideh_CV.pdf" download="Roman_Jahandideh_CV.pdf">
-            Download CV
-          </a>
-        </div>
-      </aside>
-
-    </div>
-
-  </div>
-</div>
-
-<!-- ================= WORK ================= -->
-
-<main id="main" aria-hidden="true">
-
-  <section id="work" class="work">
-
-    <div class="work-wrap">
-
-      <div id="card-stack" class="work-scale-wrap stack-default">
-
-        <div class="one-div" id="main-stack">
-
-          <a class="layer layer1" data-category="Graphic Design" role="button" tabindex="0" aria-label="Browse Graphic Design">
-            <div class="label">Graphic Design</div>
-          </a>
-
-          <a class="layer layer2" data-category="Animation" role="button" tabindex="0" aria-label="Browse Animation">
-            <div class="label">Animation</div>
-          </a>
-
-          <a class="layer layer3" data-category="Design Process" role="button" tabindex="0" aria-label="Browse Design Process">
-            <div class="label">Design Process</div>
-          </a>
-
-          <a class="layer layer4" data-category="Web Design" role="button" tabindex="0" aria-label="Browse Web Design">
-            <div class="label">Web Design</div>
-          </a>
-
-          <a class="layer layer5" data-category="Concept Art" role="button" tabindex="0" aria-label="Browse Concept Art">
-            <div class="label">Concept Art</div>
-          </a>
-
-          <a class="layer layer6" data-category="Font Design" role="button" tabindex="0" aria-label="Browse Font Design">
-            <div class="label">Font Design</div>
-          </a>
-
-          <a class="layer layer7" data-category="3D Design" role="button" tabindex="0" aria-label="Browse 3D Design">
-            <div class="label">3D Design</div>
-          </a>
-
-        </div>
+  <!-- ================= RESEARCH ================= -->
+  <section id="research" class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Research</p>
+        <h2 class="section-title">Projects &amp; publications</h2>
+        <p class="section-intro">The systems I designed and built, the studies I ran on them, and the papers that came out of it. Some are published, one is working its way back through review, and one did not make it past review at all &mdash; shown here honestly, because that is what research actually looks like.</p>
       </div>
 
-      <div id="graph-container"></div>
+      <div class="project-list-academic">
 
-      <p class="work-hint">
-        Click any sphere to browse that category.
-      </p>
+        <article class="proj">
+          <a class="proj-thumb" href="assets/images/projects/bioterrarium-hero.webp" target="_blank" rel="noopener" aria-label="View a larger image of BioTerrarium">
+            <img src="assets/images/projects/bioterrarium-hero.webp" alt="The BioTerrarium environment, a glass-enclosed ecosystem with glowing purple crystal vegetation, fog, and a small lighthouse" loading="lazy" />
+          </a>
+          <div class="proj-body">
+            <span class="proj-badge badge-notaccepted">Submitted, ACM SIGGRAPH 2026 &middot; not accepted</span>
+            <h3 class="proj-title">Embedding Physiological Responsiveness into Game World Dynamics</h3>
+            <p class="proj-venue">BioTerrarium &middot; Unity, Apple Watch heart rate &amp; HRV &middot; within-subjects study, n&nbsp;=&nbsp;24</p>
+            <p class="proj-desc">A closed-ecosystem game environment whose fog, vegetation, and light respond in real time to a player&rsquo;s heart rate and heart rate variability, read from an Apple Watch over Bluetooth/HealthKit and streamed into Unity at under 100&nbsp;ms latency. A resting baseline normalizes each player into one of four physiological zones, from Coherent Calm to Dysregulated Overdrive, each mapped to a distinct environmental state.</p>
+            <p class="proj-desc">In a within-subjects study against a fixed-schedule control, the bioadaptive condition produced lower heart rate, higher HRV, close to 80&nbsp;percent of playtime in the two calmest zones, and higher self-reported mindful attention and flow.</p>
+            <p class="proj-desc">Submitted to ACM SIGGRAPH 2026; went through a full review cycle and was not accepted. Still evaluating where this line of research fits next.</p>
+            <div class="proj-links">
+              <a href="https://github.com/RomanJahandideh/BioTerrarium" target="_blank" rel="noopener">GitHub &rarr;</a>
+              <a href="https://www.youtube-nocookie.com/embed/eQTvM0gaBxc" target="_blank" rel="noopener">Watch demo &rarr;</a>
+            </div>
+          </div>
+        </article>
 
+        <article class="proj">
+          <a class="proj-thumb" href="assets/images/projects/remote-teammates-body.svg" target="_blank" rel="noopener" aria-label="View a larger image for Reading a Remote Teammate's Body">
+            <img src="assets/images/projects/remote-teammates-body.svg" alt="Abstract illustration of two figures connected by a shared pulse waveform" loading="lazy" />
+          </a>
+          <div class="proj-body">
+            <span class="proj-badge badge-revision">In revision, ACM &middot; resubmitting 2027</span>
+            <h3 class="proj-title">Reading a Remote Teammate&rsquo;s Body</h3>
+            <p class="proj-venue">Remote collaboration &middot; ambient physiological awareness &middot; ACM</p>
+            <p class="proj-desc">Extends the ambient-reciprocity principle behind BioTerrarium into synchronous remote collaboration &mdash; the screen-sharing, co-design, or joint problem solving that increasingly happens with a teammate present only through a call &mdash; asking whether that teammate&rsquo;s focus, strain, or calm can be conveyed ambiently instead of displayed as a chart.</p>
+            <p class="proj-desc">A companion browser study validated how well people can interpret ambient heart-rate and HRV icon cues without numerical values, across a randomized within-subjects recognition task.</p>
+            <p class="proj-desc">Submitted to an ACM venue; reviewers asked for a revise-and-resubmit, meaning the core idea held up but the paper needs another pass. Resubmission planned for 2027.</p>
+            <div class="proj-links">
+              <a href="https://github.com/RomanJahandideh/reading-a-remote-teammates-body" target="_blank" rel="noopener">GitHub &rarr;</a>
+              <a href="https://github.com/RomanJahandideh/HR-HRV-experiment-design-and-data-collection-system" target="_blank" rel="noopener">Icon validation study &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj">
+          <a class="proj-thumb" href="assets/images/projects/eye-tracking-locomotion.svg" target="_blank" rel="noopener" aria-label="View a larger image for Optimizing Eye-Tracking Locomotion in Virtual Environments">
+            <img src="assets/images/projects/eye-tracking-locomotion.svg" alt="Abstract illustration of an eye above a gaze path crossing a virtual ground plane" loading="lazy" />
+          </a>
+          <div class="proj-body">
+            <span class="proj-badge badge-submitted">Submitted, CAADRIA 2024</span>
+            <h3 class="proj-title">Optimizing Eye-Tracking Locomotion in Virtual Environments</h3>
+            <p class="proj-venue">Virtual Landscape Interface X Lab &middot; head-mounted display research</p>
+            <p class="proj-desc">Compares eye-tracking-driven locomotion against thumbstick and teleport controls for comfort, accuracy, and how naturally they let someone explore a head-mounted VR environment, building on the environmental-legibility findings from Creating Immersive Virtual Landscapes. Aimed at architectural and landscape walkthroughs a client can move through without a tutorial.</p>
+            <p class="proj-desc">Submitted to CAADRIA 2024, the Conference on Computer-Aided Architectural Design Research in Asia.</p>
+            <div class="proj-links">
+              <a href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener">ResearchGate &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj">
+          <a class="proj-thumb" href="assets/images/projects/immersive-virtual-landscapes.svg" target="_blank" rel="noopener" aria-label="View a larger image for Creating Immersive Virtual Landscapes">
+            <img src="assets/images/projects/immersive-virtual-landscapes.svg" alt="Abstract illustration of layered landscape contours seen through a headset frame" loading="lazy" />
+          </a>
+          <div class="proj-body">
+            <span class="proj-badge badge-published">Published &middot; eCAADe 2023</span>
+            <h3 class="proj-title">Creating Immersive Virtual Landscapes</h3>
+            <p class="proj-venue">Virtual Landscape Interface X Lab &middot; depth perception &amp; environmental legibility</p>
+            <p class="proj-desc">Master&rsquo;s research studying how people actually perceive depth and distance inside a head-mounted display &mdash; a virtual landscape can look right and still feel flat once you are standing inside it, and that gap matters wherever a client or reviewer needs to trust a space before it gets built. This paper walks through the design and construction of an immersive virtual landscape built specifically to test environmental legibility: the visual cues, layering, and scale references that let a viewer read distance and depth correctly.</p>
+            <p class="proj-desc">The findings now shape every spatial environment built since, including the terrarium world in BioTerrarium.</p>
+            <div class="proj-links">
+              <a href="https://doi.org/10.52842/conf.ecaade.2023.1.149" target="_blank" rel="noopener">Read the published paper &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj">
+          <a class="proj-thumb" href="assets/images/projects/vr-sickness-benchmark.webp" target="_blank" rel="noopener" aria-label="View a larger image of the VR sickness benchmark environment">
+            <img src="assets/images/projects/vr-sickness-benchmark.webp" alt="A snowy virtual city environment with glowing windows and red lanterns, used in the VR sickness benchmark" loading="lazy" />
+          </a>
+          <div class="proj-body">
+            <span class="proj-badge badge-research">Research study &middot; iSpace Lab, SFU</span>
+            <h3 class="proj-title">Testing Cybersickness in Passive and Active VR Locomotion</h3>
+            <p class="proj-venue">iSpace Research Lab (Bernhard Riecke, SFU) &middot; SteamVR, HP Reverb G2 &amp; Meta Quest</p>
+            <p class="proj-desc">A study comparing passive and active locomotion using the VR sickness benchmark built by the iSpace Research Lab at Simon Fraser University. The benchmark measures body sway before and after movement, moves participants through a virtual environment while they self-report cybersickness in real time, can toggle mitigation techniques (field-of-view reduction, dynamic blur, a virtual nose) mid-study, and automatically halts movement past a set discomfort threshold.</p>
+            <p class="proj-desc">A research study run through the iSpace Lab rather than a solo build; forked on GitHub to preserve the exact version the study ran on.</p>
+            <div class="proj-links">
+              <a href="https://github.com/RomanJahandideh/VRSickness_Benchmark" target="_blank" rel="noopener">GitHub &rarr;</a>
+              <a href="http://ispace.iat.sfu.ca/riecke/" target="_blank" rel="noopener">iSpace Research Lab &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="proj">
+          <a class="proj-thumb" href="assets/images/projects/socialeyes-hero.webp" target="_blank" rel="noopener" aria-label="View a larger image of the two SocialEyes virtual agents">
+            <img src="assets/images/projects/socialeyes-hero.webp" alt="Two animated child avatars seated in a virtual classroom, the AI agents used in SocialEyes" loading="lazy" />
+          </a>
+          <div class="proj-body">
+            <span class="proj-badge badge-research">Course research project &middot; IAT 813, SFU</span>
+            <h3 class="proj-title">SocialEyes: Adaptive VR Social Skills Training for Autism</h3>
+            <p class="proj-venue">Bayesian AI &middot; gaze-triggered virtual agents &middot; Oculus Quest 3</p>
+            <p class="proj-desc">A VR framework helping children with autism spectrum disorder practice social interaction with sixteen AI-driven virtual agents, each built around a distinct Myers-Briggs personality type, who respond only when a child actually looks at them. A Bayesian network governs how each agent reacts to gaze and to the behavior of the agent nearest it; six scientifically validated facial expressions give children clear emotional cues; Oculus Quest 3 eye tracking resolves exactly which agent is being looked at.</p>
+            <p class="proj-desc">To validate the AI, a Monte Carlo simulation of thousands of gaze and gesture sequences was compared against probabilities computed directly from the Bayesian network &mdash; for example a 24&nbsp;percent simulated rate against a 25&nbsp;percent computed rate for one gesture, confirming the logic behaved as designed.</p>
+            <p class="proj-desc">Still a proof of concept rather than a deployed clinical tool. Next step: real-time facial expression recognition, so agents can respond to a child&rsquo;s own face, not just where they are looking.</p>
+          </div>
+        </article>
+
+      </div>
     </div>
+  </section>
 
+  <!-- ================= TEACHING ================= -->
+  <section id="teaching" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Teaching</p>
+        <h2 class="section-title">Simon Fraser University &middot; School of Interactive Arts and Technology</h2>
+      </div>
+
+      <div class="teach-grid">
+        <article class="teach-card">
+          <img src="Teaching/IAT3131.webp" alt="IAT 313 course material" loading="lazy" />
+          <div class="teach-card-body">
+            <p class="teach-role">Teaching Assistant</p>
+            <h3 class="teach-title">IAT 313 &middot; Narrative and New Media</h3>
+            <p class="teach-desc">Two consecutive terms supporting students in narrative design for interactive and digital media &mdash; moving from early concept formation toward stronger experiential structure, thematic direction, and coherent narrative systems, with feedback focused on how interface, sequencing, and pacing shape the story a user experiences.</p>
+          </div>
+        </article>
+        <article class="teach-card">
+          <img src="Teaching/IAT3431.webp" alt="IAT 343 course material" loading="lazy" />
+          <div class="teach-card-body">
+            <p class="teach-role">Teaching Assistant</p>
+            <h3 class="teach-title">IAT 343 &middot; Animation</h3>
+            <p class="teach-desc">Support across the full 3D animation pipeline in Autodesk Maya &mdash; modeling, rigging, texturing, animation, and technical troubleshooting &mdash; emphasizing production-ready workflows, clean scene organization, and the habits that keep a project stable through a collaborative pipeline.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PRACTICE ================= -->
+  <section id="practice" class="section section-alt">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Practice</p>
+        <h2 class="section-title">Web &amp; design practice</h2>
+        <p class="section-intro">Applied design and front-end work alongside the research &mdash; client sites and case studies built with the same attention to interaction and detail.</p>
+      </div>
+
+      <div class="practice-grid">
+        <article class="practice-card">
+          <h3 class="practice-title">Law Group Website Design</h3>
+          <p class="practice-desc">A modern, multilingual static site for a law group, designed and built end to end, including a document-aware contact flow.</p>
+          <div class="practice-links">
+            <a href="https://romanjahandideh.github.io/law-group-website-design/" target="_blank" rel="noopener">Live site &rarr;</a>
+            <a href="https://github.com/RomanJahandideh/law-group-website-design" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </article>
+        <article class="practice-card">
+          <h3 class="practice-title">InFocus Film School &mdash; Meta Ad Case Study</h3>
+          <p class="practice-desc">A single-page case study built with vanilla HTML/CSS/JS: fluid type with clamp(), scroll-triggered reveals, and motion that respects reduced-motion and input type.</p>
+          <div class="practice-links">
+            <a href="https://romanjahandideh.github.io/infocus-meta-ad-case-study/" target="_blank" rel="noopener">Live site &rarr;</a>
+            <a href="https://github.com/RomanJahandideh/infocus-meta-ad-case-study" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </article>
+        <article class="practice-card">
+          <h3 class="practice-title">BWS Interactive Spec Showcase</h3>
+          <p class="practice-desc">An interactive spec mockup for a brand&rsquo;s Instagram post concept, built to the brand guide with two selectable, swipeable creative directions.</p>
+          <div class="practice-links">
+            <a href="https://romanjahandideh.github.io/bws-ad-showcase/" target="_blank" rel="noopener">Live site &rarr;</a>
+            <a href="https://github.com/RomanJahandideh/bws-ad-showcase" target="_blank" rel="noopener">GitHub &rarr;</a>
+          </div>
+        </article>
+      </div>
+
+      <p class="practice-more">Also maintains a broader visual practice &mdash; graphic design, motion, 3D, and concept art &mdash; at <a href="work/">the visual &amp; technical practice page &rarr;</a></p>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT ================= -->
+  <section id="contact" class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="section-eyebrow">Contact</p>
+        <h2 class="section-title">Get in touch</h2>
+        <p class="section-intro">Open to research collaboration, PhD supervision conversations, and questions about any of the work above.</p>
+      </div>
+
+      <div class="contact-academic">
+        <div>
+          <p class="contact-block-title">Research &amp; publications</p>
+          <ul class="contact-list">
+            <li><a href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm5.37 14.566h-2.284c-1.095 0-1.5-.43-1.5-1.525v-1.274c0-.79-.324-1.1-1.13-1.1H10.8v3.9H8.63V7.434h4.515c2.534 0 3.67 1.1 3.67 2.95 0 1.29-.68 2.16-1.76 2.46v.03c.976.29 1.315.95 1.315 2.06v.92c0 .45.12.69.63.69zM12.94 11.12c1.006 0 1.53-.34 1.53-1.155 0-.79-.524-1.14-1.53-1.14H10.8v2.295h2.14z"/></svg>ResearchGate</a></li>
+            <li><a href="https://orcid.org/0009-0000-2842-4268" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#A6CE39"/><text x="12" y="16" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#fff">iD</text></svg>ORCID &middot; 0009-0000-2842-4268</a></li>
+            <li><a href="https://www.linkedin.com/in/roman-jahandideh-38b207351" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.0V9.0h3.111v1.561h.044c.434-.823 1.494-1.69 3.073-1.69 3.287 0 3.89 2.164 3.89 4.977v6.604zM5.337 7.433a1.81 1.81 0 1 1 0-3.62 1.81 1.81 0 0 1 0 3.62zM6.956 20.452H3.716V9.0h3.24v11.452z"/></svg>LinkedIn</a></li>
+            <li><a href="https://github.com/RomanJahandideh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 .5C5.73.5.75 5.48.75 11.75c0 4.88 3.17 9.02 7.57 10.48.55.1.75-.24.75-.53v-1.86c-3.08.67-3.73-1.3-3.73-1.3-.5-1.28-1.23-1.62-1.23-1.62-1.01-.69.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15.99 1.7 2.6 1.21 3.23.93.1-.72.39-1.21.7-1.49-2.46-.28-5.05-1.23-5.05-5.48 0-1.21.43-2.2 1.14-2.98-.11-.28-.49-1.41.11-2.94 0 0 .93-.3 3.05 1.14.88-.24 1.83-.36 2.77-.36.94 0 1.89.12 2.77.36 2.12-1.44 3.05-1.14 3.05-1.14.6 1.53.22 2.66.11 2.94.71.78 1.14 1.77 1.14 2.98 0 4.26-2.6 5.2-5.08 5.48.4.35.76 1.04.76 2.1v3.11c0 .29.2.64.76.53 4.4-1.46 7.56-5.6 7.56-10.48C23.25 5.48 18.27.5 12 .5z"/></svg>GitHub</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="contact-block-title">Visual practice</p>
+          <ul class="contact-list">
+            <li><a href="https://www.behance.net/Romman" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M9.6 11.1c.66-.34 1.1-1.04 1.1-1.86 0-1.84-1.34-2.74-3.5-2.74H2v10.9h5.4c2.3 0 3.8-1 3.8-3.08 0-1.3-.66-2.28-1.6-2.72zM4.35 8.3h2.45c.98 0 1.55.35 1.55 1.18 0 .88-.57 1.2-1.55 1.2H4.35V8.3zm2.75 7.05H4.35v-2.7h2.8c1.1 0 1.75.45 1.75 1.35 0 1-.65 1.35-1.8 1.35zM14.1 7.55h4.2V6.2h-4.2v1.35zm2.05 2.05c-2.55 0-4.15 1.82-4.15 4.1 0 2.5 1.52 4.2 4.25 4.2 1.82 0 3.25-.9 3.75-2.6h-2.1c-.2.6-.8.95-1.55.95-1.1 0-1.75-.6-1.82-1.75h5.6c.12-2.6-1.38-4.9-3.98-4.9zm-1.6 3.35c.15-1.05.75-1.6 1.62-1.6.98 0 1.5.55 1.58 1.6h-3.2z"/></svg>Behance</a></li>
+            <li><a href="https://romanjahandideh.artstation.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M0 17.723l2.027 3.505h.001a2.424 2.424 0 0 0 2.164 1.333h13.457l-2.401-4.838H0zm24 .025c0-.484-.143-.935-.388-1.314L15.728 2.728a2.424 2.424 0 0 0-2.129-1.268H8.45L22.549 22c.906-.545 1.451-1.534 1.451-2.252zm-10.444-1.338-3.556-5.797-3.556 5.797h7.112z"/></svg>ArtStation</a></li>
+            <li><a href="https://www.instagram.com/roman_jahandideh/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm-5 4.5A5.5 5.5 0 1 1 6.5 12 5.5 5.5 0 0 1 12 8.5zm0 2A3.5 3.5 0 1 0 15.5 12 3.5 3.5 0 0 0 12 10.5zM18 6.8a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 18 6.8z"/></svg>Instagram</a></li>
+          </ul>
+          <p class="contact-block-title" style="margin-top:26px;">Location</p>
+          <p style="margin:0;color:var(--ink-soft);font-size:0.92rem;">Vancouver, BC, Canada</p>
+        </div>
+      </div>
+    </div>
   </section>
 
 </main>
 
-<!-- ================= PROJECTS OVERLAY ================= -->
-<!-- The home page itself fades to grayscale behind this; see projects-overlay.css/js -->
+<footer class="site-footer">
+  <p>&copy; <span id="current-year">2026</span> Roman Jahandideh. All rights reserved.</p>
+</footer>
 
-<div id="projects-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Projects">
-
-  <button id="projects-close" type="button" aria-label="Close projects">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    <span>Close</span>
-    <span class="projects-close-key" aria-hidden="true">Esc</span>
-  </button>
-
-  <div id="projects-overlay-scroll" tabindex="-1">
-    <div class="projects-overlay-inner">
-
-      <header class="projects-header">
-        <p class="projects-eyebrow">Projects</p>
-        <h2 class="projects-title">Research projects and publications</h2>
-        <p class="projects-intro">
-          These are the research projects behind the practice: the systems I designed and built, the studies I ran on them, and the papers that came out of it. Some are published, one is working its way back through review, and one did not make it past review at all. I think it is worth showing all three honestly, since that is what research actually looks like.
-        </p>
-      </header>
-
-      <div class="projects-list">
-
-        <article class="project-card" id="project-0" data-project="0">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/bioterrarium-hero.webp" aria-label="View a larger image of BioTerrarium">
-              <img src="assets/images/projects/bioterrarium-hero.webp" alt="The BioTerrarium environment, a glass-enclosed ecosystem with glowing purple crystal vegetation, fog, and a small lighthouse" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--notaccepted">Submitted, ACM SIGGRAPH 2026</span>
-              <h3 class="project-card-title">Embedding Physiological Responsiveness into Game World Dynamics</h3>
-              <p class="project-card-venue">BioTerrarium &middot; Unity, Apple Watch heart rate &amp; HRV &middot; within subjects study, n&nbsp;=&nbsp;24</p>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>Most games ask a lot of a player's nervous system and give almost nothing back. I wanted to build a small world that pays attention to the body instead of asking the player to pay attention to a meter. BioTerrarium is a closed glass ecosystem, a kind of living terrarium, where fog, vegetation, and light respond in real time to the player's own heart rate and heart rate variability. When the player is calm, the terrarium clears and grows. When stress builds, the world fogs over, overgrows, and the light desaturates. Nothing is ever shown as a number, the environment simply reflects the state of the body back to the player.</p>
-              <h4>Watch it in action</h4>
-              <div class="project-card-video">
-                <iframe src="https://www.youtube-nocookie.com/embed/eQTvM0gaBxc" title="BioTerrarium: a biofeedback environment for embodied self-regulation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <h4>How it works</h4>
-              <p>The system reads heart rate from an Apple Watch Series 7 over Bluetooth and Apple HealthKit, bridges it through a small Swift app, and streams it into Unity over a WebSocket with under 100 milliseconds of latency. A two minute resting baseline sets a personal reference for each player, and every reading afterward is normalized against that baseline and sorted into one of four zones, from Coherent Calm through Focused Arousal and Stress Escalation to Dysregulated Overdrive. Each zone maps to fog density, vegetation growth, light diffusion, and a shader based blur, updated ten times a second so the world always feels like it is breathing along with the player.</p>
-              <figure class="project-card-figure">
-                <img src="assets/images/projects/bioterrarium-zones.webp" alt="The four physiological regulation zones, Coherent Calm, Focused Arousal, Stress Escalation, and Dysregulated Overdrive, each shown in the terrarium" loading="lazy" />
-                <figcaption>The four regulation zones used in the terrarium, from Coherent Calm to Dysregulated Overdrive.</figcaption>
-              </figure>
-              <h4>More from the environment</h4>
-              <div class="project-card-gallery">
-                <a class="project-thumb project-thumb--tall" href="assets/images/projects/bioterrarium-env-2.webp" aria-label="View a larger image of the terrarium's fenced clearing">
-                  <img src="assets/images/projects/bioterrarium-env-2.webp" alt="A glowing clearing in the terrarium seen past a wooden fence, with a warm light and red marker in the fog" loading="lazy" />
-                </a>
-                <a class="project-thumb" href="assets/images/projects/bioterrarium-env-3.webp" aria-label="View a larger image of the terrarium's lighthouse village">
-                  <img src="assets/images/projects/bioterrarium-env-3.webp" alt="A small lighthouse village overlooking a magenta patterned pool inside the terrarium" loading="lazy" />
-                </a>
-                <a class="project-thumb" href="assets/images/projects/bioterrarium-env-4.webp" aria-label="View a larger image of the terrarium in Dysregulated Overdrive">
-                  <img src="assets/images/projects/bioterrarium-env-4.webp" alt="A ring of violet light and static breaking through the ground in the terrarium's most dysregulated state" loading="lazy" />
-                </a>
-              </div>
-              <h4>What it produced</h4>
-              <p>I ran a within subjects study with 24 participants, comparing this bioadaptive terrarium against an identical environment that changed on a fixed schedule instead of responding to the body. Players in the bioadaptive condition had a lower average heart rate, noticeably higher heart rate variability, and spent close to 80 percent of their playtime in the two calmest zones. Afterward they also reported more mindful attention, more positive affect, less negative affect, and deeper flow. In interviews, people described the terrarium as something that was breathing back at them and that calmed when they calmed.</p>
-              <h4>Where it stands</h4>
-              <p>I submitted this work to ACM SIGGRAPH 2026. It went through a full round of reviewer feedback and revisions, and in the end the paper was not accepted. I still think the system and the study hold up, and I am looking at where this line of research fits next.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/BioTerrarium" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" id="project-1" data-project="1">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/remote-teammates-body.svg" aria-label="View a larger image for Reading a Remote Teammate's Body">
-              <img src="assets/images/projects/remote-teammates-body.svg" alt="Abstract illustration of two figures connected by a shared pulse waveform" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--revision">In revision, ACM &middot; resubmitting 2027</span>
-              <h3 class="project-card-title">Reading a Remote Teammate's Body</h3>
-              <p class="project-card-venue">Remote collaboration &middot; ambient physiological awareness &middot; ACM</p>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>BioTerrarium showed that a single player's heart rhythm can shape a world around them without ever putting a number on screen. This project asks what happens when a second person joins that loop. Reading a Remote Teammate's Body looks at synchronous remote collaboration, the kind of screen sharing, co-design, or joint problem solving that increasingly happens with a teammate who is only present through a call, and asks how that teammate's focus, strain, or calm might be conveyed ambiently instead of displayed as a chart.</p>
-              <h4>How it works</h4>
-              <p>It extends the same ambient reciprocity principle behind BioTerrarium, letting an environment quietly carry a trace of a collaborator's physiological state, into a two person, real time setting, so presence and strain can be sensed the way they would be in the same room, instead of read off a screen.</p>
-              <h4>Where it stands</h4>
-              <p>I submitted this work to an ACM venue. The reviewers asked for a revise and resubmit rather than an outright acceptance or rejection, which means the core idea held up but the paper needs another pass. I am working through that feedback now, with the resubmission planned for 2027.</p>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" id="project-2" data-project="2">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/eye-tracking-locomotion.svg" aria-label="View a larger image for Optimizing Eye-Tracking Locomotion in Virtual Environments">
-              <img src="assets/images/projects/eye-tracking-locomotion.svg" alt="Abstract illustration of an eye above a gaze path crossing a virtual ground plane" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--submitted">Submitted, CAADRIA 2024</span>
-              <h3 class="project-card-title">Optimizing Eye-Tracking Locomotion in Virtual Environments</h3>
-              <p class="project-card-venue">Virtual Landscape Interface X Lab &middot; head-mounted display research</p>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>Most VR locomotion still relies on a thumbstick or a teleport point, and both break the sense of presence a virtual landscape is trying to build. This project looks at using eye tracking itself as the locomotion input, letting where a person looks help guide where and how they move through a space, so exploring an environment feels closer to looking around a real place than operating a control scheme.</p>
-              <h4>How it works</h4>
-              <p>Building on the environmental legibility work from Creating Immersive Virtual Landscapes, this study compares different eye tracking locomotion schemes for comfort, accuracy, and how naturally they let someone explore a head-mounted VR environment, aimed at walkthroughs a client can move through without a tutorial.</p>
-              <h4>Where it stands</h4>
-              <p>I submitted this work to CAADRIA 2024, the Conference on Computer-Aided Architectural Design Research in Asia.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener">View on ResearchGate &rarr;</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" id="project-3" data-project="3">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/immersive-virtual-landscapes.svg" aria-label="View a larger image for Creating Immersive Virtual Landscapes">
-              <img src="assets/images/projects/immersive-virtual-landscapes.svg" alt="Abstract illustration of layered landscape contours seen through a headset frame" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--published">Published &middot; eCAADe 2023</span>
-              <h3 class="project-card-title">Creating Immersive Virtual Landscapes</h3>
-              <p class="project-card-venue">Virtual Landscape Interface X Lab &middot; depth perception &amp; environmental legibility</p>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>During my Master's research in landscape architecture, I worked in the Virtual Landscape Interface X Lab studying how people actually perceive depth and distance inside a head-mounted display. A virtual landscape can look right and still feel flat once you are standing inside it, and that gap matters for architectural and planning work, where a client or a reviewer needs to trust a space before it gets built.</p>
-              <h4>How it works</h4>
-              <p>This paper walks through the design and construction of an immersive virtual landscape built specifically to test environmental legibility: the visual cues, layering, and scale references that let a viewer read distance and depth correctly once they put on a headset.</p>
-              <h4>What it produced</h4>
-              <p>The findings from this study now shape how I build every spatial environment since, including the terrarium world in BioTerrarium, where legibility, not just visual fidelity, decides whether an environment reads correctly to the person standing inside it.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://doi.org/10.52842/conf.ecaade.2023.1.149" target="_blank" rel="noopener">Read the published paper &rarr;</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" id="project-4" data-project="4">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/vr-sickness-benchmark.webp" aria-label="View a larger image of the VR sickness benchmark environment">
-              <img src="assets/images/projects/vr-sickness-benchmark.webp" alt="A snowy virtual city environment with glowing windows and red lanterns, used in the VR sickness benchmark" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Research study &middot; iSpace Lab, SFU</span>
-              <h3 class="project-card-title">Testing Cybersickness in Passive and Active VR Locomotion</h3>
-              <p class="project-card-venue">iSpace Research Lab (Bernhard Riecke, SFU) &middot; SteamVR, HP Reverb G2 &amp; Meta Quest</p>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>Cybersickness is still one of the biggest things standing between VR and comfortable, everyday use, and how a person moves through a virtual space, whether they are actively walking it or being moved through it, changes how sick that movement makes them feel. I ran a study comparing passive and active locomotion using the VR sickness benchmark built by the iSpace Research Lab at Simon Fraser University, under Bernhard Riecke.</p>
-              <h4>How it works</h4>
-              <p>The benchmark measures body sway before and after movement with eyes open and closed, then moves the participant through a virtual environment while they self report their cybersickness level in real time on a controller. It can also toggle common mitigation techniques on or off mid study, including static and dynamic field of view reduction, dynamic blur, and a virtual nose, and it automatically halts movement if a participant crosses a set discomfort threshold. I used this system to compare how passive and active locomotion differ in the cybersickness they produce, and where those mitigation techniques help most.</p>
-              <h4>Where it stands</h4>
-              <p>This was a research study run through the iSpace Lab rather than a solo build. The benchmark itself is the lab's own open source tool, and I have forked it on GitHub to keep a record of the exact version my study ran on.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/VRSickness_Benchmark" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-              <a class="project-card-link" href="http://ispace.iat.sfu.ca/riecke/" target="_blank" rel="noopener">iSpace Research Lab &rarr;</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project-card" id="project-5" data-project="5">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/socialeyes-hero.webp" aria-label="View a larger image of the two SocialEyes virtual agents">
-              <img src="assets/images/projects/socialeyes-hero.webp" alt="Two animated child avatars seated in a virtual classroom, the AI agents used in SocialEyes" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Course research project &middot; IAT 813, SFU</span>
-              <h3 class="project-card-title">SocialEyes: Adaptive VR Social Skills Training for Autism</h3>
-              <p class="project-card-venue">Bayesian AI &middot; gaze triggered virtual agents &middot; Oculus Quest 3</p>
-            </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>Coming from a design background, artificial intelligence used to feel like the part of this field I was most afraid of, too technical and too far from what I knew. SocialEyes is what happened when I decided to face that instead of avoiding it. It is a virtual reality framework that helps children with autism spectrum disorder practice social interaction with sixteen AI driven virtual agents, each built around a distinct Myers Briggs personality type, who respond only when the child actually looks at them.</p>
-              <h4>How it works</h4>
-              <p>A Bayesian network sits behind every agent, deciding how it reacts to a gaze and to the behavior of the agent nearest to it, so responses stay consistent with that agent's personality while never feeling scripted or repetitive. Six scientifically validated facial expressions, happiness, sadness, surprise, anger, fear, and neutral, give children clear emotional cues to read and respond to. Oculus Quest 3's eye tracking detects exactly which agent a child is looking at, so only the nearest agent responds at a time, keeping interactions structured instead of overwhelming.</p>
-              <figure class="project-card-figure">
-                <img src="assets/images/projects/socialeyes-expressions.webp" alt="Six facial expressions used by the SocialEyes agents: happiness, neutral, surprise, sadness, anger, and fear" loading="lazy" />
-                <figcaption>The six scientifically validated facial expressions the agents use to make their emotional state easy to read.</figcaption>
-              </figure>
-              <h4>What it produced</h4>
-              <p>The task asks a child to find five social friends among thirty two agents, turning practice into something with a goal rather than an open ended simulation. To validate the AI itself, I ran a Monte Carlo simulation of thousands of agent gaze and gesture sequences and compared the resulting probabilities against the same values computed directly from the Bayesian network. They matched closely, for example a 24 percent simulated rate against a 25 percent computed rate for one gesture, confirming that the probabilistic logic underneath the agents was internally consistent and behaving the way it was designed to.</p>
-              <h4>Where it stands</h4>
-              <p>This started as a project for IAT 813 and is still a proof of concept rather than a deployed clinical tool, limited for now to gaze based interaction and a classroom sized environment. The next step I want to take is adding real time facial expression recognition, so the agents can respond to a child's own face and not just where they are looking.</p>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ================= ABOUT WINDOW ================= -->
-
-<div id="about-window" class="site-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="About Roman Jahandideh">
-
-  <!-- Text view (initial) -->
-  <div class="abt-view abt-text-view">
-    <div class="abt-sticky-header">
-      <div class="abt-eyebrow">About</div>
-      <p class="abt-title">Digital 3D environment researcher building generative, AI-assisted design systems for the built environment, from computational form to physiologically adaptive interfaces.</p>
-      <div class="abt-location">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z" fill="currentColor"/></svg>
-        Vancouver, BC
-      </div>
-      <p class="abt-big-question">The question I'm chasing: how can digital environments be designed to optimize the real, physical spaces we live in and the lives we live inside them?</p>
-      <div class="abt-interests">
-        <p class="abt-eyebrow">Research Interests</p>
-        <p class="abt-interests-text">Generative &amp; AI-assisted design for the built environment &middot; Physiologically adaptive &amp; biofeedback-driven systems &middot; Embodied interaction in virtual &amp; game environments &middot; Human-centered empirical user studies</p>
-      </div>
-      <hr class="abt-divider">
-    </div>
-    <p class="abt-body">Researcher building digital 3D environments and generative, AI-assisted design systems, with a background in architecture, landscape design, and VR research into how space is experienced. That background, built during a Master's at Istanbul Technical University, first raised the question above.</p>
-    <p class="abt-body">That question now drives research at Simon Fraser University's iViz Lab, combining generative AI-assisted design with physiologically adaptive, biofeedback-driven interaction. Also teaches graphic design and 3D animation at SFU.</p>
-    <div class="abt-links-row">
-      <a class="abt-publication" href="#3d-design" onclick="window.Portfolio3DDesign &amp;&amp; window.Portfolio3DDesign.open();">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        View architecture &amp; landscape portfolio
-      </a>
-      <a class="abt-publication" href="#" data-open-project="">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        View all projects
-      </a>
-    </div>
-    <button class="abt-timeline-btn" id="abt-timeline-btn" type="button">
-      Visual Timeline
-      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-        <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-  </div>
-
-  <!-- Timeline view (revealed by button) -->
-  <div class="abt-view abt-timeline-view">
-    <button class="abt-back-btn" id="abt-back-btn" type="button">
-      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true">
-        <path d="M6.5 1.5L2 5l4.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-      Back
-    </button>
-    <p class="abt-timeline-view-title">Career Journey</p>
-    <div class="abt-timeline-wrap">
-      <iframe
-        data-src="https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=v2%3A2PACX-1vTKxs9hIhSFF0u99AZULMMe5vzgvLHjPTI3DQzaboQD49Y624idx3M316gdFTD2mVCgFU3EwvOUKCvr&font=Default&lang=en&start_at_end=true&timenav_position=bottom&initial_zoom=2&width=100%25&height=650"
-        width="100%"
-        height="100%"
-        frameborder="0"
-        webkitallowfullscreen
-        mozallowfullscreen
-        allowfullscreen
-        title="Career timeline">
-      </iframe>
-    </div>
-  </div>
-
-</div>
-
-<!-- ================= 3D DESIGN WINDOW ================= -->
-
-<div id="threed-window" class="site-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="3D Design: Roman Jahandideh">
-
-  <div class="abt-view abt-text-view">
-    <div>
-      <div class="abt-eyebrow">3D Design</div>
-      <p class="abt-title">Architecture and Design Portfolio: a spatial visualization and 3D design showcase.</p>
-    </div>
-    <hr class="abt-divider">
-    <div class="abt-timeline-wrap threed-timeline-wrap" id="threed-flipbook-wrap">
-      <div id="threed-flipbook" data-pdf-src="assets/pdf/architecture-and-design-portfolio.pdf"></div>
-    </div>
-  </div>
-
-</div>
-
-<!-- GSAP 3.15 — animation engine -->
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js" defer></script>
-<!-- GLightbox — fullscreen image lightbox -->
-<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
-
-<!-- 3D Design flipbook — pdf.js + page-flip are lazy-loaded on demand by threed-flipbook.js -->
-
-<script src="assets/js/main.js?v=20260704a" defer></script>
-<script src="assets/js/nav.js?v=20260617a" defer></script>
-<script src="assets/js/teaching-overlay-redesign.js" defer></script>
-<script src="assets/js/home-fog-trail.js" defer></script>
-<script src="assets/js/threed-panel.js" defer></script>
-<script src="assets/js/threed-flipbook.js" defer></script>
-
-<script src="https://d3js.org/d3.v3.min.js" defer></script>
-
-<!-- =========================================================
-     STAGE 3 PATH FIX (IMPORTANT)
-     If any code tries to load /assets/creative/* (root),
-     rewrite it to /work/assets/creative/* so Stage 3 works
-     both after scroll and after clicking WORK.
-     ========================================================= -->
-<script>
-(function () {
-  if (!window.fetch) return;
-
-  var originalFetch = window.fetch.bind(window);
-
-  function fixUrl(url) {
-    try {
-      var abs = new URL(url, window.location.href);
-
-      if (abs.pathname.indexOf("/assets/creative/") === 0) {
-        abs.pathname = abs.pathname.replace(/^\/assets\/creative\//, "/work/assets/creative/");
-        return abs.toString();
-      }
-
-      return url;
-    } catch (e) {
-      return url;
-    }
-  }
-
-  window.fetch = function (input, init) {
-    if (typeof input === "string") {
-      return originalFetch(fixUrl(input), init);
-    }
-
-    if (input && typeof input === "object" && input.url) {
-      var newUrl = fixUrl(input.url);
-      if (newUrl !== input.url) {
-        var req = new Request(newUrl, input);
-        return originalFetch(req, init);
-      }
-    }
-
-    return originalFetch(input, init);
-  };
-})();
-</script>
-
-<script>
-(function () {
-  function rewriteCreativePath(url) {
-    if (!url) return url;
-
-    var s = String(url);
-
-    if (s.indexOf("/assets/creative/") === 0) {
-      return s.replace(/^\/assets\/creative\//, "/work/assets/creative/");
-    }
-
-    if (s.indexOf("assets/creative/") === 0) {
-      return s.replace(/^assets\/creative\//, "work/assets/creative/");
-    }
-
-    return s;
-  }
-
-  if (window.fetch) {
-    var _fetch = window.fetch.bind(window);
-    window.fetch = function (input, init) {
-      if (typeof input === "string") {
-        return _fetch(rewriteCreativePath(input), init);
-      }
-      if (input && typeof input === "object" && input.url) {
-        var fixed = rewriteCreativePath(input.url);
-        if (fixed !== input.url) {
-          return _fetch(new Request(fixed, input), init);
-        }
-      }
-      return _fetch(input, init);
-    };
-  }
-
-  if (window.XMLHttpRequest && XMLHttpRequest.prototype && XMLHttpRequest.prototype.open) {
-    var _open = XMLHttpRequest.prototype.open;
-    XMLHttpRequest.prototype.open = function (method, url) {
-      arguments[1] = rewriteCreativePath(url);
-      return _open.apply(this, arguments);
-    };
-  }
-
-  function fixElementAttr(el, attr) {
-    try {
-      if (!el || !el.getAttribute) return;
-      var v = el.getAttribute(attr);
-      var fixed = rewriteCreativePath(v);
-      if (fixed && fixed !== v) {
-        el.setAttribute(attr, fixed);
-      }
-    } catch (e) {}
-  }
-
-  function fixAll(root) {
-    var scope = root || document;
-
-    var iframes = scope.querySelectorAll ? scope.querySelectorAll("iframe[src]") : [];
-    for (var i = 0; i < iframes.length; i++) fixElementAttr(iframes[i], "src");
-
-    var embeds = scope.querySelectorAll ? scope.querySelectorAll("embed[src]") : [];
-    for (var j = 0; j < embeds.length; j++) fixElementAttr(embeds[j], "src");
-
-    var objects = scope.querySelectorAll ? scope.querySelectorAll("object[data]") : [];
-    for (var k = 0; k < objects.length; k++) fixElementAttr(objects[k], "data");
-
-    var links = scope.querySelectorAll ? scope.querySelectorAll("a[href]") : [];
-    for (var m = 0; m < links.length; m++) fixElementAttr(links[m], "href");
-  }
-
-  fixAll(document);
-
-  var obs = new MutationObserver(function (mutations) {
-    for (var i = 0; i < mutations.length; i++) {
-      var mu = mutations[i];
-
-      if (mu.type === "attributes") {
-        var t = mu.target;
-        if (mu.attributeName === "src") fixElementAttr(t, "src");
-        if (mu.attributeName === "href") fixElementAttr(t, "href");
-        if (mu.attributeName === "data") fixElementAttr(t, "data");
-      }
-
-      if (mu.type === "childList") {
-        for (var n = 0; n < mu.addedNodes.length; n++) {
-          var node = mu.addedNodes[n];
-          if (node && node.nodeType === 1) {
-            fixAll(node);
-          }
-        }
-      }
-    }
-  });
-
-  obs.observe(document.documentElement, {
-    subtree: true,
-    childList: true,
-    attributes: true,
-    attributeFilter: ["src", "href", "data"]
-  });
-})();
-</script>
-
-<script src="work/assets/js/stage3-modal.js" defer></script>
-<script src="work/assets/js/work-d3-interaction.js" defer></script>
-<script src="work/assets/js/gallery-data.js?v=20260616f" defer></script>
-<script src="work/assets/js/gallery.js?v=20260616d" defer></script>
-<script src="assets/js/transitions.js" defer></script>
-<script src="assets/js/home-scroll-sequence.js" defer></script>
-<script src="assets/js/home-touch-scroll.js?v=20260703a" defer></script>
-<script src="assets/js/services.js?v=20260915c" defer></script>
-<script src="assets/js/toolbar-about.js" defer></script>
-<script src="assets/js/contact-panel.js" defer></script>
-<script src="assets/js/home-intro.js?v=5" defer></script>
-<script src="assets/js/artwork-3d-bg.js?v=20260704a" defer></script>
-
-<script>
-(function(){
-  function syncModalLock(){
-    var h = (location.hash || "").toLowerCase();
-    var open = (h === "#about" || h === "#contact" || h === "#3d-design");
-    document.documentElement.classList.toggle("modal-open", open);
-    document.body.classList.toggle("modal-open", open);
-  }
-
-  window.addEventListener("hashchange", syncModalLock, { passive: true });
-  window.addEventListener("load", syncModalLock, { passive: true });
-  syncModalLock();
-
-  function blockScroll(e){
-    var h = (location.hash || "").toLowerCase();
-    if (h !== "#about" && h !== "#contact" && h !== "#3d-design") return;
-
-    var target = e.target;
-    if (target && target.closest && target.closest("#contact .panel-inner, #about .panel-inner, #threed-window")) {
-      return;
-    }
-
-    e.preventDefault();
-  }
-
-  window.addEventListener("wheel", blockScroll, { passive: false });
-  window.addEventListener("touchmove", blockScroll, { passive: false });
-})();
-</script>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
-<script>
-window.addEventListener('load', function() {
-  emailjs.init({ publicKey: "d7nhsXUjJgF2hEBp3" });
-  var form = document.getElementById('contact-form');
-  if (!form) return;
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    emailjs.sendForm('service_od2ej9r', 'template_lm7g5ls', this)
-      .then(function() { alert('Message sent successfully.'); form.reset(); },
-            function(error) { alert('Failed to send message.'); console.error(error); });
-  });
-}, { once: true });
-</script>
-
-<script>
-window.addEventListener('load', function() {
-  var s = document.createElement('script');
-  s.src = 'assets/js/sound-engine.js?v=20260703e';
-  document.body.appendChild(s);
-}, { once: true });
-</script>
+<script src="assets/js/academic.js?v=20260917a" defer></script>
 
 </body>
 </html>
