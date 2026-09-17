@@ -2,9 +2,6 @@
 .abt-location{display:inline-flex;align-items:center;gap:6px;margin-top:8px;color:rgba(28,25,23,.56);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:12px;font-weight:500;letter-spacing:.01em;align-self:flex-start}
 .abt-location svg{flex-shrink:0;color:#D96535}
 .abt-sticky-header{position:sticky;top:0;z-index:3;background:#FAF8F4;padding-bottom:4px;transform:translateZ(0);will-change:transform;isolation:isolate}
-.abt-interests{display:flex;flex-direction:column;gap:10px}
 .abt-sticky-header .abt-interests{margin-top:18px}
 .abt-sticky-header .abt-divider{margin-top:18px}
-.abt-interests-label{margin:0;font-size:11px;letter-spacing:.3em;color:#D96535;font-weight:700;text-transform:uppercase}
-.abt-interests-tags{display:flex;flex-wrap:wrap;gap:8px}
-.abt-interest-tag{display:inline-flex;align-items:center;padding:8px 14px;background:rgba(217,101,53,.1);border:1px solid rgba(217,101,53,.32);border-radius:8px;color:rgba(28,25,23,.88);font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:12px;font-weight:700;letter-spacing:.01em;line-height:1.4}
+.abt-interests-text{margin:0;font-size:15px;font-weight:700;line-height:1.6;color:rgba(28,25,23,.88);font-family:"Plus Jakarta Sans",system-ui,sans-serif;max-width:58ch}
