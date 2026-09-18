@@ -13,3 +13,12 @@
 .abt-big-question{margin:12px 0 0;padding-left:12px;border-left:3px solid #D96535;font-size:17px;font-weight:700;line-height:1.35;color:rgba(28,25,23,.92);font-family:"Plus Jakarta Sans",system-ui,sans-serif}
 @media (max-width:736px){#about-window .abt-text-view{padding:24px 20px 18px;gap:10px}.abt-big-question{font-size:16px}}
 @media (max-width:640px){#about-window .abt-text-view{padding:18px 16px 14px;gap:8px}}
+
+/* Visible "About" label under the eye-icon nav trigger, so it reads as a nav item, not a decoration */
+.nav-eye-socket{overflow:visible}
+.nav-eye-label{position:absolute;top:100%;left:50%;transform:translateX(-50%);margin-top:8px;font-family:"Plus Jakarta Sans",system-ui,sans-serif;font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--nav-text,rgba(28,25,23,.58));white-space:nowrap;pointer-events:none;transition:color .18s ease}
+.nav-eye-socket:hover .nav-eye-label,.nav-eye-socket:focus-visible .nav-eye-label{color:var(--nav-text-hover,rgba(28,25,23,.95))}
+
+/* Readability fix: About panel body copy was too small and too low-contrast to read comfortably */
+.abt-body{font-size:16px!important;line-height:1.78!important;color:rgba(28,25,23,.85)!important;font-weight:500}
+.abt-title{color:rgba(28,25,23,.94)!important}
