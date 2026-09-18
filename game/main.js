@@ -87,8 +87,10 @@ const lifeSections = [
 ];
 
 function sectionLabel(i) {
-  // In-game label format
-  return (i + 1) + " - " + lifeSections[i];
+  // In-game label format, e.g. "01 / 12 — Origins"
+  const n = lifeSections.length;
+  const idx = String(i + 1).padStart(2, "0");
+  return idx + " / " + n + " — " + lifeSections[i];
 }
 
 const palettes = {
@@ -206,6 +208,39 @@ let currentLevelName = "Untitled";
 let UIinterest = 0;
 let mouseWasPressed = false;
 let shakeTimeout = 0;
+
+/* ================================
+   MOVEMENT HINT (Roman)
+   - Shows the control scheme the moment gameplay starts
+   - Stays on screen, undimmed, until the player's first
+     movement input, then fades out for the rest of the session
+   ================================ */
+const movementHintUI = {
+  showDelayMs: 500,     // wait this long after a level loads before showing
+  fadeOutMs: 550,       // fade-out duration once dismissed
+  accent: [224, 123, 90], // matches the portfolio site's accent color
+  keyChipSize: 15,
+  labelSize: 12,
+  gapY: 30
+};
+let movementHint = {
+  armed: false,     // true once a fresh game session has started
+  dismissed: true,  // true once the player has moved (or on menu/replays)
+  levelStartMs: 0,
+  fadeStartMs: 0
+};
+
+function resetMovementHint() {
+  movementHint.armed = true;
+  movementHint.dismissed = false;
+  movementHint.levelStartMs = millis();
+}
+
+function dismissMovementHint() {
+  if (movementHint.dismissed) return;
+  movementHint.dismissed = true;
+  movementHint.fadeStartMs = millis();
+}
 
 // ----- Intro black fade overlay -----
 const introDurationMs = 9000;
@@ -613,6 +648,93 @@ function onPlayerReachedGoal() {
   }, narrativeUI.outroDelayMs);
 }
 
+// Bottom-center technical HUD panel listing the controls, shown the moment
+// gameplay starts and dismissed permanently on the player's first move.
+function drawMovementHint() {
+  if (!movementHint.armed) return;
+
+  const now = millis();
+  let alpha = 1;
+
+  if (movementHint.dismissed) {
+    const t = (now - movementHint.fadeStartMs) / movementHintUI.fadeOutMs;
+    if (t >= 1) return; // fully faded, nothing left to draw
+    alpha = 1 - constrain(t, 0, 1);
+  } else {
+    const sinceStart = now - movementHint.levelStartMs;
+    if (sinceStart < movementHintUI.showDelayMs) return;
+    alpha = constrain((sinceStart - movementHintUI.showDelayMs) / 260, 0, 1);
+  }
+
+  const [ar, ag, ab] = movementHintUI.accent;
+  const isMobile = settings.general.runMobile;
+  const groups = isMobile
+    ? [{ key: "TOUCH & HOLD", label: "MOVE" }, { key: "SHAKE", label: "SWAP WORLDS" }]
+    : [{ key: "W A S D", label: "MOVE / ARROWS" }, { key: "SPACE", label: "SWAP WORLDS" }, { key: "M", label: "MENU" }];
+
+  push();
+  textSize(movementHintUI.labelSize);
+  textAlign(CENTER, CENTER);
+
+  const chipPadX = 10, chipGap = 10, groupGap = 26;
+  const chipH = movementHintUI.labelSize + 12;
+
+  let totalW = 0;
+  const measured = groups.map((g, i) => {
+    const keyW = textWidth(g.key) + chipPadX * 2;
+    const labelW = textWidth(g.label);
+    const w = keyW + chipGap + labelW;
+    totalW += w + (i > 0 ? groupGap : 0);
+    return { key: g.key, label: g.label, keyW, labelW };
+  });
+
+  const panelPadX = 26, panelPadY = 14;
+  const panelW = totalW + panelPadX * 2;
+  const panelH = chipH + panelPadY * 2;
+  const cx = width / 2;
+  const cy = height - 130;
+
+  rectMode(CENTER);
+  noStroke();
+  fill(0, 0, 0, 120 * alpha);
+  rect(cx, cy, panelW, panelH, 14);
+
+  // Technical corner-bracket framing, in the site's accent color
+  stroke(ar, ag, ab, 220 * alpha);
+  strokeWeight(1.4);
+  const bx = panelW / 2, by = panelH / 2, bl = 12;
+  [[-bx, -by, 1, 1], [bx, -by, -1, 1], [-bx, by, 1, -1], [bx, by, -1, -1]].forEach(([ox, oy, sx, sy]) => {
+    line(cx + ox, cy + oy, cx + ox + bl * sx, cy + oy);
+    line(cx + ox, cy + oy, cx + ox, cy + oy + bl * sy);
+  });
+
+  let x = cx - totalW / 2;
+  const chipY = cy;
+  rectMode(CORNER);
+  measured.forEach((g) => {
+    noStroke();
+    fill(ar, ag, ab, 36 * alpha);
+    rect(x, chipY - chipH / 2, g.keyW, chipH, 6);
+    noFill();
+    stroke(ar, ag, ab, 165 * alpha);
+    strokeWeight(1);
+    rect(x, chipY - chipH / 2, g.keyW, chipH, 6);
+
+    noStroke();
+    fill(255, 255, 255, 235 * alpha);
+    textAlign(CENTER, CENTER);
+    text(g.key, x + g.keyW / 2, chipY + 1);
+
+    textAlign(LEFT, CENTER);
+    fill(255, 255, 255, 165 * alpha);
+    text(g.label, x + g.keyW + chipGap, chipY + 1);
+
+    x += g.keyW + chipGap + g.labelW + groupGap;
+  });
+
+  pop();
+}
+
 function drawNarrativeOverlay() {
   if (!narrativeOverlay.active) return;
 
@@ -741,6 +863,7 @@ function setup() {
     settings.graphics.doAC = false; // stops the floor grid from bugging out
     gameScene = "game";
     loadLevel(0);
+    movementHint.dismissed = true; // no hint needed in the level editor
   } else {
     // normal player: start on menu and fade in from black
     gameScene = "menu";
@@ -847,6 +970,7 @@ function drawMenuScene() {
     drawButton("Start",    width / 2, firstY + 0 * gapY, menuButtonStyle.textSize, () => {
       loadLevel(0);
       gameScene = "game";
+      resetMovementHint();
       fullscreen();
     });
     drawButton("Sections", width / 2, firstY + 1 * gapY, menuButtonStyle.textSize, () => gameScene = "levelSelect");
@@ -879,6 +1003,7 @@ function drawMenuScene() {
     drawButton("Start",    width / 2, firstY + 0 * gapY, menuButtonStyle.textSize, () => {
       loadLevel(0);
       gameScene = "game";
+      resetMovementHint();
       fullscreen();
     });
     drawButton("Sections", width / 2, firstY + 1 * gapY, menuButtonStyle.textSize, () => gameScene = "levelSelect");
@@ -1231,6 +1356,7 @@ function drawGameScene() {
   drawNarrativeOverlay();
   drawShutterOverlay();
   drawLevelTransitionOverlay();
+  if (!isDev) drawMovementHint();
 
   if (settings.general.FPSindicator) {
     textAlign(RIGHT, TOP);
@@ -1251,11 +1377,21 @@ function update() {
   UIinterest -= settings.graphics.frameScale;
   shakeTimeout -= settings.graphics.frameScale;
 
+  if (movementHint.armed && !movementHint.dismissed && detectMovementInput()) {
+    dismissMovementHint();
+  }
+
   if (!editMode) {
     player.update(leftSelected ? worldL : worldR);
   }
 
   updateScreenDivide();
+}
+
+function detectMovementInput() {
+  if (settings.general.runMobile && typeof touches !== "undefined" && touches.length > 0) return true;
+  return keyIsDown(87) || keyIsDown(83) || keyIsDown(65) || keyIsDown(68) ||   // WASD
+         keyIsDown(38) || keyIsDown(40) || keyIsDown(37) || keyIsDown(39);      // arrows
 }
 
 function updateScreenDivide() { // animate the screen divide with key frames

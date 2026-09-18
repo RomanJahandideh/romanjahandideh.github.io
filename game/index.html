@@ -3,17 +3,67 @@
 
 <head>
 	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+	<title>An Introduction You Can Walk Through | Roman Jahandideh</title>
+	<meta name="description" content="A twelve-level architectural walking game that replaces a conventional CV: each level's spatial puzzle unlocks the next chapter of Roman Jahandideh's practice, from architecture through physiological computing." />
+	<link rel="canonical" href="https://romanjahandideh.com/game/index.html" />
+
+	<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
+	<link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png?v=3" />
+	<link rel="apple-touch-icon" href="../assets/images/apple-touch-icon.png?v=1" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
+
 	<style>
 		html,
 		body {
 			margin: 0;
 			padding: 0;
 			overflow: hidden;
+			background: #000;
+		}
+
+		#game-back-btn {
+			position: fixed;
+			top: max(18px, env(safe-area-inset-top, 0px));
+			left: 18px;
+			z-index: 10000;
+			display: flex;
+			align-items: center;
+			gap: 7px;
+			padding: 9px 18px;
+			background: rgba(10, 9, 8, 0.55);
+			border: 1px solid rgba(224, 123, 90, 0.35);
+			border-radius: 999px;
+			color: rgba(255, 255, 255, 0.86);
+			text-decoration: none;
+			font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+			font-size: 12px;
+			font-weight: 600;
+			letter-spacing: 0.06em;
+			backdrop-filter: blur(10px);
+			-webkit-backdrop-filter: blur(10px);
+			transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+		}
+
+		#game-back-btn:hover,
+		#game-back-btn:focus-visible {
+			background: rgba(224, 123, 90, 0.24);
+			border-color: rgba(224, 123, 90, 0.75);
+			color: #fff;
+			transform: translateY(-1px);
+		}
+
+		#game-back-btn:active {
+			transform: translateY(0);
 		}
 	</style>
 
 	<script src="https://openprocessing.org/openprocessing_sketch.js"></script>
-	
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 	<script src="p5Zip.js"></script>
@@ -26,21 +76,7 @@
 
 <body>
 
-<a href="https://romanjahandideh.com/" id="game-back-btn"
-   style="position:fixed;top:18px;left:18px;z-index:10000;
-          display:flex;align-items:center;gap:7px;
-          padding:9px 18px;
-          background:rgba(0,0,0,0.50);
-          border:1px solid rgba(255,255,255,0.16);
-          border-radius:999px;
-          color:rgba(255,255,255,0.82);
-          text-decoration:none;
-          font-family:system-ui,sans-serif;
-          font-size:12px;font-weight:600;
-          letter-spacing:0.06em;
-          backdrop-filter:blur(10px);
-          -webkit-backdrop-filter:blur(10px);
-          transition:background 0.2s,color 0.2s;">
+<a href="https://romanjahandideh.com/" id="game-back-btn">
   &#8592; Back to Portfolio
 </a>
 
