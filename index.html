@@ -737,6 +737,31 @@
           </div>
         </article>
 
+        <article class="project-card" id="project-9" data-project="9">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/vancouver-view-corridor-hero.webp" aria-label="View a larger image of the stepped massing trimmed by a real Vancouver view corridor">
+              <img src="assets/images/projects/vancouver-view-corridor-hero.webp" alt="A stepped massing volume trimmed diagonally where a protected view corridor's sloped ceiling crosses it, with the full view corridor triangle shown extending from its real apex" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--research">Independent project &middot; Rhino, Grasshopper, computational geometry</span>
+              <h3 class="project-card-title">Vancouver View Corridor Massing</h3>
+              <p class="project-card-venue">Rhino &amp; Grasshopper study &middot; deterministic measurements &middot; real City of Vancouver view corridor data</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Vancouver protects 24 sightlines to the mountains and water with what the City calls view corridors, and they are a genuinely harder constraint than a normal height limit: a view cone caps a building not at some number of storeys, but at a maximum elevation above sea level that is low near the viewpoint and rises with distance from it. A site can sit entirely inside its zoning envelope and still have a tall building sliced off diagonally by a corridor it happens to fall under. This project asks whether that specific, real geometric problem, a sloped ceiling instead of a flat one, can be generated correctly rather than approximated.</p>
+              <h4>How it works</h4>
+              <p>The view corridor's polygon is pulled live from the City of Vancouver's Open Data Portal, real, currently published geometry for one of its 24 officially protected corridors, not an approximation. From that polygon the apex and sightline axis are derived, and a candidate site's zoning envelope is generated the same way as in my earlier massing tools, an inward offset via half-plane intersection. Because the corridor's geodetic ceiling rises linearly with distance from the apex, checking each floor against it is itself a single half-plane clip, applied floor by floor, so the massing steps down exactly where the sightline demands it. The exact per-site elevation limit isn't published in the open dataset, the City's own guidance is to confirm that directly, so this models the real mechanism correctly on a placeholder figure, rather than presenting an unverified number as fact.</p>
+              <h4>Where it lives</h4>
+              <p>Unlike the two browser tools above, this one is a Rhino and Grasshopper study, so there is no live link. The repository includes a standalone, unit-tested Python script that writes a real, verified <code>.3dm</code> file openable directly in Rhino, and a Grasshopper Python component sharing the same tested core geometry, adapted for the GH canvas.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/vancouver-view-corridor-massing" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+
       </div>
 
     </div>
