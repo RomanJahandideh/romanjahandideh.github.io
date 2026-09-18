@@ -22,3 +22,8 @@
 /* Readability fix: About panel body copy was too small and too low-contrast to read comfortably */
 .abt-body{font-size:16px!important;line-height:1.78!important;color:rgba(28,25,23,.85)!important;font-weight:500}
 .abt-title{color:rgba(28,25,23,.94)!important}
+
+/* Single continuous "plate" silhouette behind the eye button + About label,
+   like one CNC-cut piece: a rounded capsule tail merges into the circle from
+   behind, no seams, no sharp corners, same fill as the rest of the nav. */
+.nav-eye-tail{position:absolute;top:28px;left:50%;transform:translateX(-50%);width:66px;height:58px;border-radius:33px;background:var(--nav-bg,rgba(250,248,244,.92));pointer-events:none}
