@@ -685,6 +685,58 @@
           </div>
         </article>
 
+        <article class="project-card" id="project-7" data-project="7">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/parametric-massing-generator-hero.webp" aria-label="View a larger image of the Parametric Massing Generator's urban block mode">
+              <img src="assets/images/projects/parametric-massing-generator-hero.webp" alt="A 3x3 grid of white massing volumes generated on a subdivided urban block, with a plan view inset in the corner" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--research">Independent project &middot; agentic AI, computational design</span>
+              <h3 class="project-card-title">Parametric Massing Generator</h3>
+              <p class="project-card-venue">Zoning-to-form generation &middot; Three.js, Claude &middot; parcel geometry through urban block scale</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Given a lot and a zoning bylaw, what is the largest building you can actually, legally put on it, and can an AI system answer that in a way you can check rather than just trust? This project works through that question at three different scales: a single rectangular lot, an irregular parcel, and a whole subdivided urban block.</p>
+              <h4>What it answers</h4>
+              <p>Type a bylaw excerpt in plain English and it extracts every constraint, lot dimensions, setbacks, height limit, floor space ratio, with the exact source quote and a confidence level for each one, then generates the 3D massing envelope those constraints imply. A second, independent pass reviews that output against the original text and proposes a fix if something looks off, and you can keep talking to it afterward: &ldquo;make it one storey taller,&rdquo; &ldquo;switch to the rental bonus,&rdquo; each instruction changing only what it touches. A built-in preset encodes the City of Vancouver's real, current R1-1 zoning district, including its genuinely conditional rules, floor space ratio that changes with a secured-rental bonus, unit counts gated by frontage and lot-area thresholds, rather than flattening them into one number.</p>
+              <h4>How it works</h4>
+              <p>The buildable footprint on any parcel, not just a rectangle, is computed as a true inward offset of the parcel polygon using a from-scratch half-plane intersection algorithm, correct for any convex shape, rather than a bounding-box approximation. The Urban Block mode subdivides a larger site into a grid of parcels and assigns each one a functional zone, residential, commercial, administrative, or park, by asking an AI to interpret directional language (&ldquo;commercial along the south edge, a park in the northeast corner&rdquo;) against each parcel's normalized position, a coordinate-and-fuzzy-direction classification pattern. A 3D view and a color-coded 2D plan render side by side, and every parse, review, and refinement is written to a visible, timestamped generation log.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://romanjahandideh.github.io/parametric-massing-generator/" target="_blank" rel="noopener">Try it live &rarr;</a>
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/parametric-massing-generator" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card" id="project-8" data-project="8">
+          <div class="project-card-head">
+            <a class="project-thumb" href="assets/images/projects/zoning-literacy-assistant-hero.webp" aria-label="View a larger image of the Zoning Literacy Assistant's site compliance checker">
+              <img src="assets/images/projects/zoning-literacy-assistant-hero.webp" alt="The Zoning Literacy Assistant interface, showing example questions, a lot width and depth form, and the real bylaw excerpt it answers from" loading="lazy" />
+            </a>
+            <div class="project-card-heading">
+              <span class="project-badge project-badge--research">Independent project &middot; grounded question answering</span>
+              <h3 class="project-card-title">Zoning Literacy Assistant</h3>
+              <p class="project-card-venue">Regulatory literacy &middot; retrieval, synthesis &amp; independent verification &middot; Claude</p>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Most people affected by a zoning bylaw have never read one, and asking a general AI chatbot instead tends to produce a confident-sounding answer with no way to check whether it is actually true. This project asks whether an AI system can be made trustworthy enough for that, not by writing better prose, but by making it retrieve its sources, cite them, and admit what it does not know.</p>
+              <h4>What it answers</h4>
+              <p>Ask a plain-language question, &ldquo;can I build a duplex on my lot?&rdquo;, and it either grounds the answer in the exact bylaw clause it used, quoted directly, or says plainly that the bylaw excerpt does not cover it, rather than filling the gap with general knowledge. A second tab takes a specific site, lot width, depth, whether a unit will be secured rental, and returns a structured feasibility report: which unit-count tier the lot qualifies for, the buildable footprint after setbacks, and the estimated floor area, citing the clause behind every figure.</p>
+              <h4>How it works</h4>
+              <p>Every question runs through three separate calls rather than one. Retrieval sees only the bylaw's clause titles and selects which clauses are relevant, including ones that interact with each other; synthesis then answers using only those clauses' full text; and an independent verification pass checks the answer against its own quotes and flags any clause the retrieval step may have missed, the reviewer-agent pattern applied to a question instead of a design proposal. The site-compliance numbers are never calculated by the AI at all: the arithmetic runs deterministically in code against the bylaw's real thresholds, and the model is only asked to narrate an already-computed result in plain language.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://romanjahandideh.github.io/zoning-literacy-assistant/" target="_blank" rel="noopener">Try it live &rarr;</a>
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/zoning-literacy-assistant" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+        </article>
+
       </div>
 
     </div>
