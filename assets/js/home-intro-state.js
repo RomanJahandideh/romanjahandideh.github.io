@@ -5,7 +5,7 @@
   var hash = location.hash.toLowerCase();
   var seen = false;
   var internal = false;
-  try { seen = localStorage.getItem("portfolio.welcomeSeen") === "1"; } catch (_) {}
+  try { seen = localStorage.getItem("portfolio.welcomeSeen.v2") === "1"; } catch (_) {}
   try { internal = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch (_) {}
   var navigation = performance.getEntriesByType ? performance.getEntriesByType("navigation")[0] : null;
   var returning = navigation && (navigation.type === "back_forward" || navigation.type === "reload");
@@ -15,6 +15,6 @@
   if (hash === "#projects") root.classList.add("projects-entry");
   if (window.siteIntroShouldPlay) {
     root.classList.add("show-site-intro");
-    try { localStorage.setItem("portfolio.welcomeSeen", "1"); } catch (_) {}
+    try { localStorage.setItem("portfolio.welcomeSeen.v2", "1"); } catch (_) {}
   }
 })();
