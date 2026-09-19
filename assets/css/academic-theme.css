@@ -292,6 +292,7 @@ body.mode-work #main-stack .layer:hover {
 .projects-overlay-inner {
   max-width: 1120px;
   margin: 0 auto;
+  padding: 32px 36px 44px;
 }
 
 .projects-header {
@@ -382,6 +383,10 @@ body.mode-work #main-stack .layer:hover {
   .projects-header {
     margin-bottom: 18px;
     padding-bottom: 20px;
+  }
+
+  .projects-overlay-inner {
+    padding: 24px 20px 32px;
   }
 
   .project-summary-link {
