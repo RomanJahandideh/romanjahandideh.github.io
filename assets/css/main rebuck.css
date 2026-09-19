@@ -145,7 +145,7 @@ body {
 
 	body, input, select, textarea {
 		color: #ffffff;
-		font-family: "Plus Jakarta Sans", sans-serif;
+		font-family: "Source Serif 4", sans-serif;
 		font-weight: 300;
 		font-size: 1rem;
 		line-height: 1.65;
@@ -1763,7 +1763,7 @@ body.is-article-visible #bg::after {
   top: var(--fs-y);
   transform: translate(-50%, -50%);
 
-  font-family: "Plus Jakarta Sans", sans-serif; /* SAME FONT */
+  font-family: "Source Serif 4", sans-serif; /* SAME FONT */
   font-weight: 300;
   font-size: var(--fs-size);
   letter-spacing: var(--fs-letterspace);

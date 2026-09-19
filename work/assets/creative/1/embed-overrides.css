@@ -30,7 +30,7 @@
 html, body{
   background: var(--iframe-bg) !important;
   color: #ffffff !important;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif !important;
 }
 
 body{
@@ -212,7 +212,7 @@ footer,
 
 /* --- Stage3 LINK button horizontal white style --- */
 #downloadBtn{
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: "Source Serif 4", sans-serif !important;
   font-size: 12px !important;
   font-weight: 600 !important;
   letter-spacing: 0.08em !important;
