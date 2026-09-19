@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Reading a Remote Teammate's Body | Roman Jahandideh</title>
-<meta name="description" content="An investigation of ambient physiological cues for awareness during synchronous remote collaboration. The paper is in revision for an ACM resubmission in 2027." />
+<meta name="description" content="A two-study ACM research project that makes remote teammates' heart rate and HRV readable through an animated halo cue during cooperative play." />
 <link rel="canonical" href="https://romanjahandideh.com/projects/reading-a-remote-teammates-body.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,7 +27,7 @@
     <header class="project-detail-header">
       <span class="project-badge project-badge--revision">In revision, ACM &middot; resubmitting 2027</span>
       <h1 class="project-card-title">Reading a Remote Teammate's Body</h1>
-      <p class="project-card-venue">Remote collaboration &middot; ambient physiological awareness &middot; ACM</p>
+      <p class="project-card-venue">ACM research paper in revision &middot; Apple Watch HR/HRV &middot; Unity cooperative play &middot; two studies</p>
     </header>
     <figure class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/remote-teammates-body-study.png" aria-label="View a larger image for Reading a Remote Teammate's Body">
               <img src="../assets/images/projects/remote-teammates-body-study.png" alt="Experimental multiplayer game environment used in the remote teammate study, showing Prep, Runner, and Cook roles and teammate state icons" loading="lazy" />
@@ -36,11 +36,31 @@
     </figure>
     <div class="project-card-body">
             <div class="project-card-text">
-              <p>Reading a Remote Teammate&apos;s Body extends BioTerrarium&apos;s approach to physiological feedback into synchronous remote collaboration. The project investigates how ambient cues might communicate a collaborator&apos;s focus, strain, or calm during screen sharing, collaborative design, and joint problem solving. Its objective is to support awareness of a collaborator&apos;s state while preserving attention to the shared task.</p>
-              <h2>Methodology</h2>
-              <p>The system represents physiological state through subtle environmental changes in an experience involving two collaborators. These cues communicate presence and condition without requiring users to interpret raw biometric data. The research examines whether this form of ambient reciprocity can support social and bodily awareness during remote collaboration.</p>
+              <p>Reading a Remote Teammate&apos;s Body asks how a remote teammate&apos;s bodily state can remain socially readable without reducing it to an emotion label or an intrusive stream of numbers. The project translates heart rate (HR) into pulse speed, brightness, and glow, and heart rate variability (HRV) into the coherence of a surrounding ring. Together, these signals form one animated halo per teammate: a graded cue that players interpret in the context of a shared task rather than a diagnosis presented as fact.</p>
+              <h2>Two-Study Methodology</h2>
+              <p>Study 1 used a within-subjects, research-through-design methodology to test whether the icon could be read without numbers or emotion words. Thirty-six participants viewed sixteen combinations of four HR states and four HRV states in an online forced-choice study, followed by clarity, urgency, stability, support-intention, and workload measures. HR recognition reached 66.3% and HRV recognition 58.2%, both well above the 25% chance level. Joint recognition of both channels reached 44.6% against a 6.25% chance level.</p>
+              <p>Study 2 carried the validated icon into a live Unity cooperative-cooking prototype. Thirty-six new participants formed twelve three-player teams and completed three counterbalanced seven-minute missions under No Cue, Numeric Cue, and Icon Cue conditions. Each participant used an Apple Watch and a local HealthKit-to-Unity bridge; the system replicated classified HR/HRV states rather than raw physiological time series. Scripted pressure events tested whether teammates noticed overload and offered timely support.</p>
+              <h2>Research Figures</h2>
+              <div class="project-card-gallery project-card-gallery--paper">
+                <a class="project-thumb" href="../assets/images/projects/remote-teammates-body/Figure_1_Teaser_IconCue.png" aria-label="View the animated halo interface teaser">
+                  <img src="../assets/images/projects/remote-teammates-body/Figure_1_Teaser_IconCue.png" alt="Cooperative cooking interface showing one animated physiological halo icon for each remote teammate" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/remote-teammates-body/Figure_2_Experimental_Procedure_600dpi.png" aria-label="View the two-study experimental procedure">
+                  <img src="../assets/images/projects/remote-teammates-body/Figure_2_Experimental_Procedure_600dpi.png" alt="Two-study procedure showing icon validation followed by live multiplayer evaluation" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/remote-teammates-body/Figure_3_Icon_Legibility_and_Recognition_600dpi.png" aria-label="View the icon legibility and recognition results">
+                  <img src="../assets/images/projects/remote-teammates-body/Figure_3_Icon_Legibility_and_Recognition_600dpi.png" alt="Recognition accuracy and confusion patterns for heart-rate and heart-rate-variability icon states" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/remote-teammates-body/Figure_6_Team_Performance_Outcomes.png" aria-label="View team performance outcomes">
+                  <img src="../assets/images/projects/remote-teammates-body/Figure_6_Team_Performance_Outcomes.png" alt="Team performance outcomes comparing no cue, numeric cue, and icon cue conditions" loading="lazy" />
+                </a>
+              </div>
+              <p class="project-card-caption">Figures from the current ACM manuscript and study materials. Select any figure to view the full-resolution version.</p>
               <h2>Experimental Environment</h2>
-              <p>The study used a multiplayer game environment to examine remote collaboration. The figure shows the shared restaurant environment, task roles, and teammate state icons used in the experiment.</p>
+              <p>The live study used a custom Overcooked-style cooperative cooking task with Prep, Cook, and Runner roles. Three scripted events created measurable coordination pressure: an ingredient bottleneck, a pot overload, and a service rush. The primary behavioral measure was support response time, defined as the time from the pressure event to the first relevant support action from a teammate.</p>
+              <h2>Findings and Design Trade-offs</h2>
+              <p>Teams responded to pressure in 15.3 seconds under No Cue, 12.5 seconds under Numeric Cue, and 11.4 seconds under Icon Cue. The Icon Cue was 3.9 seconds faster than No Cue and matched the numeric display statistically on response time, while reducing workload and perceived invasiveness. Teammate awareness rose from 4.21 under No Cue to 5.34 under Icon Cue. The result is deliberately mixed: Numeric Cue scored higher on trust, coordination usefulness, and mission score, while Icon Cue offered a lower-friction and less invasive way to notice a teammate&apos;s condition.</p>
+              <p>The central contribution is therefore not a claim that ambiguity always outperforms precision. It is a demonstrated design trade-off: a label-free, ambient cue can preserve much of the coordination benefit of explicit physiological disclosure while reducing attention and privacy costs. Participants specifically requested opt-in visibility, separate permissions for icon and numeric displays, and an immediate off switch.</p>
               <h2>Current Status</h2>
               <p>The paper received a revise and resubmit decision from an ACM venue. I am addressing reviewer feedback and refining the study for resubmission in 2027. The revision considers the interaction design contribution and the ethical responsibilities associated with sharing physiological information between collaborators.</p>
             </div>
