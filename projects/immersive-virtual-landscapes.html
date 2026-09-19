@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Creating Immersive Virtual Landscapes | Roman Jahandideh</title>
-<meta name="description" content="Research on depth perception and environmental legibility in head-mounted virtual landscapes, published in the proceedings of eCAADe 2023." />
+<meta name="description" content="An eCAADe 2023 study of how transparency, colour, and luminance alter depth perception in transparent objects viewed through VR head-mounted displays." />
 <link rel="canonical" href="https://romanjahandideh.com/projects/immersive-virtual-landscapes.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,18 +27,42 @@
     <header class="project-detail-header">
       <span class="project-badge project-badge--published">Published &middot; eCAADe 2023</span>
       <h1 class="project-card-title">Creating Immersive Virtual Landscapes</h1>
-      <p class="project-card-venue">Virtual Landscape Design Lab, Istanbul Technical University (dir. Dr. Ikhwan Kim) &middot; depth perception &amp; environmental legibility</p>
+      <p class="project-card-venue">eCAADe 41, 2023, pp. 149&ndash;158 &middot; Unreal Engine 4.27 &middot; Oculus Quest 2 &middot; depth perception research</p>
     </header>
     <div class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/immersive-virtual-landscapes.svg" aria-label="View a larger image for Creating Immersive Virtual Landscapes">
               <img src="../assets/images/projects/immersive-virtual-landscapes.svg" alt="Abstract illustration of layered landscape contours seen through a headset frame" loading="lazy" />
             </a></div>
     <div class="project-card-body">
             <div class="project-card-text">
-              <p>Developed during my master&apos;s studies in landscape architecture, this research examines depth and distance perception in head-mounted virtual environments. The work was conducted at the Virtual Landscape Design Lab at Istanbul Technical University, directed by Dr. Ikhwan Kim. It addresses a challenge in architectural visualization: environments that appear spatially convincing on a screen may communicate depth, scale, and structure differently when viewed through a headset.</p>
-              <h2>Methodology</h2>
-              <p>The paper documents the design and construction of an immersive virtual landscape for investigating environmental legibility. It examines visual cues, spatial layers, and scale references that support interpretation of depth and distance. The application context is the communication of unbuilt architectural and planning proposals to clients, reviewers, and communities.</p>
-              <h2>Project Outcomes</h2>
-              <p>The paper was published in the proceedings of eCAADe 2023. Its findings informed subsequent work in spatial computing and environment design, including BioTerrarium, where perceptual clarity is integrated into the interaction design.</p>
+              <p>Developed during my master&apos;s studies in landscape architecture at the Virtual Landscape Design Lab at Istanbul Technical University, this published study examines how transparent objects are perceived in VR head-mounted displays. The research addresses a practical problem in immersive architectural and landscape visualization: transparent materials such as glass have few conventional texture cues, so colour, luminance, and opacity become unusually important to how users judge depth and interact with an object.</p>
+              <h2>Research Design</h2>
+              <p>The experiment used two simple 3D spheres, each 7.5 centimetres in radius and presented 50 centimetres from the participant in Unreal Engine 4.27. Sixty participants completed a within-subject forced-choice pairwise comparison experiment across four transparency levels (10%, 40%, 60%, and 90%), six hues (red, magenta, yellow, green, blue, and cyan), and two luminance conditions. A Latin-square presentation order reduced learning and fatigue effects. Using an Oculus Quest 2 controller, participants selected which of two otherwise equivalent spheres appeared nearer; each participant completed 264 comparisons across the four transparency conditions.</p>
+              <h2>Paper Figures</h2>
+              <div class="project-card-gallery project-card-gallery--paper">
+                <a class="project-thumb" href="../assets/images/projects/immersive-virtual-landscapes-paper/page-3-figure-1.jpeg" aria-label="View the four transparency levels used in the experiment">
+                  <img src="../assets/images/projects/immersive-virtual-landscapes-paper/page-3-figure-1.jpeg" alt="Four blue-green spheres shown at 10, 40, 60, and 90 percent transparency" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/immersive-virtual-landscapes-paper/page-3-figure-2.jpeg" aria-label="View the colour and luminance conditions used in the experiment">
+                  <img src="../assets/images/projects/immersive-virtual-landscapes-paper/page-3-figure-2.jpeg" alt="Warm and cool colour conditions with bright and dark variants used in the experiment" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/immersive-virtual-landscapes-paper/page-4-figure-2.jpeg" aria-label="View the paired comparison stimulus">
+                  <img src="../assets/images/projects/immersive-virtual-landscapes-paper/page-4-figure-2.jpeg" alt="Two differently coloured transparent spheres presented for a nearer-farther depth comparison" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/immersive-virtual-landscapes-paper/page-4-figure-1.png" aria-label="View a sample participant preference matrix">
+                  <img src="../assets/images/projects/immersive-virtual-landscapes-paper/page-4-figure-1.png" alt="Sample preference matrix recording which colour a participant judged to be nearer in pairwise comparisons" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/immersive-virtual-landscapes-paper/page-6-figure-1.png" aria-label="View the colour scores by transparency level">
+                  <img src="../assets/images/projects/immersive-virtual-landscapes-paper/page-6-figure-1.png" alt="Bar charts comparing colour preference scores for 90, 60, 40, and 10 percent transparent spheres" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/immersive-virtual-landscapes-paper/page-7-figure-1.png" aria-label="View the summary of warm and cool colour effects">
+                  <img src="../assets/images/projects/immersive-virtual-landscapes-paper/page-7-figure-1.png" alt="Stacked charts showing the interaction between cool and warm colours, and dark and bright colours, across transparency levels" loading="lazy" />
+                </a>
+              </div>
+              <p class="project-card-caption">Original figures from the published paper: experimental conditions, pairwise-comparison data, and aggregated results. Select any figure to view it at full size.</p>
+              <h2>Findings</h2>
+              <p>Preference matrices were evaluated with Kendall&apos;s coefficients of agreement and consistency. At 10% and 40% transparency, the results broadly followed classical depth-cue expectations: warm colours tended to appear nearer than cool colours, and bright colours nearer than dark ones. At 60% and especially 90% transparency, those relationships reversed. Cool colours were perceived as nearer than warm colours, while dark colours were perceived as nearer than bright colours. At 90% transparency, blue received the highest score and bright yellow the lowest, demonstrating that opacity changes the meaning of familiar pictorial depth cues.</p>
+              <h2>Contribution and Limitations</h2>
+              <p>The findings give VR, architectural visualization, and virtual landscape designers a practical basis for choosing colour and luminance when transparent objects need to remain spatially legible. They also caution against transferring assumptions from opaque graphics directly into highly transparent HMD scenes. The study examined four transparency levels, twelve colour/luminance conditions, and a white background; different palettes, backgrounds, object geometries, or transparency intervals may produce different effects. The paper was published in the proceedings of eCAADe 41 in 2023 and continues to inform my work on perceptual clarity in spatial computing.</p>
             </div>
             <div class="project-card-actions">
               <a class="project-card-link" href="https://doi.org/10.52842/conf.ecaade.2023.1.149" target="_blank" rel="noopener">Read the published paper &rarr;</a>
