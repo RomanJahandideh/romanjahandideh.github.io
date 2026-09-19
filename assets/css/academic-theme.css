@@ -42,6 +42,14 @@ body.mode-work .top-nav a:hover,
   color: var(--academic-accent);
 }
 
+#services-btn {
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  line-height: 1.65;
+}
+
 #global-site-hints .global-site-hint,
 #global-site-hints .global-site-hint-secondary {
   color: var(--academic-muted) !important;
