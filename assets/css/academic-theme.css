@@ -266,6 +266,12 @@ body.mode-work #main-stack .layer:hover {
   box-shadow: 0 4px 16px rgba(31, 91, 120, 0.2);
 }
 
+.nav-eye-socket {
+  background: rgba(245, 242, 235, 0.94);
+  border: 1px solid var(--academic-border);
+  box-shadow: 0 3px 14px rgba(32, 42, 51, 0.1);
+}
+
 @media (max-width: 736px) {
   .top-nav {
     border-radius: var(--academic-radius);
