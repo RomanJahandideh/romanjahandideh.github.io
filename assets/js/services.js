@@ -88,6 +88,7 @@
   function close() {
     if (!isOpen) return;
     isOpen = false;
+    document.documentElement.classList.remove("projects-entry");
     document.body.classList.remove("svc-open");
     btn.setAttribute("aria-expanded", "false");
     overlay.classList.remove("is-open");
