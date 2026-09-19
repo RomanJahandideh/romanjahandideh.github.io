@@ -320,6 +320,7 @@ body.mode-work #main-stack .layer:hover {
 }
 
 .project-card {
+  background: rgba(235, 230, 220, 0.32);
   border-bottom: 1px solid var(--academic-border);
 }
 
@@ -327,7 +328,7 @@ body.mode-work #main-stack .layer:hover {
   grid-template-columns: 112px minmax(0, 1fr);
   gap: 18px;
   min-height: 152px;
-  padding: 20px 0;
+  padding: 22px 16px;
 }
 
 .project-summary-image {
@@ -385,6 +386,7 @@ body.mode-work #main-stack .layer:hover {
 
   .project-summary-link {
     min-height: 0;
+    padding: 18px 14px;
   }
 }
 
