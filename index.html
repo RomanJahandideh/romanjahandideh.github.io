@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="assets/js/home-intro-state.js?v=20260919b"></script>
 
 <title>Roman Jahandideh | Human-Computer Interaction · Bioadaptive Systems</title>
 
@@ -63,18 +64,18 @@
 <link rel="stylesheet" href="assets/css/teaching-overlay-redesign.css?v=20260617a" />
 
 <link rel="stylesheet" href="work/assets/css/main.css?v=20260616b" />
-<link rel="stylesheet" href="work/assets/css/work-card.css?v=20260616b" />
+<link rel="stylesheet" href="work/assets/css/work-card.css?v=20260919b" />
 <link rel="stylesheet" href="work/assets/css/work-cards-d3.css?v=20260616b" />
 <link rel="stylesheet" href="work/assets/css/stage3-modal.css?v=20260616b" />
 <link rel="stylesheet" href="work/assets/css/gallery.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/home-clouds.css?v=20260616b" />
 <link rel="stylesheet" href="assets/css/transitions.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/services.css?v=20260915c" />
-<link rel="stylesheet" href="assets/css/projects.css?v=20260919" />
+<link rel="stylesheet" href="assets/css/projects.css?v=20260919b" />
 <link rel="stylesheet" href="assets/css/toolbar.css?v=20260704b" />
 <link rel="stylesheet" href="assets/css/home-scroll-sequence.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/home-smoke.css?v=20260616b" />
-<link rel="stylesheet" href="assets/css/home-intro.css?v=20260703r" />
+<link rel="stylesheet" href="assets/css/home-intro.css?v=20260919b" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
 </head>
 
@@ -105,7 +106,7 @@
 <!-- Cream veil: softens home state; fades out as you scroll in -->
 <div id="scene-veil" aria-hidden="true"></div>
 
-<!-- Welcome intro — visible by default to prevent FOUC; JS fades out after 2s -->
+<!-- Welcome intro — enabled before first paint only for a first homepage visit -->
 <div id="site-intro">
   <!--
     Mirror the hero grid exactly so WELCOME lands
@@ -416,8 +417,8 @@
             <div class="label">Font Design</div>
           </a>
 
-          <a class="layer layer7" data-category="3D Design" role="button" tabindex="0" aria-label="Browse 3D Design">
-            <div class="label">3D Design</div>
+          <a class="layer layer7" data-category="3D Design" role="button" tabindex="0" aria-label="Browse Architecture and Landscape Design">
+            <div class="label">Architecture and Landscape Design</div>
           </a>
 
           <a class="layer layer8" data-category="Research" role="button" tabindex="0" aria-label="Browse Research">
@@ -474,7 +475,7 @@
 
         <article class="project-card" id="project-1" data-project="1">
           <a class="project-summary-link" href="projects/reading-a-remote-teammates-body.html" aria-labelledby="project-title-1">
-            <span class="project-summary-image"><img src="assets/images/projects/remote-teammates-body.svg" alt="Abstract illustration of two figures connected by a shared pulse waveform" loading="lazy" /></span>
+            <span class="project-summary-image"><img src="assets/images/projects/remote-teammates-body-study.png" alt="Experimental multiplayer game environment used in the remote teammate study, showing Prep, Runner, and Cook roles and teammate state icons" loading="lazy" /></span>
             <div class="project-summary-copy">
               <h3 class="project-card-title" id="project-title-1">Reading a Remote Teammate's Body</h3>
               <p class="project-summary">An investigation of ambient physiological cues for awareness during synchronous remote collaboration. The paper is in revision for an ACM resubmission in 2027.</p>
@@ -655,11 +656,11 @@
 
 <!-- ================= 3D DESIGN WINDOW ================= -->
 
-<div id="threed-window" class="site-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="3D Design: Roman Jahandideh">
+<div id="threed-window" class="site-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Architecture and Landscape Design: Roman Jahandideh">
 
   <div class="abt-view abt-text-view">
     <div>
-      <div class="abt-eyebrow">3D Design</div>
+      <div class="abt-eyebrow">Architecture and Landscape Design</div>
       <p class="abt-title">Architecture and Design Portfolio: a spatial visualization and 3D design showcase.</p>
     </div>
     <hr class="abt-divider">
@@ -835,16 +836,16 @@
 </script>
 
 <script src="work/assets/js/stage3-modal.js" defer></script>
-<script src="work/assets/js/work-d3-interaction.js" defer></script>
+<script src="work/assets/js/work-d3-interaction.js?v=20260919b" defer></script>
 <script src="work/assets/js/gallery-data.js?v=20260616f" defer></script>
 <script src="work/assets/js/gallery.js?v=20260616d" defer></script>
 <script src="assets/js/transitions.js" defer></script>
 <script src="assets/js/home-scroll-sequence.js" defer></script>
 <script src="assets/js/home-touch-scroll.js?v=20260703a" defer></script>
-<script src="assets/js/services.js?v=20260919" defer></script>
+<script src="assets/js/services.js?v=20260919b" defer></script>
 <script src="assets/js/toolbar-about.js" defer></script>
 <script src="assets/js/contact-panel.js" defer></script>
-<script src="assets/js/home-intro.js?v=5" defer></script>
+<script src="assets/js/home-intro.js?v=20260919b" defer></script>
 <script src="assets/js/artwork-3d-bg.js?v=20260704a" defer></script>
 
 <script>

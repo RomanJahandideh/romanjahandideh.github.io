@@ -1,1 +1,35 @@
-!function(){"use strict";var e=document.getElementById("site-intro"),t=document.getElementById("site-intro-word");if(e&&t)if(window.matchMedia("(prefers-reduced-motion: reduce)").matches)e.parentNode&&e.parentNode.removeChild(e);else{window.siteIntroPlaying=!0;var n=!1;requestAnimationFrame(function(){requestAnimationFrame(function(){t.style.opacity="1",setTimeout(i,1100)})}),document.addEventListener("pointerdown",o),document.addEventListener("keydown",o)}function i(){if(!n){n=!0,t.style.transition="opacity 1.0s ease",t.style.opacity="0";var i=document.getElementById("site-intro-skip");i&&(i.style.transition="opacity 0.6s ease",i.style.opacity="0"),setTimeout(function(){window.siteIntroPlaying=!1,e.parentNode&&e.parentNode.removeChild(e)},1050)}}function o(){document.removeEventListener("pointerdown",o),document.removeEventListener("keydown",o),i()}}();
+(function () {
+  "use strict";
+  var intro = document.getElementById("site-intro");
+  var word = document.getElementById("site-intro-word");
+  var finished = false;
+  var timer;
+  function remove() {
+    window.siteIntroPlaying = false;
+    document.documentElement.classList.remove("show-site-intro");
+    if (intro) intro.remove();
+  }
+  if (!intro || !word || !window.siteIntroShouldPlay) {
+    remove();
+    return;
+  }
+  function finish() {
+    if (finished) return;
+    finished = true;
+    clearTimeout(timer);
+    document.removeEventListener("pointerdown", finish);
+    document.removeEventListener("keydown", finish);
+    word.style.transition = "opacity 1s ease";
+    word.style.opacity = "0";
+    setTimeout(remove, 1050);
+  }
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      if (finished) return;
+      word.style.opacity = "1";
+      timer = setTimeout(finish, 1100);
+    });
+  });
+  document.addEventListener("pointerdown", finish);
+  document.addEventListener("keydown", finish);
+})();

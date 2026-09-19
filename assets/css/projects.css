@@ -19,6 +19,7 @@ body.svc-open #bg {
   pointer-events: none;
   transition: opacity 0.25s ease, visibility 0.25s;
 }
+html.projects-entry #projects-overlay,
 #projects-overlay.is-open {
   opacity: 1;
   visibility: visible;
@@ -190,7 +191,8 @@ body.svc-open #bg {
   color: #655c54;
   font-size: 13px;
 }
-.project-detail-hero { margin-bottom: 32px; }
+.project-detail-hero { margin: 0 0 32px; }
+.project-detail-hero figcaption { margin-top: 10px; color: #655c54; font-size: 12px; line-height: 1.7; }
 .project-detail-hero .project-thumb {
   display: block;
   background: #eeeae3;
