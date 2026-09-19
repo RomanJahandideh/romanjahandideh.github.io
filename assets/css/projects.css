@@ -38,7 +38,7 @@ html.projects-entry #projects-overlay,
   border-radius: 999px;
   background: #faf8f4;
   color: #1c1917;
-  font: 600 12px "Plus Jakarta Sans", system-ui, sans-serif;
+  font: 600 12px "Source Serif 4", system-ui, sans-serif;
   cursor: pointer;
 }
 .projects-close-key {
@@ -66,13 +66,13 @@ html.projects-entry #projects-overlay,
 }
 .projects-title {
   margin: 0 0 14px;
-  font: 600 clamp(26px, 4vw, 36px)/1.25 "Plus Jakarta Sans", system-ui, sans-serif;
+  font: 600 clamp(26px, 4vw, 36px)/1.25 "Source Serif 4", system-ui, sans-serif;
   color: #1c1917;
 }
 .projects-intro {
   margin: 0;
   color: #655c54;
-  font: 400 14px/1.75 "Plus Jakarta Sans", system-ui, sans-serif;
+  font: 400 14px/1.75 "Source Serif 4", system-ui, sans-serif;
 }
 .projects-list {
   display: flex;
@@ -109,7 +109,7 @@ html.projects-entry #projects-overlay,
 .project-summary-copy { min-width: 0; }
 .project-card-title {
   color: #1c1917;
-  font: 600 18px/1.4 "Plus Jakarta Sans", system-ui, sans-serif;
+  font: 600 18px/1.4 "Source Serif 4", system-ui, sans-serif;
   margin: 0 0 9px;
   text-transform: none;
   letter-spacing: normal;
@@ -117,7 +117,7 @@ html.projects-entry #projects-overlay,
 .project-summary {
   margin: 0;
   color: #655c54;
-  font: 400 13px/1.7 "Plus Jakarta Sans", system-ui, sans-serif;
+  font: 400 13px/1.7 "Source Serif 4", system-ui, sans-serif;
 }
 .project-summary-link:hover .project-card-title {
   color: #93411f;
@@ -137,7 +137,7 @@ html.projects-entry #projects-overlay,
   margin: 0;
   background: #faf8f4;
   color: #1c1917;
-  font: 400 15px/1.8 "Plus Jakarta Sans", system-ui, sans-serif;
+  font: 400 15px/1.8 "Source Serif 4", system-ui, sans-serif;
 }
 .project-page * { box-sizing: border-box; }
 .project-page a { color: #93411f; text-underline-offset: 4px; }
@@ -204,7 +204,7 @@ html.projects-entry #projects-overlay,
   object-fit: contain;
 }
 .project-card-text {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  font-family: "Source Serif 4", system-ui, sans-serif;
   font-size: 15px;
   line-height: 1.85;
   color: #39332e;
@@ -271,7 +271,7 @@ html.projects-entry #projects-overlay,
   border-top: 1px solid #dfdad2;
 }
 .project-card-link {
-  font: 600 13px/1.6 "Plus Jakarta Sans", system-ui, sans-serif;
+  font: 600 13px/1.6 "Source Serif 4", system-ui, sans-serif;
   overflow-wrap: anywhere;
 }
 .project-detail-footer {

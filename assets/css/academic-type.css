@@ -1,0 +1,48 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600;8..60,700&display=swap");
+
+:root {
+  --academic-font: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font: var(--academic-font);
+}
+
+html,
+body,
+button,
+input,
+textarea,
+select,
+option,
+optgroup,
+table,
+body :where(h1, h2, h3, h4, h5, h6, p, a, span, div, nav, section, article, aside, header, footer, main, label, li, dt, dd, figcaption, blockquote, cite, strong, em, small) {
+  font-family: var(--academic-font) !important;
+}
+
+/* Preserve symbol glyphs supplied by Font Awesome. */
+.fa,
+.fas,
+.far,
+.fal,
+.fab,
+[class^="fa-"],
+[class*=" fa-"] {
+  font-family: "Font Awesome 5 Free" !important;
+}
+
+.fab,
+.fa-brands {
+  font-family: "Font Awesome 5 Brands" !important;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+body {
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  text-rendering: optimizeLegibility;
+}

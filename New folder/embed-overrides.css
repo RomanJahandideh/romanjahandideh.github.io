@@ -28,7 +28,7 @@ body{
   min-height: 100%;
   background: transparent !important;
   color: var(--s3-text);
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

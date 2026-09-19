@@ -32,9 +32,9 @@
     topbarBorder: "rgba(255,255,255,0.18)",
     topbarBlur: "10px",
 
-    // Brand typography: match Stage 2 (Inter, normal case)
+    // Brand typography: match the site's academic type system
     brandColor: "rgba(255,255,255,0.92)",
-    brandFont: "Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif",
+    brandFont: '"Source Serif 4", Georgia, "Times New Roman", serif',
     brandSize: "12px",
     brandWeight: "600",
     brandLetterSpacing: "0.02em",
