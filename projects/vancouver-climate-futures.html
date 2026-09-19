@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vancouver Climate Futures | Roman Jahandideh</title>
+<meta name="description" content="A browser-based serious game connecting Vancouver climate evidence with adaptation decisions, supported by computational tests and materials for a future participant study." />
+<link rel="canonical" href="https://romanjahandideh.com/projects/vancouver-climate-futures.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/projects.css?v=20260919" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+<script src="../assets/js/project-detail.js?v=20260919" defer></script>
+</head>
+<body class="project-page">
+<a class="project-skip-link" href="#project-content">Skip to project</a>
+<header class="project-page-nav">
+  <a href="../index.html">Roman Jahandideh</a>
+  <a href="../index.html#projects">&larr; All projects</a>
+</header>
+<main id="project-content" class="project-detail">
+  <article id="project-11" data-project="11">
+    <header class="project-detail-header">
+      <span class="project-badge project-badge--research">Independent project &middot; interactive 3D, serious games, evaluation design</span>
+      <h1 class="project-card-title">Vancouver Climate Futures</h1>
+      <p class="project-card-venue">Place-based climate serious game &middot; cited City of Vancouver data &middot; two-condition evaluation design</p>
+    </header>
+    <div class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/vancouver-climate-futures-hero.webp" aria-label="View a larger image of the Vancouver Climate Futures 3D scene showing a canopy neighbourhood, retrofit housing blocks, and the False Creek foreshore">
+              <img src="../assets/images/projects/vancouver-climate-futures-hero.webp" alt="A stylized 3D scene showing three real Vancouver places side by side: a hazy street-tree canopy neighbourhood, a grid of rental-housing blocks, and False Creek with a green shoreline buffer ring, each responding to the player's climate adaptation choices" loading="lazy" />
+            </a></div>
+    <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Vancouver Climate Futures investigates interactive exploration as a means of communicating climate risk and adaptation policy. The serious game draws methodological inspiration from Future Delta 2.0, a published place-based climate game developed through the University of British Columbia Okanagan. Implemented in Three.js for browser access, it connects documented evidence, adaptation decisions, and visible consequences across three Vancouver contexts.</p>
+              <h2>System Architecture</h2>
+              <p>Heat Vision represents a neighbourhood with limited tree canopy, Energy Vision addresses older rental housing, and Flood Vision focuses on the False Creek shoreline. A deterministic model calculates the consequences of each adaptation decision using cited municipal and provincial evidence. Its inputs include Vancouver&apos;s 4.6 metre coastal Flood Construction Level, approximately one metre of projected sea level rise by 2100, 619 deaths during the 2021 British Columbia heat dome, a documented neighbourhood canopy temperature difference of approximately 20 degrees Celsius, and the City&apos;s Rental Apartment Retrofit Accelerator program. Decisions produce visible changes in the three-dimensional scenes.</p>
+              <h2>Usability Evaluation</h2>
+              <p>Usability testing identified environmental occlusion by large interface panels and a disabled survey control that prevented progression without explanatory feedback. Revisions introduced a compact collapsible instruction panel, continuous camera control, and feedback identifying incomplete survey responses. The interaction sequence also provides time to observe environmental changes before presenting an explanation of the outcome.</p>
+              <h2>Evaluation and Key Findings</h2>
+              <p>The planned participant evaluation asks whether interactive causal exploration changes climate risk perception and policy support more effectively than a static presentation of equivalent information. The project includes a static control condition and an instrument for comparing the two conditions based on the validated New Ecological Paradigm scale. The statistical pipeline was tested with explicitly identified synthetic data containing a known effect. A separate computational evaluation covered all sixteen possible choice combinations and found no violations of the documented impact model.</p>
+              <h2>Current Status</h2>
+              <p>The study materials comprise a short initial survey, a sea level rise scenario, three adaptation decisions, and visible environmental outcomes. A companion static booklet presents the same evidence and choices without interactive simulation. Repository tests cover all choice combinations, survey scoring, and the statistical workflow. These materials support a future participant study; the synthetic data are not presented as empirical evidence of effects on participants.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://romanjahandideh.github.io/vancouver-climate-futures/" target="_blank" rel="noopener">Try it live &rarr;</a>
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/vancouver-climate-futures" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+  </article>
+  <footer class="project-detail-footer"><a href="../index.html#projects">&larr; All projects</a></footer>
+</main>
+</body>
+</html>

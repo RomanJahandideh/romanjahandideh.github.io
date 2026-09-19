@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Environmental Massing Agents | Roman Jahandideh</title>
+<meta name="description" content="A study of specialized AI agents and deterministic environmental analysis, evaluated through four hypotheses concerning optimization and geometric design tradeoffs." />
+<link rel="canonical" href="https://romanjahandideh.com/projects/environmental-massing-agents.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/projects.css?v=20260919" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+<script src="../assets/js/project-detail.js?v=20260919" defer></script>
+</head>
+<body class="project-page">
+<a class="project-skip-link" href="#project-content">Skip to project</a>
+<header class="project-page-nav">
+  <a href="../index.html">Roman Jahandideh</a>
+  <a href="../index.html#projects">&larr; All projects</a>
+</header>
+<main id="project-content" class="project-detail">
+  <article id="project-10" data-project="10">
+    <header class="project-detail-header">
+      <span class="project-badge project-badge--research">Independent project &middot; Rhino, Grasshopper, MCP, multi-agent AI</span>
+      <h1 class="project-card-title">Environmental Massing Agents</h1>
+      <p class="project-card-venue">Multi-agent MCP design study &middot; solar geometry, carbon benchmarks &amp; wind screening &middot; deterministic Pareto optimization</p>
+    </header>
+    <div class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/environmental-massing-agents-hero.webp" aria-label="View a larger image of the multi-agent environmental massing study's plan, shadow, and section">
+              <img src="../assets/images/projects/environmental-massing-agents-hero.webp" alt="Plan view showing a corridor-trimmed massing footprint, its real winter-solstice shadow reaching toward a target park point, alongside a stepped section profile of the same trimmed massing" loading="lazy" />
+            </a></div>
+    <div class="project-card-body">
+            <div class="project-card-text">
+              <p>Environmental Massing Agents investigates the use of specialized AI agents to support environmental design decisions with deterministic numerical analysis. The study establishes four research questions and falsifiable hypotheses before computational evaluation. It reports both supported and unsupported hypotheses to distinguish observed performance from the intended benefits of the approach.</p>
+              <h2>System Architecture</h2>
+              <p>A Generator agent proposes rotation, setback, floor height, and structural material for massing at the Creekside Park view corridor site. Four Critic agents assess solar access, embodied carbon, pedestrian wind, and view corridor yield. Solar analysis uses astronomical sun positions and directional shadow geometry across three representative days; carbon analysis uses published intensity benchmarks; wind assessment uses a documented screening proxy; and view corridor yield measures the portion of requested height below the corridor ceiling. An Orchestrator agent integrates these assessments and directs subsequent iterations through a Model Context Protocol (MCP) server.</p>
+              <h2>Evaluation and Key Findings</h2>
+              <p>The evaluation compared NSGA-II with random sampling across five seeds using an exhaustive reference grid of 1,080 designs. NSGA-II did not demonstrate faster raw convergence, but reached 95 percent of the reference threshold in four of five seeds, compared with one of five for random sampling. Mass timber produced lower embodied carbon in all 200 comparisons with matched geometry. A convex geometry formula predicted achievable floor count within one floor across nineteen orientations. After dominant strategies were removed, wind performance and corridor yield formed a one-dimensional Pareto relationship with a measured correlation of negative 1.000.</p>
+              <h2>Implementation</h2>
+              <p>The repository provides unit tests for geometry, hypervolume, and core NSGA-II operations, alongside scripts for reproducing each hypothesis test. The MCP server supports evaluation with a scripted language model substitute or a live model when an Anthropic key is supplied. A Grasshopper component shares the tested geometric implementation for interactive design exploration within the Rhino and Grasshopper workflow.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/environmental-massing-agents" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+  </article>
+  <footer class="project-detail-footer"><a href="../index.html#projects">&larr; All projects</a></footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Zoning Literacy Assistant | Roman Jahandideh</title>
+<meta name="description" content="A prototype for regulatory question answering that combines source retrieval, cited explanations, independent verification, and deterministic site calculations." />
+<link rel="canonical" href="https://romanjahandideh.com/projects/zoning-literacy-assistant.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/projects.css?v=20260919" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+<script src="../assets/js/project-detail.js?v=20260919" defer></script>
+</head>
+<body class="project-page">
+<a class="project-skip-link" href="#project-content">Skip to project</a>
+<header class="project-page-nav">
+  <a href="../index.html">Roman Jahandideh</a>
+  <a href="../index.html#projects">&larr; All projects</a>
+</header>
+<main id="project-content" class="project-detail">
+  <article id="project-8" data-project="8">
+    <header class="project-detail-header">
+      <span class="project-badge project-badge--research">Independent project &middot; grounded question answering</span>
+      <h1 class="project-card-title">Zoning Literacy Assistant</h1>
+      <p class="project-card-venue">Regulatory literacy &middot; retrieval, synthesis &amp; independent verification &middot; Claude</p>
+    </header>
+    <div class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/zoning-literacy-assistant-hero.webp" aria-label="View a larger image of the Zoning Literacy Assistant's site compliance checker">
+              <img src="../assets/images/projects/zoning-literacy-assistant-hero.webp" alt="The Zoning Literacy Assistant interface, showing example questions, a lot width and depth form, and the real bylaw excerpt it answers from" loading="lazy" />
+            </a></div>
+    <div class="project-card-body">
+            <div class="project-card-text">
+              <p>The Zoning Literacy Assistant investigates how AI can support public understanding of land use regulation while making the evidence and limits of each response explicit. Source retrieval, citation, verification, and uncertainty reporting are central design requirements. The objective is to help readers assess regulatory explanations against the supplied bylaw text.</p>
+              <h2>System Capabilities</h2>
+              <p>The assistant accepts questions in plain language, such as whether a duplex is permitted on a lot. Responses cite the exact supporting clause, and the system indicates when the supplied text does not address a question. A separate site assessment uses lot dimensions and rental conditions to report the applicable unit tier, buildable footprint after setbacks, and estimated floor area, with a citation for each result.</p>
+              <h2>System Architecture</h2>
+              <p>The Claude-based workflow comprises three stages. Retrieval selects potentially relevant clauses using their titles. Synthesis constructs an answer from the selected full text. Independent verification checks the response and identifies potentially omitted clauses. Site calculations are performed deterministically in code; the language model communicates these results while preserving a record of sources, calculations, and unresolved uncertainty.</p>
+              <h2>Evaluation</h2>
+              <p>The prototype includes example questions for testing with an Anthropic key. Answerable and unsupported cases support examination of both cited responses and the system&apos;s handling of insufficient evidence. The site assessment also illustrates changes to conditional floor space rules when rental provisions apply.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://romanjahandideh.github.io/zoning-literacy-assistant/" target="_blank" rel="noopener">Try it live &rarr;</a>
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/zoning-literacy-assistant" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+  </article>
+  <footer class="project-detail-footer"><a href="../index.html#projects">&larr; All projects</a></footer>
+</main>
+</body>
+</html>

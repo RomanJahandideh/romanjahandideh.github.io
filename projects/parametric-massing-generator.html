@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Parametric Massing Generator | Roman Jahandideh</title>
+<meta name="description" content="A computational design prototype that translates zoning text into inspectable massing envelopes at the scale of lots, irregular parcels, and urban blocks." />
+<link rel="canonical" href="https://romanjahandideh.com/projects/parametric-massing-generator.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/projects.css?v=20260919" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+<script src="../assets/js/project-detail.js?v=20260919" defer></script>
+</head>
+<body class="project-page">
+<a class="project-skip-link" href="#project-content">Skip to project</a>
+<header class="project-page-nav">
+  <a href="../index.html">Roman Jahandideh</a>
+  <a href="../index.html#projects">&larr; All projects</a>
+</header>
+<main id="project-content" class="project-detail">
+  <article id="project-7" data-project="7">
+    <header class="project-detail-header">
+      <span class="project-badge project-badge--research">Independent project &middot; agentic AI, computational design</span>
+      <h1 class="project-card-title">Parametric Massing Generator</h1>
+      <p class="project-card-venue">Zoning-to-form generation &middot; Three.js, Claude &middot; parcel geometry through urban block scale</p>
+    </header>
+    <div class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/parametric-massing-generator-hero.webp" aria-label="View a larger image of the Parametric Massing Generator's urban block mode">
+              <img src="../assets/images/projects/parametric-massing-generator-hero.webp" alt="A 3x3 grid of white massing volumes generated on a subdivided urban block, with a plan view inset in the corner" loading="lazy" />
+            </a></div>
+    <div class="project-card-body">
+            <div class="project-card-text">
+              <p>The Parametric Massing Generator investigates the translation of zoning language into building massing at three scales: rectangular lots, irregular parcels, and subdivided urban blocks. Its objective is to make the relationship between written constraints and permitted spatial envelopes available for inspection by designers.</p>
+              <h2>System Architecture</h2>
+              <p>The system extracts dimensions, setbacks, height limits, and floor space ratio from a bylaw excerpt, retaining a source quotation and confidence value for each constraint. It generates a corresponding three-dimensional envelope, then uses a separate review pass to compare extracted constraints with the source text and propose corrections. Conversational revisions can change an individual parameter while preserving other design conditions. A built-in example represents the conditional rules of Vancouver&apos;s R1-1 zoning district, including rental incentives and thresholds for frontage and lot area.</p>
+              <h2>Implementation</h2>
+              <p>For convex parcels, the buildable footprint is computed as an inward polygon offset through half-plane intersection. Urban Block mode subdivides a larger site and interprets directional instructions to assign residential, commercial, administrative, or park uses according to normalized parcel positions. The interface displays a three-dimensional model alongside a color-coded plan and records each extraction, review, and revision in a generation log.</p>
+              <h2>Project Outcomes</h2>
+              <p>The Three.js implementation provides geometric controls without requiring an AI API key. Claude-based source extraction, independent review, conversational refinement, and parcel classification are available with an Anthropic key. The resulting prototype exposes both generated geometry and the associated interpretation process for inspection.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://romanjahandideh.github.io/parametric-massing-generator/" target="_blank" rel="noopener">Try it live &rarr;</a>
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/parametric-massing-generator" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+  </article>
+  <footer class="project-detail-footer"><a href="../index.html#projects">&larr; All projects</a></footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Vancouver View Corridor Massing | Roman Jahandideh</title>
+<meta name="description" content="A Rhino and Grasshopper study of building massing under Vancouver view corridor constraints, comparing floor area and configuration through deterministic geometry." />
+<link rel="canonical" href="https://romanjahandideh.com/projects/vancouver-view-corridor-massing.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/projects.css?v=20260919" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+<script src="../assets/js/project-detail.js?v=20260919" defer></script>
+</head>
+<body class="project-page">
+<a class="project-skip-link" href="#project-content">Skip to project</a>
+<header class="project-page-nav">
+  <a href="../index.html">Roman Jahandideh</a>
+  <a href="../index.html#projects">&larr; All projects</a>
+</header>
+<main id="project-content" class="project-detail">
+  <article id="project-9" data-project="9">
+    <header class="project-detail-header">
+      <span class="project-badge project-badge--research">Independent project &middot; Rhino, Grasshopper, computational geometry</span>
+      <h1 class="project-card-title">Vancouver View Corridor Massing</h1>
+      <p class="project-card-venue">Rhino &amp; Grasshopper study &middot; deterministic measurements &middot; City of Vancouver view corridor data</p>
+    </header>
+    <div class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/vancouver-view-corridor-hero.webp" aria-label="View a larger image of the stepped massing trimmed by a real Vancouver view corridor">
+              <img src="../assets/images/projects/vancouver-view-corridor-hero.webp" alt="A stepped massing volume trimmed diagonally where a protected view corridor's sloped ceiling crosses it, with the full view corridor triangle shown extending from its real apex" loading="lazy" />
+            </a></div>
+    <div class="project-card-body">
+            <div class="project-card-text">
+              <p>This project develops a computational method for generating building massing subject to Vancouver&apos;s protected view corridors. Corridor elevation limits vary with distance from a defined viewpoint, so an envelope permitted by zoning may intersect a corridor&apos;s sloped ceiling. The study uses City of Vancouver corridor data to model this additional geometric constraint.</p>
+              <h2>Evaluation and Key Findings</h2>
+              <p>The evaluation compared compliance calculated for each floor with a conservative method that caps the entire building at one elevation. For the selected corridor and representative site, the precise method recovered 39.5 percent more gross floor area. Across seven footprint rotations, total floor area varied by less than 0.1 percent, while floor count and floor sizes varied more substantially. For the linear corridor ceiling, average permitted height over a fixed area is determined by the region&apos;s centroid and remains stable as the footprint rotates about a fixed center.</p>
+              <h2>Design Application</h2>
+              <p>Orientation therefore provides a means of varying floor configuration with little change in total yield for the evaluated case. The project uses a language model to interpret this computed design space against an open brief, such as a preference for fewer, larger floor plates. Geometric measurements are deterministic; the model interprets the documented tradeoff between configurations.</p>
+              <h2>Implementation</h2>
+              <p>The Rhino and Grasshopper implementation uses actual parcel and corridor geometry. The repository includes geometry tests, a verified offline data fallback, a script that produces a structurally checked Rhino file, and a Grasshopper Python component sharing the tested computational core. Placeholder inputs and confirmed values are identified explicitly to document the limits of the results.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/vancouver-view-corridor-massing" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+  </article>
+  <footer class="project-detail-footer"><a href="../index.html#projects">&larr; All projects</a></footer>
+</main>
+</body>
+</html>
