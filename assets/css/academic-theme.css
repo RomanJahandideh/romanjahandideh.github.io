@@ -5,8 +5,8 @@
   --academic-ink: #202a33;
   --academic-muted: #66717a;
   --academic-border: rgba(32, 42, 51, 0.18);
-  --academic-accent: #7b3f3f;
-  --academic-accent-dark: #5f3033;
+  --academic-accent: #1f5b78;
+  --academic-accent-dark: #17455d;
   --academic-focus: #9a7430;
   --academic-radius: 4px;
   --academic-transition: 180ms ease;
@@ -70,7 +70,7 @@ body.mode-work .top-nav a:hover,
 }
 
 #services-btn[aria-expanded="true"] {
-  background: rgba(123, 63, 63, 0.1);
+  background: rgba(31, 91, 120, 0.1);
   border-color: var(--academic-accent);
   color: var(--academic-accent);
   box-shadow: inset 0 0 0 1px var(--academic-accent);
@@ -235,6 +235,35 @@ body.mode-work #main-stack .layer:hover {
 
 :where(button, a, input, textarea):focus-visible {
   outline-color: var(--academic-focus);
+}
+
+.top-nav a.is-active,
+.mode-dot.is-active,
+.abt-location svg,
+.abt-timeline-view-title,
+.designer-title:hover,
+.role-item:hover,
+.abt-publication svg,
+.project-page a {
+  color: var(--academic-accent) !important;
+}
+
+.abt-big-question {
+  border-left-color: var(--academic-accent) !important;
+}
+
+#services-btn:focus-visible,
+.abt-timeline-btn:focus-visible,
+.abt-back-btn:focus-visible,
+.threed-flip-arrow:focus-visible,
+.gallery-close-btn:focus-visible {
+  outline-color: var(--academic-accent) !important;
+}
+
+.nav-eye-socket:hover,
+.nav-eye-socket[aria-expanded="true"],
+.nav-eye-socket:focus-visible {
+  box-shadow: 0 4px 16px rgba(31, 91, 120, 0.2);
 }
 
 @media (max-width: 736px) {
