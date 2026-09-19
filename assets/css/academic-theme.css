@@ -280,6 +280,114 @@ body.mode-work #main-stack .layer:hover {
   box-shadow: 0 3px 14px rgba(32, 42, 51, 0.1);
 }
 
+#projects-overlay {
+  background: var(--academic-paper);
+  color: var(--academic-ink);
+}
+
+#projects-overlay-scroll {
+  padding: 126px clamp(28px, 5vw, 72px) 84px;
+}
+
+.projects-overlay-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.projects-header {
+  max-width: 760px;
+  margin: 0 0 34px;
+  padding: 0 0 28px;
+  border-bottom: 1px solid var(--academic-border);
+}
+
+.projects-title {
+  margin-bottom: 12px;
+  color: var(--academic-ink);
+  letter-spacing: 0;
+}
+
+.projects-intro {
+  max-width: 68ch;
+  color: var(--academic-muted);
+}
+
+.projects-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(28px, 5vw, 64px);
+  border-top: 2px solid var(--academic-ink);
+}
+
+.project-card {
+  border-bottom: 1px solid var(--academic-border);
+}
+
+.project-summary-link {
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  min-height: 152px;
+  padding: 20px 0;
+}
+
+.project-summary-image {
+  width: 112px;
+  height: 84px;
+  background: var(--academic-paper-deep);
+}
+
+.project-card-title {
+  margin-bottom: 7px;
+  color: var(--academic-ink);
+  font-size: 17px;
+  line-height: 1.35;
+}
+
+.project-summary {
+  color: var(--academic-muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.project-summary-link:hover .project-card-title {
+  color: var(--academic-accent);
+  text-decoration-thickness: 1px;
+}
+
+#projects-close {
+  border-color: var(--academic-border);
+  border-radius: var(--academic-radius);
+  background: rgba(245, 242, 235, 0.94);
+  color: var(--academic-ink);
+}
+
+.projects-close-key {
+  border-radius: 2px;
+  background: var(--academic-paper-deep);
+  color: var(--academic-muted);
+}
+
+@media (max-width: 900px) {
+  .projects-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  #projects-overlay-scroll {
+    padding: 132px 20px 48px;
+  }
+
+  .projects-header {
+    margin-bottom: 18px;
+    padding-bottom: 20px;
+  }
+
+  .project-summary-link {
+    min-height: 0;
+  }
+}
+
 @media (max-width: 736px) {
   .top-nav {
     border-radius: var(--academic-radius);
