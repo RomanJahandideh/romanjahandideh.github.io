@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Zoning Literacy Assistant | Roman Jahandideh</title>
-<meta name="description" content="A prototype for regulatory question answering that combines source retrieval, cited explanations, independent verification, and deterministic site calculations." />
+<meta name="description" content="A grounded zoning question-answering system that retrieves clauses, cites evidence, verifies its own answers, and computes site feasibility deterministically." />
 <link rel="canonical" href="https://romanjahandideh.com/projects/zoning-literacy-assistant.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,13 +34,15 @@
             </a></div>
     <div class="project-card-body">
             <div class="project-card-text">
-              <p>The Zoning Literacy Assistant investigates how AI can support public understanding of land use regulation while making the evidence and limits of each response explicit. Source retrieval, citation, verification, and uncertainty reporting are central design requirements. The objective is to help readers assess regulatory explanations against the supplied bylaw text.</p>
-              <h2>System Capabilities</h2>
-              <p>The assistant accepts questions in plain language, such as whether a duplex is permitted on a lot. Responses cite the exact supporting clause, and the system indicates when the supplied text does not address a question. A separate site assessment uses lot dimensions and rental conditions to report the applicable unit tier, buildable footprint after setbacks, and estimated floor area, with a citation for each result.</p>
-              <h2>System Architecture</h2>
-              <p>The Claude-based workflow comprises three stages. Retrieval selects potentially relevant clauses using their titles. Synthesis constructs an answer from the selected full text. Independent verification checks the response and identifies potentially omitted clauses. Site calculations are performed deterministically in code; the language model communicates these results while preserving a record of sources, calculations, and unresolved uncertainty.</p>
-              <h2>Evaluation</h2>
-              <p>The prototype includes example questions for testing with an Anthropic key. Answerable and unsupported cases support examination of both cited responses and the system&apos;s handling of insufficient evidence. The site assessment also illustrates changes to conditional floor space rules when rental provisions apply.</p>
+              <p>The Zoning Literacy Assistant is designed for people who need to understand regulation but do not already speak the language of planning: homeowners, renters, neighbours, and community members as well as professionals. It investigates whether a conversational system can make zoning information accessible without reproducing the confident guessing of a general-purpose chatbot. The central design requirement is simple: every answer must show what supports it, and the system must say when the supplied document does not contain the answer.</p>
+              <h2>Structured Knowledge Base</h2>
+              <p>The system uses the current base provisions of Vancouver&apos;s R1-1 district as ten individually addressable clauses covering permitted uses, lot-area and frontage thresholds, setbacks, height, storeys, floor space ratio, dimensions, outdoor space, parking, and tree retention. Structuring the bylaw into retrievable clauses makes the evidence behind an answer visible and allows the system to reason about provisions that interact with one another.</p>
+              <h2>Retrieve, Answer, Verify</h2>
+              <p>Each question passes through three independent stages. Retrieval receives the question and clause titles and selects the relevant provisions. Synthesis receives only the selected clause text and returns a plain-language answer, a grounded true-or-false flag, and exact supporting quotations. Verification then checks whether the answer is supported by its own evidence and whether an omitted clause should have been retrieved. When retrieval finds no relevant provision, the pipeline stops and reports that the question is not covered rather than allowing a second model call to fill the gap from general knowledge.</p>
+              <h2>Deterministic Site Assessment</h2>
+              <p>A second mode accepts lot width, lot depth, and rental or below-market housing status and computes the unit-count tier, buildable footprint, permitted floors, and estimated gross floor area through ordinary deterministic code. The language model is used only to explain those already-computed results and cite the relevant provisions. Toggling the rental condition demonstrates the real R1-1 rule by changing the floor space ratio from 0.70 to 1.00 and recalculating the downstream figures.</p>
+              <h2>Evaluation and Deliberate Failure Case</h2>
+              <p>The prototype includes a deliberately uncovered question about the number of storeys permitted for a laneway house. The source clause confirms that a laneway house is permitted but does not provide its height or storey limits. The correct behavior is therefore to return &ldquo;not covered,&rdquo; making the system&apos;s restraint observable rather than merely claimed. End-to-end tests with controlled model responses verify retrieval, citation rendering, verification, API-key handling, and deterministic feasibility calculations. For a 10 by 37 metre lot, the checked example produces a 162.6 square metre buildable footprint and shows the change from one floor at 0.70 FSR to two floors at 1.00 FSR.</p>
             </div>
             <div class="project-card-actions">
               <a class="project-card-link" href="https://romanjahandideh.github.io/zoning-literacy-assistant/" target="_blank" rel="noopener">Try it live &rarr;</a>
