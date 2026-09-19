@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Embedding Physiological Environments | Roman Jahandideh</title>
+<meta name="description" content="A bioadaptive Unity environment that maps heart rate and HRV to environmental feedback, evaluated in a within-subjects study with 24 participants." />
+<link rel="canonical" href="https://romanjahandideh.com/projects/embedding-physiological-environments.html" />
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../assets/css/projects.css?v=20260919" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+<script src="../assets/js/project-detail.js?v=20260919" defer></script>
+</head>
+<body class="project-page">
+<a class="project-skip-link" href="#project-content">Skip to project</a>
+<header class="project-page-nav">
+  <a href="../index.html">Roman Jahandideh</a>
+  <a href="../index.html#projects">&larr; All projects</a>
+</header>
+<main id="project-content" class="project-detail">
+  <article id="project-0" data-project="0">
+    <header class="project-detail-header">
+      <span class="project-badge project-badge--notaccepted">Submitted, ACM SIGGRAPH 2026</span>
+      <h1 class="project-card-title">Embedding Physiological Environments</h1>
+      <p class="project-card-venue">BioTerrarium &middot; Unity, Apple Watch heart rate &amp; HRV &middot; within-subjects study, n&nbsp;=&nbsp;24</p>
+    </header>
+    <div class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/bioterrarium-hero.webp" aria-label="View a larger image of BioTerrarium">
+              <img src="../assets/images/projects/bioterrarium-hero.webp" alt="The BioTerrarium environment, a glass-enclosed ecosystem with glowing purple crystal vegetation, fog, and a small lighthouse" loading="lazy" />
+            </a></div>
+    <div class="project-card-body">
+            <div class="project-card-text">
+              <p>BioTerrarium investigates environmental feedback as a means of communicating physiological state. Implemented as a virtual glass ecosystem, it maps heart rate and heart rate variability (HRV) to fog, vegetation, light, and visual clarity. Calm physiological states correspond to increased growth and visibility, while elevated stress changes the environment&apos;s atmosphere. The research examines how these spatial and visual cues can support awareness of bodily signals without numerical displays.</p>
+              <h2>System Demonstration</h2>
+              <div class="project-card-video">
+                <iframe src="https://www.youtube-nocookie.com/embed/eQTvM0gaBxc" title="BioTerrarium: a biofeedback environment for embodied self-regulation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+              <h2>System Architecture</h2>
+              <p>The system collects heart rate data from an Apple Watch Series 7 through Apple HealthKit. A Swift application transfers the data to Unity through a WebSocket connection with less than 100 milliseconds of latency. A resting baseline of two minutes establishes an individual reference for each participant. Subsequent readings are normalized against this baseline and classified into four regulation zones: Coherent Calm, Focused Arousal, Stress Escalation, and Dysregulated Overdrive. These zones control fog density, vegetation growth, light diffusion, and shader blur at ten updates per second.</p>
+              <figure class="project-card-figure">
+                <img src="../assets/images/projects/bioterrarium-zones.webp" alt="The four physiological regulation zones, Coherent Calm, Focused Arousal, Stress Escalation, and Dysregulated Overdrive, each shown in the terrarium" loading="lazy" />
+                <figcaption>The four regulation zones used in the terrarium, from Coherent Calm to Dysregulated Overdrive.</figcaption>
+              </figure>
+              <h2>Environment Design</h2>
+              <div class="project-card-gallery">
+                <a class="project-thumb project-thumb--tall" href="../assets/images/projects/bioterrarium-env-2.webp" aria-label="View a larger image of the terrarium's fenced clearing">
+                  <img src="../assets/images/projects/bioterrarium-env-2.webp" alt="A glowing clearing in the terrarium seen past a wooden fence, with a warm light and red marker in the fog" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/bioterrarium-env-3.webp" aria-label="View a larger image of the terrarium's lighthouse village">
+                  <img src="../assets/images/projects/bioterrarium-env-3.webp" alt="A small lighthouse village overlooking a magenta patterned pool inside the terrarium" loading="lazy" />
+                </a>
+                <a class="project-thumb" href="../assets/images/projects/bioterrarium-env-4.webp" aria-label="View a larger image of the terrarium in Dysregulated Overdrive">
+                  <img src="../assets/images/projects/bioterrarium-env-4.webp" alt="A ring of violet light and static breaking through the ground in the terrarium's most dysregulated state" loading="lazy" />
+                </a>
+              </div>
+              <h2>Evaluation and Key Findings</h2>
+              <p>I evaluated BioTerrarium in a within-subjects study with 24 participants, comparing the bioadaptive environment with an identical environment that changed on a fixed schedule. In the bioadaptive condition, participants had a lower average heart rate, higher HRV, and spent nearly 80 percent of their time in the two calmest zones. They also reported greater mindful attention, more positive affect, less negative affect, and deeper flow. Interview responses indicated that several participants perceived the environment as a calm, reciprocal presence.</p>
+              <h2>Current Status</h2>
+              <p>The paper was submitted to ACM SIGGRAPH 2026 and was not accepted after review and revision. Reviewer feedback informed further study refinement and consideration of an appropriate publication venue. The system and findings continue to inform my research on physiological interaction and responsive environments.</p>
+            </div>
+            <div class="project-card-actions">
+              <a class="project-card-link" href="https://github.com/RomanJahandideh/embedding-physiological-environments" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
+            </div>
+          </div>
+  </article>
+  <footer class="project-detail-footer"><a href="../index.html#projects">&larr; All projects</a></footer>
+</main>
+</body>
+</html>

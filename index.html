@@ -70,7 +70,7 @@
 <link rel="stylesheet" href="assets/css/home-clouds.css?v=20260616b" />
 <link rel="stylesheet" href="assets/css/transitions.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/services.css?v=20260915c" />
-<link rel="stylesheet" href="assets/css/projects.css?v=20260916b" />
+<link rel="stylesheet" href="assets/css/projects.css?v=20260919" />
 <link rel="stylesheet" href="assets/css/toolbar.css?v=20260704b" />
 <link rel="stylesheet" href="assets/css/home-scroll-sequence.css?v=20260617a" />
 <link rel="stylesheet" href="assets/css/home-smoke.css?v=20260616b" />
@@ -456,373 +456,130 @@
       <header class="projects-header">
         <h2 class="projects-title">Research projects and publications</h2>
         <p class="projects-intro">
-          My research examines physiological interaction, spatial perception, and the design of virtual and built environments. These projects combine system development with participant studies, computational evaluation, or prototype exploration, according to their research objectives. The descriptions document methods, implementation, available findings, and publication or development status, distinguishing completed evaluations from planned research.
+          Research in physiological interaction, virtual environments, and computational design. Select a project to read its methods, findings, and current status.
         </p>
       </header>
 
       <div class="projects-list">
 
         <article class="project-card" id="project-0" data-project="0">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/bioterrarium-hero.webp" aria-label="View a larger image of BioTerrarium">
-              <img src="assets/images/projects/bioterrarium-hero.webp" alt="The BioTerrarium environment, a glass-enclosed ecosystem with glowing purple crystal vegetation, fog, and a small lighthouse" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--notaccepted">Submitted, ACM SIGGRAPH 2026</span>
-              <h3 class="project-card-title">Embedding Physiological Environments</h3>
-              <p class="project-card-venue">BioTerrarium &middot; Unity, Apple Watch heart rate &amp; HRV &middot; within-subjects study, n&nbsp;=&nbsp;24</p>
+          <a class="project-summary-link" href="projects/embedding-physiological-environments.html" aria-labelledby="project-title-0">
+            <span class="project-summary-image"><img src="assets/images/projects/bioterrarium-hero.webp" alt="The BioTerrarium environment, a glass-enclosed ecosystem with glowing purple crystal vegetation, fog, and a small lighthouse" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-0">Embedding Physiological Environments</h3>
+              <p class="project-summary">A bioadaptive Unity environment that maps heart rate and HRV to environmental feedback, evaluated in a within-subjects study with 24 participants.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>BioTerrarium investigates environmental feedback as a means of communicating physiological state. Implemented as a virtual glass ecosystem, it maps heart rate and heart rate variability (HRV) to fog, vegetation, light, and visual clarity. Calm physiological states correspond to increased growth and visibility, while elevated stress changes the environment&apos;s atmosphere. The research examines how these spatial and visual cues can support awareness of bodily signals without numerical displays.</p>
-              <h4>System Demonstration</h4>
-              <div class="project-card-video">
-                <iframe src="https://www.youtube-nocookie.com/embed/eQTvM0gaBxc" title="BioTerrarium: a biofeedback environment for embodied self-regulation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-              </div>
-              <h4>System Architecture</h4>
-              <p>The system collects heart rate data from an Apple Watch Series 7 through Apple HealthKit. A Swift application transfers the data to Unity through a WebSocket connection with less than 100 milliseconds of latency. A resting baseline of two minutes establishes an individual reference for each participant. Subsequent readings are normalized against this baseline and classified into four regulation zones: Coherent Calm, Focused Arousal, Stress Escalation, and Dysregulated Overdrive. These zones control fog density, vegetation growth, light diffusion, and shader blur at ten updates per second.</p>
-              <figure class="project-card-figure">
-                <img src="assets/images/projects/bioterrarium-zones.webp" alt="The four physiological regulation zones, Coherent Calm, Focused Arousal, Stress Escalation, and Dysregulated Overdrive, each shown in the terrarium" loading="lazy" />
-                <figcaption>The four regulation zones used in the terrarium, from Coherent Calm to Dysregulated Overdrive.</figcaption>
-              </figure>
-              <h4>Environment Design</h4>
-              <div class="project-card-gallery">
-                <a class="project-thumb project-thumb--tall" href="assets/images/projects/bioterrarium-env-2.webp" aria-label="View a larger image of the terrarium's fenced clearing">
-                  <img src="assets/images/projects/bioterrarium-env-2.webp" alt="A glowing clearing in the terrarium seen past a wooden fence, with a warm light and red marker in the fog" loading="lazy" />
-                </a>
-                <a class="project-thumb" href="assets/images/projects/bioterrarium-env-3.webp" aria-label="View a larger image of the terrarium's lighthouse village">
-                  <img src="assets/images/projects/bioterrarium-env-3.webp" alt="A small lighthouse village overlooking a magenta patterned pool inside the terrarium" loading="lazy" />
-                </a>
-                <a class="project-thumb" href="assets/images/projects/bioterrarium-env-4.webp" aria-label="View a larger image of the terrarium in Dysregulated Overdrive">
-                  <img src="assets/images/projects/bioterrarium-env-4.webp" alt="A ring of violet light and static breaking through the ground in the terrarium's most dysregulated state" loading="lazy" />
-                </a>
-              </div>
-              <h4>Evaluation and Key Findings</h4>
-              <p>I evaluated BioTerrarium in a within-subjects study with 24 participants, comparing the bioadaptive environment with an identical environment that changed on a fixed schedule. In the bioadaptive condition, participants had a lower average heart rate, higher HRV, and spent nearly 80 percent of their time in the two calmest zones. They also reported greater mindful attention, more positive affect, less negative affect, and deeper flow. Interview responses indicated that several participants perceived the environment as a calm, reciprocal presence.</p>
-              <h4>Current Status</h4>
-              <p>The paper was submitted to ACM SIGGRAPH 2026 and was not accepted after review and revision. Reviewer feedback informed further study refinement and consideration of an appropriate publication venue. The system and findings continue to inform my research on physiological interaction and responsive environments.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/embedding-physiological-environments" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-1" data-project="1">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/remote-teammates-body.svg" aria-label="View a larger image for Reading a Remote Teammate's Body">
-              <img src="assets/images/projects/remote-teammates-body.svg" alt="Abstract illustration of two figures connected by a shared pulse waveform" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--revision">In revision, ACM &middot; resubmitting 2027</span>
-              <h3 class="project-card-title">Reading a Remote Teammate's Body</h3>
-              <p class="project-card-venue">Remote collaboration &middot; ambient physiological awareness &middot; ACM</p>
+          <a class="project-summary-link" href="projects/reading-a-remote-teammates-body.html" aria-labelledby="project-title-1">
+            <span class="project-summary-image"><img src="assets/images/projects/remote-teammates-body.svg" alt="Abstract illustration of two figures connected by a shared pulse waveform" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-1">Reading a Remote Teammate's Body</h3>
+              <p class="project-summary">An investigation of ambient physiological cues for awareness during synchronous remote collaboration. The paper is in revision for an ACM resubmission in 2027.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>Reading a Remote Teammate&apos;s Body extends BioTerrarium&apos;s approach to physiological feedback into synchronous remote collaboration. The project investigates how ambient cues might communicate a collaborator&apos;s focus, strain, or calm during screen sharing, collaborative design, and joint problem solving. Its objective is to support awareness of a collaborator&apos;s state while preserving attention to the shared task.</p>
-              <h4>Methodology</h4>
-              <p>The system represents physiological state through subtle environmental changes in an experience involving two collaborators. These cues communicate presence and condition without requiring users to interpret raw biometric data. The research examines whether this form of ambient reciprocity can support social and bodily awareness during remote collaboration.</p>
-              <h4>Current Status</h4>
-              <p>The paper received a revise and resubmit decision from an ACM venue. I am addressing reviewer feedback and refining the study for resubmission in 2027. The revision considers the interaction design contribution and the ethical responsibilities associated with sharing physiological information between collaborators.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/reading-a-remote-teammates-body" target="_blank" rel="noopener">Paper source on GitHub &rarr;</a>
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/teammate-experiment-unity" target="_blank" rel="noopener">Multiplayer prototype &rarr;</a>
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/HR-HRV-experiment-design-and-data-collection-system" target="_blank" rel="noopener">Icon validation study &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-2" data-project="2">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/eye-tracking-locomotion.svg" aria-label="View a larger image for Optimizing Eye-Tracking Locomotion in Virtual Environments">
-              <img src="assets/images/projects/eye-tracking-locomotion.svg" alt="Abstract illustration of an eye above a gaze path crossing a virtual ground plane" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--submitted">Submitted, CAADRIA 2024</span>
-              <h3 class="project-card-title">Optimizing Eye-Tracking Locomotion in Virtual Environments</h3>
-              <p class="project-card-venue">Virtual Landscape Design Lab, Istanbul Technical University (dir. Dr. Ikhwan Kim) &middot; head-mounted display research</p>
+          <a class="project-summary-link" href="projects/eye-tracking-locomotion.html" aria-labelledby="project-title-2">
+            <span class="project-summary-image"><img src="assets/images/projects/eye-tracking-locomotion.svg" alt="Abstract illustration of an eye above a gaze path crossing a virtual ground plane" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-2">Optimizing Eye-Tracking Locomotion in Virtual Environments</h3>
+              <p class="project-summary">A study of gaze-guided locomotion, comfort, and spatial understanding in virtual architectural and landscape environments. Submitted to CAADRIA 2024.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>This project investigates eye tracking as an input for locomotion in virtual environments. It addresses the potential disruption to spatial continuity and presence associated with thumbstick navigation and teleportation. Gaze-guided locomotion connects visual attention to movement, with the objective of supporting navigation that corresponds more closely to how users visually explore space.</p>
-              <h4>Methodology</h4>
-              <p>Building on my research into environmental legibility, the study compares eye tracking approaches for locomotion in terms of comfort, accuracy, and ease of exploration. The application context is architectural and landscape visualization in head-mounted displays. The design objective is to reduce the need for navigation instruction while supporting users&apos; understanding of distance, direction, and spatial structure.</p>
-              <h4>Current Status</h4>
-              <p>The research was submitted to CAADRIA 2024, the Conference on Computer-Aided Architectural Design Research in Asia. It forms part of my broader investigation into how interaction techniques and environmental cues support spatial understanding and comfort in head-mounted displays.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://www.researchgate.net/profile/Romman-Jahandideh" target="_blank" rel="noopener">View on ResearchGate &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-3" data-project="3">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/immersive-virtual-landscapes.svg" aria-label="View a larger image for Creating Immersive Virtual Landscapes">
-              <img src="assets/images/projects/immersive-virtual-landscapes.svg" alt="Abstract illustration of layered landscape contours seen through a headset frame" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--published">Published &middot; eCAADe 2023</span>
-              <h3 class="project-card-title">Creating Immersive Virtual Landscapes</h3>
-              <p class="project-card-venue">Virtual Landscape Design Lab, Istanbul Technical University (dir. Dr. Ikhwan Kim) &middot; depth perception &amp; environmental legibility</p>
+          <a class="project-summary-link" href="projects/immersive-virtual-landscapes.html" aria-labelledby="project-title-3">
+            <span class="project-summary-image"><img src="assets/images/projects/immersive-virtual-landscapes.svg" alt="Abstract illustration of layered landscape contours seen through a headset frame" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-3">Creating Immersive Virtual Landscapes</h3>
+              <p class="project-summary">Research on depth perception and environmental legibility in head-mounted virtual landscapes, published in the proceedings of eCAADe 2023.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>Developed during my master&apos;s studies in landscape architecture, this research examines depth and distance perception in head-mounted virtual environments. The work was conducted at the Virtual Landscape Design Lab at Istanbul Technical University, directed by Dr. Ikhwan Kim. It addresses a challenge in architectural visualization: environments that appear spatially convincing on a screen may communicate depth, scale, and structure differently when viewed through a headset.</p>
-              <h4>Methodology</h4>
-              <p>The paper documents the design and construction of an immersive virtual landscape for investigating environmental legibility. It examines visual cues, spatial layers, and scale references that support interpretation of depth and distance. The application context is the communication of unbuilt architectural and planning proposals to clients, reviewers, and communities.</p>
-              <h4>Project Outcomes</h4>
-              <p>The paper was published in the proceedings of eCAADe 2023. Its findings informed subsequent work in spatial computing and environment design, including BioTerrarium, where perceptual clarity is integrated into the interaction design.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://doi.org/10.52842/conf.ecaade.2023.1.149" target="_blank" rel="noopener">Read the published paper &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-4" data-project="4">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/vr-sickness-benchmark.webp" aria-label="View a larger image of the VR sickness benchmark environment">
-              <img src="assets/images/projects/vr-sickness-benchmark.webp" alt="A snowy virtual city environment with glowing windows and red lanterns, used in the VR sickness benchmark" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Research study &middot; iSpace Lab, SFU</span>
-              <h3 class="project-card-title">Testing Cybersickness in Passive and Active VR Locomotion</h3>
-              <p class="project-card-venue">iSpace Research Lab (Bernhard Riecke, SFU) &middot; SteamVR, HP Reverb G2 &amp; Meta Quest</p>
+          <a class="project-summary-link" href="projects/vr-cybersickness.html" aria-labelledby="project-title-4">
+            <span class="project-summary-image"><img src="assets/images/projects/vr-sickness-benchmark.webp" alt="A snowy virtual city environment with glowing windows and red lanterns, used in the VR sickness benchmark" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-4">Testing Cybersickness in Passive and Active VR Locomotion</h3>
+              <p class="project-summary">A comparative study of passive and active VR locomotion using the iSpace Lab benchmark to examine cybersickness and mitigation strategies.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>This study examines the relationship between locomotion mode and cybersickness in virtual reality, comparing passive and active movement. It addresses discomfort associated with discrepancies between visual motion and bodily motion cues. I conducted the study using the open source VR sickness benchmark developed by the iSpace Research Lab at Simon Fraser University under the direction of Bernhard Riecke.</p>
-              <h4>Methodology</h4>
-              <p>The benchmark measures body sway before and after exposure, with participants&apos; eyes open and closed, and records continuous discomfort ratings through a controller during the virtual experience. Available mitigation strategies include static and dynamic field of view reduction, dynamic blur, and a virtual nose. Movement stops automatically when discomfort exceeds a defined safety threshold. I used this framework to compare sickness responses across passive and active locomotion and examine the conditions under which mitigation strategies were helpful.</p>
-              <h4>Project Outcomes</h4>
-              <p>Conducted within the iSpace Lab&apos;s research program, my contribution comprised running the comparative study and documenting the data collection configuration. I maintain a GitHub fork of the benchmark to make the study setup available for inspection and reproduction.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/VRSickness_Benchmark" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-              <a class="project-card-link" href="http://ispace.iat.sfu.ca/riecke/" target="_blank" rel="noopener">iSpace Research Lab &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-5" data-project="5">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/socialeyes-hero.webp" aria-label="View a larger image of the two SocialEyes virtual agents">
-              <img src="assets/images/projects/socialeyes-hero.webp" alt="Two animated child avatars seated in a virtual classroom, the AI agents used in SocialEyes" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Course research project &middot; IAT 813, SFU</span>
-              <h3 class="project-card-title">SocialEyes: Adaptive VR Social Skills Training for Autism</h3>
-              <p class="project-card-venue">Bayesian AI &middot; gaze-triggered virtual agents &middot; Oculus Quest 3</p>
+          <a class="project-summary-link" href="projects/socialeyes.html" aria-labelledby="project-title-5">
+            <span class="project-summary-image"><img src="assets/images/projects/socialeyes-hero.webp" alt="Two animated child avatars seated in a virtual classroom, the AI agents used in SocialEyes" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-5">SocialEyes: Adaptive VR Social Skills Training for Autism</h3>
+              <p class="project-summary">A course research prototype using Bayesian virtual agents for structured social skills practice, with computational evaluation of agent response probabilities.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>SocialEyes investigates adaptive virtual agents for structured social skills practice with children with autism spectrum disorder. Developed for IAT 813 at Simon Fraser University, the course research project includes sixteen agents with distinct behavioral profiles. Agents respond to a child&apos;s gaze, using contingent feedback to structure interactions within a virtual social environment.</p>
-              <h4>System Architecture</h4>
-              <p>A Bayesian network determines each agent&apos;s response to the child&apos;s gaze and to nearby agents&apos; behavior. The network supports variation within the constraints of each assigned personality. Agents communicate through six validated facial expressions: happiness, sadness, surprise, anger, fear, and neutral. The implementation uses eye tracking on the Oculus Quest 3 to identify the child&apos;s focus and activates only the nearest relevant agent.</p>
-              <figure class="project-card-figure">
-                <img src="assets/images/projects/socialeyes-expressions.webp" alt="Six facial expressions used by the SocialEyes agents: happiness, neutral, surprise, sadness, anger, and fear" loading="lazy" />
-                <figcaption>The six validated facial expressions used to represent the agents&apos; emotional states.</figcaption>
-              </figure>
-              <h4>Evaluation and Key Findings</h4>
-              <p>The activity involves identifying five social friends among thirty-two agents. I assessed the internal consistency of the agent model through a Monte Carlo simulation of thousands of gaze and gesture sequences. Simulated response rates closely matched probabilities calculated from the Bayesian network; for one gesture, the simulated rate was 24 percent compared with an expected rate of 25 percent.</p>
-              <h4>Current Status</h4>
-              <p>SocialEyes remains a proof of concept, with interaction limited to gaze within a classroom environment. The reported evaluation concerns the computational model and does not establish clinical effectiveness. A proposed extension is facial expression recognition in real time, enabling agents to respond to the child&apos;s expressive cues as well as gaze.</p>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-6" data-project="6">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/spatial-cv-hero.webp" aria-label="View a larger image of the spatial CV game's isometric level">
-              <img src="assets/images/projects/spatial-cv-hero.webp" alt="A monochrome isometric level with a keyhole-like icon, an archway, and a directional arrow guiding the player forward" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Independent project &middot; interaction design prototype</span>
-              <h3 class="project-card-title">A Portfolio You Walk Through: Gamifying Access to Information</h3>
-              <p class="project-card-venue">Browser game &middot; p5.js, WebGL &middot; progressive disclosure through level design</p>
+          <a class="project-summary-link" href="projects/gamified-portfolio.html" aria-labelledby="project-title-6">
+            <span class="project-summary-image"><img src="assets/images/projects/spatial-cv-hero.webp" alt="A monochrome isometric level with a keyhole-like icon, an archway, and a directional arrow guiding the player forward" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-6">A Portfolio You Walk Through: Gamifying Access to Information</h3>
+              <p class="project-summary">A browser-based portfolio that uses twelve architectural levels and spatial interaction to explore progressive disclosure of personal and professional information.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>This interaction design prototype investigates spatial navigation and progressive disclosure as approaches to presenting personal and professional information. It organizes a curriculum vitae into twelve architectural levels. Completing a spatial task reveals the next narrative chapter, allowing visitors to encounter the material through sequential interaction.</p>
-              <h4>Implementation</h4>
-              <p>Built with p5.js and WebGL, the browser experience presents twelve chapters, from Origins to Now, within monochrome isometric environments navigated by walking. A split screen mechanic displays two related states of each space using different palettes, lighting conditions, and visible objects. This arrangement presents parallel information within a level and uses spatial progression to direct attention.</p>
-              <figure class="project-card-figure">
-                <img src="assets/images/projects/spatial-cv-narrative.webp" alt="An isometric level with the on-screen narrative line: I began with physical space. Walls, light, terrain. Architecture taught me how bodies move before pixels did." loading="lazy" />
-                <figcaption>Architectural space paired with narrative text: &ldquo;I began with physical space. Walls, light, terrain. Architecture taught me how bodies move before pixels did.&rdquo;</figcaption>
-              </figure>
-              <h4>Environment Design</h4>
-              <div class="project-card-gallery">
-                <a class="project-thumb project-thumb--tall" href="assets/images/projects/spatial-cv-arches.webp" aria-label="View a larger image of an archway and staircase level">
-                  <img src="assets/images/projects/spatial-cv-arches.webp" alt="A wide monochrome isometric level with a colonnade of arches leading to a staircase" loading="lazy" />
-                </a>
-                <a class="project-thumb" href="assets/images/projects/spatial-cv-bridge.webp" aria-label="View a larger image of an arched bridge level">
-                  <img src="assets/images/projects/spatial-cv-bridge.webp" alt="A close isometric view of an arched bridge level with a small pedestal marker" loading="lazy" />
-                </a>
-                <a class="project-thumb" href="assets/images/projects/spatial-cv-corridor.webp" aria-label="View a larger image of a narrow isometric corridor level">
-                  <img src="assets/images/projects/spatial-cv-corridor.webp" alt="A narrow monochrome isometric corridor leading toward a small circular marker" loading="lazy" />
-                </a>
-                <a class="project-thumb" href="assets/images/projects/spatial-cv-stairs.webp" aria-label="View a larger image of a staircase connecting two levels">
-                  <img src="assets/images/projects/spatial-cv-stairs.webp" alt="A monochrome isometric staircase connecting a lower corridor to an upper level, with a small player marker beside it" loading="lazy" />
-                </a>
-              </div>
-              <h4>Project Outcomes</h4>
-              <p>The project provides a personal case study of environment as interface. It explores how movement, experimentation, and gradual disclosure might offer alternative ways to access information typically presented through linear documents, including regulations, technical manuals, and contracts. Within the portfolio context, the prototype frames questions about how the method of access may influence attention and recall.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="game/index.html" target="_blank" rel="noopener">Play the game &rarr;</a>
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/gamified-portfolio" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-7" data-project="7">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/parametric-massing-generator-hero.webp" aria-label="View a larger image of the Parametric Massing Generator's urban block mode">
-              <img src="assets/images/projects/parametric-massing-generator-hero.webp" alt="A 3x3 grid of white massing volumes generated on a subdivided urban block, with a plan view inset in the corner" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Independent project &middot; agentic AI, computational design</span>
-              <h3 class="project-card-title">Parametric Massing Generator</h3>
-              <p class="project-card-venue">Zoning-to-form generation &middot; Three.js, Claude &middot; parcel geometry through urban block scale</p>
+          <a class="project-summary-link" href="projects/parametric-massing-generator.html" aria-labelledby="project-title-7">
+            <span class="project-summary-image"><img src="assets/images/projects/parametric-massing-generator-hero.webp" alt="A 3x3 grid of white massing volumes generated on a subdivided urban block, with a plan view inset in the corner" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-7">Parametric Massing Generator</h3>
+              <p class="project-summary">A computational design prototype that translates zoning text into inspectable massing envelopes at the scale of lots, irregular parcels, and urban blocks.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>The Parametric Massing Generator investigates the translation of zoning language into building massing at three scales: rectangular lots, irregular parcels, and subdivided urban blocks. Its objective is to make the relationship between written constraints and permitted spatial envelopes available for inspection by designers.</p>
-              <h4>System Architecture</h4>
-              <p>The system extracts dimensions, setbacks, height limits, and floor space ratio from a bylaw excerpt, retaining a source quotation and confidence value for each constraint. It generates a corresponding three-dimensional envelope, then uses a separate review pass to compare extracted constraints with the source text and propose corrections. Conversational revisions can change an individual parameter while preserving other design conditions. A built-in example represents the conditional rules of Vancouver&apos;s R1-1 zoning district, including rental incentives and thresholds for frontage and lot area.</p>
-              <h4>Implementation</h4>
-              <p>For convex parcels, the buildable footprint is computed as an inward polygon offset through half-plane intersection. Urban Block mode subdivides a larger site and interprets directional instructions to assign residential, commercial, administrative, or park uses according to normalized parcel positions. The interface displays a three-dimensional model alongside a color-coded plan and records each extraction, review, and revision in a generation log.</p>
-              <h4>Project Outcomes</h4>
-              <p>The Three.js implementation provides geometric controls without requiring an AI API key. Claude-based source extraction, independent review, conversational refinement, and parcel classification are available with an Anthropic key. The resulting prototype exposes both generated geometry and the associated interpretation process for inspection.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://romanjahandideh.github.io/parametric-massing-generator/" target="_blank" rel="noopener">Try it live &rarr;</a>
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/parametric-massing-generator" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-8" data-project="8">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/zoning-literacy-assistant-hero.webp" aria-label="View a larger image of the Zoning Literacy Assistant's site compliance checker">
-              <img src="assets/images/projects/zoning-literacy-assistant-hero.webp" alt="The Zoning Literacy Assistant interface, showing example questions, a lot width and depth form, and the real bylaw excerpt it answers from" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Independent project &middot; grounded question answering</span>
-              <h3 class="project-card-title">Zoning Literacy Assistant</h3>
-              <p class="project-card-venue">Regulatory literacy &middot; retrieval, synthesis &amp; independent verification &middot; Claude</p>
+          <a class="project-summary-link" href="projects/zoning-literacy-assistant.html" aria-labelledby="project-title-8">
+            <span class="project-summary-image"><img src="assets/images/projects/zoning-literacy-assistant-hero.webp" alt="The Zoning Literacy Assistant interface, showing example questions, a lot width and depth form, and the real bylaw excerpt it answers from" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-8">Zoning Literacy Assistant</h3>
+              <p class="project-summary">A prototype for regulatory question answering that combines source retrieval, cited explanations, independent verification, and deterministic site calculations.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>The Zoning Literacy Assistant investigates how AI can support public understanding of land use regulation while making the evidence and limits of each response explicit. Source retrieval, citation, verification, and uncertainty reporting are central design requirements. The objective is to help readers assess regulatory explanations against the supplied bylaw text.</p>
-              <h4>System Capabilities</h4>
-              <p>The assistant accepts questions in plain language, such as whether a duplex is permitted on a lot. Responses cite the exact supporting clause, and the system indicates when the supplied text does not address a question. A separate site assessment uses lot dimensions and rental conditions to report the applicable unit tier, buildable footprint after setbacks, and estimated floor area, with a citation for each result.</p>
-              <h4>System Architecture</h4>
-              <p>The Claude-based workflow comprises three stages. Retrieval selects potentially relevant clauses using their titles. Synthesis constructs an answer from the selected full text. Independent verification checks the response and identifies potentially omitted clauses. Site calculations are performed deterministically in code; the language model communicates these results while preserving a record of sources, calculations, and unresolved uncertainty.</p>
-              <h4>Evaluation</h4>
-              <p>The prototype includes example questions for testing with an Anthropic key. Answerable and unsupported cases support examination of both cited responses and the system&apos;s handling of insufficient evidence. The site assessment also illustrates changes to conditional floor space rules when rental provisions apply.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://romanjahandideh.github.io/zoning-literacy-assistant/" target="_blank" rel="noopener">Try it live &rarr;</a>
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/zoning-literacy-assistant" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-9" data-project="9">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/vancouver-view-corridor-hero.webp" aria-label="View a larger image of the stepped massing trimmed by a real Vancouver view corridor">
-              <img src="assets/images/projects/vancouver-view-corridor-hero.webp" alt="A stepped massing volume trimmed diagonally where a protected view corridor's sloped ceiling crosses it, with the full view corridor triangle shown extending from its real apex" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Independent project &middot; Rhino, Grasshopper, computational geometry</span>
-              <h3 class="project-card-title">Vancouver View Corridor Massing</h3>
-              <p class="project-card-venue">Rhino &amp; Grasshopper study &middot; deterministic measurements &middot; City of Vancouver view corridor data</p>
+          <a class="project-summary-link" href="projects/vancouver-view-corridor-massing.html" aria-labelledby="project-title-9">
+            <span class="project-summary-image"><img src="assets/images/projects/vancouver-view-corridor-hero.webp" alt="A stepped massing volume trimmed diagonally where a protected view corridor's sloped ceiling crosses it, with the full view corridor triangle shown extending from its real apex" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-9">Vancouver View Corridor Massing</h3>
+              <p class="project-summary">A Rhino and Grasshopper study of building massing under Vancouver view corridor constraints, comparing floor area and configuration through deterministic geometry.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>This project develops a computational method for generating building massing subject to Vancouver&apos;s protected view corridors. Corridor elevation limits vary with distance from a defined viewpoint, so an envelope permitted by zoning may intersect a corridor&apos;s sloped ceiling. The study uses City of Vancouver corridor data to model this additional geometric constraint.</p>
-              <h4>Evaluation and Key Findings</h4>
-              <p>The evaluation compared compliance calculated for each floor with a conservative method that caps the entire building at one elevation. For the selected corridor and representative site, the precise method recovered 39.5 percent more gross floor area. Across seven footprint rotations, total floor area varied by less than 0.1 percent, while floor count and floor sizes varied more substantially. For the linear corridor ceiling, average permitted height over a fixed area is determined by the region&apos;s centroid and remains stable as the footprint rotates about a fixed center.</p>
-              <h4>Design Application</h4>
-              <p>Orientation therefore provides a means of varying floor configuration with little change in total yield for the evaluated case. The project uses a language model to interpret this computed design space against an open brief, such as a preference for fewer, larger floor plates. Geometric measurements are deterministic; the model interprets the documented tradeoff between configurations.</p>
-              <h4>Implementation</h4>
-              <p>The Rhino and Grasshopper implementation uses actual parcel and corridor geometry. The repository includes geometry tests, a verified offline data fallback, a script that produces a structurally checked Rhino file, and a Grasshopper Python component sharing the tested computational core. Placeholder inputs and confirmed values are identified explicitly to document the limits of the results.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/vancouver-view-corridor-massing" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-10" data-project="10">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/environmental-massing-agents-hero.webp" aria-label="View a larger image of the multi-agent environmental massing study's plan, shadow, and section">
-              <img src="assets/images/projects/environmental-massing-agents-hero.webp" alt="Plan view showing a corridor-trimmed massing footprint, its real winter-solstice shadow reaching toward a target park point, alongside a stepped section profile of the same trimmed massing" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Independent project &middot; Rhino, Grasshopper, MCP, multi-agent AI</span>
-              <h3 class="project-card-title">Environmental Massing Agents</h3>
-              <p class="project-card-venue">Multi-agent MCP design study &middot; solar geometry, carbon benchmarks &amp; wind screening &middot; deterministic Pareto optimization</p>
+          <a class="project-summary-link" href="projects/environmental-massing-agents.html" aria-labelledby="project-title-10">
+            <span class="project-summary-image"><img src="assets/images/projects/environmental-massing-agents-hero.webp" alt="Plan view showing a corridor-trimmed massing footprint, its real winter-solstice shadow reaching toward a target park point, alongside a stepped section profile of the same trimmed massing" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-10">Environmental Massing Agents</h3>
+              <p class="project-summary">A study of specialized AI agents and deterministic environmental analysis, evaluated through four hypotheses concerning optimization and geometric design tradeoffs.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>Environmental Massing Agents investigates the use of specialized AI agents to support environmental design decisions with deterministic numerical analysis. The study establishes four research questions and falsifiable hypotheses before computational evaluation. It reports both supported and unsupported hypotheses to distinguish observed performance from the intended benefits of the approach.</p>
-              <h4>System Architecture</h4>
-              <p>A Generator agent proposes rotation, setback, floor height, and structural material for massing at the Creekside Park view corridor site. Four Critic agents assess solar access, embodied carbon, pedestrian wind, and view corridor yield. Solar analysis uses astronomical sun positions and directional shadow geometry across three representative days; carbon analysis uses published intensity benchmarks; wind assessment uses a documented screening proxy; and view corridor yield measures the portion of requested height below the corridor ceiling. An Orchestrator agent integrates these assessments and directs subsequent iterations through a Model Context Protocol (MCP) server.</p>
-              <h4>Evaluation and Key Findings</h4>
-              <p>The evaluation compared NSGA-II with random sampling across five seeds using an exhaustive reference grid of 1,080 designs. NSGA-II did not demonstrate faster raw convergence, but reached 95 percent of the reference threshold in four of five seeds, compared with one of five for random sampling. Mass timber produced lower embodied carbon in all 200 comparisons with matched geometry. A convex geometry formula predicted achievable floor count within one floor across nineteen orientations. After dominant strategies were removed, wind performance and corridor yield formed a one-dimensional Pareto relationship with a measured correlation of negative 1.000.</p>
-              <h4>Implementation</h4>
-              <p>The repository provides unit tests for geometry, hypervolume, and core NSGA-II operations, alongside scripts for reproducing each hypothesis test. The MCP server supports evaluation with a scripted language model substitute or a live model when an Anthropic key is supplied. A Grasshopper component shares the tested geometric implementation for interactive design exploration within the Rhino and Grasshopper workflow.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/environmental-massing-agents" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
         <article class="project-card" id="project-11" data-project="11">
-          <div class="project-card-head">
-            <a class="project-thumb" href="assets/images/projects/vancouver-climate-futures-hero.webp" aria-label="View a larger image of the Vancouver Climate Futures 3D scene showing a canopy neighbourhood, retrofit housing blocks, and the False Creek foreshore">
-              <img src="assets/images/projects/vancouver-climate-futures-hero.webp" alt="A stylized 3D scene showing three real Vancouver places side by side: a hazy street-tree canopy neighbourhood, a grid of rental-housing blocks, and False Creek with a green shoreline buffer ring, each responding to the player's climate adaptation choices" loading="lazy" />
-            </a>
-            <div class="project-card-heading">
-              <span class="project-badge project-badge--research">Independent project &middot; interactive 3D, serious games, evaluation design</span>
-              <h3 class="project-card-title">Vancouver Climate Futures</h3>
-              <p class="project-card-venue">Place-based climate serious game &middot; cited City of Vancouver data &middot; two-condition evaluation design</p>
+          <a class="project-summary-link" href="projects/vancouver-climate-futures.html" aria-labelledby="project-title-11">
+            <span class="project-summary-image"><img src="assets/images/projects/vancouver-climate-futures-hero.webp" alt="A stylized 3D scene showing three real Vancouver places side by side: a hazy street-tree canopy neighbourhood, a grid of rental-housing blocks, and False Creek with a green shoreline buffer ring, each responding to the player's climate adaptation choices" loading="lazy" /></span>
+            <div class="project-summary-copy">
+              <h3 class="project-card-title" id="project-title-11">Vancouver Climate Futures</h3>
+              <p class="project-summary">A browser-based serious game connecting Vancouver climate evidence with adaptation decisions, supported by computational tests and materials for a future participant study.</p>
             </div>
-          </div>
-          <div class="project-card-body">
-            <div class="project-card-text">
-              <p>Vancouver Climate Futures investigates interactive exploration as a means of communicating climate risk and adaptation policy. The serious game draws methodological inspiration from Future Delta 2.0, a published place-based climate game developed through the University of British Columbia Okanagan. Implemented in Three.js for browser access, it connects documented evidence, adaptation decisions, and visible consequences across three Vancouver contexts.</p>
-              <h4>System Architecture</h4>
-              <p>Heat Vision represents a neighbourhood with limited tree canopy, Energy Vision addresses older rental housing, and Flood Vision focuses on the False Creek shoreline. A deterministic model calculates the consequences of each adaptation decision using cited municipal and provincial evidence. Its inputs include Vancouver&apos;s 4.6 metre coastal Flood Construction Level, approximately one metre of projected sea level rise by 2100, 619 deaths during the 2021 British Columbia heat dome, a documented neighbourhood canopy temperature difference of approximately 20 degrees Celsius, and the City&apos;s Rental Apartment Retrofit Accelerator program. Decisions produce visible changes in the three-dimensional scenes.</p>
-              <h4>Usability Evaluation</h4>
-              <p>Usability testing identified environmental occlusion by large interface panels and a disabled survey control that prevented progression without explanatory feedback. Revisions introduced a compact collapsible instruction panel, continuous camera control, and feedback identifying incomplete survey responses. The interaction sequence also provides time to observe environmental changes before presenting an explanation of the outcome.</p>
-              <h4>Evaluation and Key Findings</h4>
-              <p>The planned participant evaluation asks whether interactive causal exploration changes climate risk perception and policy support more effectively than a static presentation of equivalent information. The project includes a static control condition and an instrument for comparing the two conditions based on the validated New Ecological Paradigm scale. The statistical pipeline was tested with explicitly identified synthetic data containing a known effect. A separate computational evaluation covered all sixteen possible choice combinations and found no violations of the documented impact model.</p>
-              <h4>Current Status</h4>
-              <p>The study materials comprise a short initial survey, a sea level rise scenario, three adaptation decisions, and visible environmental outcomes. A companion static booklet presents the same evidence and choices without interactive simulation. Repository tests cover all choice combinations, survey scoring, and the statistical workflow. These materials support a future participant study; the synthetic data are not presented as empirical evidence of effects on participants.</p>
-            </div>
-            <div class="project-card-actions">
-              <a class="project-card-link" href="https://romanjahandideh.github.io/vancouver-climate-futures/" target="_blank" rel="noopener">Try it live &rarr;</a>
-              <a class="project-card-link" href="https://github.com/RomanJahandideh/vancouver-climate-futures" target="_blank" rel="noopener">View the code on GitHub &rarr;</a>
-            </div>
-          </div>
+          </a>
         </article>
 
       </div>
@@ -1084,7 +841,7 @@
 <script src="assets/js/transitions.js" defer></script>
 <script src="assets/js/home-scroll-sequence.js" defer></script>
 <script src="assets/js/home-touch-scroll.js?v=20260703a" defer></script>
-<script src="assets/js/services.js?v=20260915c" defer></script>
+<script src="assets/js/services.js?v=20260919" defer></script>
 <script src="assets/js/toolbar-about.js" defer></script>
 <script src="assets/js/contact-panel.js" defer></script>
 <script src="assets/js/home-intro.js?v=5" defer></script>

@@ -1,78 +1,29 @@
-/* ============================================================
-   Projects overlay
-   Clicking "Projects" desaturates and dims the home page behind
-   a full-screen, scrollable write-up of the research projects.
-   Shares the site palette: cream #FAF8F4, panel #F0EDE6,
-   ink #1C1917, muted #7C6F64, accent orange #D96535,
-   accent purple #8B7BB5. Font: Plus Jakarta Sans.
-   ============================================================ */
-
-/* ---------- The home page fading to black & white ---------- */
-
+/* Compact project index and standalone project detail pages. */
 body.svc-open .hero,
 body.svc-open #artwork-3d-bg,
 body.svc-open #fog-trail-canvas,
 body.svc-open #home-spiderweb-canvas,
 body.svc-open #scene-veil,
 body.svc-open #bg {
-  filter: grayscale(1) brightness(0.6) contrast(0.92);
-  opacity: 0.7;
-  transition: filter 1.15s cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 1.15s cubic-bezier(0.22, 1, 0.36, 1);
+  filter: grayscale(1) brightness(0.6);
   pointer-events: none;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  body.svc-open .hero,
-  body.svc-open #artwork-3d-bg,
-  body.svc-open #fog-trail-canvas,
-  body.svc-open #home-spiderweb-canvas,
-  body.svc-open #scene-veil,
-  body.svc-open #bg {
-    transition: none;
-  }
-}
-
-/* ---------- Overlay shell ---------- */
-
 #projects-overlay {
   position: fixed;
   inset: 0;
   z-index: 9998;
+  background: #faf8f4;
+  color: #1c1917;
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.55s;
+  transition: opacity 0.25s ease, visibility 0.25s;
 }
-
 #projects-overlay.is-open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
 }
-
-/* Flat, not radial: the header and cards live inside the
-   scrollable child and move independently of this fixed layer,
-   so a wash that only fades in near the top would lose strength
-   the moment anything scrolls past it. Kept light so the dimmed
-   home page stays visible as an ambient backdrop; the header and
-   each card carry their own solid background for legibility. */
-#projects-overlay::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(250, 248, 244, 0.4);
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  #projects-overlay {
-    transition: none;
-  }
-}
-
-/* ---------- Close control ---------- */
-
 #projects-close {
   position: fixed;
   top: 26px;
@@ -81,425 +32,269 @@ body.svc-open #bg {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 12px 9px 16px;
+  padding: 10px 14px;
+  border: 1px solid #d6d0c7;
   border-radius: 999px;
-  border: 1px solid rgba(28, 25, 23, 0.14);
-  background: rgba(250, 248, 244, 0.92);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  color: rgba(28, 25, 23, 0.72);
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(28, 25, 23, 0.1);
-  transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
-}
-
-#projects-close:hover {
-  background: #fff;
+  background: #faf8f4;
   color: #1c1917;
-  transform: translateY(-1px);
+  font: 600 12px "Plus Jakarta Sans", system-ui, sans-serif;
+  cursor: pointer;
 }
-
-#projects-close:focus-visible {
-  outline: 2px solid #d96535;
-  outline-offset: 3px;
-}
-
 .projects-close-key {
-  display: inline-flex;
-  align-items: center;
-  padding: 2px 7px;
-  border-radius: 6px;
-  background: rgba(28, 25, 23, 0.08);
-  color: rgba(28, 25, 23, 0.55);
-  font-size: 9px;
-  letter-spacing: 0.04em;
-  text-transform: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #eeeae3;
+  font-size: 10px;
 }
-
-@media (max-width: 640px) {
-  #projects-close {
-    /* sits below the nav pill on narrow viewports, where the nav
-       already spans nearly the full width and would otherwise
-       collide with a top-right close control */
-    top: 68px;
-    right: 14px;
-    padding: 8px 10px 8px 13px;
-  }
-  .projects-close-key {
-    display: none;
-  }
-}
-
-/* ---------- Scroll region ---------- */
-
 #projects-overlay-scroll {
   position: relative;
-  z-index: 1;
+  box-sizing: border-box;
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  padding: 120px 20px 100px;
-  outline: none;
+  padding: 112px 32px 72px;
 }
-
 .projects-overlay-inner {
-  max-width: 900px;
+  max-width: 880px;
   margin: 0 auto;
 }
-
-/* ---------- Header ---------- */
-
 .projects-header {
-  max-width: 680px;
-  margin: 0 auto 56px;
-  padding: 34px 38px;
-  text-align: center;
-  background: #fefdfb;
-  border-radius: 24px;
-  box-shadow: 0 20px 50px rgba(28, 25, 23, 0.1);
+  margin: 0 0 30px;
+  max-width: 720px;
 }
-
-.projects-eyebrow {
-  display: inline-block;
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.34em;
-  color: #d96535;
-  text-transform: uppercase;
-  margin: 0 0 16px;
-}
-
 .projects-title {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-weight: 600;
-  font-size: clamp(26px, 4vw, 36px);
-  line-height: 1.25;
+  margin: 0 0 14px;
+  font: 600 clamp(26px, 4vw, 36px)/1.25 "Plus Jakarta Sans", system-ui, sans-serif;
   color: #1c1917;
-  margin: 0 0 16px;
 }
-
 .projects-intro {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 14.5px;
-  line-height: 1.8;
-  color: rgba(28, 25, 23, 0.68);
   margin: 0;
+  color: #655c54;
+  font: 400 14px/1.75 "Plus Jakarta Sans", system-ui, sans-serif;
 }
-
-/* ---------- Project cards ---------- */
-
 .projects-list {
   display: flex;
   flex-direction: column;
-  gap: 36px;
 }
-
 .project-card {
-  background: #fefdfb;
-  border: 1px solid rgba(28, 25, 23, 0.09);
-  border-radius: 22px;
-  padding: 30px 32px 34px;
-  box-shadow: 0 22px 54px rgba(28, 25, 23, 0.16);
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  margin: 0;
+  border-bottom: 1px solid #dfdad2;
 }
-
-#projects-overlay.is-open .project-card {
-  opacity: 1;
-  transform: translateY(0);
+.project-card:last-child { border-bottom: 0; }
+.project-summary-link {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+  padding: 22px 0;
+  color: inherit;
+  text-decoration: none;
+  border: 0;
 }
-
-.project-card:nth-child(1) {
-  transition-delay: 0.1s;
-}
-.project-card:nth-child(2) {
-  transition-delay: 0.18s;
-}
-.project-card:nth-child(3) {
-  transition-delay: 0.26s;
-}
-.project-card:nth-child(4) {
-  transition-delay: 0.34s;
-}
-.project-card:nth-child(5) {
-  transition-delay: 0.42s;
-}
-.project-card:nth-child(6) {
-  transition-delay: 0.5s;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .project-card {
-    transition: none;
-  }
-}
-
-.project-card-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  margin-bottom: 22px;
-}
-
-.project-thumb {
-  position: relative;
-  flex: 0 0 120px;
-  width: 120px;
-  height: 120px;
-  border-radius: 14px;
+.project-summary-image {
+  display: block;
+  width: 96px;
+  height: 96px;
   overflow: hidden;
-  background: #f0ede6;
-  cursor: zoom-in;
+  background: #eae6df;
 }
-
-.project-thumb img {
+.project-summary-image img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  transition: transform 0.35s ease;
 }
-
-.project-thumb:hover img {
-  transform: scale(1.08);
-}
-
-.project-thumb::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(28, 25, 23, 0.08);
-  opacity: 0;
-  transition: opacity 0.2s ease;
-}
-
-.project-thumb:hover::after,
-.project-thumb:focus-visible::after {
-  opacity: 1;
-}
-
-.project-thumb:focus-visible {
-  outline: 2px solid #d96535;
-  outline-offset: 3px;
-}
-
-/* A small, deliberately uneven gallery of extra environment shots,
-   sized differently from the head thumbnail and the zone figure
-   above so it doesn't read as just another uniform grid. */
-.project-card-gallery {
-  display: grid;
-  grid-template-columns: 1.3fr 1fr;
-  grid-auto-rows: 120px;
-  gap: 10px;
-  margin: 20px 0 28px;
-}
-
-.project-card-gallery .project-thumb {
-  flex: none;
-  width: 100%;
-  height: 100%;
-  border-radius: 12px;
-}
-
-.project-card-gallery .project-thumb--tall {
-  grid-row: span 2;
-}
-
-@media (max-width: 560px) {
-  .project-card-gallery {
-    grid-template-columns: 1fr 1fr;
-    grid-auto-rows: 92px;
-  }
-}
-
-.project-card-heading {
-  flex: 1 1 auto;
-  min-width: 0;
-  padding-top: 2px;
-}
-
-.project-card-body {
-  min-width: 0;
-}
-
-.project-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 13px;
-  border-radius: 999px;
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.project-badge--published {
-  background: #d96535;
-  color: #fff;
-}
-
-.project-badge--revision {
-  background: rgba(139, 123, 181, 0.12);
-  border: 1px solid rgba(139, 123, 181, 0.45);
-  color: #6f5fa3;
-}
-
-.project-badge--notaccepted {
-  background: rgba(28, 25, 23, 0.05);
-  border: 1px solid rgba(28, 25, 23, 0.22);
-  color: rgba(28, 25, 23, 0.6);
-}
-
-.project-badge--submitted {
-  background: rgba(217, 101, 53, 0.08);
-  border: 1px solid rgba(217, 101, 53, 0.35);
-  color: #b6552c;
-}
-
-.project-badge--research {
-  background: rgba(28, 25, 23, 0.05);
-  border: 1px solid rgba(28, 25, 23, 0.18);
-  color: rgba(28, 25, 23, 0.65);
-}
-
+.project-summary-copy { min-width: 0; }
 .project-card-title {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-weight: 600;
-  font-size: clamp(19px, 2.4vw, 23px);
-  line-height: 1.35;
   color: #1c1917;
-  margin: 0 0 8px;
+  font: 600 18px/1.4 "Plus Jakarta Sans", system-ui, sans-serif;
+  margin: 0 0 9px;
+  text-transform: none;
+  letter-spacing: normal;
 }
-
-.project-card-venue {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 12.5px;
-  font-weight: 500;
-  letter-spacing: 0.02em;
-  color: #7c6f64;
+.project-summary {
   margin: 0;
+  color: #655c54;
+  font: 400 13px/1.7 "Plus Jakarta Sans", system-ui, sans-serif;
 }
+.project-summary-link:hover .project-card-title {
+  color: #93411f;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+#projects-close:focus-visible,
+.project-summary-link:focus-visible,
+.project-page a:focus-visible {
+  outline: 2px solid #93411f;
+  outline-offset: 5px;
+}
+.project-summary-link:focus-visible { border-radius: 2px; }
 
+/* Detail pages share the portfolio typeface and restrained warm palette. */
+.project-page {
+  margin: 0;
+  background: #faf8f4;
+  color: #1c1917;
+  font: 400 15px/1.8 "Plus Jakarta Sans", system-ui, sans-serif;
+}
+.project-page * { box-sizing: border-box; }
+.project-page a { color: #93411f; text-underline-offset: 4px; }
+.project-page-nav {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 26px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid #dfdad2;
+  font-size: 13px;
+}
+.project-page-nav a:first-child {
+  color: #1c1917;
+  font-weight: 600;
+  text-decoration: none;
+}
+.project-skip-link {
+  position: absolute;
+  top: -100px;
+  left: 20px;
+  z-index: 1;
+  background: #fff;
+  padding: 12px;
+}
+.project-skip-link:focus { top: 12px; }
+.project-detail {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 54px 32px 60px;
+}
+.project-detail-header { margin-bottom: 28px; }
+.project-detail .project-card-title {
+  font-size: clamp(28px, 4.5vw, 44px);
+  line-height: 1.2;
+  margin-bottom: 18px;
+  overflow-wrap: break-word;
+}
+.project-badge {
+  display: inline-block;
+  margin: 0 0 14px;
+  color: #655c54;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+.project-card-venue {
+  margin: 0;
+  color: #655c54;
+  font-size: 13px;
+}
+.project-detail-hero { margin-bottom: 32px; }
+.project-detail-hero .project-thumb {
+  display: block;
+  background: #eeeae3;
+}
+.project-detail-hero img {
+  display: block;
+  width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+}
 .project-card-text {
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   font-size: 15px;
-  line-height: 1.8;
-  color: rgba(28, 25, 23, 0.82);
+  line-height: 1.85;
+  color: #39332e;
 }
-
-.project-card-text p {
-  margin: 0 0 18px;
-}
-
+.project-card-text p { margin: 0 0 20px; }
+.project-card-text h2,
 .project-card-text h4 {
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.02em;
+  margin: 34px 0 12px;
   color: #1c1917;
-  margin: 26px 0 10px;
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.4;
 }
-
-.project-card-figure {
-  margin: 24px 0;
-}
-
+.project-card-figure { margin: 28px 0; }
 .project-card-figure img {
-  width: 100%;
   display: block;
-  border-radius: 12px;
-  box-shadow: 0 10px 28px rgba(28, 25, 23, 0.1);
+  width: 100%;
+  height: auto;
 }
-
 .project-card-figure figcaption {
   margin-top: 10px;
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  color: #655c54;
   font-size: 12px;
-  line-height: 1.6;
-  color: #7c6f64;
+  line-height: 1.7;
 }
-
+.project-card-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 30px;
+}
+.project-card-gallery .project-thumb {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.project-card-gallery img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .project-card-video {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  margin: 4px 0 24px;
-  border-radius: 14px;
+  margin: 8px 0 28px;
   overflow: hidden;
   background: #000;
-  box-shadow: 0 14px 34px rgba(28, 25, 23, 0.16);
 }
-
 .project-card-video iframe {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   border: 0;
-  display: block;
 }
-
 .project-card-actions {
-  margin-top: 6px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 24px;
+  gap: 14px 24px;
+  margin-top: 32px;
+  padding-top: 22px;
+  border-top: 1px solid #dfdad2;
 }
-
 .project-card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: #d96535;
-  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: gap 0.18s ease, color 0.18s ease;
+  font: 600 13px/1.6 "Plus Jakarta Sans", system-ui, sans-serif;
+  overflow-wrap: anywhere;
 }
-
-.project-card-link:hover {
-  gap: 10px;
-  color: #c9664a;
+.project-detail-footer {
+  margin-top: 48px;
+  padding-top: 24px;
+  border-top: 1px solid #dfdad2;
+  font-size: 13px;
 }
-
-/* ---------- Responsive ---------- */
-
-@media (max-width: 760px) {
-  #projects-overlay-scroll {
-    padding: 96px 14px 80px;
+@media (max-width: 640px) {
+  #projects-close { top: 68px; right: 16px; }
+  .projects-close-key { display: none; }
+  #projects-overlay-scroll { padding: 132px 20px 48px; }
+  .projects-header { margin-bottom: 18px; }
+  .project-summary-link {
+    grid-template-columns: 68px minmax(0, 1fr);
+    gap: 16px;
+    padding: 18px 0;
   }
-
-  .projects-header {
-    padding: 26px 24px;
-  }
-
-  .project-card {
-    padding: 24px 20px 28px;
-  }
-
-  .project-thumb {
-    flex-basis: 84px;
-    width: 84px;
-    height: 84px;
-  }
-
-  .project-card-head {
-    gap: 14px;
-  }
+  .project-summary-image { width: 68px; height: 68px; }
+  .project-card-title { font-size: 16px; }
+  .project-summary { font-size: 12px; }
+  .project-page-nav { padding: 20px; font-size: 12px; }
+  .project-detail { padding: 34px 20px 48px; }
+  .project-card-text { font-size: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #projects-overlay { transition: none; }
 }
