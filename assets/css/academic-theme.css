@@ -1,0 +1,251 @@
+:root {
+  --academic-paper: #f5f2eb;
+  --academic-paper-deep: #ebe6dc;
+  --academic-surface: rgba(255, 255, 255, 0.92);
+  --academic-ink: #202a33;
+  --academic-muted: #66717a;
+  --academic-border: rgba(32, 42, 51, 0.18);
+  --academic-accent: #7b3f3f;
+  --academic-accent-dark: #5f3033;
+  --academic-focus: #9a7430;
+  --academic-radius: 4px;
+  --academic-transition: 180ms ease;
+}
+
+body,
+body.mode-work,
+body.mode-teaching,
+body[data-mode="work"],
+body[data-mode="teaching"] {
+  background: var(--academic-paper);
+  color: var(--academic-ink);
+}
+
+.top-nav,
+body.mode-work .top-nav,
+body.mode-teaching .top-nav {
+  background: rgba(245, 242, 235, 0.94);
+  border: 1px solid var(--academic-border);
+  border-radius: var(--academic-radius);
+  box-shadow: 0 3px 14px rgba(32, 42, 51, 0.08);
+}
+
+.top-nav a,
+body.mode-work .top-nav a {
+  color: var(--academic-muted);
+  transition: color var(--academic-transition);
+}
+
+.top-nav a:hover,
+body.mode-work .top-nav a:hover,
+.top-nav a.is-active {
+  color: var(--academic-accent);
+}
+
+#global-site-hints .global-site-hint,
+#global-site-hints .global-site-hint-secondary {
+  color: var(--academic-muted) !important;
+}
+
+#services-btn,
+.abt-timeline-btn,
+.contact-cv-btn,
+#threed-window .threed-project-pill.is-active,
+#threed-window .threed-project-pill:hover,
+.threed-flip-arrow:hover {
+  background: var(--academic-accent);
+  border-color: var(--academic-accent);
+  border-radius: var(--academic-radius);
+  box-shadow: 0 3px 10px rgba(32, 42, 51, 0.14);
+  color: #fff;
+}
+
+#services-btn:hover,
+.abt-timeline-btn:hover,
+.contact-cv-btn:hover,
+.threed-flip-arrow:hover {
+  background: var(--academic-accent-dark);
+  border-color: var(--academic-accent-dark);
+  box-shadow: 0 4px 12px rgba(32, 42, 51, 0.18);
+}
+
+#services-btn[aria-expanded="true"] {
+  background: rgba(123, 63, 63, 0.1);
+  border-color: var(--academic-accent);
+  color: var(--academic-accent);
+  box-shadow: inset 0 0 0 1px var(--academic-accent);
+}
+
+#teaching-main-stack .teaching-layer,
+.svc-ball,
+body.mode-work #main-stack .layer {
+  background: var(--academic-ink);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 5px 18px rgba(32, 42, 51, 0.18);
+}
+
+#teaching-main-stack .teaching-layer.is-hover,
+#teaching-main-stack .teaching-layer:hover,
+.svc-ball:hover,
+body.mode-work #main-stack .layer:hover {
+  background: var(--academic-accent);
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: 0 7px 20px rgba(32, 42, 51, 0.24);
+}
+
+.panel-close,
+.site-modal-close,
+.abt-back-btn,
+.panel-close:hover,
+.site-modal-close:hover,
+.abt-back-btn:hover,
+.project-card-link,
+.detail-artstation-link,
+.gallery-artstation-link {
+  border-radius: var(--academic-radius);
+}
+
+.panel-close,
+.site-modal-close,
+.abt-back-btn {
+  border-color: var(--academic-border);
+  color: var(--academic-ink);
+  transition: background var(--academic-transition), color var(--academic-transition), border-color var(--academic-transition);
+}
+
+.panel-close:hover,
+.site-modal-close:hover,
+.abt-back-btn:hover {
+  background: var(--academic-paper-deep);
+  border-color: var(--academic-accent);
+  color: var(--academic-accent);
+  transform: none;
+}
+
+.panel-inner,
+.site-modal,
+#about-window,
+#teaching-detail-overlay .teaching-detail-panel,
+#teaching-detail-overlay .teaching-detail-panel.teaching-template-panel {
+  background: var(--academic-surface);
+  border-color: var(--academic-border);
+  border-radius: 8px;
+  box-shadow: 0 18px 42px rgba(32, 42, 51, 0.14);
+}
+
+#about-window,
+#teaching-detail-overlay .teaching-detail-panel.teaching-template-panel {
+  border-top: 2px solid var(--academic-accent);
+}
+
+#about .about-clean-intro,
+#contact .contact-card,
+#projects-overlay .projects-overlay-inner,
+#projects-overlay .project-card {
+  background: rgba(235, 230, 220, 0.52);
+  border-color: var(--academic-border);
+  border-radius: var(--academic-radius);
+  box-shadow: none;
+}
+
+#contact .contact-link,
+.abt-publication,
+.threed-project-pill,
+.project-card-link {
+  background: rgba(32, 42, 51, 0.035);
+  border-color: var(--academic-border);
+  border-radius: var(--academic-radius);
+  color: var(--academic-ink);
+  transition: background var(--academic-transition), color var(--academic-transition), border-color var(--academic-transition);
+}
+
+#contact .contact-link:hover,
+.abt-publication:hover,
+.threed-project-pill:hover,
+.project-card-link:hover {
+  background: var(--academic-paper-deep);
+  border-color: var(--academic-accent);
+  color: var(--academic-accent);
+  transform: none;
+  box-shadow: none;
+}
+
+.abt-divider {
+  background: var(--academic-accent);
+}
+
+.abt-eyebrow,
+.abt-timeline-view-title,
+.teach-window-section-label,
+.teach-window-meta-label,
+.project-badge,
+.project-card-venue {
+  color: var(--academic-muted);
+}
+
+.teach-window-title,
+.teach-window-meta-value,
+.project-card-title,
+.threed-project-info-title {
+  color: var(--academic-ink);
+}
+
+.teach-window-lead,
+.teach-window-para,
+.teach-window-list li,
+.project-summary,
+.project-card-text,
+.abt-body,
+.threed-project-info-desc {
+  color: #4b5861;
+}
+
+.teach-hero-wrap {
+  background: var(--academic-paper-deep);
+  border-radius: 8px 8px 0 0;
+}
+
+#teaching-detail-overlay .teaching-detail-panel .teaching-detail-hero {
+  background: var(--academic-paper-deep);
+  border-radius: 8px 8px 0 0;
+}
+
+#mode-curtain {
+  background: var(--academic-paper);
+  backdrop-filter: blur(14px) brightness(1.04);
+  -webkit-backdrop-filter: blur(14px) brightness(1.04);
+}
+
+.mode-dot.is-active {
+  background: var(--academic-accent);
+}
+
+#snd-toggle,
+.threed-flip-arrow {
+  border-radius: var(--academic-radius);
+  background: rgba(245, 242, 235, 0.94);
+  border-color: var(--academic-border);
+  color: var(--academic-ink);
+  box-shadow: 0 2px 8px rgba(32, 42, 51, 0.1);
+}
+
+#snd-toggle:hover {
+  background: var(--academic-paper-deep);
+}
+
+:where(button, a, input, textarea):focus-visible {
+  outline-color: var(--academic-focus);
+}
+
+@media (max-width: 736px) {
+  .top-nav {
+    border-radius: var(--academic-radius);
+  }
+
+  .site-modal,
+  #about-window,
+  #teaching-detail-overlay .teaching-detail-panel,
+  #teaching-detail-overlay .teaching-detail-panel.teaching-template-panel {
+    border-radius: 6px;
+  }
+}
