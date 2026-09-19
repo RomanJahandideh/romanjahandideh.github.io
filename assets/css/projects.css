@@ -195,12 +195,15 @@ html.projects-entry #projects-overlay,
 .project-detail-hero figcaption { margin-top: 10px; color: #655c54; font-size: 12px; line-height: 1.7; }
 .project-detail-hero .project-thumb {
   display: block;
+  aspect-ratio: 16 / 9;
+  padding: 18px;
   background: #eeeae3;
+  border: 1px solid #e1dbd2;
 }
 .project-detail-hero img {
   display: block;
   width: 100%;
-  max-height: 480px;
+  height: 100%;
   object-fit: contain;
 }
 .project-card-text {
@@ -218,7 +221,12 @@ html.projects-entry #projects-overlay,
   font-weight: 600;
   line-height: 1.4;
 }
-.project-card-figure { margin: 28px 0; }
+.project-card-figure {
+  margin: 28px 0 32px;
+  padding: 12px;
+  background: #f3f0eb;
+  border: 1px solid #e1dbd2;
+}
 .project-card-figure img {
   display: block;
   width: 100%;
@@ -233,30 +241,25 @@ html.projects-entry #projects-overlay,
 .project-card-gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin: 22px 0 30px;
+  gap: 16px;
+  margin: 24px 0 32px;
 }
 .project-card-gallery .project-thumb {
   display: block;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
+  padding: 12px;
+  background: #f3f0eb;
+  border: 1px solid #e1dbd2;
 }
 .project-card-gallery img {
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 .project-card-gallery--paper .project-thumb {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f3f0eb;
-}
-.project-card-gallery--paper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+  padding: 10px;
 }
 .project-card-video {
   position: relative;
@@ -307,6 +310,9 @@ html.projects-entry #projects-overlay,
   .project-page-nav { padding: 20px; font-size: 12px; }
   .project-detail { padding: 34px 20px 48px; }
   .project-card-text { font-size: 14px; }
+  .project-detail-hero .project-thumb { padding: 10px; }
+  .project-card-gallery { grid-template-columns: 1fr; gap: 12px; }
+  .project-card-gallery .project-thumb { aspect-ratio: 16 / 10; }
 }
 @media (prefers-reduced-motion: reduce) {
   #projects-overlay { transition: none; }
