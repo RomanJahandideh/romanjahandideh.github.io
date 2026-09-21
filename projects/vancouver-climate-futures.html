@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Vancouver Climate Futures | Roman Jahandideh</title>
-<meta name="description" content="A browser-based serious game connecting Vancouver climate evidence with adaptation decisions, supported by computational tests and materials for a future participant study." />
+<meta name="description" content="A browser-based climate serious game with selectable 2050s/2100s projections, cited Vancouver sea-level data, illustrative heat and energy indices, and adaptation decisions." />
 <link rel="canonical" href="https://romanjahandideh.com/projects/vancouver-climate-futures.html" />
 <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg?v=11" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -27,14 +27,16 @@
     <header class="project-detail-header">
       <span class="project-badge project-badge--research">Independent project &middot; interactive 3D, serious games, evaluation design</span>
       <h1 class="project-card-title">Vancouver Climate Futures</h1>
-      <p class="project-card-venue">Place-based climate serious game &middot; cited City of Vancouver data &middot; two-condition evaluation design</p>
+      <p class="project-card-venue">Place-based climate serious game &middot; 2050s/2100s climate projections &middot; cited Vancouver evidence &middot; two-condition evaluation design</p>
     </header>
     <div class="project-detail-hero"><a class="project-thumb" href="../assets/images/projects/vancouver-climate-futures-hero.webp" aria-label="View a larger image of the Vancouver Climate Futures 3D scene showing a canopy neighbourhood, retrofit housing blocks, and the False Creek foreshore">
               <img src="../assets/images/projects/vancouver-climate-futures-hero.webp" alt="A stylized 3D scene showing three real Vancouver places side by side: a hazy street-tree canopy neighbourhood, a grid of rental-housing blocks, and False Creek with a green shoreline buffer ring, each responding to the player's climate adaptation choices" loading="lazy" />
             </a></div>
     <div class="project-card-body">
             <div class="project-card-text">
-              <p>Vancouver Climate Futures investigates interactive exploration as a means of communicating climate risk and adaptation policy. The serious game draws methodological inspiration from Future Delta 2.0, a published place-based climate game developed through the University of British Columbia Okanagan. Implemented in Three.js for browser access, it connects documented evidence, adaptation decisions, and visible consequences across three Vancouver contexts.</p>
+              <p>Vancouver Climate Futures investigates interactive exploration as a means of communicating climate risk and adaptation policy. The serious game draws methodological inspiration from Future Delta 2.0, a published place-based climate game developed through the University of British Columbia Okanagan. Implemented in Three.js for browser access, it connects documented evidence, adaptation decisions, and visible consequences across three Vancouver contexts. A selectable 2050s/2100s climate projection forecast brings cited sea-level projections and illustrative heat exposure and energy vulnerability indices into the experience.</p>
+              <h2>Climate Projection Forecast</h2>
+              <p>The live system now includes a selectable 2050s/2100s climate-projection forecast. The flood outlook uses the cited 0.5 metre and 1.0 metre sea-level-rise horizons together with Vancouver&apos;s 4.6 metre Flood Construction Level. Heat and energy outlooks are displayed as deterministic status-quo scenario indices, explicitly labeled as illustrative prototype values rather than official City of Vancouver forecasts. The feature is a long-range climate scenario tool, not a short-term weather service.</p>
               <h2>System Architecture</h2>
               <p>Heat Vision represents a neighbourhood with limited tree canopy, Energy Vision addresses older rental housing, and Flood Vision focuses on the False Creek shoreline. A deterministic model calculates the consequences of each adaptation decision. The flood model directly uses the cited 0.5 metre and 1.0 metre sea-level-rise horizons and Vancouver&apos;s 4.6 metre Flood Construction Level. The 619 heat-dome deaths, approximately 20 degree Celsius canopy-related temperature difference, and City Rental Apartment Retrofit Accelerator are real contextual evidence grounding the Heat and Energy acts; they are not presented as participant outcomes or silently converted into game results.</p>
               <h2>Data Provenance and Model Limits</h2>
@@ -44,7 +46,7 @@
               <h2>Evaluation and Key Findings</h2>
               <p>The planned participant evaluation asks whether interactive causal exploration changes climate risk perception and policy support more effectively than a static presentation of equivalent information. The project includes a static control condition and an instrument for comparing the two conditions based on the validated New Ecological Paradigm scale. The statistical pipeline was tested with explicitly identified synthetic data containing a known effect. A separate computational evaluation covered all sixteen possible choice combinations and found no violations of the documented impact model.</p>
               <h2>Current Status</h2>
-              <p>The study materials comprise a short initial survey, a sea level rise scenario, three adaptation decisions, and visible environmental outcomes. A companion static booklet presents the same evidence and choices without interactive simulation. Repository tests cover all choice combinations, survey scoring, and the statistical workflow. These materials support a future participant study; the synthetic data are not presented as empirical evidence of effects on participants.</p>
+              <p>The study materials comprise a short initial survey, the climate projection forecast, a sea level rise scenario, three adaptation decisions, and visible environmental outcomes. A companion static booklet presents the same evidence and choices without interactive simulation. Repository tests cover all choice combinations, survey scoring, the forecast model, and the statistical workflow. These materials support a future participant study; the synthetic data are not presented as empirical evidence of effects on participants.</p>
             </div>
             <div class="project-card-actions">
               <a class="project-card-link" href="https://romanjahandideh.github.io/vancouver-climate-futures/" target="_blank" rel="noopener">Try it live &rarr;</a>

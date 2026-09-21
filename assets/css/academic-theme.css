@@ -218,6 +218,37 @@ body.mode-work #main-stack .layer:hover {
   border-radius: 8px 8px 0 0;
 }
 
+/* Teaching detail panel is light, so its text must be dark (mode-switch.css defaults to white). */
+#teaching-detail-overlay .teaching-detail-panel {
+  background: #faf8f4;
+}
+
+#teaching-detail-overlay .teaching-detail-kicker,
+#teaching-detail-overlay .teaching-detail-section-title {
+  color: var(--academic-muted);
+}
+
+#teaching-detail-overlay .teaching-detail-title {
+  color: var(--academic-ink);
+}
+
+#teaching-detail-overlay .teaching-detail-text,
+#teaching-detail-overlay .teaching-detail-list li {
+  color: #4b5861;
+}
+
+#teaching-detail-overlay .teaching-detail-close {
+  background: var(--academic-paper);
+  border-color: var(--academic-border);
+  color: var(--academic-ink);
+}
+
+#teaching-detail-overlay .teaching-detail-close:hover {
+  background: var(--academic-paper-deep);
+  border-color: var(--academic-accent);
+  color: var(--academic-accent);
+}
+
 #mode-curtain {
   background: var(--academic-paper);
   backdrop-filter: blur(14px) brightness(1.04);
