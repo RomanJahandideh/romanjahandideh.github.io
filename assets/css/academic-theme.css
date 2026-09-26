@@ -438,3 +438,71 @@ body.mode-work #main-stack .layer:hover {
     border-radius: 6px;
   }
 }
+
+/* About: portrait beside the introduction (stacks above it on narrow screens) */
+#about .about-clean-intro--portrait {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+#about .about-clean-intro-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#about .about-portrait {
+  flex: 0 0 auto;
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--academic-border);
+  box-shadow: 0 6px 18px rgba(28, 25, 23, 0.10);
+}
+
+@media (max-width: 720px) {
+  #about .about-clean-intro--portrait {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 16px;
+  }
+
+  #about .about-portrait {
+    width: 128px;
+    height: 128px;
+  }
+}
+
+/* About window: portrait in the header, beside name line and location */
+#about-window .abt-intro-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+#about-window .abt-intro-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+#about-window .abt-portrait {
+  flex: 0 0 auto;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--academic-border);
+  box-shadow: 0 6px 18px rgba(28, 25, 23, 0.10);
+}
+
+@media (max-width: 640px) {
+  #about-window .abt-intro-row {
+    gap: 14px;
+  }
+
+  #about-window .abt-portrait {
+    width: 76px;
+    height: 76px;
+  }
+}
